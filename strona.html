@@ -64,10 +64,22 @@
                 opacity: 0;
             }
         }
+        .love-text {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            font-size: 50px;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            transform: translateX(-50%);
+            text-align: center;
+            animation: textPulse 1.5s infinite;
+        }
     </style>
 </head>
 <body>
     <div class="heart"></div>
+    <div class="love-text">I love you</div>
     <script>
         function createFirework() {
             for (let i = 0; i < 100; i++) { // Increase number of fireworks
