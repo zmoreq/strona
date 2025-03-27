@@ -43,8 +43,8 @@
         }
         .firework {
             position: absolute;
-            width: 2px;
-            height: 2px;
+            width: 4px;
+            height: 4px;
             background: yellow;
             border-radius: 50%;
             opacity: 0;
@@ -52,15 +52,15 @@
         }
         @keyframes explode {
             0% {
-                transform: scale(0.2);
+                transform: scale(0.5);
                 opacity: 1;
             }
             50% {
-                transform: scale(2);
+                transform: scale(4);
                 opacity: 0.8;
             }
             100% {
-                transform: scale(4);
+                transform: scale(8);
                 opacity: 0;
             }
         }
@@ -75,19 +75,26 @@
             text-align: center;
             animation: textPulse 1.5s infinite;
         }
+
+        @keyframes textPulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
     </style>
 </head>
 <body>
     <div class="heart"></div>
     <div class="love-text">I love you</div>
+
     <script>
         function createFirework() {
-            for (let i = 0; i < 100; i++) { // Increase number of fireworks
+            for (let i = 0; i < 50; i++) { // Increase number of fireworks
                 let firework = document.createElement("div");
                 firework.className = "firework";
                 document.body.appendChild(firework);
-                let x = window.innerWidth / 2 + (Math.random() - 0.5) * 600;
-                let y = window.innerHeight / 2 + (Math.random() - 0.5) * 600;
+                let x = window.innerWidth / 2 + (Math.random() - 0.5) * 300;
+                let y = window.innerHeight / 2 + (Math.random() - 0.5) * 300;
                 firework.style.left = `${x}px`;
                 firework.style.top = `${y}px`;
                 firework.style.animationDelay = `${Math.random() * 1.5}s`;
