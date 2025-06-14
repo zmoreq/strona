@@ -1,107 +1,881 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heart Fireworks</title>
+    <title>Test Wielokrotnego Wyboru</title>
     <style>
         body {
-            margin: 0;
-            overflow: hidden;
-            background-color: black;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
         }
-        .heart {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100px;
-            height: 100px;
-            background-color: red;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            animation: pulse 1s infinite;
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 30px auto;
         }
-        .heart:before, .heart:after {
-            content: "";
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background-color: red;
-            border-radius: 50%;
-        }
-        .heart:before {
-            top: -50px;
-            left: 0;
-        }
-        .heart:after {
-            left: 50px;
-            top: 0;
-        }
-        @keyframes pulse {
-            0% { transform: translate(-50%, -50%) scale(1) rotate(-45deg); }
-            50% { transform: translate(-50%, -50%) scale(1.5) rotate(-45deg); }
-            100% { transform: translate(-50%, -50%) scale(1) rotate(-45deg); }
-        }
-        .firework {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: yellow;
-            border-radius: 50%;
-            opacity: 0;
-            animation: explode 1.5s infinite;
-        }
-        @keyframes explode {
-            0% {
-                transform: scale(0.5);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(4);
-                opacity: 0.8;
-            }
-            100% {
-                transform: scale(8);
-                opacity: 0;
-            }
-        }
-        .love-text {
-            position: absolute;
-            top: 55%;
-            left: 50%;
-            font-size: 50px;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            transform: translateX(-50%);
+        h1 {
+            color: #0056b3;
             text-align: center;
-            animation: textPulse 1.5s infinite;
+            margin-bottom: 30px;
         }
-
-        @keyframes textPulse {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
+        .question-section {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .question-section p {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        .options label:hover {
+            background-color: #e9e9e9;
+        }
+        .options input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .button-group button {
+            padding: 12px 25px;
+            margin: 0 10px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #check-button {
+            background-color: #007bff;
+            color: white;
+        }
+        #check-button:hover {
+            background-color: #0056b3;
+        }
+        #next-button {
+            background-color: #28a745;
+            color: white;
+        }
+        #next-button:hover {
+            background-color: #218838;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
     </style>
 </head>
 <body>
-    <div class="heart"></div>
-    <div class="love-text">I love you</div>
+    <div class="container">
+        <h1>Test Wiedzy</h1>
+        <div class="question-section">
+            <p id="question"></p>
+            <div class="options" id="options">
+                </div>
+        </div>
+        <div class="button-group">
+            <button id="check-button">Sprawdź</button>
+            <button id="next-button" style="display: none;">Następne pytanie</button>
+        </div>
+        <div id="result"></div>
+    </div>
 
     <script>
-        function createFirework() {
-            for (let i = 0; i < 50; i++) { // Increase number of fireworks
-                let firework = document.createElement("div");
-                firework.className = "firework";
-                document.body.appendChild(firework);
-                let x = window.innerWidth / 2 + (Math.random() - 0.5) * 300;
-                let y = window.innerHeight / 2 + (Math.random() - 0.5) * 300;
-                firework.style.left = `${x}px`;
-                firework.style.top = `${y}px`;
-                firework.style.animationDelay = `${Math.random() * 1.5}s`;
-                setTimeout(() => firework.remove(), 1500);
-            }
+        // Definicja pytań i odpowiedzi
+        const questions = [
+    {
+        question: "Zaznacz poprawne stwierdzenia dotyczące wykonywania kopii zapasowych.",
+        options: [
+            { text: "Wykonanie logicznej kopii zapasowej danych jest zawsze szybsze niż wykonanie kopii fizycznej.", isCorrect: false },
+            { text: "Wykonywanie fizycznych kopii zapasowych umożliwia tworzenie kopii pełnych i przyrostowych.", isCorrect: false },
+            { text: "Zawartość wykonanej kopii zapasowej danych powinna być spójna względem czasu wykonania.", isCorrect: true },
+            { text: "Regularne wykonywanie kopii zapasowych udostępnia historię zmian danych w czasie.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz poprawne stwierdzenia dotyczące zastosowania strategii bloków bliźniaczych w alokacji pamięci.",
+        options: [
+            { text: "Strategia jest wykorzystywana w systemie operacyjnym Linux.", isCorrect: true },
+            { text: "Przedstawiona strategia stosuje wielokrotne dzielenie wolnych obszarów pamięci na pół w celu zoptymalizowania rozmiaru przydzielonego obszaru pamięci i nie eliminuje zjawiska fragmentacji wewnętrznej.", isCorrect: true },
+            { text: "Zastosowany w strategii algorytm przydziału pamięci jest identyczny z techniką nakładkowania.", isCorrect: false },
+            { text: "Zastosowanie strategii bloków bliźniaczych eliminuje zjawisko fragmentacji zewnętrznej pamięci.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz prawidłowe stwierdzenie dotyczące zjawiska fragmentacji zewnętrznej.",
+        options: [
+            { text: "zjawisko występuje gdy fragment przydzielonej pamięci operacyjnej nie jest w pełni wykorzystywany przez proces.", isCorrect: false },
+            { text: "proces kompaktowania pamięci eliminuje występowanie niekorzystnego zjawiska", isCorrect: true },
+            { text: "zjawisko wynika z zastosowania stronicowania pamięci", isCorrect: false },
+            { text: "zjawisko dotyczy podziału obszaru pamięci na rozłączne fragmenty, które nie stanowią ciągłej przestrzeni adresowej.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskaż komponent systemu operacyjnego odpowiedzialny za realizację przełączenia kontekstu procesów (wykonywanie wywłaszczenie):",
+        options: [
+            { text: "dyspozytor", isCorrect: true },
+            { text: "planista krótkoterminowy", isCorrect: false },
+            { text: "planista długoterminowy", isCorrect: false },
+            { text: "planista średnioterminowy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż prawdziwe stwierdzenie dotyczące macierzy ochrony",
+        options: [
+            { text: "macierz ochrony pozwala na klasyfikację dopuszczalnego stanu systemu operacyjnego: uwierzytelniony, nieuwierzytelniony.", isCorrect: false },
+            { text: "lista kontroli dostępu ACL jest przykładową reprezentacją macierzy ochrony", isCorrect: true },
+            { text: "jedyną możliwą reprezentacją macierzy ochrony jest lista uprawnień C-list", isCorrect: false },
+            { text: "macierz ochrony może przechowywać uprawnienia dla wielu domen ochrony", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskaż algorytmy szeregowania procesów stosujące wywłaszczenie względem przydzielonej jednostki przetwarzającej.",
+        options: [
+            { text: "FCFS (First Come First Served)", isCorrect: false },
+            { text: "RR (Round-Robin)", isCorrect: true },
+            { text: "$SJF/SJN$ (Shortest Job $First/Next)$", isCorrect: false },
+            { text: "SRT (Shortest Remaining Time)", isCorrect: true }
+        ]
+    },
+    {
+        question: "W jakim systemie plików jest sekwencyjne zapisywanie plików",
+        options: [
+            { text: "NTFS", isCorrect: false },
+            { text: "FAT32", isCorrect: false },
+            { text: "EXT $2/3/4$", isCorrect: false },
+            { text: "ISO-9660", isCorrect: true }
+        ]
+    },
+    {
+        question: "W systemie operacyjnym zapewniającym wywłaszczenie bezpośredni przydział jednostki przetwarzającej na określony czas może być wykonany dla:",
+        options: [
+            { text: "jądra systemu", isCorrect: false },
+            { text: "wątku jądra", isCorrect: true },
+            { text: "włókna", isCorrect: false },
+            { text: "procesu", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskaż uprawnienia jakie posiada strona segmentu tekstu programu.",
+        options: [
+            { text: "Prawo zapisu", isCorrect: false },
+            { text: "Prawo wykonania", isCorrect: true },
+            { text: "Żadna z pozostałych odpowiedzi", isCorrect: false },
+            { text: "Prawo odczytu", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskaż uprawnienia jakie posiada strona segmentu stosu procesu.",
+        options: [
+            { text: "Prawo zapisu", isCorrect: true },
+            { text: "Prawo wykonania", isCorrect: false },
+            { text: "Żadna z pozostałych odpowiedzi", isCorrect: false },
+            { text: "Prawo odczytu", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskaż jakie zależności mogą występować w systemie operacyjnym Linux?",
+        options: [
+            { text: "procesy działające na pierwszym planie zawsze należą do jednej sesji procesów (identyczny numer SID)", isCorrect: false },
+            { text: "proces potomny posiada wskazanie procesu rodzica PPID, jednakże nie zawsze jest to numer procesu, który operacje fork().", isCorrect: true },
+            { text: "współdzielenie terminala przez wiele procesów wymaga uczestnictwa w tej samej sesji SID, w której wyróżnia lidera sesji spełniającej warunek $PID=SID$", isCorrect: true },
+            { text: "grupowanie procesów (względem PGID) pozwala określić procesy przypisane do współdzielonej jednostki przetwarzającej dla ustalonych reguł koligacji", isCorrect: false }
+        ]
+    },
+    {
+        question: "Które mechanizmy można wykorzystać do synchronizacji procesów pracujących w dwóch różnych systemach operacyjnych?",
+        options: [
+            { text: "gniazdo", isCorrect: true },
+            { text: "potok", isCorrect: false },
+            { text: "monitor", isCorrect: false },
+            { text: "semafor lub zamek", isCorrect: false }
+        ]
+    },
+    {
+        question: "Występowanie zjawiska szamotania stron procesu jest związane z:",
+        options: [
+            { text: "kompaktowaniem obszaru pamięci procesu", isCorrect: false },
+            { text: "częstym występowaniem błędu braku strony zgłaszanego przez proces", isCorrect: true },
+            { text: "przeładowanie procesu", isCorrect: true },
+            { text: "brakiem przechowywania zbioru roboczego stron w pamięci fizycznej", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż akronimy algorytmów jakie są stosowane w systemach operacyjnych do szeregowania operacji wejścia-wyjścia:",
+        options: [
+            { text: "FCFS", isCorrect: true },
+            { text: "SRT/SJF", isCorrect: false },
+            { text: "SCAN", isCorrect: true },
+            { text: "LCFS", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż atrybuty pliku przechowywane w systemie plików NTFS.",
+        options: [
+            { text: "właściciel pliku", isCorrect: true },
+            { text: "listy kontroli dostępu", isCorrect: true },
+            { text: "znaczniki czasów ostatniego dostępu i modyfikacji zawartości pliku", isCorrect: true },
+            { text: "atrybuty zwykłe m.in atrybut określający tryb pracy kroniki", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz prawidłowe stwierdzenia dotyczące cyklu rozkazowego:",
+        options: [
+            { text: "cykl rozkazowy składa się z wielu cykli maszynowych, przy czym wszystkie etapy jego realizacji muszą być wykonane na jednej jednostce przetwarzającej (np. procesorze)", isCorrect: true },
+            { text: "Pobranie operandów dla realizowanego rozkazu jest przykładowym etapem cyklu rozkazowego", isCorrect: true },
+            { text: "Pomiędzy kolejnymi cyklami maszynowymi jednego cyklu rozkazowego zawsze wstępuje sprawdzenie przerwania.", isCorrect: false },
+            { text: "cykl rozkazowy jest równoważny cyklowi maszynowemu, pojęcia te są tożsame.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz prawidłowe stwierdzenia dotyczące zjawiska fragmentacji wewnętrznej",
+        options: [
+            { text: "zjawisko dotyczy też plików, dla których rozmiar nie jest wielokrotnością bloku systemu", isCorrect: true },
+            { text: "proces kompaktowania eliminuje występowanie niekorzystnego zjawiska", isCorrect: false },
+            { text: "zjawisko występuje gdy fragment przydzielonej pamięci operacyjnej nie jest w pełni wykorzystywany przez procesy", isCorrect: true },
+            { text: "zjawisko dotyczy podziału obszaru pamięci na rozłączne fragmenty, które nie stanowią ciągłej przestrzeni adresowej", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zastosowanie we współczesnych systemach operacyjnych ograniczeń quota umożliwia:",
+        options: [
+            { text: "limitowanie liczby plików w systemie plików stworzonych przez użytkownika lub grupę (np. dla ext4 w systemie Linux).", isCorrect: true },
+            { text: "określenie maksymalnego czasu przechowywania pliku w systemie plików.", isCorrect: false },
+            { text: "limitowanie liczby bloków systemu plików wykorzystywanych przez użytkownika lub grupę.", isCorrect: true },
+            { text: "określenie rozmiaru danych, dla którego z wyprzedzeniem jest wykonywana rezerwacja bloków na ustalony okres pobłażliwości.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Jakie funkcje pełni system plików?",
+        options: [
+            { text: "zawsze gwarantuje poufność zawartości przechowywanych plików", isCorrect: false },
+            { text: "umożliwia składowanie informacji reprezentowanych przez sekwencje bajtów przechowywane w plikach, dodatkowo zapewniając ich uporządkowanie poprzez zastosowanie hierarchii katalogów.", isCorrect: true },
+            { text: "pozwala na wykorzystanie pełnej przestrzeni składowania urządzenia blokowego jedynie przechowywania zawartości plików użytkowania", isCorrect: false },
+            { text: "stanowi mechanizm pośredniczący pomiędzy procesami operującymi na zawartości plików ( min. jednostka bajt ) a przestrzenią składowania urządzenia blokowego , gdzie jednostka alokacji jest blok (np. sektor dysku)", isCorrect: true }
+        ]
+    },
+    {
+        question: "Jakie systemy operacyjne wykorzystują planowanie przed linią krytyczną?",
+        options: [
+            { text: "systemy bez dyspozytora", isCorrect: false },
+            { text: "systemy wsadowe", isCorrect: false },
+            { text: "systemy bez planisty krótkoterminowego", isCorrect: false },
+            { text: "systemy czasu rzeczywistego", isCorrect: true }
+        ]
+    },
+    {
+        question: "Algorytm zastępowania stron jest stosowany:",
+        options: [
+            { text: "do zwalniania ramek stron pamięci poprzez wskazanie stron, które zostaną usunięte z ramek pamięci.", isCorrect: true },
+            { text: "do segmentacji pamięci fizycznej", isCorrect: false },
+            { text: "przy stronicowaniu do zwalniania pamięci fizycznej bez zakończenia działania procesu.", isCorrect: true },
+            { text: "przy zastosowaniu nakładkowania", isCorrect: true }
+        ]
+    },
+    {
+        question: "Dla działającego w systemie operacyjnym procesu dobierz politykę szeregowania tak by przydział jednostki przetwarzającej był wykonywany w ostatniej kolejności (najmniejsza preferencja przydziału).",
+        options: [
+            { text: "W systemie Linux należy zastosować politykę szeregowania dla procesów wsadowych SCHED_BATCH", isCorrect: false },
+            { text: "W systemie Windows należy jawnie przyznać dla procesu najniższy priorytet 0.", isCorrect: true },
+            { text: "W systemie Linux należy zastosować politykę szeregowania dla procesów bezczynnych SCHED_IDLE", isCorrect: true },
+            { text: "W systemie Windows należy jawnie przyznać dla procesu priorytet przynajmniej 24.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Jeżeli proces większości czasu oczekiwał na przykład jednostki przetwarzające to jest :",
+        options: [
+            { text: "procesem bez ustalonych reguł koligacji", isCorrect: false },
+            { text: "ograniczony wejściem-wyjściem", isCorrect: false },
+            { text: "liderem sesji", isCorrect: false },
+            { text: "zorientowany na obliczenia", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskaż parametry uwzględniane przez planistę krótkoterminowego określającego przydział jednostek przetwarzających.",
+        options: [
+            { text: "priorytet zewnętrzny", isCorrect: true },
+            { text: "przydział innych zasobów wyłącznych", isCorrect: false },
+            { text: "reguły koligacji", isCorrect: true },
+            { text: "statystyki dotychczasowych rozliczeń przydziału jednostek przetwarzających", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż cechy jakie posiada proces interaktywny:",
+        options: [
+            { text: "zawsze jest ograniczony procesorem.", isCorrect: false },
+            { text: "wymagany dostęp do terminala znakowego lub aktywne okno w graficznym interfejsie użytkownika.", isCorrect: true },
+            { text: "musi działać w tle.", isCorrect: false },
+            { text: "w trakcie działania niezbędna komunikacja z użytkownikiem systemu operacyjnego.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz poprawne stwierdzenie dotyczące pamięci asocjacyjnej TLB",
+        options: [
+            { text: "Buforowanie transformacji stron zwiększa wydajność dla programów cechujących się lokalnością odniesień do pamięci.", isCorrect: true },
+            { text: "Pamięć asocjacyjna pozwala na przechowywanie w pamięci fragmentów plików z których korzysta proces.", isCorrect: false },
+            { text: "Zawartość pamięci asocjacyjnej jest współdzielona pomiędzy procesami.", isCorrect: false },
+            { text: "Przełączanie kontekstu procesów wymaga oczyszczania i ponownego załadowania pamięci asocjacyjnej.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Jakie schematy uwierzytelniania są odporne na kompromitację hasła podawanego przez użytkownika (np. przez użycie keylogera)?",
+        options: [
+            { text: "uwierzytelnianie wykorzystujące hasła jednorazowe (np. generowane metodą Lamporta)", isCorrect: true },
+            { text: "uwierzytelnianie wymagające podania: loginu i hasła", isCorrect: false },
+            { text: "Uwierzytelnianie z wykorzystaniem technik biometrycznych.", isCorrect: true },
+            { text: "Uwierzytelnianie z wykorzystaniem metody wyzwanie-odpowiedź (challange-response).", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz sytuacje, które powodują wystąpienie sytuacji uwięzienia procesu (livelock) w systemie operacyjnym.",
+        options: [
+            { text: "W rozwiązaniu problemu ucztujących filozofów jeden z procesów reprezentujących filozofów jest zablokowany i nigdy nie uzyska pary widelców (zasoby niezbędne do kolejnego etapu przetwarzania).", isCorrect: false },
+            { text: "Rywalizacja procesów o przydział jedynej jednostki przetwarzającej z polityką szeregowania współdzielącą czas (Time Sharing).", isCorrect: false },
+            { text: "Proces, który nieskończenie długo z wykorzystaniem blokady pętlowej (spin-lock) próbuje uzyskać przydział zasobu wyłącznego.", isCorrect: true },
+            { text: "Odwrócenie priorytetów procesów, których dotyczy problem inwersji priorytetów.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Który systemowy mechanizm można wykorzystać do synchronizacji procesów pracujących w systemie , brak możliwości współdzielenia pamięci pomiędzy procesami?",
+        options: [
+            { text: "pamięć wspólna", isCorrect: false },
+            { text: "gniazdo lokalne", isCorrect: true },
+            { text: "potok nazywany", isCorrect: true },
+            { text: "semafor", isCorrect: false }
+        ]
+    },
+    {
+        question: "Podział dysku na partycje:",
+        options: [
+            { text: "umożliwia utworzenie wielu urządzeń blokowych, przy czym partycje mają zawsze ciągłą adresację bloków.", isCorrect: true },
+            { text: "jest równoznaczny z utworzeniem systemu plików (formatowanie).", isCorrect: false },
+            { text: "jest zawsze wykonywane poprzez utworzenie tablicy partycji GPT.", isCorrect: false },
+            { text: "jest przykładem zwielokrotnienia w przestrzeni.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Przechowywanie podręczne wykorzystuje",
+        options: [
+            { text: "algorytm szeregowania procesu w dostępie do jednostki przetwarzającej", isCorrect: false },
+            { text: "buforowanie danych w pamięci", isCorrect: true },
+            { text: "technikę spoolingu", isCorrect: false },
+            { text: "monitor jako mechanizm synchronizacji", isCorrect: false }
+        ]
+    },
+    {
+        question: "Jakie uprawnienia ma strona segmentu stosu lub tekstu",
+        options: [
+            { text: "nie ma żadnych", isCorrect: false },
+            { text: "odczytu", isCorrect: true },
+            { text: "wykonywania", isCorrect: true },
+            { text: "zapisu", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz poprawne stwierdzenia dotyczące migawek (snapshot) we współczesnych systemach operacyjnych:",
+        options: [
+            { text: "Migawki przestrzeni składowania umożliwiają wykonanie kopii zapasowej danych spójnych w czasie dla ciągle pracującego systemu plików, którego zawartość wciąż się zmienia.", isCorrect: true },
+            { text: "Implementacja migawek zawsze wykorzystuje regułę COW (Copy On Write).", isCorrect: false },
+            { text: "Utworzenie migawki polega na wykonywaniu pełnej kopii danych z urządzenia blokowego lub systemu plików w tle, w trakcie innych działań użytkownika systemu.", isCorrect: false },
+            { text: "Rozmiar przestrzeni do przechowywania bufora migawki może być mniejszy niż rozmiar urządzenia blokowego lub systemu plików, dla którego wykonano migawkę.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Jakie informacje przechowywane są w bloku kontrolnym procesu PCB?",
+        options: [
+            { text: "wartość licznika programu", isCorrect: true },
+            { text: "priorytet oraz parametry rozliczeń np.", isCorrect: true },
+            { text: "Dla przydziału jednostek przetwarzających", isCorrect: true },
+            { text: "aktualny przydział pamięci", isCorrect: false }
+        ]
+    },
+    {
+        question: "Działanie planisty krótkoterminowego w systemie operacyjnym zawsze uwzględnia:",
+        options: [
+            { text: "tryb decyzji", isCorrect: true },
+            { text: "regułę arbitrażu", isCorrect: true },
+            { text: "zastosowanie planowania wielowątkowego", isCorrect: false },
+            { text: "funkcję wyboru", isCorrect: true }
+        ]
+    },
+    {
+        question: "Który mechanizm synchronizacji bezpośrednio nie eliminuje wystąpienia zjawiska hazardu?",
+        options: [
+            { text: "zamek", isCorrect: false },
+            { text: "semafor", isCorrect: false },
+            { text: "monitor", isCorrect: false },
+            { text: "zmienna warunkowa", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe stwierdzenia dotyczące przetwarzania w trybie użytkownika i trybie jądra w systemie operacyjnym.",
+        options: [
+            { text: "Tryb jądra jest trybem nieuprzywilejowanym dlatego, że zwykły użytkownik wielodostępnego systemu operacyjnego jest ograniczony w dostępie do zasobów systemu np.plików", isCorrect: false },
+            { text: "Tryb jądra jest związany z wykonywaniem kodu zaimplementowanego w jądrze systemu operacyjnego np. w wyniku zgłoszenia przez proces wywołania systemowego.", isCorrect: true },
+            { text: "Tryb jądra jest trybem uprzywilejowanym, wynika to m. in. z szerszego zakresu instrukcji jakie mogą być wykonywane w tym trybie", isCorrect: true },
+            { text: "Tryb użytkownika jest związany wyłącznie z wykonywaniem przez powłokę systemową (np. bash) poleceń wydanych przez użytkownika.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe stwierdzenia dotyczące listy kontroli dostępu przypisanej do pliku, zakładając że system plików gdzie przechowywany jest plik udostępnia taką możliwość.",
+        options: [
+            { text: "Żadna lista kontroli dostępu ACL przypisana do katalogu nie umożliwia dziedziczenia ustawień bezpieczeństwa przez pliki utworzone w tym katalogu.", isCorrect: false },
+            { text: "Uprawnienia jakie można przydzielić w regule listy kontroli dostępu ACL przypisanej do pliku są uzależnione od formatu systemu plików", isCorrect: true },
+            { text: "Przypisana do pliku ACL jest swobodna, gdyż właściciel pliku może zmieniać reguły ACL.", isCorrect: true },
+            { text: "Lista kontroli dostępu ACL przypisana do pliku jest zawsze przykładem wymuszonej ACL.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Który poziom macierzy RAID zapewniają przetrwanie danych w sytuacji uszkodzenia jednego z ....",
+        options: [
+            { text: "Raid0", isCorrect: false },
+            { text: "Raid1", isCorrect: true },
+            { text: "Raid4 i Raid5", isCorrect: true },
+            { text: "Raid6", isCorrect: true }
+        ]
+    },
+    {
+        question: "Algorytmy szeregowania bez wywłaszczania:",
+        options: [
+            { text: "RR", isCorrect: false },
+            { text: "LCFS", isCorrect: true },
+            { text: "FCFS", isCorrect: true },
+            { text: "SJF/SJN", isCorrect: true }
+        ]
+    },
+    {
+        question: "Flagi i atrybuty pliku zapisywane w systemie plików NTFS:",
+        options: [
+            { text: "prawa operacji na plikach", isCorrect: true },
+            { text: "data ostatniej modyfikacji", isCorrect: true },
+            { text: "coś o tworzeniu kopii zapasowych..", isCorrect: false },
+            { text: "...", isCorrect: false }
+        ]
+    },
+    {
+        question: "Jakie zasoby mogą być zwielokrotniane przez system ( ? )",
+        options: [
+            { text: "procesor (w czasie)", isCorrect: true },
+            { text: "dyski twarde (w przestrzeni)", isCorrect: true },
+            { text: "pamięć (w przestrzeni)", isCorrect: true },
+            { text: "...", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż sytuacje kiedy konieczne jest wykonanie wywołania systemowego.",
+        options: [
+            { text: "Otworzenie pliku przez proces do odczytu lub zapisu.", isCorrect: true },
+            { text: "Uruchomieniu nowego procesu (np. operacja rozwidlenia fork()).", isCorrect: true },
+            { text: "Przekazanie jednostki przetwarzającej pomiędzy wątkami zaimplementowanymi w przestrzeni użytkownika.", isCorrect: false },
+            { text: "Uruchomieniu nowego włókna dla procesu.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Jakie operacje musi wykonać dyspozytor w wieloprogramowym systemie operacyjnym w sytuacji przełączenia kontekstu procesów?",
+        options: [
+            { text: "Zmiana reguł koligacji jednego z procesów.", isCorrect: false },
+            { text: "Wczytanie tablicy mapowania stron pamięci procesu, któremu zostaje przydzielona jednostka przetwarzająca.", isCorrect: true },
+            { text: "Odebranie wszystkich zasobów wyłącznych przydzielonych wcześniej dla procesu, któremu została odebrana jednostka przetwarzająca.", isCorrect: false },
+            { text: "Zapisanie i załadowanie odpowiednich rejestrów jednostki przetwarzającej.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe stwierdzenia dotyczące procesów czasu rzeczywistego we współczesnych systemach operacyjnych.",
+        options: [
+            { text: "Współczesne systemy operacyjne Windows posiadają wydzielone pasmo priorytetów dla procesów czasu rzeczywistego (priorytet statyczny od 16).", isCorrect: true },
+            { text: "W systemie operacyjnym Linux procesy czasu rzeczywistego mają dodatnią wartość priorytetu statycznego.", isCorrect: true },
+            { text: "W systemie operacyjnym Windows istnieje wiele polityk szeregowania dla procesów czasu rzeczywistego (SCHED_FIFO i SCHED_RR).", isCorrect: false },
+            { text: "W systemie operacyjnym Linux priorytet zewnętrzny nice jest uwzględniany przy szeregowaniu procesów czasu rzeczywistego.", isCorrect: false }
+        ]
+    },
+    {
+        question: "W jakich sytuacjach wystąpi wywłaszczenie jedynej występującej w systemie operacyjnym jednostki przetwarzającej przydzielonej dla procesu?",
+        options: [
+            { text: "Wystąpienie zakleszczenia pomiędzy dwoma procesami.", isCorrect: false },
+            { text: "Pojawienie się procesu o wyższej preferencji przetwarzania (np. wyrażonej przez wyższą wartość priorytetu statycznego).", isCorrect: true },
+            { text: "Współdzielenie kodu biblioteki konsolidowanej dynamicznie w przestrzeniach adresowych procesów.", isCorrect: false },
+            { text: "Wyczerpanie czasu przydziału jednostki przetwarzającej dla procesu, zakładając dla procesów politykę współdzielenia czasu CPU.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Jakie segmenty są ładowane do pamięci z plików zawierających kod programu jak i moduły przemieszczalne w trakcie uruchomienia programu skonsolidowanego dynamicznie?",
+        options: [
+            { text: "segment tekstu programu", isCorrect: true },
+            { text: "segment stosu", isCorrect: false },
+            { text: "segmenty tekstu z bibliotek współdzielonych o ile nie zostały wcześniej umieszczone w pamięci", isCorrect: true },
+            { text: "segment danych zainicjowanych", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz sytuacje, które powodują wystąpienie sytuacji zagłodzenia procesu w systemie operacyjnym.",
+        options: [
+            { text: "Grupa procesów, które z wykorzystaniem blokady pętlowej (spin-lock) rywalizują o przydział zasobu wyłącznego.", isCorrect: false },
+            { text: "W rozwiązaniu problemu ucztujących filozofów jeden z procesów reprezentujących filozofów nigdy nie uzyskuje jednocześnie pary widelców (zasoby niezbędne do kolejnego etapu przetwarzania).", isCorrect: true },
+            { text: "Rywalizacja procesów o przydział jedynej jednostki przetwarzającej z polityką szeregowania współdzielącą czas (Time Sharing).", isCorrect: false },
+            { text: "Odwrócenie priorytetów procesów, których dotyczy problem inwersji priorytetów.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz sytuacje, które powodują wystąpienie zakleszczenia procesów w systemie operacyjnym (deadlock).",
+        options: [
+            { text: "Grupa procesów, które z wykorzystaniem blokady pętlowej (spin-lock) rywalizują o przydział zasobu wyłącznego.", isCorrect: false },
+            { text: "W rozwiązaniu problemu ucztujących filozofów jeden z procesów reprezentujących filozofów nigdy nie uzyskuje jednocześnie pary widelców.", isCorrect: false },
+            { text: "Rywalizacja procesów o przydział pojedynczej jednostki przetwarzającej.", isCorrect: false },
+            { text: "Grupa zablokowanych procesów rywalizuje o zasoby wyłączne, która w aktualnym grafie oczekiwania WFG utworzyła cykl.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskaż elementy, które posiada każdy proces, niezależnie od systemu operacyjnego, w jakim proces został utworzony",
+        options: [
+            { text: "Reguły koligacji", isCorrect: false },
+            { text: "Wiele segmentów stosu", isCorrect: false },
+            { text: "????Przynajmniej jeden segment sterty", isCorrect: false },
+            { text: "Wątek główny", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe stwierdzenia dotyczące pamięci wirtualnej",
+        options: [
+            { text: "Zastosowanie stronicowania pozwala na jednoczesny przydział procesom segmentów pamięci, których łączny rozmiar przekracza rozmiar ulotnej pamięci fizycznej RAM.", isCorrect: true },
+            { text: "Nie można przechowywać strony w ramce, która nie należy do zbioru roboczego żadnego z procesów", isCorrect: false },
+            { text: "????Niezależnie od sposobu konsolidacji programu pozwala na współdzielenie kodu i danych pochodzących z biblioteki przez procesy utworzone poprzez uruchomienie tego programu.", isCorrect: false },
+            { text: "????W przypadku wielokrotnego uruchomienia tego samego programu utworzone procesy mogą wspólnie korzystać z tych samych stron zawierających kod programu, przy czym każda z tych stron będzie wczytana do co najwyżej tylko jednej ramki.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe stwierdzenia dotyczące pamięci wirtualnej",
+        options: [
+            { text: "Wymaga stosowania nakładek przy tworzeniu programów, by efektywnie zarządzać przydzieloną ulotną pamięcią fizyczną.", isCorrect: false },
+            { text: "Zastosowanie stronicowania pozwala na jednoczesny przydział procesom segmentów pamięci, których łączny rozmiar przekracza rozmiar ulotnej pamięci fizycznej RAM.", isCorrect: true },
+            { text: "Utrzymywanie dla każdego procesu tablicy stron zapewnia jednoczesne wczytanie wszystkich stron procesu do pamięci operacyjnej.", isCorrect: false },
+            { text: "????Zastosowanie niezależnych przestrzeni adresowych dla procesów zapewnia ich separację", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe stwierdzenia dotyczące mechanizmu pamięci wirtualnej.",
+        options: [
+            { text: "Pozwala uruchomić program o zapotrzebowaniu pamięci większym niż rozmiar dostępnej ulotnej pamięci fizycznej w systemie operacyjnym.", isCorrect: true },
+            { text: "Wykorzystuje stronicowanie, przy czym strony pamięci mogą być również przechowywane w przestrzeni wymiany, która zawsze jest zbudowana z magazynów stron zlokalizowanych w pamięci trwałej.", isCorrect: false },
+            { text: "????Zapewnia separację procesów poprzez izolowanie ich segmentów pamięci", isCorrect: false },
+            { text: "????Wykorzystuje segmentację pamięci w celu eliminacji zjawiska fragmentacji zewnętrznej w ulotnej pamięci fizycznej.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz prawidłowe stwierdzenia dotyczące systemu plików z księgowaniem",
+        options: [
+            { text: "Skraca czas przywrócenia spójności struktur systemu plików po awarii, gdyż wymaga dokończenia wszystkich operacji z niezatwierdzonych transakcji zapisanych w kronice.", isCorrect: true },
+            { text: "????Operacje wykonywane na strukturach systemu plików muszą być idempotentne.", isCorrect: false },
+            { text: "Kronika zapewnia funkcjonalność migawek wykonywanych w strukturach systemu plików.", isCorrect: false },
+            { text: "????Zastosowanie kroniki zawsze zapewnia spójność metadanych jak i danych zawartych w plikach ostatnio zmienianych przez procesy użytkownika.", isCorrect: false }
+        ]
+    },
+    {
+        question: "W macierzy dyskowej RAID poziomu 5 zastosowano sześć dysków o identycznej pojemności 1TiB. Jaki rozmiar przestrzeni składowania danych udostępnia urządzenie macierzy?",
+        options: [
+            { text: "????4TiB przy założeniu, że tylko jeden z dysków jest zapasowy ( brak realizacji operacji I/O) i macierz nie pracuje w trybie zdegradowanym.", isCorrect: false },
+            { text: "5TiB przy założeniu, że macierz pracując w trybie zdegradowanym realizuje operacje I/0 na pięciu aktywnych dyskach i na żadnym z nich nie realizuje procesu odtwarzania zawartości dysku.", isCorrect: true },
+            { text: "4TiB przy założeniu, że wszystkie wymienione dyski są aktywnymi uczestnikami macierzy, która pracuje w trybie pełnej konfiguracji.", isCorrect: false },
+            { text: "4TiB przy założeniu, że macierz pracując w trybie zdegradowanym realizuje operacje I/0 na pięciu aktywnych dyskach i na żadnym nie realizuje procesu odtwarzania zawartości dysku.", isCorrect: false }
+        ]
+    },
+    {
+        question: "W macierzy dyskowej RAID poziomu 6 zastosowano sześć dysków o identycznej pojemności 1TiB. Jaki rozmiar przestrzeni składowania danych udostępnia urządzenie macierzy?",
+        options: [
+            { text: "????3TiB przy założeniu, że tylko jeden z dysków jest zapasowy ( brak realizacji operacji I/O) i macierz nie pracuje w trybie zdegradowanym.", isCorrect: false },
+            { text: "4TiB przy założeniu, że macierz pracując w trybie zdegradowanym realizuje operacje I/0 na czterech aktywnych dyskach i na żadnym z nich nie realizuje procesu odtwarzania zawartości dysku.", isCorrect: true },
+            { text: "5TiB przy założeniu, że wszystkie wymienione dyski są aktywnymi uczestnikami macierzy, która pracuje w trybie pełnej konfiguracji.", isCorrect: false },
+            { text: "3TiB przy założeniu, że macierz pracując w trybie zdegradowanym realizuje operacje I/0 na pięciu aktywnych dyskach i na żadnym nie realizuje procesu odtwarzania zawartości dysku.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Które mechanizmy synchronizacji można wykorzystać bezpośrednio do utworzenia sekcji krytycznej",
+        options: [
+            { text: "Zmienna warunkowa", isCorrect: false },
+            { text: "Monitor lub transakcja", isCorrect: false },
+            { text: "Blokada wyłączna lub zamek", isCorrect: true },
+            { text: "Semafor binarny", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskaż zadania realizowane przez współczesne systemy operacyjne",
+        options: [
+            { text: "????planowanie dostępu do zasobów", isCorrect: false },
+            { text: "????Zarządzanie zasobami (przydział i zwalnianie)", isCorrect: false },
+            { text: "Przeciwdziałanie zakleszczeniom dla każdego zbioru procesów przetwarzanych współbieżnie", isCorrect: false },
+            { text: "Autoryzacja w dostępie do plików i katalogów.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zakładając, że system operacyjny jest wielowątkowy wskaż poprawne stwierdzenia dotyczące przydziału jednostek przetwarzających dla procesu, który posiada 3 wątki nie będące włóknami.",
+        options: [
+            { text: "????Każdy z wątków procesu może pozyskać przydział aktywnej jednostki przetwarzającej tylko jeżeli jest w stanie gotowym do wykonania.", isCorrect: false },
+            { text: "????Zasady przydziału jednostek przetwarzających ustalają przypisane do procesu reguły koligacji, priorytety i polityka szeregowania.", isCorrect: false },
+            { text: "System operacyjny dysponując wieloma aktywnymi jednostkami przetwarzającymi może przydzielić jednocześnie nawet 6 z nich dla wskazanego procesu.", isCorrect: false },
+            { text: "Zakładając, że niektóre z jednostek przetwarzających są znacząco mniej wykorzystywane od pozostałych dyspozytor jądra systemu może je przydzielić do poszczególnych wątków procesu naruszając ustalone dla procesu reguły koligacji.", isCorrect: false }
+        ]
+    },
+    {
+        question: "W jakich sytuacjach zastosowanie techniki buforowania przechowującej dane w pamięci, jest użyteczne?",
+        options: [
+            { text: "????Do operacji wejścia/wyjścia dla systemu plików pracującego w trybie synchronicznym", isCorrect: false },
+            { text: "????Do przechowywania efektów zmian dla każdej zakończonej transakcji", isCorrect: false },
+            { text: "????Dopasowanie urządzeń o różnych szybkościach transmisji danych.", isCorrect: false },
+            { text: "????Dopasowanie urządzeń różniących się podstawową jednostką transmisji danych.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe stwierdzenia dotyczące przydziału jednostek przetwarzających dla wątków procesu w systemie operacyjnym.",
+        options: [
+            { text: "Wątki procesu mają zawsze różne ustalone polityki szeregowania, które decydują o preferencji w przydziale jednostek przetwarzających.", isCorrect: false },
+            { text: "polityka NUMA jest przypisana do procesu i określa z jakich jednostek przetwarzających zlokalizowanych w węzłach NUMA mogą skorzystać wątki tego procesu", isCorrect: true },
+            { text: "????Reguły koligacji decydują o przydziale dla zadań jednej z aktywnych jednostek przetwarzających.", isCorrect: false },
+            { text: "Niezależnie od systemu operacyjnego wątki procesu zawsze mają różne linie krytyczne i inne reguły koligacji", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż zjawiska w systemie operacyjnym, których przyczyną jest mechanizm pamięci wirtualnej.",
+        options: [
+            { text: "W przypadku, gdy w systemie operacyjnym występuje presja pamięci i występuje brak wolnego miejsca w przestrzeni wymiany to nastąpi zakończenie wybranych procesów (w ramach zastosowania procedury OOM)", isCorrect: true },
+            { text: "Współdzielenie segmentów kodu, danych i stosu w pamięci ulotnej pomiędzy różnymi procesami", isCorrect: false },
+            { text: "Przy uruchomieniu programu nie trzeba natychmiast wczytywać wszystkich jego stron do pamięci operacyjnej.", isCorrect: true },
+            { text: "Usunięcie pliku z programem wykonywalnym lub biblioteką współdzieloną nie spowoduje natychmiastowego usunięcia w systemie plików wszystkich przypisanych do niego zasobów jeżeli tylko którykolwiek proces jest powiązany z tym plikiem regularnym.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zakładając, że system operacyjny jest wielowątkowy i dysponuje 3 aktywnymi jednostkami przetwarzającymi wskaż sytuacje, w których wszystkie jednostki przetwarzające zostaną przydzielone dla wymienionych zadań. Rozpatrując poszczególne przypadki należy też założyć, że wszystkie wymienione wątki są w stanie gotowym do wykonania.",
+        options: [
+            { text: "Przydział wszystkich aktywnych jednostek przetwarzających może być zrealizowany dla trzech wątków jądra", isCorrect: true },
+            { text: "Przydział wszystkich aktywnych jednostek przetwarzających może być zrealizowany dla procesu, który posiada sześć wątków, które nie są włóknami", isCorrect: true },
+            { text: "Przydział wszystkich aktywnych jednostek przetwarzających może być zrealizowany dla procesu, który posiada cztery wątki, które są włóknami.", isCorrect: false },
+            { text: "Przydział wszystkich aktywnych jednostek przetwarzających może być zrealizowany dla procesu, który posiada dwa wątki, nie będące włóknami", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zakładając, że system operacyjny jest wielowątkowy i dysponuje 4 aktywnymi jednostkami przetwarzającymi wskaż sytuacje, w których wszystkie jednostki przetwarzające zostaną przydzielone dla wymienionych zadań. Rozpatrując poszczególne przypadki należy też założyć, że wszystkie wymienione wątki są w stanie gotowym do wykonania.",
+        options: [
+            { text: "Przydział wszystkich aktywnych jednostek przetwarzających może być zrealizowany dla czterech wątków jądra", isCorrect: true },
+            { text: "Przydział wszystkich aktywnych jednostek przetwarzających może być zrealizowany dla procesu, który posiada sześć wątków, które są włóknami.", isCorrect: true },
+            { text: "Przydział wszystkich aktywnych jednostek przetwarzających może być zrealizowany dla dwóch procesów, z których każdy posiada dwa wątki nie będące włóknami", isCorrect: true },
+            { text: "Przydział wszystkich aktywnych jednostek przetwarzających może być zrealizowany dla procesu, który posiada sześć wątków, które nie są włóknami.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż techniki zwiększające niezawodność przestrzeni składowania, które zmniejszają ryzyko utraty danych.",
+        options: [
+            { text: "Regularne wykonywanie kopii zapasowej danych.", isCorrect: true },
+            { text: "Zastosowanie macierzy RAID poziomu zerowego.", isCorrect: false },
+            { text: "????Zastosowanie podziału na strefy (np. partycjonowanie dysku i umieszczenie w każdej partycji dysku oddzielnego systemu plików).", isCorrect: false },
+            { text: "????Zastosowanie migawek na poziomie urządzenia blokowego lub systemu plików.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż prawdziwe stwierdzenia dotyczące mechanizmów ochrony systemu operacyjnego.",
+        options: [
+            { text: "Uwierzytelnianie to mechanizm weryfikacji uprawnień procesu w dostępie do zasobu", isCorrect: false },
+            { text: "Jądro systemu operacyjnego nie zapewnia wykrywania zakleszczeń pomiędzy zadaniami realizowanymi przez procesy, które są przetwarzane współbieżnie.", isCorrect: true },
+            { text: "Podstawowe cele ochrony systemu to m.in. zapewnienie poufności i integralności danych.", isCorrect: true },
+            { text: "Każdy system plików udostępnia dla przechowywanych plików macierz ochrony np. listę uprawnień.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż przypadki, w których wykonano logiczne kopie zapasowe danych:",
+        options: [
+            { text: "Wykonano do plików kopie pełną i przyrostową z zawartości systemu plików FAT32.", isCorrect: true },
+            { text: "Wykonano do plików kopie pełną i różnicową z zawartości systemu plików Ext4.", isCorrect: true },
+            { text: "Pliki i katalogi zapisano w archiwum ZIP.", isCorrect: true },
+            { text: "Zapisano do pliku sekwencję wszystkich bloków odczytanych bezpośrednio z urządzenia.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż cechy jakie posiada proces wsadowy:",
+        options: [
+            { text: "nie jest konieczna interakcja z użytkownikiem w trakcie przetwarzania danych (dane niezbędne do przetwarzania są przekazane wraz z uruchomieniem procesu wsadowego)", isCorrect: true },
+            { text: "zawsze jest w stanie gotowym do wykonania", isCorrect: false },
+            { text: "zawsze jest ograniczony wejściem-wyjściem", isCorrect: false },
+            { text: "może działać w tle.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Jeżeli proces próbuje pozyskać zasób z wykorzystaniem techniki odpytywania (spin-lock), którego nigdy nie uzyska to występuje sytuacja:",
+        options: [
+            { text: "????żadna z pozostałych odpowiedzi", isCorrect: false },
+            { text: "uwięzienia (livelock)", isCorrect: true },
+            { text: "????zakleszczenia (deadlock)", isCorrect: false },
+            { text: "????zagłodzenia", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż działania jakie może podejmować system operacyjny wykorzystujący pamięć wirtualną w sytuacji wystąpienia presji pamięci operacyjnej.",
+        options: [
+            { text: "Natychmiast bez podjęcia innych działań kończony jest wybrany proces z zastosowaniem procedury OOM.", isCorrect: false },
+            { text: "Wymiatanie stron do przestrzeni wymiany zbudowanej z magazynów stron, które mogą być zlokalizowane zarówno w pamięci ulotnej jak i trwałej.", isCorrect: true },
+            { text: "????Transformacja wszystkich ramek ze stronami nieaktywnymi w ramki wolne poprzez porzucenie ich dotychczasowej zawartości.", isCorrect: false },
+            { text: "Zmniejszenie zbiorów roboczych procesów poprzez redukcję okna zbioru roboczego", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskaż charakterystykę jednowątkowego procesu ograniczonego procesorem:",
+        options: [
+            { text: "efektywniej wykona zadanie jeżeli zostanie mu zapewniony bardziej preferencyjny przydział jednostki przetwarzającej (np. regułami koligacji, polityką NUMA, priorytetami lub polityką szeregowania)", isCorrect: true },
+            { text: "nie więcej niż połowę czasu istnienia przebywa w stanie zablokowanym.", isCorrect: true },
+            { text: "przebywa większość czasu istnienia na realizację zgłoszonych operacji wejścia-wyjścia", isCorrect: false },
+            { text: "musi działać w tle", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż sytuacje, w których system operacyjny jednoznacznie znajduje się w stanie przeciążenia związanego z wykorzystaniem jednostek przetwarzających.",
+        options: [
+            { text: "Liczba wątków dla wszystkich procesów jest większa niż liczba wątków jądra.", isCorrect: false },
+            { text: "????Każda z jednostek przetwarzających jest obciążona w 100% (czyli każda jednostka wykazuje 0% w stanie bezczynnym IDLE)", isCorrect: false },
+            { text: "Liczba wątków nie będących włóknami i w stanie gotowym do wykonania zliczanych dla wszystkich procesów przekracza liczbę aktywnych jednostek przetwarzających.", isCorrect: true },
+            { text: "System zaczyna wymiatać strony do przestrzeni wymiany swap.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż elementy oprogramowania systemu operacyjnego wchodzące w skład mechanizmu pamięci wirtualnej.",
+        options: [
+            { text: "odczyt bloków z wyprzedzeniem dla urządzeń blokowych", isCorrect: false },
+            { text: "segmentacja i stronicowanie pamięci procesów", isCorrect: true },
+            { text: "przestrzeń wymiany złożona z magazynów stron, które mogą być zlokalizowane zarówno w pamięci trwałej jak i ulotnej", isCorrect: true },
+            { text: "pamięć asocjacyjna TLB", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wątki jednego procesu współdzielą:",
+        options: [
+            { text: "tablicę otwartych plików", isCorrect: true },
+            { text: "segment danych i tekstu programu", isCorrect: true },
+            { text: "zawartość wszystkich rejestrów (np. licznik rozkazów)", isCorrect: false },
+            { text: "segment stosu", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż cechy jakie posiada proces usługi systemowej:",
+        options: [
+            { text: "zawsze jest ograniczony procesorem", isCorrect: false },
+            { text: "nie wymaga obecności uwierzytelnionych użytkowników w systemie operacyjnym", isCorrect: true },
+            { text: "musi działać w tle", isCorrect: true },
+            { text: "zawsze jest w stanie gotowym do wykonania", isCorrect: false }
+        ]
+    }
+];
+
+        let currentQuestionIndex = -1; // Używamy -1, aby pierwsze pytanie było losowane przy starcie
+        let currentQuestion;
+
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const checkButton = document.getElementById('check-button');
+        const nextButton = document.getElementById('next-button');
+        const resultElement = document.getElementById('result');
+
+        function loadNewQuestion() {
+            // Losuj pytanie, które jeszcze nie było wyświetlone (jeśli chcesz uniknąć powtórzeń w krótkim czasie)
+            // Na potrzeby tego przykładu, po prostu losujemy z całej puli
+            currentQuestionIndex = Math.floor(Math.random() * questions.length);
+            currentQuestion = questions[currentQuestionIndex];
+
+            questionElement.textContent = currentQuestion.question;
+            optionsElement.innerHTML = ''; // Wyczyść poprzednie opcje
+            resultElement.textContent = '';
+            resultElement.className = ''; // Usuń klasy stylizujące wynik
+
+            currentQuestion.options.forEach((option, index) => {
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.name = 'answer';
+                checkbox.value = index;
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(option.text));
+                optionsElement.appendChild(label);
+            });
+
+            checkButton.style.display = 'inline-block';
+            nextButton.style.display = 'none';
         }
-        setInterval(createFirework, 500);
+
+        function checkAnswer() {
+            const selectedOptions = Array.from(optionsElement.querySelectorAll('input[name="answer"]:checked'))
+                                       .map(checkbox => parseInt(checkbox.value));
+
+            let allCorrectSelected = true;
+            let allRequiredSelected = true;
+
+            currentQuestion.options.forEach((option, index) => {
+                const isOptionSelected = selectedOptions.includes(index);
+
+                if (option.isCorrect && !isOptionSelected) {
+                    allRequiredSelected = false; // Nie zaznaczono wszystkich poprawnych
+                }
+                if (!option.isCorrect && isOptionSelected) {
+                    allCorrectSelected = false; // Zaznaczono błędną odpowiedź
+                }
+
+                // Dodaj wizualne wskazówki po sprawdzeniu
+                const label = optionsElement.children[index];
+                if (option.isCorrect) {
+                    label.style.backgroundColor = '#d4edda'; // Zielone dla poprawnych
+                } else if (isOptionSelected && !option.isCorrect) {
+                    label.style.backgroundColor = '#f8d7da'; // Czerwone dla błędnie zaznaczonych
+                }
+            });
+
+            if (allCorrectSelected && allRequiredSelected) {
+                resultElement.textContent = "Poprawna odpowiedź!";
+                resultElement.classList.add('correct');
+            } else {
+                resultElement.textContent = "Niepoprawna odpowiedź. Spróbuj ponownie!";
+                resultElement.classList.add('incorrect');
+            }
+
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'inline-block';
+
+            // Wyłącz możliwość zmiany zaznaczenia po sprawdzeniu
+            optionsElement.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.disabled = true;
+            });
+        }
+
+        // Obsługa zdarzeń
+        checkButton.addEventListener('click', checkAnswer);
+        nextButton.addEventListener('click', loadNewQuestion);
+
+        // Załaduj pierwsze pytanie po załadowaniu strony
+        document.addEventListener('DOMContentLoaded', loadNewQuestion);
     </script>
 </body>
 </html>
