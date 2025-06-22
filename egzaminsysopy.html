@@ -561,7 +561,7 @@
         options: [
             { text: "Reguły koligacji", isCorrect: false },
             { text: "Wiele segmentów stosu", isCorrect: false },
-            { text: "????Przynajmniej jeden segment sterty", isCorrect: false },
+            { text: "Przynajmniej jeden segment sterty", isCorrect: false },
             { text: "Wątek główny", isCorrect: true }
         ]
     },
@@ -570,8 +570,8 @@
         options: [
             { text: "Zastosowanie stronicowania pozwala na jednoczesny przydział procesom segmentów pamięci, których łączny rozmiar przekracza rozmiar ulotnej pamięci fizycznej RAM.", isCorrect: true },
             { text: "Nie można przechowywać strony w ramce, która nie należy do zbioru roboczego żadnego z procesów", isCorrect: false },
-            { text: "????Niezależnie od sposobu konsolidacji programu pozwala na współdzielenie kodu i danych pochodzących z biblioteki przez procesy utworzone poprzez uruchomienie tego programu.", isCorrect: false },
-            { text: "????W przypadku wielokrotnego uruchomienia tego samego programu utworzone procesy mogą wspólnie korzystać z tych samych stron zawierających kod programu, przy czym każda z tych stron będzie wczytana do co najwyżej tylko jednej ramki.", isCorrect: false }
+            { text: "Niezależnie od sposobu konsolidacji programu pozwala na współdzielenie kodu i danych pochodzących z biblioteki przez procesy utworzone poprzez uruchomienie tego programu.", isCorrect: false },
+            { text: "W przypadku wielokrotnego uruchomienia tego samego programu utworzone procesy mogą wspólnie korzystać z tych samych stron zawierających kod programu, przy czym każda z tych stron będzie wczytana do co najwyżej tylko jednej ramki.", isCorrect: true }
         ]
     },
     {
@@ -580,7 +580,7 @@
             { text: "Wymaga stosowania nakładek przy tworzeniu programów, by efektywnie zarządzać przydzieloną ulotną pamięcią fizyczną.", isCorrect: false },
             { text: "Zastosowanie stronicowania pozwala na jednoczesny przydział procesom segmentów pamięci, których łączny rozmiar przekracza rozmiar ulotnej pamięci fizycznej RAM.", isCorrect: true },
             { text: "Utrzymywanie dla każdego procesu tablicy stron zapewnia jednoczesne wczytanie wszystkich stron procesu do pamięci operacyjnej.", isCorrect: false },
-            { text: "????Zastosowanie niezależnych przestrzeni adresowych dla procesów zapewnia ich separację", isCorrect: false }
+            { text: "Zastosowanie niezależnych przestrzeni adresowych dla procesów zapewnia ich separację", isCorrect: true }
         ]
     },
     {
@@ -588,23 +588,23 @@
         options: [
             { text: "Pozwala uruchomić program o zapotrzebowaniu pamięci większym niż rozmiar dostępnej ulotnej pamięci fizycznej w systemie operacyjnym.", isCorrect: true },
             { text: "Wykorzystuje stronicowanie, przy czym strony pamięci mogą być również przechowywane w przestrzeni wymiany, która zawsze jest zbudowana z magazynów stron zlokalizowanych w pamięci trwałej.", isCorrect: false },
-            { text: "????Zapewnia separację procesów poprzez izolowanie ich segmentów pamięci", isCorrect: false },
-            { text: "????Wykorzystuje segmentację pamięci w celu eliminacji zjawiska fragmentacji zewnętrznej w ulotnej pamięci fizycznej.", isCorrect: false }
+            { text: "Zapewnia separację procesów poprzez izolowanie ich segmentów pamięci", isCorrect: false },
+            { text: "Wykorzystuje segmentację pamięci w celu eliminacji zjawiska fragmentacji zewnętrznej w ulotnej pamięci fizycznej.", isCorrect: true }
         ]
     },
     {
         question: "Zaznacz prawidłowe stwierdzenia dotyczące systemu plików z księgowaniem",
         options: [
             { text: "Skraca czas przywrócenia spójności struktur systemu plików po awarii, gdyż wymaga dokończenia wszystkich operacji z niezatwierdzonych transakcji zapisanych w kronice.", isCorrect: true },
-            { text: "????Operacje wykonywane na strukturach systemu plików muszą być idempotentne.", isCorrect: false },
+            { text: "Operacje wykonywane na strukturach systemu plików muszą być idempotentne.", isCorrect: true },
             { text: "Kronika zapewnia funkcjonalność migawek wykonywanych w strukturach systemu plików.", isCorrect: false },
-            { text: "????Zastosowanie kroniki zawsze zapewnia spójność metadanych jak i danych zawartych w plikach ostatnio zmienianych przez procesy użytkownika.", isCorrect: false }
+            { text: "Zastosowanie kroniki zawsze zapewnia spójność metadanych jak i danych zawartych w plikach ostatnio zmienianych przez procesy użytkownika.", isCorrect: false }
         ]
     },
     {
         question: "W macierzy dyskowej RAID poziomu 5 zastosowano sześć dysków o identycznej pojemności 1TiB. Jaki rozmiar przestrzeni składowania danych udostępnia urządzenie macierzy?",
         options: [
-            { text: "????4TiB przy założeniu, że tylko jeden z dysków jest zapasowy ( brak realizacji operacji I/O) i macierz nie pracuje w trybie zdegradowanym.", isCorrect: false },
+            { text: "4TiB przy założeniu, że tylko jeden z dysków jest zapasowy ( brak realizacji operacji I/O) i macierz nie pracuje w trybie zdegradowanym.", isCorrect: true },
             { text: "5TiB przy założeniu, że macierz pracując w trybie zdegradowanym realizuje operacje I/0 na pięciu aktywnych dyskach i na żadnym z nich nie realizuje procesu odtwarzania zawartości dysku.", isCorrect: true },
             { text: "4TiB przy założeniu, że wszystkie wymienione dyski są aktywnymi uczestnikami macierzy, która pracuje w trybie pełnej konfiguracji.", isCorrect: false },
             { text: "4TiB przy założeniu, że macierz pracując w trybie zdegradowanym realizuje operacje I/0 na pięciu aktywnych dyskach i na żadnym nie realizuje procesu odtwarzania zawartości dysku.", isCorrect: false }
@@ -613,7 +613,7 @@
     {
         question: "W macierzy dyskowej RAID poziomu 6 zastosowano sześć dysków o identycznej pojemności 1TiB. Jaki rozmiar przestrzeni składowania danych udostępnia urządzenie macierzy?",
         options: [
-            { text: "????3TiB przy założeniu, że tylko jeden z dysków jest zapasowy ( brak realizacji operacji I/O) i macierz nie pracuje w trybie zdegradowanym.", isCorrect: false },
+            { text: "3TiB przy założeniu, że tylko jeden z dysków jest zapasowy ( brak realizacji operacji I/O) i macierz nie pracuje w trybie zdegradowanym.", isCorrect: true },
             { text: "4TiB przy założeniu, że macierz pracując w trybie zdegradowanym realizuje operacje I/0 na czterech aktywnych dyskach i na żadnym z nich nie realizuje procesu odtwarzania zawartości dysku.", isCorrect: true },
             { text: "5TiB przy założeniu, że wszystkie wymienione dyski są aktywnymi uczestnikami macierzy, która pracuje w trybie pełnej konfiguracji.", isCorrect: false },
             { text: "3TiB przy założeniu, że macierz pracując w trybie zdegradowanym realizuje operacje I/0 na pięciu aktywnych dyskach i na żadnym nie realizuje procesu odtwarzania zawartości dysku.", isCorrect: false }
@@ -631,8 +631,8 @@
     {
         question: "Wskaż zadania realizowane przez współczesne systemy operacyjne",
         options: [
-            { text: "????planowanie dostępu do zasobów", isCorrect: false },
-            { text: "????Zarządzanie zasobami (przydział i zwalnianie)", isCorrect: false },
+            { text: "planowanie dostępu do zasobów", isCorrect: true },
+            { text: "Zarządzanie zasobami (przydział i zwalnianie)", isCorrect: true },
             { text: "Przeciwdziałanie zakleszczeniom dla każdego zbioru procesów przetwarzanych współbieżnie", isCorrect: false },
             { text: "Autoryzacja w dostępie do plików i katalogów.", isCorrect: true }
         ]
@@ -640,8 +640,8 @@
     {
         question: "Zakładając, że system operacyjny jest wielowątkowy wskaż poprawne stwierdzenia dotyczące przydziału jednostek przetwarzających dla procesu, który posiada 3 wątki nie będące włóknami.",
         options: [
-            { text: "????Każdy z wątków procesu może pozyskać przydział aktywnej jednostki przetwarzającej tylko jeżeli jest w stanie gotowym do wykonania.", isCorrect: false },
-            { text: "????Zasady przydziału jednostek przetwarzających ustalają przypisane do procesu reguły koligacji, priorytety i polityka szeregowania.", isCorrect: false },
+            { text: "Każdy z wątków procesu może pozyskać przydział aktywnej jednostki przetwarzającej tylko jeżeli jest w stanie gotowym do wykonania.", isCorrect: true },
+            { text: "?Zasady przydziału jednostek przetwarzających ustalają przypisane do procesu reguły koligacji, priorytety i polityka szeregowania.", isCorrect: true },
             { text: "System operacyjny dysponując wieloma aktywnymi jednostkami przetwarzającymi może przydzielić jednocześnie nawet 6 z nich dla wskazanego procesu.", isCorrect: false },
             { text: "Zakładając, że niektóre z jednostek przetwarzających są znacząco mniej wykorzystywane od pozostałych dyspozytor jądra systemu może je przydzielić do poszczególnych wątków procesu naruszając ustalone dla procesu reguły koligacji.", isCorrect: false }
         ]
@@ -649,10 +649,10 @@
     {
         question: "W jakich sytuacjach zastosowanie techniki buforowania przechowującej dane w pamięci, jest użyteczne?",
         options: [
-            { text: "????Do operacji wejścia/wyjścia dla systemu plików pracującego w trybie synchronicznym", isCorrect: false },
-            { text: "????Do przechowywania efektów zmian dla każdej zakończonej transakcji", isCorrect: false },
-            { text: "????Dopasowanie urządzeń o różnych szybkościach transmisji danych.", isCorrect: false },
-            { text: "????Dopasowanie urządzeń różniących się podstawową jednostką transmisji danych.", isCorrect: false }
+            { text: "Do operacji wejścia/wyjścia dla systemu plików pracującego w trybie synchronicznym", isCorrect: false },
+            { text: "Do przechowywania efektów zmian dla każdej zakończonej transakcji", isCorrect: false },
+            { text: "Dopasowanie urządzeń o różnych szybkościach transmisji danych.", isCorrect: true },
+            { text: "Dopasowanie urządzeń różniących się podstawową jednostką transmisji danych.", isCorrect: true }
         ]
     },
     {
@@ -660,7 +660,7 @@
         options: [
             { text: "Wątki procesu mają zawsze różne ustalone polityki szeregowania, które decydują o preferencji w przydziale jednostek przetwarzających.", isCorrect: false },
             { text: "polityka NUMA jest przypisana do procesu i określa z jakich jednostek przetwarzających zlokalizowanych w węzłach NUMA mogą skorzystać wątki tego procesu", isCorrect: true },
-            { text: "????Reguły koligacji decydują o przydziale dla zadań jednej z aktywnych jednostek przetwarzających.", isCorrect: false },
+            { text: "Reguły koligacji decydują o przydziale dla zadań jednej z aktywnych jednostek przetwarzających.", isCorrect: true },
             { text: "Niezależnie od systemu operacyjnego wątki procesu zawsze mają różne linie krytyczne i inne reguły koligacji", isCorrect: false }
         ]
     },
@@ -696,8 +696,8 @@
         options: [
             { text: "Regularne wykonywanie kopii zapasowej danych.", isCorrect: true },
             { text: "Zastosowanie macierzy RAID poziomu zerowego.", isCorrect: false },
-            { text: "????Zastosowanie podziału na strefy (np. partycjonowanie dysku i umieszczenie w każdej partycji dysku oddzielnego systemu plików).", isCorrect: false },
-            { text: "????Zastosowanie migawek na poziomie urządzenia blokowego lub systemu plików.", isCorrect: false }
+            { text: "Zastosowanie podziału na strefy (np. partycjonowanie dysku i umieszczenie w każdej partycji dysku oddzielnego systemu plików).", isCorrect: false },
+            { text: "Zastosowanie migawek na poziomie urządzenia blokowego lub systemu plików.", isCorrect: true }
         ]
     },
     {
@@ -730,10 +730,10 @@
     {
         question: "Jeżeli proces próbuje pozyskać zasób z wykorzystaniem techniki odpytywania (spin-lock), którego nigdy nie uzyska to występuje sytuacja:",
         options: [
-            { text: "????żadna z pozostałych odpowiedzi", isCorrect: false },
-            { text: "uwięzienia (livelock)", isCorrect: true },
-            { text: "????zakleszczenia (deadlock)", isCorrect: false },
-            { text: "????zagłodzenia", isCorrect: false }
+            { text: "żadna z pozostałych odpowiedzi", isCorrect: false },
+            { text: "uwięzienia (livelock)", isCorrect: false },
+            { text: "zakleszczenia (deadlock)", isCorrect: false },
+            { text: "zagłodzenia", isCorrect: true }
         ]
     },
     {
@@ -741,7 +741,7 @@
         options: [
             { text: "Natychmiast bez podjęcia innych działań kończony jest wybrany proces z zastosowaniem procedury OOM.", isCorrect: false },
             { text: "Wymiatanie stron do przestrzeni wymiany zbudowanej z magazynów stron, które mogą być zlokalizowane zarówno w pamięci ulotnej jak i trwałej.", isCorrect: true },
-            { text: "????Transformacja wszystkich ramek ze stronami nieaktywnymi w ramki wolne poprzez porzucenie ich dotychczasowej zawartości.", isCorrect: false },
+            { text: "????Transformacja wszystkich ramek ze stronami nieaktywnymi w ramki wolne poprzez porzucenie ich dotychczasowej zawartości.", isCorrect: true },
             { text: "Zmniejszenie zbiorów roboczych procesów poprzez redukcję okna zbioru roboczego", isCorrect: true }
         ]
     },
@@ -758,7 +758,7 @@
         question: "Wskaż sytuacje, w których system operacyjny jednoznacznie znajduje się w stanie przeciążenia związanego z wykorzystaniem jednostek przetwarzających.",
         options: [
             { text: "Liczba wątków dla wszystkich procesów jest większa niż liczba wątków jądra.", isCorrect: false },
-            { text: "????Każda z jednostek przetwarzających jest obciążona w 100% (czyli każda jednostka wykazuje 0% w stanie bezczynnym IDLE)", isCorrect: false },
+            { text: "Każda z jednostek przetwarzających jest obciążona w 100% (czyli każda jednostka wykazuje 0% w stanie bezczynnym IDLE)", isCorrect: true },
             { text: "Liczba wątków nie będących włóknami i w stanie gotowym do wykonania zliczanych dla wszystkich procesów przekracza liczbę aktywnych jednostek przetwarzających.", isCorrect: true },
             { text: "System zaczyna wymiatać strony do przestrzeni wymiany swap.", isCorrect: false }
         ]
