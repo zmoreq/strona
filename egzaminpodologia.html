@@ -865,11 +865,15 @@
                 radio.disabled = true; // Zablokuj zmianę
                 
                 if (radio.value === 'correct') {
-                    parentLabel.style.backgroundColor = '#d4edda'; // Zielony dla poprawnej
-                    parentLabel.style.borderColor = '#c3e6cb';
+                    // TUTAJ ZMIANA: Ciemny zielony tło + Biały tekst
+                    parentLabel.style.backgroundColor = '#1b5e20'; 
+                    parentLabel.style.borderColor = '#2e7d32';
+                    parentLabel.style.color = '#ffffff'; // Wymuszamy biały kolor tekstu
                 } else if (radio.checked && radio.value === 'incorrect') {
-                    parentLabel.style.backgroundColor = '#f8d7da'; // Czerwony dla błędnie zaznaczonej
-                    parentLabel.style.borderColor = '#f5c6cb';
+                    // TUTAJ ZMIANA: Ciemny czerwony tło + Biały tekst
+                    parentLabel.style.backgroundColor = '#b71c1c'; 
+                    parentLabel.style.borderColor = '#c62828';
+                    parentLabel.style.color = '#ffffff'; // Wymuszamy biały kolor tekstu
                 }
             });
 
