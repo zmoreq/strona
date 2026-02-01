@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Wiedzy Podologicznej</title>
+    <title>Test Wiedzy Podologicznej (Live Score)</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -24,15 +24,27 @@
         h1 {
             color: #90caf9;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-size: 2em;
         }
-        .status-bar {
-            text-align: right;
-            margin-bottom: 15px;
-            color: #aaa;
-            font-size: 0.9em;
+        /* --- NOWA SEKCJA STATYSTYK NA GÓRZE --- */
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+            font-size: 1.1em;
         }
+        .status-bar {
+            color: #aaa;
+        }
+        .live-score {
+            font-weight: bold;
+            color: #4caf50; /* Zielony kolor dla wyniku */
+        }
+        
         .question-section {
             margin-bottom: 25px;
             padding-bottom: 20px;
@@ -128,7 +140,11 @@
 <body>
     <div class="container">
         <h1>Test Wiedzy: Podologia</h1>
-        <div class="status-bar" id="status-bar">Ładowanie...</div>
+        
+        <div class="stats-container">
+            <div id="status-bar" class="status-bar">Ładowanie...</div>
+            <div id="live-score" class="live-score">Wynik: 0/0 (0%)</div>
+        </div>
         
         <div class="question-section">
             <p id="question"></p>
@@ -240,6 +256,7 @@
         const restartButton = document.getElementById('restart-button');
         const resultElement = document.getElementById('result');
         const statusBar = document.getElementById('status-bar');
+        const liveScoreElement = document.getElementById('live-score');
 
         function initTest() {
             // Resetujemy stan
@@ -252,6 +269,7 @@
             nextButton.style.display = 'none';
             restartButton.style.display = 'none';
             resultElement.style.display = 'none';
+            liveScoreElement.textContent = "Wynik: 0/0 (0%)";
             
             loadNewQuestion();
         }
@@ -299,20 +317,23 @@
             const allRadios = optionsElement.querySelectorAll('input[type="radio"]');
 
             if (isCorrect) {
-                score++; // Dodajemy punkt
+                score++;
             }
+
+            // Aktualizacja wyniku na bieżąco
+            const questionsAnswered = currentQuestionIndex + 1;
+            const percentage = Math.round((score / questionsAnswered) * 100);
+            liveScoreElement.textContent = `Wynik: ${score}/${questionsAnswered} (${percentage}%)`;
 
             allRadios.forEach(radio => {
                 const parentLabel = radio.parentElement;
                 radio.disabled = true;
                 
                 if (radio.value === 'correct') {
-                    // Poprawna odpowiedź: Ciemny zielony + Biały tekst
                     parentLabel.style.backgroundColor = '#1b5e20';
                     parentLabel.style.borderColor = '#2e7d32';
                     parentLabel.style.color = '#ffffff'; 
                 } else if (radio.checked && radio.value === 'incorrect') {
-                    // Błędna odpowiedź: Ciemny czerwony + Biały tekst
                     parentLabel.style.backgroundColor = '#b71c1c';
                     parentLabel.style.borderColor = '#c62828';
                     parentLabel.style.color = '#ffffff'; 
@@ -334,9 +355,8 @@
 
         function showFinalResult() {
             questionElement.textContent = "Koniec testu!";
-            optionsElement.innerHTML = `<div class="final-score">Twój wynik: ${score} na ${questions.length} punktów.</div>`;
+            optionsElement.innerHTML = `<div class="final-score">Twój wynik końcowy: ${score} na ${questions.length} punktów.</div>`;
             
-            // Oblicz procent
             const percentage = Math.round((score / questions.length) * 100);
             optionsElement.innerHTML += `<p>Skuteczność: ${percentage}%</p>`;
 
@@ -352,6 +372,7 @@
             nextButton.style.display = 'none';
             resultElement.textContent = '';
             statusBar.textContent = '';
+            liveScoreElement.textContent = ''; // Czyścimy pasek live score na końcu
             
             restartButton.style.display = 'inline-block';
         }
@@ -363,7 +384,6 @@
         });
         restartButton.addEventListener('click', initTest);
 
-        // Start
         document.addEventListener('DOMContentLoaded', initTest);
     </script>
 </body>
