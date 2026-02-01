@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test: Zaburzenia Hormonalne i Fizjologia</title>
+    <title>Test: Zaburzenia Hormonalne (z Wynikiem)</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -110,13 +110,18 @@
         }
         .correct-msg {
             background-color: #1b5e20;
-            color: #e8f5e9;
+            color: #ffffff;
             border: 1px solid #2e7d32;
         }
         .incorrect-msg {
             background-color: #b71c1c;
-            color: #ffebee;
+            color: #ffffff;
             border: 1px solid #c62828;
+        }
+        .final-score {
+            font-size: 1.5em;
+            color: #90caf9;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -134,6 +139,7 @@
         <div class="button-group">
             <button id="check-button">Sprawdź</button>
             <button id="next-button">Następne pytanie</button>
+            <button id="restart-button" style="display: none; background-color: #ff9800; color: white;">Rozpocznij od nowa</button>
         </div>
 
         <div id="result"></div>
@@ -315,30 +321,41 @@
             { question: "Dlaczego w fazie poowulacyjnej plemniki nie mogą wędrować w głąb kanału szyjki?", options: [{ text: "Śluz staje się lepki, mętny i nieciągliwy pod wpływem progesteronu", isCorrect: true }, { text: "Kanał szyjki zamyka się całkowicie", isCorrect: false }, { text: "Plemniki giną w kwaśnym środowisku pochwy", isCorrect: false }, { text: "Macica odrzuca plemniki", isCorrect: false }] }
         ];
 
-        const questions = shuffleArray([...rawQuestions]);
-
+        // Zmienne stanu
+        let questions = [];
         let currentQuestionIndex = 0;
-        let currentQuestion;
+        let score = 0; // Licznik punktów
 
         const questionElement = document.getElementById('question');
         const optionsElement = document.getElementById('options');
         const checkButton = document.getElementById('check-button');
         const nextButton = document.getElementById('next-button');
+        const restartButton = document.getElementById('restart-button');
         const resultElement = document.getElementById('result');
         const statusBar = document.getElementById('status-bar');
 
+        function initTest() {
+            // Resetujemy stan
+            questions = shuffleArray([...rawQuestions]); // Tasujemy pytania
+            currentQuestionIndex = 0;
+            score = 0;
+            
+            // Resetujemy widok
+            checkButton.style.display = 'inline-block';
+            nextButton.style.display = 'none';
+            restartButton.style.display = 'none';
+            resultElement.style.display = 'none';
+            
+            loadNewQuestion();
+        }
+
         function loadNewQuestion() {
             if (currentQuestionIndex >= questions.length) {
-                questionElement.textContent = "Koniec testu! Gratulacje.";
-                optionsElement.innerHTML = '';
-                checkButton.style.display = 'none';
-                nextButton.style.display = 'none';
-                resultElement.textContent = '';
-                statusBar.textContent = '';
+                showFinalResult();
                 return;
             }
 
-            currentQuestion = questions[currentQuestionIndex];
+            const currentQuestion = questions[currentQuestionIndex];
             statusBar.textContent = `Pytanie ${currentQuestionIndex + 1} z ${questions.length}`;
             questionElement.textContent = currentQuestion.question;
             optionsElement.innerHTML = '';
@@ -374,6 +391,10 @@
             const isCorrect = selectedOption.value === 'correct';
             const allRadios = optionsElement.querySelectorAll('input[type="radio"]');
 
+            if (isCorrect) {
+                score++; // Dodajemy punkt
+            }
+
             allRadios.forEach(radio => {
                 const parentLabel = radio.parentElement;
                 radio.disabled = true;
@@ -402,13 +423,38 @@
             nextButton.style.display = 'inline-block';
         }
 
+        function showFinalResult() {
+            questionElement.textContent = "Koniec testu!";
+            optionsElement.innerHTML = `<div class="final-score">Twój wynik: ${score} na ${questions.length} punktów.</div>`;
+            
+            // Oblicz procent
+            const percentage = Math.round((score / questions.length) * 100);
+            optionsElement.innerHTML += `<p>Skuteczność: ${percentage}%</p>`;
+
+            if (percentage >= 80) {
+                optionsElement.innerHTML += `<p style="color: #4caf50; font-weight: bold;">Świetny wynik! Gratulacje.</p>`;
+            } else if (percentage >= 50) {
+                optionsElement.innerHTML += `<p style="color: #ff9800; font-weight: bold;">Nieźle, ale warto powtórzyć materiał.</p>`;
+            } else {
+                optionsElement.innerHTML += `<p style="color: #f44336; font-weight: bold;">Musisz jeszcze poćwiczyć.</p>`;
+            }
+
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'none';
+            resultElement.textContent = '';
+            statusBar.textContent = '';
+            
+            restartButton.style.display = 'inline-block';
+        }
+
         checkButton.addEventListener('click', checkAnswer);
         nextButton.addEventListener('click', () => {
             currentQuestionIndex++;
             loadNewQuestion();
         });
+        restartButton.addEventListener('click', initTest);
 
-        document.addEventListener('DOMContentLoaded', loadNewQuestion);
+        document.addEventListener('DOMContentLoaded', initTest);
     </script>
 </body>
 </html>
