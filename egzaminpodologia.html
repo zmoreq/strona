@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Wiedzy Podologicznej</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        .status-bar {
+            text-align: right;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .question-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .question-section p {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            background-color: #fff;
+        }
+        .options label:hover {
+            background-color: #f8f9fa;
+            border-color: #cbd3da;
+        }
+        .options input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+            cursor: pointer;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .button-group button {
+            padding: 12px 30px;
+            margin: 0 10px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.3s;
+            font-weight: bold;
+        }
+        .button-group button:active {
+            transform: scale(0.98);
+        }
+        #check-button {
+            background-color: #007bff;
+            color: white;
+        }
+        #check-button:hover {
+            background-color: #0069d9;
+        }
+        #next-button {
+            background-color: #28a745;
+            color: white;
+            display: none;
+        }
+        #next-button:hover {
+            background-color: #218838;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2em;
+            display: none;
+        }
+        .correct-msg {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .incorrect-msg {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test Wiedzy: Podologia</h1>
+        <div class="status-bar" id="status-bar">Pytanie 1</div>
+        
+        <div class="question-section">
+            <p id="question"></p>
+            <div class="options" id="options">
+                </div>
+        </div>
+
+        <div class="button-group">
+            <button id="check-button">Sprawdź</button>
+            <button id="next-button">Następne pytanie</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Funkcja tasująca tablicę (Fisher-Yates Shuffle)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const rawQuestions = [
+            {
+                question: "Z jakiego języka wywodzi się słowo 'podo' i co oznacza?",
+                options: [
+                    { text: "Z greki i oznacza stopę", isCorrect: true },
+                    { text: "Z łaciny i oznacza rękę", isCorrect: false },
+                    { text: "Z greki i oznacza skórę", isCorrect: false },
+                    { text: "Z łaciny i oznacza paznokieć", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co oznacza grecki człon 'logos' w nazwie dziedziny podologii?",
+                options: [
+                    { text: "Naukę", isCorrect: true },
+                    { text: "Leczenie", isCorrect: false },
+                    { text: "Ból", isCorrect: false },
+                    { text: "Chirurgię", isCorrect: false }
+                ]
+            },
+            {
+                question: "Z jakiego kraju wywodzi się zawód podologa?",
+                options: [
+                    { text: "Z Niemiec", isCorrect: true },
+                    { text: "Z Francji", isCorrect: false },
+                    { text: "Ze Stanów Zjednoczonych", isCorrect: false },
+                    { text: "Z Wielkiej Brytanii", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaki był pierwotny cel powstania zawodu podologa?",
+                options: [
+                    { text: "Redukcja kosztów leczenia ran amputacyjnych oraz zmniejszenie liczby amputacji", isCorrect: true },
+                    { text: "Zwiększenie sprzedaży obuwia ortopedycznego", isCorrect: false },
+                    { text: "Wsparcie chirurgów plastycznych w estetyce stóp", isCorrect: false },
+                    { text: "Leczenie schorzeń kręgosłupa", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie inne nazwy są zamiennie przypisywane zawodowi podologa?",
+                options: [
+                    { text: "Podiatra lub chiropoda", isCorrect: true },
+                    { text: "Dermatolog lub ortopeda", isCorrect: false },
+                    { text: "Kosmetolog lub pedikiurzysta", isCorrect: false },
+                    { text: "Fizjoterapeuta lub masażysta", isCorrect: false }
+                ]
+            },
+            {
+                question: "Kto zajmuje się podologią w USA?",
+                options: [
+                    { text: "Lekarz", isCorrect: true },
+                    { text: "Kosmetolog", isCorrect: false },
+                    { text: "Pielęgniarka", isCorrect: false },
+                    { text: "Technik farmacji", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jak wygląda model kształcenia podologów w Niemczech?",
+                options: [
+                    { text: "Szkoła policealna 2-letnia (nie są lekarzami)", isCorrect: true },
+                    { text: "Studia medyczne 6-letnie", isCorrect: false },
+                    { text: "Kurs 3-miesięczny", isCorrect: false },
+                    { text: "Studia licencjackie 3-letnie", isCorrect: false }
+                ]
+            },
+            {
+                question: "W jakich krajach wymagany jest wyższy poziom kształcenia medycznego w dziedzinie podologii?",
+                options: [
+                    { text: "W USA, Kanadzie, Australii, Wielkiej Brytanii, Nowej Zelandii", isCorrect: true },
+                    { text: "W Polsce, Niemczech, Czechach, Słowacji", isCorrect: false },
+                    { text: "We Francji, Hiszpanii, Włoszech, Portugalii", isCorrect: false },
+                    { text: "W Rosji, Ukrainie, Białorusi, Litwie", isCorrect: false }
+                ]
+            },
+            {
+                question: "Który z poniższych jest jednym z podstawowych problemów skórnych stóp zajmowanych przez podologa?",
+                options: [
+                    { text: "Modzele", isCorrect: true },
+                    { text: "Trądzik różowaty", isCorrect: false },
+                    { text: "Łupież pstry", isCorrect: false },
+                    { text: "Rozstępy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie schorzenia paznokci podlegają terapii podologicznej?",
+                options: [
+                    { text: "Wrastające paznokcie, grzybica paznokci oraz deformacje", isCorrect: true },
+                    { text: "Tylko malowanie paznokci lakierem hybrydowym", isCorrect: false },
+                    { text: "Złamania kości paliczków", isCorrect: false },
+                    { text: "Wyłącznie usuwanie skórek", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do czego służy kamerton w podologii?",
+                options: [
+                    { text: "Do pomiaru czucia wibracji w neuropatycznych stanach kończyn dolnych", isCorrect: true },
+                    { text: "Do sprawdzania temperatury skóry", isCorrect: false },
+                    { text: "Do badania tętna na tętnicy grzbietowej stopy", isCorrect: false },
+                    { text: "Do oczyszczania wałów paznokciowych", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie zastosowanie ma urządzenie Tip Therm?",
+                options: [
+                    { text: "Służy do kontroli wyczuwania temperatury u chorych z syndromem stopy cukrzycowej", isCorrect: true },
+                    { text: "Służy do pomiaru ciśnienia tętniczego", isCorrect: false },
+                    { text: "Służy do badania czucia wibracji", isCorrect: false },
+                    { text: "Służy do usuwania zrogowaciałego naskórka", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do czego wykorzystuje się monofilament?",
+                options: [
+                    { text: "Do diagnostyki odczuwania bólu (dotyku)", isCorrect: true },
+                    { text: "Do badania przepływu krwi (Doppler)", isCorrect: false },
+                    { text: "Do korygowania wrastających paznokci", isCorrect: false },
+                    { text: "Do pomiaru długości stopy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która z wymienionych jest jedną z 4 podstawowych funkcji stopy?",
+                options: [
+                    { text: "Amortyzacyjna", isCorrect: true },
+                    { text: "Chwytna", isCorrect: false },
+                    { text: "Trawienna", isCorrect: false },
+                    { text: "Oddechowa", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która część stopy odpowiada za stabilność?",
+                options: [
+                    { text: "Tyłostopie", isCorrect: true },
+                    { text: "Śródstopie", isCorrect: false },
+                    { text: "Przodostopie", isCorrect: false },
+                    { text: "Palce", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która część stopy odpowiada za ruchość?",
+                options: [
+                    { text: "Śródstopie", isCorrect: true },
+                    { text: "Tyłostopie", isCorrect: false },
+                    { text: "Pięta", isCorrect: false },
+                    { text: "Staw skokowy górny", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która część stopy odpowiada za proces przetaczania?",
+                options: [
+                    { text: "Przodostopie", isCorrect: true },
+                    { text: "Tyłostopie", isCorrect: false },
+                    { text: "Staw skokowy dolny", isCorrect: false },
+                    { text: "Guz piętowy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która część stopy pełni główną funkcję amortyzacyjną?",
+                options: [
+                    { text: "Pięta", isCorrect: true },
+                    { text: "Paluch", isCorrect: false },
+                    { text: "Kości klinowate", isCorrect: false },
+                    { text: "Kość sześcienna", isCorrect: false }
+                ]
+            },
+            {
+                question: "Z ilu kości składa się stopa człowieka?",
+                options: [
+                    { text: "Z 26", isCorrect: true },
+                    { text: "Z 24", isCorrect: false },
+                    { text: "Z 28", isCorrect: false },
+                    { text: "Z 30", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie elementy tworzą system stabilizacji biernej stopy?",
+                options: [
+                    { text: "Szkielet stopy, rozcięgno podeszwowe oraz więzadła", isCorrect: true },
+                    { text: "Mięśnie łydki i uda", isCorrect: false },
+                    { text: "Skóra i tkanka podskórna", isCorrect: false },
+                    { text: "Naczynia krwionośne i nerwy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co stanowi system stabilizacji czynnej stopy?",
+                options: [
+                    { text: "Mięśnie (wewnątrzstopy i zewnątrzstopy)", isCorrect: true },
+                    { text: "Więzadła", isCorrect: false },
+                    { text: "Torebki stawowe", isCorrect: false },
+                    { text: "Kości stępu", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co jest jednym z 3 głównych punktów podparcia prawidłowo zbudowanej stopy?",
+                options: [
+                    { text: "Głowa pierwszej kości śródstopia", isCorrect: true },
+                    { text: "Koniec palucha", isCorrect: false },
+                    { text: "Kość skokowa", isCorrect: false },
+                    { text: "Kość łódkowata", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która z wymienionych kości wchodzi w skład stępu (tarsus)?",
+                options: [
+                    { text: "Kość sześcienna", isCorrect: true },
+                    { text: "Kość piszczelowa", isCorrect: false },
+                    { text: "Kość strzałkowa", isCorrect: false },
+                    { text: "Rzepka", isCorrect: false }
+                ]
+            },
+            {
+                question: "Z ilu paliczków składa się paluch?",
+                options: [
+                    { text: "Z dwóch", isCorrect: true },
+                    { text: "Z trzech", isCorrect: false },
+                    { text: "Z jednego", isCorrect: false },
+                    { text: "Z czterech", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która kość stanowi szczyt łuku podłużnego przyśrodkowego?",
+                options: [
+                    { text: "Kość łódkowata", isCorrect: true },
+                    { text: "Kość piętowa", isCorrect: false },
+                    { text: "Kość sześcienna", isCorrect: false },
+                    { text: "Kość skokowa", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaka jest przybliżona wysokość łuku podłużnego bocznego od podłoża?",
+                options: [
+                    { text: "Około 5 mm", isCorrect: true },
+                    { text: "Około 2 cm", isCorrect: false },
+                    { text: "Około 0 mm (dotyka podłoża)", isCorrect: false },
+                    { text: "Około 10 mm", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie kości tworzą łuk poprzeczny tylny stopy?",
+                options: [
+                    { text: "Trzy kości klinowate i kość sześcienna", isCorrect: true },
+                    { text: "Kość piętowa i skokowa", isCorrect: false },
+                    { text: "Głowy kości śródstopia", isCorrect: false },
+                    { text: "Paliczki bliższe", isCorrect: false }
+                ]
+            },
+            {
+                question: "Który mięsień odpowiada za poprzeczne wysklepienie stopy poprzez przywodzenie palucha?",
+                options: [
+                    { text: "Przywodziciel palucha (głowa poprzeczna)", isCorrect: true },
+                    { text: "Prostownik długi palców", isCorrect: false },
+                    { text: "Zginacz krótki palucha", isCorrect: false },
+                    { text: "Mięsień trójgłowy łydki", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która z poniższych jest funkcją paznokci?",
+                options: [
+                    { text: "Bufor dla zakończeń nerwowych", isCorrect: true },
+                    { text: "Wytwarzanie witaminy D", isCorrect: false },
+                    { text: "Termoregulacja organizmu", isCorrect: false },
+                    { text: "Produkcja łoju", isCorrect: false }
+                ]
+            },
+            {
+                question: "Czym jest onychia?",
+                options: [
+                    { text: "To zanokcica, czyli stan zapalny łożyska paznokcia z udziałem mikroorganizmów", isCorrect: true },
+                    { text: "To grzybica skóry gładkiej", isCorrect: false },
+                    { text: "To nadmierne rogowacenie naskórka", isCorrect: false },
+                    { text: "To wrodzony brak paznokcia", isCorrect: false }
+                ]
+            },
+            {
+                question: "Zdefiniuj zjawisko onycholizy.",
+                options: [
+                    { text: "Odłączenie się płytki paznokciowej od łożyska", isCorrect: true },
+                    { text: "Pękanie paznokcia wzdłuż", isCorrect: false },
+                    { text: "Wrastanie paznokcia w wał", isCorrect: false },
+                    { text: "Zakażenie bakteryjne macierzy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co charakteryzuje onychauxis?",
+                options: [
+                    { text: "Przerost płytki paznokciowej z towarzyszącą hiperkeratozą", isCorrect: true },
+                    { text: "Całkowity zanik płytki paznokciowej", isCorrect: false },
+                    { text: "Bielactwo paznokcia", isCorrect: false },
+                    { text: "Rozdwajanie się końcówek paznokcia", isCorrect: false }
+                ]
+            },
+            {
+                question: "Czym objawia się onychogryphosis?",
+                options: [
+                    { text: "Zgrubieniem płytki na kształt szponu ze zmianą kierunku wzrostu", isCorrect: true },
+                    { text: "Cienką i łamliwą płytką paznokcia", isCorrect: false },
+                    { text: "Pojawieniem się białych plamek na płytce", isCorrect: false },
+                    { text: "Wklęsłym kształtem płytki (łyżeczkowatym)", isCorrect: false }
+                ]
+            },
+            {
+                question: "Czym różni się onychorrhexis od onychoschisis?",
+                options: [
+                    { text: "Onychorrhexis to łamliwość wzdłużna, a onychoschisis to poprzeczne rozszczepienie płytki", isCorrect: true },
+                    { text: "Onychorrhexis to grzybica, a onychoschisis to łuszczyca", isCorrect: false },
+                    { text: "Onychorrhexis dotyczy macierzy, a onychoschisis wolnego brzegu", isCorrect: false },
+                    { text: "Nie ma różnicy, to synonimy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co oznacza termin leukonychia?",
+                options: [
+                    { text: "Bielactwo paznokcia", isCorrect: true },
+                    { text: "Czerniak paznokcia", isCorrect: false },
+                    { text: "Zółknięcie paznokcia", isCorrect: false },
+                    { text: "Krwiak podpaznokciowy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie schorzenie mogą sygnalizować paznokcie Terry'ego?",
+                options: [
+                    { text: "Marskość wątroby", isCorrect: true },
+                    { text: "Nadczynność tarczycy", isCorrect: false },
+                    { text: "Grypę", isCorrect: false },
+                    { text: "Złamanie kości śródstopia", isCorrect: false }
+                ]
+            },
+            {
+                question: "Czym są pasma Muehrckego?",
+                options: [
+                    { text: "Białymi prążkami równoległymi do obłączka, które nie przesuwają się wraz ze wzrostem paznokcia", isCorrect: true },
+                    { text: "Pionowymi bruzdami na płytce paznokcia", isCorrect: false },
+                    { text: "Czarnymi liniami oznaczającymi czerniaka", isCorrect: false },
+                    { text: "Wgłębieniami punktowymi w płytce", isCorrect: false }
+                ]
+            },
+            {
+                question: "Z czym najczęściej związany jest zespół żółtych paznokci?",
+                options: [
+                    { text: "Z niewydolnością naczyń chłonnych oraz z chorobami płuc", isCorrect: true },
+                    { text: "Z nadmiernym spożywaniem marchwi", isCorrect: false },
+                    { text: "Z używaniem ciemnych lakierów do paznokci", isCorrect: false },
+                    { text: "Z urazem mechanicznym macierzy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jak odróżnić krwiak podpaznokciowy od czerniaka (melanonychii)?",
+                options: [
+                    { text: "Krwiak przesuwa się wraz ze wzrostem paznokcia i jaśnieje pod uciskiem", isCorrect: true },
+                    { text: "Krwiak jest zawsze bolesny, a czerniak nie", isCorrect: false },
+                    { text: "Czerniak znika samoistnie po 2 tygodniach", isCorrect: false },
+                    { text: "Nie da się ich odróżnić bez biopsji", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do jakiego schorzenia charakterystyczne są paznokcie Lindseya (half and half nails)?",
+                options: [
+                    { text: "Dla przewlekłej niewydolności nerek", isCorrect: true },
+                    { text: "Dla cukrzycy typu 2", isCorrect: false },
+                    { text: "Dla nadciśnienia tętniczego", isCorrect: false },
+                    { text: "Dla reumatoidalnego zapalenia stawów", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaki patogen wywołuje „zielone paznokcie”?",
+                options: [
+                    { text: "Bakteria Pseudomonas aeruginosa (pałeczka ropy błękitnej)", isCorrect: true },
+                    { text: "Grzyb Candida albicans", isCorrect: false },
+                    { text: "Wirus HPV", isCorrect: false },
+                    { text: "Pasożyt Nużeniec", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co jest przyczyną powstawania bruzd poprzecznych Beau?",
+                options: [
+                    { text: "Czasowe zahamowanie wzrostu paznokcia (stres, choroba, uraz)", isCorrect: true },
+                    { text: "Niedobór wapnia w diecie", isCorrect: false },
+                    { text: "Zbyt częste malowanie paznokci", isCorrect: false },
+                    { text: "Genetyczna wada budowy macierzy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Czym jest koilonychia?",
+                options: [
+                    { text: "To wklęsła płytka paznokciowa (łyżeczkowata)", isCorrect: true },
+                    { text: "To wypukła płytka paznokciowa (zegarkowa)", isCorrect: false },
+                    { text: "To całkowity brak paznokcia", isCorrect: false },
+                    { text: "To przerośnięty paznokieć", isCorrect: false }
+                ]
+            },
+            {
+                question: "O czym mogą świadczyć tzw. paznokcie zegarkowe?",
+                options: [
+                    { text: "O chronicznym niedotlenieniu krwi, chorobach płuc lub serca", isCorrect: true },
+                    { text: "O niedoborze żelaza", isCorrect: false },
+                    { text: "O grzybicy paznokci", isCorrect: false },
+                    { text: "O alergii kontaktowej", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaka wartość kąta Lovibonda wskazuje na palce pałeczkowate?",
+                options: [
+                    { text: "Wartość powyżej 180 stopni", isCorrect: true },
+                    { text: "Wartość poniżej 160 stopni", isCorrect: false },
+                    { text: "Wartość dokładnie 90 stopni", isCorrect: false },
+                    { text: "Wartość 45 stopni", isCorrect: false }
+                ]
+            },
+            {
+                question: "Zdefiniuj pterygium (skrzydlik) w obrębie paznokcia.",
+                options: [
+                    { text: "To skórka przerastająca w kierunku wolnego brzegu, rozdzielająca płytkę", isCorrect: true },
+                    { text: "To narośl kostna pod paznokciem", isCorrect: false },
+                    { text: "To infekcja wału okołopaznokciowego", isCorrect: false },
+                    { text: "To zmiana barwnikowa na paznokciu", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie są typowe objawy łuszczycy paznokciowej?",
+                options: [
+                    { text: "Objaw naparstka, plamy olejowe i onycholiza", isCorrect: true },
+                    { text: "Czarne pasma wzdłużne i ból", isCorrect: false },
+                    { text: "Zielone zabarwienie i nieprzyjemny zapach", isCorrect: false },
+                    { text: "Zanik płytki i krwawienie", isCorrect: false }
+                ]
+            },
+            {
+                question: "Czym charakteryzuje się unguis convolutus?",
+                options: [
+                    { text: "Wkręcaniem się bocznych kątów paznokcia, co powoduje ucisk łożyska", isCorrect: true },
+                    { text: "Wrastaniem paznokcia z przebiciem tkanki miękkiej", isCorrect: false },
+                    { text: "Rozdwajaniem się końcówek paznokcia", isCorrect: false },
+                    { text: "Zakażeniem grzybiczym płytki", isCorrect: false }
+                ]
+            },
+            {
+                question: "Które z poniższych jest stadium wrastającego paznokcia (unguis incarnatus)?",
+                options: [
+                    { text: "Hipergranulacja (dzikie mięso)", isCorrect: true },
+                    { text: "Onycholiza całkowita", isCorrect: false },
+                    { text: "Bielactwo punktowe", isCorrect: false },
+                    { text: "Zrogowacenie podpaznokciowe", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaką funkcję pełni hipergranulacja w procesie wrastania paznokcia?",
+                options: [
+                    { text: "Jest to mechanizm obronny organizmu", isCorrect: true },
+                    { text: "Jest to efekt działania grzybów", isCorrect: false },
+                    { text: "Jest to oznaka wyleczenia", isCorrect: false },
+                    { text: "Jest to reakcja alergiczna na obuwie", isCorrect: false }
+                ]
+            },
+            {
+                question: "Czym jest modzel?",
+                options: [
+                    { text: "Zespołem zrogowaciałych komórek naskórka bez rdzenia (ochrona przed tarciem)", isCorrect: true },
+                    { text: "Zmianą wirusową wywołaną przez HPV", isCorrect: false },
+                    { text: "Zrogowaceniem posiadającym twardy rdzeń", isCorrect: false },
+                    { text: "Pęknięciem naskórka na pięcie", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaka jest główna cecha wyróżniająca odcisk (clavus) od modzela?",
+                options: [
+                    { text: "Obecność rdzenia, który drażni zakończenia nerwowe", isCorrect: true },
+                    { text: "Większa powierzchnia odcisku", isCorrect: false },
+                    { text: "Kolor żółty (modzele są białe)", isCorrect: false },
+                    { text: "Brak bolesności w odcisku", isCorrect: false }
+                ]
+            },
+            {
+                question: "Gdzie najczęściej znajduje się odcisk twardy (clavus durus)?",
+                options: [
+                    { text: "Na opuszkach palców lub dorsalnym stawie palców młotowatych", isCorrect: true },
+                    { text: "W przestrzeniach międzypalcowych", isCorrect: false },
+                    { text: "Na podeszwie stopy w okolicy łuku", isCorrect: false },
+                    { text: "W wale paznokciowym", isCorrect: false }
+                ]
+            },
+            {
+                question: "Czym jest clavus mollis?",
+                options: [
+                    { text: "To odcisk miękki, występujący w przestrzeniach międzypalcowych", isCorrect: true },
+                    { text: "To odcisk z naczyniami krwionośnymi", isCorrect: false },
+                    { text: "To odcisk mnogi u dzieci", isCorrect: false },
+                    { text: "To odcisk pod płytką paznokcia", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co charakteryzuje clavus vascularis?",
+                options: [
+                    { text: "W rdzeń odcisku wniknęły kapilary (naczynia krwionośne)", isCorrect: true },
+                    { text: "Obecność zakończeń nerwowych w rdzeniu", isCorrect: false },
+                    { text: "Występowanie wyłącznie u dzieci", isCorrect: false },
+                    { text: "Brak rdzenia rogowego", isCorrect: false }
+                ]
+            },
+            {
+                question: "Który rodzaj odcisku jest nazywany 'recydywistą' i jest oporny na leczenie?",
+                options: [
+                    { text: "Clavus papillaris (odcisk brodawkowy)", isCorrect: true },
+                    { text: "Clavus durus (odcisk twardy)", isCorrect: false },
+                    { text: "Clavus mollis (odcisk miękki)", isCorrect: false },
+                    { text: "Clavus miliaris (odcisk mnogi)", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaki typ odcisku jako jedyny występuje u dzieci?",
+                options: [
+                    { text: "Clavi miliares (odciski mnogie)", isCorrect: true },
+                    { text: "Clavus neurovascularis", isCorrect: false },
+                    { text: "Clavus durus", isCorrect: false },
+                    { text: "Modzel", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaki wirus wywołuje brodawki wirusowe (kurzajki)?",
+                options: [
+                    { text: "Wirus brodawczaka ludzkiego (HPV)", isCorrect: true },
+                    { text: "Wirus opryszczki (HSV)", isCorrect: false },
+                    { text: "Wirus ospy wietrznej", isCorrect: false },
+                    { text: "Wirus grypy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Czym charakteryzuje się brodawka typu Myrmecia?",
+                options: [
+                    { text: "Głębokim umiejscowieniem, są nieliczne i często bolesne", isCorrect: true },
+                    { text: "Powierzchownym rozległym występowaniem (mozaika)", isCorrect: false },
+                    { text: "Brakiem bolesności i występowaniem na dłoniach", isCorrect: false },
+                    { text: "Czerwonym kolorem i krwawieniem", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie są cechy brodawek typu mozaikowego?",
+                options: [
+                    { text: "Są powierzchowne, liczne, mają tendencję do zlewania się", isCorrect: true },
+                    { text: "Są głębokie i pojedyncze", isCorrect: false },
+                    { text: "Występują tylko na piętach", isCorrect: false },
+                    { text: "Nigdy nie nawracają po usunięciu", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jak różnicuje się bolesność odcisku i brodawki przy ucisku?",
+                options: [
+                    { text: "Odcisk boli przy ucisku pionowym, a brodawka przy bocznym", isCorrect: true },
+                    { text: "Odcisk boli przy ucisku bocznym, a brodawka przy pionowym", isCorrect: false },
+                    { text: "Oba bolą tylko przy ucisku bocznym", isCorrect: false },
+                    { text: "Oba bolą tylko przy ucisku pionowym", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaki jest główny patogen wywołujący grzybicę stóp?",
+                options: [
+                    { text: "Dermatofity, głównie Trichophyton rubrum", isCorrect: true },
+                    { text: "Drożdżaki Candida", isCorrect: false },
+                    { text: "Pleśniowce", isCorrect: false },
+                    { text: "Bakterie Gram-ujemne", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która z wymienionych jest postacią kliniczną grzybicy stóp?",
+                options: [
+                    { text: "Potnicowa", isCorrect: true },
+                    { text: "Łojotokowa", isCorrect: false },
+                    { text: "Atopowa", isCorrect: false },
+                    { text: "Naczyniowa", isCorrect: false }
+                ]
+            },
+            {
+                question: "Zdefiniuj Zespół Stopy Cukrzycowej (ZSC).",
+                options: [
+                    { text: "Infekcja/owrzodzenie stopy związane z neuropatią i chorobami naczyń u diabetyków", isCorrect: true },
+                    { text: "Wrodzona wada budowy stopy objawiająca się płaskostopiem", isCorrect: false },
+                    { text: "Zakażenie grzybicze u osób starszych", isCorrect: false },
+                    { text: "Obrzęk stóp spowodowany niewydolnością nerek", isCorrect: false }
+                ]
+            },
+            {
+                question: "Wymień jedną z głównych postaci ZSC.",
+                options: [
+                    { text: "Neuropatyczna", isCorrect: true },
+                    { text: "Dermatologiczna", isCorrect: false },
+                    { text: "Ortopedyczna", isCorrect: false },
+                    { text: "Reumatoidalna", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaka jest najczęstsza bezpośrednia przyczyna powstania owrzodzenia w ZSC?",
+                options: [
+                    { text: "Noszenie niewłaściwego obuwia", isCorrect: true },
+                    { text: "Uraz mechaniczny (np. uderzenie)", isCorrect: false },
+                    { text: "Oparzenie termiczne", isCorrect: false },
+                    { text: "Wrastający paznokieć", isCorrect: false }
+                ]
+            },
+            {
+                question: "Na czym polega supinacja stopy?",
+                options: [
+                    { text: "Na przenoszeniu nacisku na zewnętrzną krawędź stopy", isCorrect: true },
+                    { text: "Na przenoszeniu nacisku na wewnętrzną krawędź stopy", isCorrect: false },
+                    { text: "Na staniu na palcach", isCorrect: false },
+                    { text: "Na staniu na piętach", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co jest główną przyczyną pronacji stopy?",
+                options: [
+                    { text: "Obniżone napięcie mięśniowe, nadwaga, złe nawyki", isCorrect: true },
+                    { text: "Nadmierna aktywność fizyczna", isCorrect: false },
+                    { text: "Noszenie zbyt ciasnych skarpet", isCorrect: false },
+                    { text: "Wrodzony brak kości skokowej", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która z wymienionych wad stóp jest wadą nabytą?",
+                options: [
+                    { text: "Hallux valgus", isCorrect: true },
+                    { text: "Stopa końsko-szpotawa (wrodzona)", isCorrect: false },
+                    { text: "Zrośnięcie palców (syndaktylia)", isCorrect: false },
+                    { text: "Brak palców (adaktylia)", isCorrect: false }
+                ]
+            },
+            {
+                question: "Czym objawia się paluch koślawy (hallux valgus)?",
+                options: [
+                    { text: "Przekrzywieniem palucha w stronę pozostałych palców", isCorrect: true },
+                    { text: "Sztywnością stawu palucha bez deformacji", isCorrect: false },
+                    { text: "Zgięciem palucha w dół (młoteczkowatość)", isCorrect: false },
+                    { text: "Obrzękiem tylko opuszki palucha", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która z metod jest stosowana przez podologa w terapii problemów biomechanicznych?",
+                options: [
+                    { text: "Taping", isCorrect: true },
+                    { text: "Operacja chirurgiczna", isCorrect: false },
+                    { text: "Farmakoterapia doustna", isCorrect: false },
+                    { text: "Akupunktura głowy", isCorrect: false }
+                ]
+            }
+        ];
+
+        // Inicjalizacja pytań przy starcie (losowa kolejność)
+        const questions = shuffleArray([...rawQuestions]);
+
+        let currentQuestionIndex = 0;
+        let currentQuestion;
+
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const checkButton = document.getElementById('check-button');
+        const nextButton = document.getElementById('next-button');
+        const resultElement = document.getElementById('result');
+        const statusBar = document.getElementById('status-bar');
+
+        function loadNewQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                // Koniec testu
+                questionElement.textContent = "Koniec testu! Gratulacje.";
+                optionsElement.innerHTML = '';
+                checkButton.style.display = 'none';
+                nextButton.style.display = 'none';
+                resultElement.textContent = '';
+                statusBar.textContent = '';
+                return;
+            }
+
+            currentQuestion = questions[currentQuestionIndex];
+            statusBar.textContent = `Pytanie ${currentQuestionIndex + 1} z ${questions.length}`;
+            questionElement.textContent = currentQuestion.question;
+            optionsElement.innerHTML = '';
+            resultElement.style.display = 'none';
+            resultElement.className = '';
+
+            // Tasowanie odpowiedzi dla danego pytania
+            // Tworzymy kopię opcji, żeby nie modyfikować oryginału w nieskończoność
+            // Musimy też przechować indeks oryginalny lub informację isCorrect, 
+            // tutaj obiekt options ma isCorrect, więc jest ok.
+            const shuffledOptions = shuffleArray([...currentQuestion.options]);
+
+            shuffledOptions.forEach((option, index) => {
+                const label = document.createElement('label');
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'answer';
+                // Przekazujemy wartość 1 jeśli poprawna, 0 jeśli nie - ułatwi sprawdzanie
+                radio.value = option.isCorrect ? 'correct' : 'incorrect';
+                
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(option.text));
+                optionsElement.appendChild(label);
+            });
+
+            checkButton.style.display = 'inline-block';
+            nextButton.style.display = 'none';
+        }
+
+        function checkAnswer() {
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+
+            if (!selectedOption) {
+                alert("Proszę zaznaczyć odpowiedź!");
+                return;
+            }
+
+            const isCorrect = selectedOption.value === 'correct';
+            const allRadios = optionsElement.querySelectorAll('input[type="radio"]');
+
+            // Pokoloruj odpowiedzi
+            allRadios.forEach(radio => {
+                const parentLabel = radio.parentElement;
+                radio.disabled = true; // Zablokuj zmianę
+                
+                if (radio.value === 'correct') {
+                    parentLabel.style.backgroundColor = '#d4edda'; // Zielony dla poprawnej
+                    parentLabel.style.borderColor = '#c3e6cb';
+                } else if (radio.checked && radio.value === 'incorrect') {
+                    parentLabel.style.backgroundColor = '#f8d7da'; // Czerwony dla błędnie zaznaczonej
+                    parentLabel.style.borderColor = '#f5c6cb';
+                }
+            });
+
+            resultElement.style.display = 'block';
+            if (isCorrect) {
+                resultElement.textContent = "Poprawna odpowiedź!";
+                resultElement.className = 'correct-msg';
+            } else {
+                resultElement.textContent = "Niepoprawna odpowiedź.";
+                resultElement.className = 'incorrect-msg';
+            }
+
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'inline-block';
+        }
+
+        checkButton.addEventListener('click', checkAnswer);
+        nextButton.addEventListener('click', () => {
+            currentQuestionIndex++;
+            loadNewQuestion();
+        });
+
+        // Start
+        document.addEventListener('DOMContentLoaded', loadNewQuestion);
+    </script>
+</body>
+</html>
