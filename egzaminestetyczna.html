@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test: Kosmetologia Estetyczna (Live Score)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #121212; /* Ciemne tło */
+            color: #e0e0e0; /* Jasny tekst */
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            margin: 20px auto;
+            border: 1px solid #333;
+        }
+        h1 {
+            color: #f48fb1; /* Różowy odcień pasujący do estetyki */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        /* --- SEKCJA STATYSTYK --- */
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+            font-size: 1.1em;
+        }
+        .status-bar {
+            color: #aaa;
+        }
+        .live-score {
+            font-weight: bold;
+            color: #4caf50; /* Zielony kolor dla wyniku */
+        }
+        
+        .question-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        .question-section p {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #ffffff;
+        }
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+        }
+        .options label:hover {
+            background-color: #383838;
+            border-color: #555;
+        }
+        .options input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: #f48fb1;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .button-group button {
+            padding: 12px 30px;
+            margin: 0 10px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.3s;
+            font-weight: bold;
+        }
+        .button-group button:active {
+            transform: scale(0.98);
+        }
+        #check-button {
+            background-color: #c2185b;
+            color: white;
+        }
+        #check-button:hover {
+            background-color: #ad1457;
+        }
+        #next-button {
+            background-color: #2e7d32;
+            color: white;
+            display: none;
+        }
+        #next-button:hover {
+            background-color: #1b5e20;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2em;
+            display: none;
+        }
+        .correct-msg {
+            background-color: #1b5e20;
+            color: #ffffff;
+            border: 1px solid #2e7d32;
+        }
+        .incorrect-msg {
+            background-color: #b71c1c;
+            color: #ffffff;
+            border: 1px solid #c62828;
+        }
+        .final-score {
+            font-size: 1.5em;
+            color: #f48fb1;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test Wiedzy: Kosmetologia Estetyczna</h1>
+        
+        <div class="stats-container">
+            <div id="status-bar" class="status-bar">Ładowanie...</div>
+            <div id="live-score" class="live-score">Wynik: 0/0 (0%)</div>
+        </div>
+        
+        <div class="question-section">
+            <p id="question"></p>
+            <div class="options" id="options">
+                </div>
+        </div>
+
+        <div class="button-group">
+            <button id="check-button">Sprawdź</button>
+            <button id="next-button">Następne pytanie</button>
+            <button id="restart-button" style="display: none; background-color: #ff9800; color: white;">Rozpocznij od nowa</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Baza pytań z Kosmetologii Estetycznej
+        const rawQuestions = [
+            {
+                question: "Co oznacza skrót PIH w kontekście defektów skórnych?",
+                options: [
+                    { text: "Przebarwienia hormonalne", isCorrect: false },
+                    { text: "Przebarwienia pozapalne (Post-Inflammatory Hyperpigmentation)", isCorrect: true },
+                    { text: "Przewlekłe infekcje histaminowe", isCorrect: false },
+                    { text: "Procesy intensywnego hamowania melanogenezy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która z poniższych substancji należy do grupy GAGs (glikozoaminoglikanów)?",
+                options: [
+                    { text: "Kolagen typu I", isCorrect: false },
+                    { text: "Elastyna", isCorrect: false },
+                    { text: "Kwas hialuronowy", isCorrect: true },
+                    { text: "Kwas salicylowy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co jest uznawane za charakterystyczny objaw endogennego starzenia się skóry na poziomie histologicznym?",
+                options: [
+                    { text: "Znaczne pogrubienie warstwy rogowej", isCorrect: false },
+                    { text: "Spłaszczenie granicy skórno-naskórkowej", isCorrect: true },
+                    { text: "Zwiększenie liczby melanocytów", isCorrect: false },
+                    { text: "Przerost gruczołów łojowych", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co obejmuje termin \"blush area\"?",
+                options: [
+                    { text: "Tylko policzki („jabłuszka”)", isCorrect: false },
+                    { text: "Twarz, szyję i dekolt", isCorrect: true },
+                    { text: "Strefę T (czoło, nos, broda)", isCorrect: false },
+                    { text: "Grzbiety dłoni i przedramiona", isCorrect: false }
+                ]
+            },
+            {
+                question: "Gdzie najczęściej lokalizują się tzw. zmarszczki senne?",
+                options: [
+                    { text: "W kącikach oczu (kurze łapki)", isCorrect: false },
+                    { text: "Na czole (zmarszczki poprzeczne)", isCorrect: false },
+                    { text: "Na dekolcie", isCorrect: true },
+                    { text: "W bruzdach nosowo-wargowych", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaki rodzaj lasera jest wskazany do terapii skóry naczyniowej?",
+                options: [
+                    { text: "Laser diodowy do epilacji (810 nm)", isCorrect: false },
+                    { text: "Laser KTP", isCorrect: true },
+                    { text: "Laser CO2 frakcyjny ablacyjny", isCorrect: false },
+                    { text: "Laser rubinowy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Które komórki w naskórku pełnią funkcje związane z układem odpornościowym/ochronnym?",
+                options: [
+                    { text: "Wyłącznie komórki Langerhansa", isCorrect: false },
+                    { text: "Tylko melanocyty (ochrona UV)", isCorrect: false },
+                    { text: "Tylko korneocyty (bariera fizyczna)", isCorrect: false },
+                    { text: "Wszystkie wymienione (korneocyty, melanocyty, komórki Langerhansa)", isCorrect: true }
+                ]
+            },
+            {
+                question: "Jaki jest docelowy chromatofor przy zamykaniu naczynek krwionośnych?",
+                options: [
+                    { text: "Melanina", isCorrect: false },
+                    { text: "Woda tkankowa", isCorrect: false },
+                    { text: "Oksyhemoglobina", isCorrect: true },
+                    { text: "Egzogenny barwnik tatuażu", isCorrect: false }
+                ]
+            },
+            {
+                question: "Który rodzaj promieniowania ma najistotniejszy wpływ na proces fotostarzenia (dociera najgłębiej i działa przez cały rok)?",
+                options: [
+                    { text: "UVC", isCorrect: false },
+                    { text: "UVB", isCorrect: false },
+                    { text: "UVA", isCorrect: true },
+                    { text: "Światło niebieskie (HEV) emitowane przez ekrany", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co jest głównym czynnikiem egzogennym starzenia się skóry?",
+                options: [
+                    { text: "Zanieczyszczenie powietrza (smog)", isCorrect: false },
+                    { text: "Dieta bogata w cukry proste (glikacja)", isCorrect: false },
+                    { text: "Promieniowanie UV", isCorrect: true },
+                    { text: "Dym tytoniowy", isCorrect: false }
+                ]
+            },
+            {
+                question: "W jaki rodzaj zmarszczek przekształcają się z czasem utrwalone zmarszczki mimiczne?",
+                options: [
+                    { text: "W zmarszczki grawitacyjne", isCorrect: false },
+                    { text: "W zmarszczki strukturalne", isCorrect: true },
+                    { text: "W zmarszczki senne", isCorrect: false },
+                    { text: "W zmarszczki przesuszenia", isCorrect: false }
+                ]
+            },
+            {
+                question: "Gdzie występują „zmarszczki królicze”?",
+                options: [
+                    { text: "W kącikach ust", isCorrect: false },
+                    { text: "Na bocznych powierzchniach nosa", isCorrect: true },
+                    { text: "Na płatkach uszu", isCorrect: false },
+                    { text: "Pomiędzy brwiami (lwia zmarszczka)", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaka skala służy do oceny stopnia fotostarzenia się skóry?",
+                options: [
+                    { text: "Skala Fitzpatricka", isCorrect: false },
+                    { text: "Skala Glogau", isCorrect: true },
+                    { text: "Skala Apgar", isCorrect: false },
+                    { text: "Skala Glasgow", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jak nazywa się proces zwyrodnienia włókien sprężystych w skórze pod wpływem promieniowania UV (charakterystyczny dla fotostarzenia)?",
+                options: [
+                    { text: "Elastoza", isCorrect: true },
+                    { text: "Fibroplazja", isCorrect: false },
+                    { text: "Keratynizacja", isCorrect: false },
+                    { text: "Melanogeneza", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co oznacza skrót DEJ?",
+                options: [
+                    { text: "Dolna warstwa naskórka (Deep Epidermal Junction)", isCorrect: false },
+                    { text: "Granica skórno-naskórkowa (Dermal-Epidermal Junction)", isCorrect: true },
+                    { text: "Dermatologiczna elastyczność jąder", isCorrect: false },
+                    { text: "Dno ewentualnego jarzma", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie hormony są znane z tego, że przyspieszają melanogenezę (powstawanie przebarwień)?",
+                options: [
+                    { text: "Insulina i glukagon", isCorrect: false },
+                    { text: "Progesteron i estrogeny", isCorrect: true },
+                    { text: "Adrenalina i kortyzol", isCorrect: false },
+                    { text: "Testosteron i androstendion", isCorrect: false }
+                ]
+            },
+            {
+                question: "Czym charakteryzuje się starzenie chronologiczne?",
+                options: [
+                    { text: "Jest wywołane głównie przez słońce", isCorrect: false },
+                    { text: "Jest związane z naturalnym upływem czasu", isCorrect: true },
+                    { text: "Jest efektem niewłaściwej pielęgnacji", isCorrect: false },
+                    { text: "Pojawia się tylko u palaczy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co składa się na skuteczną profilaktykę przeciwstarzeniową?",
+                options: [
+                    { text: "Tylko stosowanie filtrów SPF", isCorrect: false },
+                    { text: "Tylko zabiegi medycyny estetycznej", isCorrect: false },
+                    { text: "Wyłącznie suplementacja antyoksydantami", isCorrect: false },
+                    { text: "Wszystkie wymienione działania (holistyczne podejście)", isCorrect: true }
+                ]
+            },
+            {
+                question: "Co zazwyczaj nasila rumień przy cerze naczyniowej?",
+                options: [
+                    { text: "Stosowanie zimnych okładów", isCorrect: false },
+                    { text: "Dieta lekkostrawna i picie wody", isCorrect: false },
+                    { text: "Pikantne potrawy, alkohol, nagłe zmiany temperatur", isCorrect: true },
+                    { text: "Stosowanie kremów z ceramidami", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie peelingi są rekomendowane przy skórze naczyniowej?",
+                options: [
+                    { text: "Gruboziarniste mechaniczne (scruby)", isCorrect: false },
+                    { text: "Głębokie peelingi fenolowe", isCorrect: false },
+                    { text: "Delikatne (np. enzymatyczne, kwas laktobionowy, azelaic)", isCorrect: true },
+                    { text: "Silne roztwory kwasu glikolowego", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie odczucia subiektywne mogą towarzyszyć cerze naczyniowej i rumieniowi?",
+                options: [
+                    { text: "Całkowity brak czucia w miejscu zaczerwienienia", isCorrect: false },
+                    { text: "Świąd, pieczenie, uczucie gorąca/ściągnięcia", isCorrect: true },
+                    { text: "Nadmierne przetłuszczanie się bez podrażnienia", isCorrect: false },
+                    { text: "Ból promieniujący do kości", isCorrect: false }
+                ]
+            }
+        ];
+
+        // Zmienne stanu
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const checkButton = document.getElementById('check-button');
+        const nextButton = document.getElementById('next-button');
+        const restartButton = document.getElementById('restart-button');
+        const resultElement = document.getElementById('result');
+        const statusBar = document.getElementById('status-bar');
+        const liveScoreElement = document.getElementById('live-score');
+
+        function initTest() {
+            // Resetujemy stan
+            questions = shuffleArray([...rawQuestions]); // Tasujemy pytania
+            currentQuestionIndex = 0;
+            score = 0;
+            
+            // Resetujemy widok
+            checkButton.style.display = 'inline-block';
+            nextButton.style.display = 'none';
+            restartButton.style.display = 'none';
+            resultElement.style.display = 'none';
+            liveScoreElement.textContent = "Wynik: 0/0 (0%)";
+            
+            loadNewQuestion();
+        }
+
+        function loadNewQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                showFinalResult();
+                return;
+            }
+
+            const currentQuestion = questions[currentQuestionIndex];
+            statusBar.textContent = `Pytanie ${currentQuestionIndex + 1} z ${questions.length}`;
+            questionElement.textContent = currentQuestion.question;
+            optionsElement.innerHTML = '';
+            resultElement.style.display = 'none';
+            resultElement.className = '';
+
+            const shuffledOptions = shuffleArray([...currentQuestion.options]);
+
+            shuffledOptions.forEach((option, index) => {
+                const label = document.createElement('label');
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'answer';
+                radio.value = option.isCorrect ? 'correct' : 'incorrect';
+                
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(option.text));
+                optionsElement.appendChild(label);
+            });
+
+            checkButton.style.display = 'inline-block';
+            nextButton.style.display = 'none';
+        }
+
+        function checkAnswer() {
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+
+            if (!selectedOption) {
+                alert("Proszę zaznaczyć odpowiedź!");
+                return;
+            }
+
+            const isCorrect = selectedOption.value === 'correct';
+            const allRadios = optionsElement.querySelectorAll('input[type="radio"]');
+
+            if (isCorrect) {
+                score++;
+            }
+
+            // Aktualizacja wyniku na bieżąco
+            const questionsAnswered = currentQuestionIndex + 1;
+            const percentage = Math.round((score / questionsAnswered) * 100);
+            liveScoreElement.textContent = `Wynik: ${score}/${questionsAnswered} (${percentage}%)`;
+
+            allRadios.forEach(radio => {
+                const parentLabel = radio.parentElement;
+                radio.disabled = true;
+                
+                if (radio.value === 'correct') {
+                    parentLabel.style.backgroundColor = '#1b5e20';
+                    parentLabel.style.borderColor = '#2e7d32';
+                    parentLabel.style.color = '#ffffff'; 
+                } else if (radio.checked && radio.value === 'incorrect') {
+                    parentLabel.style.backgroundColor = '#b71c1c';
+                    parentLabel.style.borderColor = '#c62828';
+                    parentLabel.style.color = '#ffffff'; 
+                }
+            });
+
+            resultElement.style.display = 'block';
+            if (isCorrect) {
+                resultElement.textContent = "Poprawna odpowiedź!";
+                resultElement.className = 'correct-msg';
+            } else {
+                resultElement.textContent = "Niepoprawna odpowiedź.";
+                resultElement.className = 'incorrect-msg';
+            }
+
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'inline-block';
+        }
+
+        function showFinalResult() {
+            questionElement.textContent = "Koniec testu!";
+            optionsElement.innerHTML = `<div class="final-score">Twój wynik końcowy: ${score} na ${questions.length} punktów.</div>`;
+            
+            const percentage = Math.round((score / questions.length) * 100);
+            optionsElement.innerHTML += `<p>Skuteczność: ${percentage}%</p>`;
+
+            if (percentage >= 80) {
+                optionsElement.innerHTML += `<p style="color: #4caf50; font-weight: bold;">Świetny wynik! Gratulacje.</p>`;
+            } else if (percentage >= 50) {
+                optionsElement.innerHTML += `<p style="color: #ff9800; font-weight: bold;">Nieźle, ale warto powtórzyć materiał.</p>`;
+            } else {
+                optionsElement.innerHTML += `<p style="color: #f44336; font-weight: bold;">Musisz jeszcze poćwiczyć.</p>`;
+            }
+
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'none';
+            resultElement.textContent = '';
+            statusBar.textContent = '';
+            liveScoreElement.textContent = ''; // Czyścimy pasek live score na końcu
+            
+            restartButton.style.display = 'inline-block';
+        }
+
+        checkButton.addEventListener('click', checkAnswer);
+        nextButton.addEventListener('click', () => {
+            currentQuestionIndex++;
+            loadNewQuestion();
+        });
+        restartButton.addEventListener('click', initTest);
+
+        document.addEventListener('DOMContentLoaded', initTest);
+    </script>
+</body>
+</html>
