@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test: Zaburzenia Hormonalne (Live Score)</title>
+    <title>Test: Kosmetologia Estetyczna (Live Score)</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #121212;
-            color: #e0e0e0;
+            background-color: #121212; /* Ciemne tło */
+            color: #e0e0e0; /* Jasny tekst */
         }
         .container {
             background-color: #1e1e1e;
@@ -22,12 +22,12 @@
             border: 1px solid #333;
         }
         h1 {
-            color: #90caf9;
+            color: #f48fb1; /* Różowy odcień pasujący do estetyki */
             text-align: center;
             margin-bottom: 20px;
             font-size: 2em;
         }
-        /* --- NOWA SEKCJA STATYSTYK NA GÓRZE --- */
+        /* --- SEKCJA STATYSTYK --- */
         .stats-container {
             display: flex;
             justify-content: space-between;
@@ -44,7 +44,7 @@
             font-weight: bold;
             color: #4caf50; /* Zielony kolor dla wyniku */
         }
-
+        
         .question-section {
             margin-bottom: 25px;
             padding-bottom: 20px;
@@ -77,7 +77,7 @@
             margin-right: 15px;
             transform: scale(1.3);
             cursor: pointer;
-            accent-color: #90caf9;
+            accent-color: #f48fb1;
         }
         .button-group {
             text-align: center;
@@ -97,11 +97,11 @@
             transform: scale(0.98);
         }
         #check-button {
-            background-color: #1976d2;
+            background-color: #c2185b;
             color: white;
         }
         #check-button:hover {
-            background-color: #1565c0;
+            background-color: #ad1457;
         }
         #next-button {
             background-color: #2e7d32;
@@ -132,14 +132,14 @@
         }
         .final-score {
             font-size: 1.5em;
-            color: #90caf9;
+            color: #f48fb1;
             margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Test: Zaburzenia Hormonalne</h1>
+        <h1>Test Wiedzy: Kosmetologia Estetyczna</h1>
         
         <div class="stats-container">
             <div id="status-bar" class="status-bar">Ładowanie...</div>
@@ -149,7 +149,7 @@
         <div class="question-section">
             <p id="question"></p>
             <div class="options" id="options">
-            </div>
+                </div>
         </div>
 
         <div class="button-group">
@@ -170,176 +170,203 @@
             return array;
         }
 
-        // Baza pytań z pliku PDF (158 pytań)
+        // Baza pytań z Kosmetologii Estetycznej
         const rawQuestions = [
-            // --- DZIAŁ I: Hormony a skóra (Pytania 1-70) ---
-            { question: "Wymień 3 główne warstwy, z których składa się skóra człowieka.", options: [{ text: "Naskórek, skóra właściwa, tkanka podskórna", isCorrect: true }, { text: "Naskórek, błona podstawna, mięśnie", isCorrect: false }, { text: "Warstwa rogowa, warstwa jasna, skóra właściwa", isCorrect: false }, { text: "Skóra właściwa, tkanka tłuszczowa, powięź", isCorrect: false }] },
-            { question: "Jakie struktury, obok głównych warstw, tworzą barierę ochronną i odpowiadają za termoregulację skóry?", options: [{ text: "Przydatki (gruczoły potowe i łojowe, włosy, paznokcie), naczynia oraz nerwy", isCorrect: true }, { text: "Tylko warstwa rogowa naskórka", isCorrect: false }, { text: "Węzły chłonne i naczynia limfatyczne", isCorrect: false }, { text: "Mięśnie przywłosowe i komórki tłuszczowe", isCorrect: false }] },
-            { question: "Z ilu podwarstw składa się naskórek?", options: [{ text: "Z 5 warstw", isCorrect: true }, { text: "Z 3 warstw", isCorrect: false }, { text: "Z 7 warstw", isCorrect: false }, { text: "Z 2 warstw", isCorrect: false }] },
-            { question: "Wymień wszystkie podwarstwy naskórka.", options: [{ text: "Warstwa rogowa, jasna, ziarnista, kolczysta oraz podstawna", isCorrect: true }, { text: "Warstwa rogowa, ciemna, ziarnista, kolczysta, podstawna", isCorrect: false }, { text: "Warstwa brodawkowata, siateczkowata, podskórna", isCorrect: false }, { text: "Warstwa rogowa, jasna, podstawna, tłuszczowa", isCorrect: false }] },
-            { question: "Z jakich komórek składa się część włosa wyrastająca ponad powierzchnię naskórka?", options: [{ text: "Z martwych zrogowaciałych komórek o kształcie łusek układających się dachówkowato", isCorrect: true }, { text: "Z żywych komórek macierzystych", isCorrect: false }, { text: "Z fibroblastów i kolagenu", isCorrect: false }, { text: "Z melanocytów i keratynocytów", isCorrect: false }] },
-            { question: "Czym pod względem budowy jest por skórny?", options: [{ text: "Mikroskopijnym ujściem mieszka włosowego", isCorrect: true }, { text: "Ujściem gruczołu potowego", isCorrect: false }, { text: "Pęknięciem w warstwie rogowej", isCorrect: false }, { text: "Zakończeniem nerwowym", isCorrect: false }] },
-            { question: "Gdzie zlokalizowane są naczynia krwionośne, gruczoły łojowe i potowe w strukturze skóry?", options: [{ text: "W obrębie skóry właściwej", isCorrect: true }, { text: "W naskórku", isCorrect: false }, { text: "Tylko w tkance podskórnej", isCorrect: false }, { text: "W warstwie rogowej", isCorrect: false }] },
-            { question: "Która struktura w skórze właściwej odpowiada za produkcję i wzrost włosa?", options: [{ text: "Cebulka włosa", isCorrect: true }, { text: "Gruczoł łojowy", isCorrect: false }, { text: "Mięsień przywłosowy", isCorrect: false }, { text: "Brodawka skórna", isCorrect: false }] },
-            { question: "Jaki rodzaj włókien w skórze właściwej zapewnia jej elastyczność i wytrzymałość?", options: [{ text: "Włókna kolagenowe i sprężyste", isCorrect: true }, { text: "Włókna nerwowe", isCorrect: false }, { text: "Włókna mięśniowe", isCorrect: false }, { text: "Włókna keratynowe", isCorrect: false }] },
-            { question: "Z jakich głównych komórek zbudowana jest tkanka podskórna?", options: [{ text: "Z komórek tłuszczowych zgrupowanych w zraziki tłuszczowe", isCorrect: true }, { text: "Z keratynocytów", isCorrect: false }, { text: "Z osteoblastów", isCorrect: false }, { text: "Z miocytów", isCorrect: false }] },
-            { question: "Wymień 3 główne funkcje tkanki podskórnej.", options: [{ text: "Magazynowanie tłuszczu, izolacja, amortyzacja", isCorrect: true }, { text: "Wytwarzanie melaniny, czucie dotyku, ochrona UV", isCorrect: false }, { text: "Termoregulacja poprzez pocenie, wydzielanie łoju, wzrost włosów", isCorrect: false }, { text: "Wymiana gazowa, trawienie, ruch", isCorrect: false }] },
-            { question: "Dlaczego skóra jest określana jako dynamiczny organ endokrynny?", options: [{ text: "Posiada receptory dla większości hormonów krążących w organizmie", isCorrect: true }, { text: "Ponieważ jest największym narządem w ciele", isCorrect: false }, { text: "Gdyż produkuje krew", isCorrect: false }, { text: "Ponieważ steruje układem nerwowym", isCorrect: false }] },
-            { question: "Jak nazywają się żywe komórki nabłonkowe naskórka odpowiedzialne za produkcję keratyny?", options: [{ text: "Keratynocyty", isCorrect: true }, { text: "Melanocyty", isCorrect: false }, { text: "Fibroblasty", isCorrect: false }, { text: "Adipocyty", isCorrect: false }] },
-            { question: "W jakiej warstwie naskórka dochodzi do mnożenia się keratynocytów przez podziały?", options: [{ text: "W warstwie podstawnej", isCorrect: true }, { text: "W warstwie rogowej", isCorrect: false }, { text: "W warstwie jasnej", isCorrect: false }, { text: "W warstwie ziarnistej", isCorrect: false }] },
-            { question: "Jak nazywają się martwe, płaskie komórki naskórka, które utraciły jądra?", options: [{ text: "Korneocyty", isCorrect: true }, { text: "Keratynocyty", isCorrect: false }, { text: "Melanocyty", isCorrect: false }, { text: "Histiocyty", isCorrect: false }] },
-            { question: "Czym są komórki Merkla i jaka jest ich funkcja?", options: [{ text: "Są to receptory dotyku odbierające bodźce czuciowe", isCorrect: true }, { text: "Są to komórki produkujące barwnik", isCorrect: false }, { text: "Są to komórki odpornościowe", isCorrect: false }, { text: "Są to komórki tłuszczowe", isCorrect: false }] },
-            { question: "Które komórki naskórka odpowiadają za produkcję i magazynowanie melaniny?", options: [{ text: "Melanocyty", isCorrect: true }, { text: "Keratynocyty", isCorrect: false }, { text: "Komórki Langerhansa", isCorrect: false }, { text: "Fibroblasty", isCorrect: false }] },
-            { question: "Jak nazywają się komórki dendrytyczne naskórka współodpowiedzialne za mechanizmy odpornościowe?", options: [{ text: "Komórki Langerhansa", isCorrect: true }, { text: "Komórki Merkla", isCorrect: false }, { text: "Mastocyty", isCorrect: false }, { text: "Erytrocyty", isCorrect: false }] },
-            { question: "Jaki procent całkowitej grubości skóry stanowi warstwa siateczkowata skóry właściwej?", options: [{ text: "Około 80%", isCorrect: true }, { text: "Około 20%", isCorrect: false }, { text: "Około 50%", isCorrect: false }, { text: "Około 10%", isCorrect: false }] },
-            { question: "Z jakich typów kolagenu zbudowane są włókna kolagenowe skóry właściwej?", options: [{ text: "Z kolagenu typu I oraz III", isCorrect: true }, { text: "Z kolagenu typu II i IV", isCorrect: false }, { text: "Z kolagenu typu V i VII", isCorrect: false }, { text: "Z kolagenu typu X i XI", isCorrect: false }] },
-            { question: "Czym pod względem strukturalnym są najprawdopodobniej włókna retikulinowe?", options: [{ text: "Młodymi włóknami kolagenowymi", isCorrect: true }, { text: "Zdegenerowanymi włóknami elastynowymi", isCorrect: false }, { text: "Włóknami nerwowymi", isCorrect: false }, { text: "Włóknami mięśniowymi", isCorrect: false }] },
-            { question: "Jakie białko buduje włókna sprężyste (elastynowe)?", options: [{ text: "Elastyna", isCorrect: true }, { text: "Keratyna", isCorrect: false }, { text: "Aktyna", isCorrect: false }, { text: "Miozyna", isCorrect: false }] },
-            { question: "Które komórki tkanki łącznej są odpowiedzialne za wytwarzanie kolagenu i elastyny?", options: [{ text: "Fibroblasty", isCorrect: true }, { text: "Adipocyty", isCorrect: false }, { text: "Osteocyty", isCorrect: false }, { text: "Chondrocyty", isCorrect: false }] },
-            { question: "Jaka struktura skóry właściwej zapewnia jej falisty kształt na styku z naskórkiem?", options: [{ text: "Brodawki skórne (warstwa brodawkowata)", isCorrect: true }, { text: "Warstwa siateczkowata", isCorrect: false }, { text: "Powięź powierzchowna", isCorrect: false }, { text: "Warstwa ziarnista", isCorrect: false }] },
-            { question: "Za jakie zmiany skórne odpowiada promieniowanie UVA i UVB?", options: [{ text: "Przedwczesne zmarszczki, przebarwienia oraz pękanie naczyń krwionośnych", isCorrect: true }, { text: "Zwiększone nawilżenie skóry", isCorrect: false }, { text: "Leczenie trądziku różowatego", isCorrect: false }, { text: "Zwiększenie grubości tkanki tłuszczowej", isCorrect: false }] },
-            { question: "Jakie promieniowanie emitowane przez noktowizory przyczynia się do starzenia komórek skóry?", options: [{ text: "Promienie podczerwone (IR)", isCorrect: true }, { text: "Promienie ultrafioletowe (UV)", isCorrect: false }, { text: "Promienie Rentgena", isCorrect: false }, { text: "Promienie Gamma", isCorrect: false }] },
-            { question: "Co oznacza skrót HEV w kontekście fotostarzenia i jakie jest jego źródło?", options: [{ text: "Światło niebieskie emitowane przez urządzenia cyfrowe", isCorrect: true }, { text: "Promieniowanie cieplne ze słońca", isCorrect: false }, { text: "Promieniowanie radiowe z nadajników", isCorrect: false }, { text: "Wysokoenergetyczne promieniowanie UV z solarium", isCorrect: false }] },
-            { question: "Jaki jest główny negatywny mechanizm działania promieni niebieskich (HEV) na skórę?", options: [{ text: "Wywoływanie stresu oksydacyjnego", isCorrect: true }, { text: "Bezpośrednie niszczenie DNA", isCorrect: false }, { text: "Wypalanie naskórka", isCorrect: false }, { text: "Hamowanie produkcji łoju", isCorrect: false }] },
-            { question: "Wymień 3 naturalne estrogeny produkowane przez jajnik.", options: [{ text: "Estron (E-1), 17β-estradiol (E-2), Estriol (E-3)", isCorrect: true }, { text: "Progesteron, Testosteron, Androstendion", isCorrect: false }, { text: "Kortyzol, Aldosteron, DHEA", isCorrect: false }, { text: "LH, FSH, Prolaktyna", isCorrect: false }] },
-            { question: "Jak nazywa się roślinny odpowiednik estrogenu oznaczany jako E-4?", options: [{ text: "Estetrol", isCorrect: true }, { text: "Fitoestrogen", isCorrect: false }, { text: "Izoflawon", isCorrect: false }, { text: "Lignany", isCorrect: false }] },
-            { question: "W jaki sposób estrogeny wpływają na fibroblasty?", options: [{ text: "Stymulują je do produkcji kolagenu i elastyny", isCorrect: true }, { text: "Hamują ich aktywność", isCorrect: false }, { text: "Powodują ich apoptozę (śmierć)", isCorrect: false }, { text: "Nie mają na nie wpływu", isCorrect: false }] },
-            { question: "Jaki jest mechanizm nawilżającego działania estrogenów na naskórek?", options: [{ text: "Zwiększa syntezę kwasu hialuronowego co pozwala na zatrzymanie wody", isCorrect: true }, { text: "Zwiększa produkcję potu", isCorrect: false }, { text: "Zamyka pory skóry", isCorrect: false }, { text: "Blokuje parowanie wody przez warstwę rogową", isCorrect: false }] },
-            { question: "Wymień skutki spadku poziomu estrogenów w okresie menopauzy.", options: [{ text: "Gwałtowne ścięczenie skóry, suchość oraz pogłębienie zmarszczek", isCorrect: true }, { text: "Nadmierne przetłuszczanie się skóry i trądzik", isCorrect: false }, { text: "Zwiększenie grubości skóry właściwej", isCorrect: false }, { text: "Zanik owłosienia na całym ciele", isCorrect: false }] },
-            { question: "Jak estrogeny wpływają na naczynia krwionośne w kontekście odżywienia tkanek?", options: [{ text: "Rozszerzają naczynia co poprawia ukrwienie i odżywienie tkanek", isCorrect: true }, { text: "Zwężają naczynia powodując niedokrwienie", isCorrect: false }, { text: "Powodują pękanie naczyń włosowatych", isCorrect: false }, { text: "Zwiększają krzepliwość krwi blokując przepływ", isCorrect: false }] },
-            { question: "Który hormon jest najsilniejszym bodźcem dla gruczołów łojowych do wytwarzania sebum?", options: [{ text: "Progesteron", isCorrect: true }, { text: "Estrogen", isCorrect: false }, { text: "Insulina", isCorrect: false }, { text: "Parathormon", isCorrect: false }] },
-            { question: "Jakie są objawy nadprodukcji progesteronu w obrębie cery?", options: [{ text: "Łojotok, błyszczenie skóry, rozszerzone pory, zaskórniki i trądzik", isCorrect: true }, { text: "Nadmierna suchość i łuszczenie się skóry", isCorrect: false }, { text: "Bielactwo i odbarwienia", isCorrect: false }, { text: "Zanik tkanki podskórnej", isCorrect: false }] },
-            { question: "Wymień objawy niedoboru progesteronu widoczne na skórze.", options: [{ text: "Suchość, tworzenie się skorupy, utrata elastyczności", isCorrect: true }, { text: "Nadmierne przetłuszczanie i trądzik", isCorrect: false }, { text: "Obrzęki i zaczerwienienia", isCorrect: false }, { text: "Nadmierne owłosienie", isCorrect: false }] },
-            { question: "Jaki wpływ ma progesteron na gospodarkę wodno-elektrolitową poprzez blokowanie aldosteronu?", options: [{ text: "Działa diuretycznie (moczopędnie)", isCorrect: true }, { text: "Działa antydiuretycznie (zatrzymuje wodę)", isCorrect: false }, { text: "Powoduje zatrzymanie sodu w organizmie", isCorrect: false }, { text: "Nie ma wpływu na gospodarkę wodną", isCorrect: false }] },
-            { question: "W jaki sposób progesteron wpływa na podstawową temperaturę ciała?", options: [{ text: "Podwyższa ją", isCorrect: true }, { text: "Obniża ją", isCorrect: false }, { text: "Powoduje gwałtowne wahania", isCorrect: false }, { text: "Nie zmienia temperatury", isCorrect: false }] },
-            { question: "Za jakie cechy skóry i owłosienia odpowiadają androgeny?", options: [{ text: "Za grubość naskórka oraz typ owłosienia", isCorrect: true }, { text: "Za kolor oczu i włosów", isCorrect: false }, { text: "Za nawilżenie i elastyczność", isCorrect: false }, { text: "Za gojenie się ran", isCorrect: false }] },
-            { question: "Gdzie u kobiet wytwarzane są androgeny?", options: [{ text: "W jajniku, nadnerczach oraz z proandrogenów (obwodowo)", isCorrect: true }, { text: "Tylko w jajnikach", isCorrect: false }, { text: "W wątrobie i trzustce", isCorrect: false }, { text: "Wyłącznie w tkance tłuszczowej", isCorrect: false }] },
-            { question: "Pod wpływem którego hormonu przysadkowego powstają androgeny w jajniku?", options: [{ text: "Hormonu luteinizującego (LH)", isCorrect: true }, { text: "Hormonu folikulotropowego (FSH)", isCorrect: false }, { text: "Prolaktyny (PRL)", isCorrect: false }, { text: "Hormonu wzrostu (GH)", isCorrect: false }] },
-            { question: "Jakie działanie wykazuje kortyzol w odniesieniu do kolagenu podczas przewlekłego stresu?", options: [{ text: "Przyspiesza degradację białek podporowych (rozpad kolagenu)", isCorrect: true }, { text: "Stymuluje produkcję kolagenu", isCorrect: false }, { text: "Wzmacnia włókna kolagenowe", isCorrect: false }, { text: "Nie wpływa na kolagen", isCorrect: false }] },
-            { question: "Jak wysoki poziom kortyzolu wpływa na barierę lipidową skóry?", options: [{ text: "Podrażnia ją, czyniąc skórę podatną na podrażnienia i alergeny", isCorrect: true }, { text: "Wzmacnia ją, czyniąc skórę odporną", isCorrect: false }, { text: "Zwiększa produkcję ceramidów", isCorrect: false }, { text: "Zmniejsza przepuszczalność skóry", isCorrect: false }] },
-            { question: "Jakie stany zapalne skóry może zaostrzyć wysoki poziom kortyzolu?", options: [{ text: "Łuszczycę, egzemę oraz trądzik różowaty", isCorrect: true }, { text: "Tylko oparzenia słoneczne", isCorrect: false }, { text: "Grzybicę stóp", isCorrect: false }, { text: "Brodawki wirusowe", isCorrect: false }] },
-            { question: "Co jest charakterystycznym objawem skórnym choroby Addisona (cisawicy)?", options: [{ text: "Hiperpigmentacja (brunatne przebarwienie) skóry i błon śluzowych", isCorrect: true }, { text: "Nadmierna bladość skóry", isCorrect: false }, { text: "Żółte zabarwienie skóry", isCorrect: false }, { text: "Sinica obwodowa", isCorrect: false }] },
-            { question: "Jakie badanie laboratoryjne służy do rozpoznania choroby Addisona?", options: [{ text: "Oznaczenie poziomu ACTH i kortyzolu", isCorrect: true }, { text: "Morfologia krwi", isCorrect: false }, { text: "Poziom glukozy", isCorrect: false }, { text: "Poziom cholesterolu", isCorrect: false }] },
-            { question: "Podaj definicję zespołu Cushinga.", options: [{ text: "Zespół objawów wynikających z długotrwałego nadmiaru kortyzolu", isCorrect: true }, { text: "Zespół objawów niedoboru kortyzolu", isCorrect: false }, { text: "Choroba wynikająca z nadmiaru insuliny", isCorrect: false }, { text: "Zaburzenie produkcji hormonów tarczycy", isCorrect: false }] },
-            { question: "Wymień 3 objawy skórne typowe dla zespołu Cushinga.", options: [{ text: "Ścieńczała skóra, rozstępy oraz łatwe siniaczenie się", isCorrect: true }, { text: "Gruba skóra, brak rozstępów, brak siniaków", isCorrect: false }, { text: "Sucha skóra, łuszczyca, bielactwo", isCorrect: false }, { text: "Nadmierne owłosienie, trądzik, ciemnienie skóry", isCorrect: false }] },
-            { question: "Jakie hormony produkowane przez tarczycę wpływają na wygląd skóry?", options: [{ text: "Tyroksyna (T4) i Trójjodotyronina (T3)", isCorrect: true }, { text: "TSH i TRH", isCorrect: false }, { text: "Kalcytonina i Parathormon", isCorrect: false }, { text: "Insulina i Glukagon", isCorrect: false }] },
-            { question: "Jakie są objawy skórne niedoczynności tarczycy?", options: [{ text: "Sucha skóra, żółte zabarwienie, uczucie zimna", isCorrect: true }, { text: "Wilgotna skóra, nadmierne pocenie, uczucie gorąca", isCorrect: false }, { text: "Trądzik, przetłuszczanie się, zaczerwienienie", isCorrect: false }, { text: "Rozstępy, siniaki, cienka skóra", isCorrect: false }] },
-            { question: "Jak prezentuje się skóra w przebiegu nadczynności tarczycy?", options: [{ text: "Jest delikatna, gładka i wilgotna od potu", isCorrect: true }, { text: "Jest szorstka, sucha i zimna", isCorrect: false }, { text: "Jest gruba, twarda i łuszcząca się", isCorrect: false }, { text: "Jest blada i sina", isCorrect: false }] },
-            { question: "Wyjaśnij mechanizm powstawania choroby Hashimoto.", options: [{ text: "Autoimmunologiczne zapalenie, w którym przeciwciała niszczą tarczycę", isCorrect: true }, { text: "Infekcja bakteryjna tarczycy", isCorrect: false }, { text: "Nowotwór złośliwy tarczycy", isCorrect: false }, { text: "Niedobór jodu w diecie", isCorrect: false }] },
-            { question: "Czym charakteryzuje się akropachia w przebiegu nadczynności tarczycy?", options: [{ text: "Bolesnym pogrubieniem i zaokrągleniem dystalnych paliczków rąk", isCorrect: true }, { text: "Zanikiem mięśni dłoni", isCorrect: false }, { text: "Drżeniem palców", isCorrect: false }, { text: "Sztywnością stawów nadgarstka", isCorrect: false }] },
-            { question: "Wymień jedną ze składowych choroby Gravesa-Basedowa.", options: [{ text: "Wole naczyniowe", isCorrect: true }, { text: "Niedoczynność tarczycy", isCorrect: false }, { text: "Otyłość brzuszna", isCorrect: false }, { text: "Hipoglikemia", isCorrect: false }] },
-            { question: "W jaki sposób dieta o wysokim IG wpływa na trądzik dorosłych?", options: [{ text: "Powoduje wyrzuty insuliny stymulującej IGF-1, co wpływa na produkcję androgenów", isCorrect: true }, { text: "Obniża poziom cukru, co hamuje produkcję łoju", isCorrect: false }, { text: "Zwiększa poziom estrogenów, co leczy trądzik", isCorrect: false }, { text: "Nie ma wpływu na trądzik", isCorrect: false }] },
-            { question: "Jaki prosty wskaźnik kliniczny pozwala kobiecie wstępnie ocenić równowagę hormonalną?", options: [{ text: "Ocena regularności cyklu miesięcznego", isCorrect: true }, { text: "Pomiar obwodu talii", isCorrect: false }, { text: "Ocena koloru włosów", isCorrect: false }, { text: "Ilość wypijanej wody", isCorrect: false }] },
-            { question: "Jakie zaburzenia cyklu miesięcznego sugerują konieczność wykonania badań hormonalnych?", options: [{ text: "Okres rzadszy niż 45 dni lub krwawienie trwające ponad 5 dni", isCorrect: true }, { text: "Okres co 28 dni trwający 4 dni", isCorrect: false }, { text: "Ból owulacyjny w połowie cyklu", isCorrect: false }, { text: "Lekki zespół napięcia przedmiesiączkowego", isCorrect: false }] },
-            { question: "Który hormon sterydowy hamuje działanie prostaglandyn?", options: [{ text: "Progesteron", isCorrect: true }, { text: "Estrogen", isCorrect: false }, { text: "Testosteron", isCorrect: false }, { text: "Adrenalina", isCorrect: false }] },
-            { question: "Jak estrogeny wpływają na proces gojenia ran?", options: [{ text: "Przyspieszają procesy regeneracyjne", isCorrect: true }, { text: "Spowalniają gojenie", isCorrect: false }, { text: "Powodują powstawanie bliznowców", isCorrect: false }, { text: "Nie mają wpływu na gojenie", isCorrect: false }] },
-            { question: "Wymień 2 typy woli tarczycowych występujących przy nadczynności.", options: [{ text: "Wole naczyniowe oraz wole guzowate", isCorrect: true }, { text: "Wole proste i wole obojętne", isCorrect: false }, { text: "Wole Hashimoto i wole Riedla", isCorrect: false }, { text: "Wole toksyczne i wole nietoksyczne", isCorrect: false }] },
-            { question: "Który hormon odpowiada za formowanie się kobiecej sylwetki i psychiki?", options: [{ text: "Estrogeny", isCorrect: true }, { text: "Testosteron", isCorrect: false }, { text: "Kortyzol", isCorrect: false }, { text: "Insulina", isCorrect: false }] },
-            { question: "Co jest bezpośrednią przyczyną tzw. księżycowatej twarzy?", options: [{ text: "Długotrwały nadmiar kortyzolu (Zespół Cushinga)", isCorrect: true }, { text: "Niedobór hormonów tarczycy", isCorrect: false }, { text: "Nadmiar hormonu wzrostu", isCorrect: false }, { text: "Reakcja alergiczna", isCorrect: false }] },
-            { question: "Z jakiego powodu w naskórku pojawiają się korneocyty?", options: [{ text: "W wyniku migracji keratynocytów na zewnątrz, ich spłaszczania i obumierania", isCorrect: true }, { text: "W wyniku podziałów melanocytów", isCorrect: false }, { text: "Z komórek napływowych z krwi", isCorrect: false }, { text: "Z przekształcenia fibroblastów", isCorrect: false }] },
-            { question: "Jakie zmiany w ciśnieniu tętniczym (RR) można zaobserwować w nadczynności tarczycy?", options: [{ text: "Obniżenie ciśnienia rozkurczowego i podwyższenie ciśnienia skurczowego", isCorrect: true }, { text: "Obniżenie obu wartości ciśnienia", isCorrect: false }, { text: "Podwyższenie obu wartości ciśnienia", isCorrect: false }, { text: "Brak zmian w ciśnieniu", isCorrect: false }] },
-            { question: "Która warstwa skóry magazynuje energię w postaci tłuszczu?", options: [{ text: "Tkanka podskórna", isCorrect: true }, { text: "Skóra właściwa", isCorrect: false }, { text: "Naskórek", isCorrect: false }, { text: "Warstwa podstawna", isCorrect: false }] },
-            { question: "Wymień skutki metabolicznego działania estrogenów na tkankę kostną.", options: [{ text: "Pobudzenie działania osteoblastycznego (kościotwórczego)", isCorrect: true }, { text: "Pobudzenie działania osteoklastycznego (kościogubnego)", isCorrect: false }, { text: "Odwapnienie kości", isCorrect: false }, { text: "Zahamowanie wzrostu kości", isCorrect: false }] },
-            { question: "Jak progesteron wpływa na wydalanie minerałów z organizmu?", options: [{ text: "Zwiększa wydalanie wapnia i fosforu", isCorrect: true }, { text: "Zatrzymuje wapń i fosfor", isCorrect: false }, { text: "Zwiększa wydalanie żelaza", isCorrect: false }, { text: "Zatrzymuje potas", isCorrect: false }] },
-            { question: "Jakie są przyczyny endogennego zespołu Cushinga?", options: [{ text: "Guz nadnerczy lub guz przysadki", isCorrect: true }, { text: "Przyjmowanie leków sterydowych", isCorrect: false }, { text: "Stres", isCorrect: false }, { text: "Dieta wysokotłuszczowa", isCorrect: false }] },
-            { question: "Wymień ogólnoustrojowe objawy nadczynności tarczycy niezwiązane bezpośrednio ze skórą.", options: [{ text: "Utrata wagi, kołatanie serca, drżenie rąk i bezsenność", isCorrect: true }, { text: "Przyrost wagi, senność, zaparcia", isCorrect: false }, { text: "Wzrost masy mięśniowej, spowolnienie tętna", isCorrect: false }, { text: "Zaburzenia widzenia barw, utrata słuchu", isCorrect: false }] },
-
-            // --- DZIAŁ II: Ciąża (Pytania 1-40) ---
-            { question: "O ile procent średnio wzrasta objętość osocza w przebiegu fizjologicznej ciąży?", options: [{ text: "Około 50%", isCorrect: true }, { text: "Około 10%", isCorrect: false }, { text: "Około 100%", isCorrect: false }, { text: "Nie zmienia się", isCorrect: false }] },
-            { question: "Jaki jest procentowy wzrost masy erytrocytarnej (ME) u kobiet w ciąży?", options: [{ text: "Około 20%", isCorrect: true }, { text: "Około 50%", isCorrect: false }, { text: "Około 5%", isCorrect: false }, { text: "Spada o 10%", isCorrect: false }] },
-            { question: "Dlaczego w przebiegu ciąży dochodzi do zjawiska tzw. fizjologicznej anemii?", options: [{ text: "Z dysproporcji między dużym wzrostem objętości osocza (50%) a mniejszym wzrostem erytrocytów (20%)", isCorrect: true }, { text: "Z powodu utraty krwi", isCorrect: false }, { text: "Z powodu braku żelaza w diecie", isCorrect: false }, { text: "Przez niszczenie krwinek przez płód", isCorrect: false }] },
-            { question: "O jaką wartość średnio obniża się stężenie białek osocza u kobiet ciężarnych?", options: [{ text: "O około 1 g/dl", isCorrect: true }, { text: "O około 5 g/dl", isCorrect: false }, { text: "O około 0.1 g/dl", isCorrect: false }, { text: "Stężenie wzrasta", isCorrect: false }] },
-            { question: "Podaj typowy zakres stężenia białka osocza u kobiety w ciąży.", options: [{ text: "5-6 g/dl", isCorrect: true }, { text: "7-8 g/dl", isCorrect: false }, { text: "3-4 g/dl", isCorrect: false }, { text: "9-10 g/dl", isCorrect: false }] },
-            { question: "Jaki skutek hemodynamiczny wywołuje spadek ciśnienia koloido-osmotycznego w ciąży?", options: [{ text: "Pojawienie się obrzęków kończyn dolnych", isCorrect: true }, { text: "Wzrost ciśnienia tętniczego", isCorrect: false }, { text: "Zmniejszenie objętości krwi", isCorrect: false }, { text: "Ryzyko zakrzepicy", isCorrect: false }] },
-            { question: "Jak zmienia się wartość odczynu Biernackiego (OB) u kobiet w ciąży?", options: [{ text: "Następuje wzrost wartości OB", isCorrect: true }, { text: "Następuje spadek wartości OB", isCorrect: false }, { text: "Wartość OB nie zmienia się", isCorrect: false }, { text: "OB wynosi 0", isCorrect: false }] },
-            { question: "O ile uderzeń na minutę średnio wzrasta częstość akcji serca w czasie ciąży?", options: [{ text: "O 10-15/min", isCorrect: true }, { text: "O 30-40/min", isCorrect: false }, { text: "O 1-2/min", isCorrect: false }, { text: "Akcja serca zwalnia", isCorrect: false }] },
-            { question: "Wymień dwa parametry sercowe, których wzrost prowadzi do zwiększenia pojemności minutowej serca u ciężarnych.", options: [{ text: "Częstość akcji serca oraz objętość wyrzutowa serca", isCorrect: true }, { text: "Ciśnienie krwi i opór naczyniowy", isCorrect: false }, { text: "Objętość płuc i częstość oddechów", isCorrect: false }, { text: "Masa serca i grubość ścian", isCorrect: false }] },
-            { question: "Jak zmienia się opór naczyniowy w krążeniu ogólnym kobiety ciężarnej?", options: [{ text: "Ulega obniżeniu", isCorrect: true }, { text: "Ulega podwyższeniu", isCorrect: false }, { text: "Pozostaje bez zmian", isCorrect: false }, { text: "Waha się gwałtownie", isCorrect: false }] },
-            { question: "Jaki trend wykazuje ciśnienie tętnicze krwi (RR) w przebiegu niepowikłanej ciąży?", options: [{ text: "Ulega obniżeniu", isCorrect: true }, { text: "Ulega znacznemu podwyższeniu", isCorrect: false }, { text: "Jest stałe", isCorrect: false }, { text: "Zmienia się tylko w nocy", isCorrect: false }] },
-            { question: "Jaki procent pojemności minutowej serca przepływa przez macicę w trakcie ciąży?", options: [{ text: "Około 10%", isCorrect: true }, { text: "Około 50%", isCorrect: false }, { text: "Około 1%", isCorrect: false }, { text: "Około 90%", isCorrect: false }] },
-            { question: "Jaki jest bezpośredni skutek zwiększonego przepływu krwi przez nerki u ciężarnej?", options: [{ text: "Wzrost diurezy (ilości moczu)", isCorrect: true }, { text: "Zatrzymanie moczu", isCorrect: false }, { text: "Niewydolność nerek", isCorrect: false }, { text: "Kamica nerkowa", isCorrect: false }] },
-            { question: "Czym objawia się zwiększony przepływ krwi przez skórę u kobiety w ciąży?", options: [{ text: "Skóra staje się ciepła i wilgotna", isCorrect: true }, { text: "Skóra staje się zimna i sucha", isCorrect: false }, { text: "Skóra staje się sina", isCorrect: false }, { text: "Pojawiają się wybroczyny", isCorrect: false }] },
-            { question: "Które parametry objętościowe płuc ulegają zwiększaniu w układzie oddechowym ciężarnej?", options: [{ text: "Objętość oddechowa oraz pojemność wdechowa", isCorrect: true }, { text: "Objętość zalegająca", isCorrect: false }, { text: "Całkowita pojemność płuc", isCorrect: false }, { text: "Objętość rezerwowa", isCorrect: false }] },
-            { question: "Jak zmienia się częstość oddechów u kobiet w ciąży?", options: [{ text: "Ulega zwiększeniu", isCorrect: true }, { text: "Ulega zmniejszeniu", isCorrect: false }, { text: "Nie zmienia się", isCorrect: false }, { text: "Występuje bezdech", isCorrect: false }] },
-            { question: "Które parametry czynnościowe płuc ulegają zmniejszeniu w trakcie ciąży?", options: [{ text: "Objętość zalegająca oraz objętość rezerwowa", isCorrect: true }, { text: "Pojemność życiowa", isCorrect: false }, { text: "Objętość oddechowa", isCorrect: false }, { text: "Wentylacja minutowa", isCorrect: false }] },
-            { question: "Jakie zmiany w ciśnieniach parcjalnych gazów stwierdza się we krwi kobiety ciężarnej?", options: [{ text: "Wzrost pO2 oraz obniżenie pCO2", isCorrect: true }, { text: "Spadek pO2 i wzrost pCO2", isCorrect: false }, { text: "Wzrost obu parametrów", isCorrect: false }, { text: "Spadek obu parametrów", isCorrect: false }] },
-            { question: "W jaki sposób wyższe pO2 we krwi wpływa na transport gazów do płodu?", options: [{ text: "Ułatwia dyfuzję tlenu (O2) od matki do płodu", isCorrect: true }, { text: "Utrudnia transport tlenu", isCorrect: false }, { text: "Zwiększa transport dwutlenku węgla", isCorrect: false }, { text: "Nie ma wpływu na transport", isCorrect: false }] },
-            { question: "Jakie zmiany anatomiczne w drogach moczowych są typowe dla ciąży i po której stronie występują częściej?", options: [{ text: "Poszerzenie dróg moczowych (wodonercze), zwłaszcza po stronie prawej", isCorrect: true }, { text: "Zwężenie dróg moczowych po stronie lewej", isCorrect: false }, { text: "Skrócenie moczowodów obustronne", isCorrect: false }, { text: "Zmniejszenie pęcherza moczowego", isCorrect: false }] },
-            { question: "Wymień jedną z kluczowych zmian czynnościowych w nerkach zachodzących podczas ciąży.", options: [{ text: "Zwiększone przesączanie kłębuszkowe", isCorrect: true }, { text: "Zmniejszony przepływ krwi", isCorrect: false }, { text: "Zmniejszona resorpcja zwrotna", isCorrect: false }, { text: "Zatrzymanie produkcji moczu", isCorrect: false }] },
-            { question: "W jaki sposób obniżone pCO2 we krwi matki wpływa na metabolizm płodu?", options: [{ text: "Ułatwia dyfuzję dwutlenku węgla (CO2) od płodu do matki", isCorrect: true }, { text: "Utrudnia usuwanie CO2 przez płód", isCorrect: false }, { text: "Powoduje kwasicę u płodu", isCorrect: false }, { text: "Zwiększa zapotrzebowanie na tlen", isCorrect: false }] },
-            { question: "Pojawienie się jakich substancji w moczu obserwuje się u ciężarnych?", options: [{ text: "Glukozy i aminokwasów", isCorrect: true }, { text: "Krwi i ropy", isCorrect: false }, { text: "Bilirubiny i ciał ketonowych", isCorrect: false }, { text: "Dużych ilości białka", isCorrect: false }] },
-            { question: "Co jest bezpośrednią przyczyną występowania zgagi u kobiet w ciąży?", options: [{ text: "Zaburzenie czynności zwieraczy i cofanie się treści żołądkowej", isCorrect: true }, { text: "Nadkwasota żołądka", isCorrect: false }, { text: "Wrzody żołądka", isCorrect: false }, { text: "Zakażenie bakteryjne", isCorrect: false }] },
-            { question: "W jaki sposób zwolnienie perystaltyki ma procesy żywieniowe w ciąży?", options: [{ text: "Sprzyja lepszemu trawieniu i wchłanianiu składników odżywczych", isCorrect: true }, { text: "Powoduje niedożywienie", isCorrect: false }, { text: "Przyspiesza wydalanie pokarmu", isCorrect: false }, { text: "Uniemożliwia trawienie białek", isCorrect: false }] },
-            { question: "Jakie zmiany zachodzą w obrębie gruczołów ślinowych w czasie ciąży?", options: [{ text: "Następuje zwiększenie wydzielania śliny", isCorrect: true }, { text: "Następuje suchość w jamie ustnej", isCorrect: false }, { text: "Zanikają ślinianki", isCorrect: false }, { text: "Wydzielanie ustaje całkowicie", isCorrect: false }] },
-            { question: "Wymień dwie struktury układu kostnego, które ulegają rozmiękczeniu pod wpływem relaksyny.", options: [{ text: "Chrząstkozrost krzyżowo-biodrowy oraz spojenie łonowe", isCorrect: true }, { text: "Kość udowa i piszczelowa", isCorrect: false }, { text: "Kręgi szyjne i czaszka", isCorrect: false }, { text: "Żebra i mostek", isCorrect: false }] },
-            { question: "Która podjednostka hormonu HCG jest charakterystyczna dla trofoblastu?", options: [{ text: "Podjednostka Beta (Beta-HCG)", isCorrect: true }, { text: "Podjednostka Alfa", isCorrect: false }, { text: "Podjednostka Gamma", isCorrect: false }, { text: "Cała cząsteczka HCG", isCorrect: false }] },
-            { question: "Jaka jest główna funkcja Beta-HCG w początkowym etapie ciąży?", options: [{ text: "Utrzymanie czynności ciałka żółtego w jajniku", isCorrect: true }, { text: "Wywołanie skurczów macicy", isCorrect: false }, { text: "Produkcja mleka", isCorrect: false }, { text: "Hamowanie wzrostu płodu", isCorrect: false }] },
-            { question: "Co w diagnostyce laboratoryjnej krwi jednoznacznie świadczy o obecności ciąży?", options: [{ text: "Stwierdzenie obecności podjednostki Beta-HCG", isCorrect: true }, { text: "Podwyższone OB", isCorrect: false }, { text: "Niski poziom żelaza", isCorrect: false }, { text: "Wysoki poziom leukocytów", isCorrect: false }] },
-            { question: "Jakie substancje energetyczne są uwalniane u matki pod wpływem laktogenu łożyskowego (HPL)?", options: [{ text: "Glukoza oraz wolne kwasy tłuszczowe", isCorrect: true }, { text: "Białka i witaminy", isCorrect: false }, { text: "Cholesterol i trójglicerydy", isCorrect: false }, { text: "Sole mineralne", isCorrect: false }] },
-            { question: "Stężenie, którego hormonu we krwi matki jest bezpośrednim wykładnikiem stanu czynnościowego łożyska?", options: [{ text: "Laktogenu łożyskowego (HPL)", isCorrect: true }, { text: "Insuliny", isCorrect: false }, { text: "Adrenaliny", isCorrect: false }, { text: "Testosteronu", isCorrect: false }] },
-            { question: "Który z estrogenów stanowi 90% ich całkowitej puli w czasie ciąży?", options: [{ text: "Estriol", isCorrect: true }, { text: "Estradiol", isCorrect: false }, { text: "Estron", isCorrect: false }, { text: "Estetrol", isCorrect: false }] },
-            { question: "O czym informuje lekarza stężenie estriolu w surowicy lub moczu ciężarnej?", options: [{ text: "Stanowi on wykładnik dobrostanu płodu", isCorrect: true }, { text: "O płci dziecka", isCorrect: false }, { text: "O terminie porodu", isCorrect: false }, { text: "O grupie krwi płodu", isCorrect: false }] },
-            { question: "Gdzie produkowany jest estriol w organizmie ciężarnej?", options: [{ text: "W łożysku", isCorrect: true }, { text: "W jajnikach", isCorrect: false }, { text: "W przysadce mózgowej", isCorrect: false }, { text: "W tarczycy", isCorrect: false }] },
-            { question: "Wymień kolejno miejsca produkcji progesteronu w trakcie trwania ciąży.", options: [{ text: "Początkowo ciałko żółte, a następnie łożysko", isCorrect: true }, { text: "Cały czas tylko jajniki", isCorrect: false }, { text: "Tylko nadnercza", isCorrect: false }, { text: "Przysadka i podwzgórze", isCorrect: false }] },
-            { question: "Jaki jest wpływ progesteronu na mięśniówkę macicy?", options: [{ text: "Hamuje on czynność skurczową macicy", isCorrect: true }, { text: "Pobudza skurcze macicy", isCorrect: false }, { text: "Powoduje zanik mięśniówki", isCorrect: false }, { text: "Nie ma wpływu na macicę", isCorrect: false }] },
-            { question: "Jak zmienia się stężenie progesteronu w miarę postępu ciąży?", options: [{ text: "Produkowany jest we wzrastającej ilości aż do końca ciąży", isCorrect: true }, { text: "Spada po 3 miesiącu", isCorrect: false }, { text: "Jest stałe przez całą ciążę", isCorrect: false }, { text: "Waha się cyklicznie", isCorrect: false }] },
-            { question: "Ile wynosi dobowe zapotrzebowanie energetyczne kobiety w ciąży?", options: [{ text: "2500 kcal", isCorrect: true }, { text: "1500 kcal", isCorrect: false }, { text: "3500 kcal", isCorrect: false }, { text: "2000 kcal", isCorrect: false }] },
-            { question: "O ile kilokalorii należy zwiększyć podaż energetyczną w okresie karmienia piersią?", options: [{ text: "O 500 kcal", isCorrect: true }, { text: "O 1000 kcal", isCorrect: false }, { text: "O 200 kcal", isCorrect: false }, { text: "Nie trzeba zwiększać", isCorrect: false }] },
-
-            // --- DZIAŁ IV: Miesiączka (Pytania 1-48) ---
-            { question: "Jak definiuje się cykl miesiączkowy w kontekście zmian w układzie rozrodczym?", options: [{ text: "Okresowo powtarzające się zmiany budowy i funkcji jajników, macicy, jajowodów oraz pochwy", isCorrect: true }, { text: "Tylko comiesięczne krwawienie", isCorrect: false }, { text: "Stały poziom hormonów przez 28 dni", isCorrect: false }, { text: "Proces dojrzewania komórki jajowej bez zmian w macicy", isCorrect: false }] },
-            { question: "Wymień 3 główne czynniki regulujące cykl miesiączkowy.", options: [{ text: "Ośrodkowy układ nerwowy, układ wydzielania wewnętrznego, czynniki wewnątrzkomórkowe", isCorrect: true }, { text: "Dieta, sen, aktywność fizyczna", isCorrect: false }, { text: "Temperatura, ciśnienie, wilgotność", isCorrect: false }, { text: "Wątroba, trzustka, nerki", isCorrect: false }] },
-            { question: "Które dwa powiązane ze sobą procesy stanowią główne przemiany w cyklu płciowym?", options: [{ text: "Cykl jajnikowy oraz cykl endometrialny", isCorrect: true }, { text: "Cykl nerkowy i wątrobowy", isCorrect: false }, { text: "Cykl snu i czuwania", isCorrect: false }, { text: "Owulacja i zapłodnienie", isCorrect: false }] },
-            { question: "Jaki układ hormonalny reguluje wzajemne powiązania w cyklu miesiączkowym?", options: [{ text: "Podwzgórze - przysadka - jajnik", isCorrect: true }, { text: "Tarczyca - nadnercza - trzustka", isCorrect: false }, { text: "Serce - płuca - nerki", isCorrect: false }, { text: "Mózg - rdzeń kręgowy - nerwy", isCorrect: false }] },
-            { question: "Który neurohormon jest wydzielany przez podwzgórze w celu regulacji cyklu?", options: [{ text: "Gonadoliberyna (GnRH)", isCorrect: true }, { text: "Oksytocyna", isCorrect: false }, { text: "Wazopresyna", isCorrect: false }, { text: "Dopamina", isCorrect: false }] },
-            { question: "Wymień hormony wydzielane przez przedni płat przysadki mózgowej biorące udział w cyklu.", options: [{ text: "Gonadotropiny (LH, FSH) oraz prolaktyna (PRL)", isCorrect: true }, { text: "TSH i ACTH", isCorrect: false }, { text: "Estrogeny i progesteron", isCorrect: false }, { text: "Adrenalina i noradrenalina", isCorrect: false }] },
-            { question: "Jakie 3 grupy hormonów sterydowych są wytwarzane przez jajniki?", options: [{ text: "Estrogeny, progesteron i androgeny", isCorrect: true }, { text: "Kortyzol, aldosteron, DHEA", isCorrect: false }, { text: "Insulina, glukagon, somatostatyna", isCorrect: false }, { text: "T3, T4, kalcytonina", isCorrect: false }] },
-            { question: "Jaka jest główna funkcja gonadoliberyny (GnRH)?", options: [{ text: "Regulacja wytwarzania i uwalniania hormonów gonadotropowych (FSH i LH)", isCorrect: true }, { text: "Bezpośrednie pobudzanie jajników", isCorrect: false }, { text: "Hamowanie owulacji", isCorrect: false }, { text: "Wywoływanie miesiączki", isCorrect: false }] },
-            { question: "Gdzie znajdują się jedyne receptory, na które działają lutropina (LH) i folitropina (FSH)?", options: [{ text: "W jajniku", isCorrect: true }, { text: "W macicy", isCorrect: false }, { text: "W mózgu", isCorrect: false }, { text: "W piersiach", isCorrect: false }] },
-            { question: "Wymień jedną z kluczowych funkcji folitropiny (FSH) w jajniku.", options: [{ text: "Wzrost pęcherzyków", isCorrect: true }, { text: "Wywołanie owulacji", isCorrect: false }, { text: "Utrzymanie ciąży", isCorrect: false }, { text: "Produkcja mleka", isCorrect: false }] },
-            { question: "Wymień jedno z głównych zadań lutropiny (LH) w cyklu jajnikowym.", options: [{ text: "Doprowadzenie do jajeczkowania (owulacji)", isCorrect: true }, { text: "Wzrost endometrium", isCorrect: false }, { text: "Hamowanie ciałka żółtego", isCorrect: false }, { text: "Zwiększenie gęstości śluzu", isCorrect: false }] },
-            { question: "Jak nadmiar prolaktyny wpływa na fizjologię kobiety?", options: [{ text: "Zaburza czynność jajnika", isCorrect: true }, { text: "Zwiększa płodność", isCorrect: false }, { text: "Powoduje nadczynność tarczycy", isCorrect: false }, { text: "Poprawia regularność cykli", isCorrect: false }] },
-            { question: "Jak estrogeny wpływają na błonę śluzową macicy?", options: [{ text: "Powodują wzrost (proliferację) endometrium", isCorrect: true }, { text: "Powodują złuszczanie endometrium", isCorrect: false }, { text: "Hamują wzrost endometrium", isCorrect: false }, { text: "Powodują zanik endometrium", isCorrect: false }] },
-            { question: "W jaki sposób estrogeny oddziałują na drogi rodne w kontekście transportu plemników?", options: [{ text: "Umożliwiają penetrację plemników poprzez upłynnienie śluzu szyjkowego", isCorrect: true }, { text: "Zagęszczają śluz blokując plemniki", isCorrect: false }, { text: "Zabijają plemniki", isCorrect: false }, { text: "Nie mają wpływu na transport plemników", isCorrect: false }] },
-            { question: "Jaki jest wpływ estrogenów na pobudliwość mięśnia macicy?", options: [{ text: "Zwiększają jego pobudliwość skurczową", isCorrect: true }, { text: "Zmniejszają pobudliwość", isCorrect: false }, { text: "Porażają mięśnie macicy", isCorrect: false }, { text: "Powodują stały skurcz", isCorrect: false }] },
-            { question: "Jaka jest rola progesteronu w przygotowaniu endometrium do ciąży?", options: [{ text: "Powoduje przemianę wydzielniczą, a następnie doczesnową", isCorrect: true }, { text: "Powoduje jego gwałtowny wzrost", isCorrect: false }, { text: "Powoduje jego złuszczanie", isCorrect: false }, { text: "Powoduje jego twardnienie", isCorrect: false }] },
-            { question: "W jaki sposób progesteron wpływa na śluz szyjkowy?", options: [{ text: "Powoduje, że staje się on gęsty i nieprzenikliwy dla plemników", isCorrect: true }, { text: "Rozrzedza go", isCorrect: false }, { text: "Zwiększa jego przejrzystość", isCorrect: false }, { text: "Zwiększa jego ilość", isCorrect: false }] },
-            { question: "Którą grupę substancji miejscowych jest hamowana przez działanie progesteronu?", options: [{ text: "Prostaglandyny", isCorrect: true }, { text: "Histaminy", isCorrect: false }, { text: "Interleukiny", isCorrect: false }, { text: "Endorfiny", isCorrect: false }] },
-            { question: "Jak progesteron wpływa na działanie insuliny?", options: [{ text: "Obniża jej działanie hipoglikemiczne", isCorrect: true }, { text: "Zwiększa jej działanie", isCorrect: false }, { text: "Nie wpływa na insulinę", isCorrect: false }, { text: "Powoduje niszczenie insuliny", isCorrect: false }] },
-            { question: "Jaki jest mechanizm diuretycznego działania progesteronu?", options: [{ text: "Blokowanie działania aldosteronu", isCorrect: true }, { text: "Pobudzanie nerek bezpośrednio", isCorrect: false }, { text: "Zwiększanie pragnienia", isCorrect: false }, { text: "Rozszerzanie cewki moczowej", isCorrect: false }] },
-            { question: "Jak progesteron wpływa na napięcie mięśni gładkich układu moczowego?", options: [{ text: "Powoduje obniżenie ich napięcia", isCorrect: true }, { text: "Zwiększa ich napięcie", isCorrect: false }, { text: "Powoduje skurcze", isCorrect: false }, { text: "Nie wpływa na mięśnie gładkie", isCorrect: false }] },
-            { question: "Pod wpływem którego hormonu przysadkowego powstają androgeny w jajniku?", options: [{ text: "Pod wpływem lutropiny (LH)", isCorrect: true }, { text: "Pod wpływem FSH", isCorrect: false }, { text: "Pod wpływem Prolaktyny", isCorrect: false }, { text: "Pod wpływem TSH", isCorrect: false }] },
-            { question: "Jaka jest rola androgenów w biosyntezie innych hormonów płciowych?", options: [{ text: "Stanowią podstawowe ogniwo w syntezie estrogenów", isCorrect: true }, { text: "Są produktem rozpadu estrogenów", isCorrect: false }, { text: "Są niezbędne do produkcji progesteronu", isCorrect: false }, { text: "Hamują syntezę wszystkich hormonów", isCorrect: false }] },
-            { question: "Za jaki proces w obrębie pęcherzyków jajnikowych odpowiadają androgeny?", options: [{ text: "Za zmiany atrezyjne pęcherzyków", isCorrect: true }, { text: "Za owulację", isCorrect: false }, { text: "Za wzrost pęcherzyków", isCorrect: false }, { text: "Za tworzenie ciałka żółtego", isCorrect: false }] },
-            { question: "Na czym polega ultrakrótkie sprzężenie zwrotne w regulacji wydzielania hormonów?", options: [{ text: "Wzrost stężenia hormonu wewnątrz komórki hamuje jego dalszą syntezę", isCorrect: true }, { text: "Hormon z jajnika hamuje przysadkę", isCorrect: false }, { text: "Hormon z przysadki hamuje podwzgórze", isCorrect: false }, { text: "Podwzgórze hamuje samo siebie", isCorrect: false }] },
-            { question: "Czego dotyczy długie pętle sprzężenia zwrotnego w cyklu płciowym?", options: [{ text: "Interakcji pomiędzy hormonami płciowymi, a ośrodkami podwzgórza i przysadki", isCorrect: true }, { text: "Interakcji wewnątrz jajnika", isCorrect: false }, { text: "Wpływu hormonów na macicę", isCorrect: false }, { text: "Wpływu stresu na cykl", isCorrect: false }] },
-            { question: "Zdefiniuj terminy 'menarche' oraz 'menopauza'.", options: [{ text: "Menarche to 1 miesiączka w życiu, a menopauza to ostatnia", isCorrect: true }, { text: "Menarche to ostatnia miesiączka, menopauza to pierwsza", isCorrect: false }, { text: "Oba terminy oznaczają brak miesiączki", isCorrect: false }, { text: "To nazwy hormonów płciowych", isCorrect: false }] },
-            { question: "Ile wynosi średni czas trwania prawidłowego cyklu miesiączkowego?", options: [{ text: "28 dni", isCorrect: true }, { text: "35 dni", isCorrect: false }, { text: "21 dni", isCorrect: false }, { text: "14 dni", isCorrect: false }] },
-            { question: "Jaki jest prawidłowy zakres trwania cyklu miesiączkowego?", options: [{ text: "Od 24 dni do 32 dni", isCorrect: true }, { text: "Od 20 do 40 dni", isCorrect: false }, { text: "Od 28 do 29 dni", isCorrect: false }, { text: "Od 10 do 20 dni", isCorrect: false }] },
-            { question: "Czym sterowany jest cykl jajnikowy?", options: [{ text: "Hormonami gonadotropowymi przedniego płata przysadki oraz przez sam jajnik", isCorrect: true }, { text: "Tylko przez macicę", isCorrect: false }, { text: "Przez tarczycę i nadnercza", isCorrect: false }, { text: "Przez dietę i tryb życia", isCorrect: false }] },
-            { question: "Co jest bezpośrednim czynnikiem sterującym cyklem endometrialnym?", options: [{ text: "Steroidy płciowe wytwarzane przez jajniki", isCorrect: true }, { text: "Hormony przysadki", isCorrect: false }, { text: "Hormony podwzgórza", isCorrect: false }, { text: "Enzymy trawienne", isCorrect: false }] },
-            { question: "Na jakie fazy dzieli się cykl jajnikowy?", options: [{ text: "Fazę dojrzewania pęcherzyka (Graafa) oraz fazę ciałka żółtego (lutealną)", isCorrect: true }, { text: "Fazę krwawienia i fazę wzrostu", isCorrect: false }, { text: "Fazę owulacji i fazę zapłodnienia", isCorrect: false }, { text: "Fazę estrogenową i progesteronową", isCorrect: false }] },
-            { question: "W których dniach cyklu standardowo trwa faza dojrzewania pęcherzyka?", options: [{ text: "Od 1 do 12 dnia cyklu", isCorrect: true }, { text: "Od 14 do 28 dnia cyklu", isCorrect: false }, { text: "Tylko w 14 dniu", isCorrect: false }, { text: "Przez cały cykl", isCorrect: false }] },
-            { question: "W jakim przedziale dniowym cyklu zazwyczaj następuje jajeczkowanie (owulacja)?", options: [{ text: "Pomiędzy 12 a 14 dniem cyklu", isCorrect: true }, { text: "Pomiędzy 1 a 5 dniem cyklu", isCorrect: false }, { text: "Pomiędzy 20 a 25 dniem cyklu", isCorrect: false }, { text: "W ostatnim dniu cyklu", isCorrect: false }] },
-            { question: "Jaki hormon jest dominująco wytwarzany przez ciałko żółte?", options: [{ text: "Progesteron", isCorrect: true }, { text: "Estrogen", isCorrect: false }, { text: "FSH", isCorrect: false }, { text: "LH", isCorrect: false }] },
-            { question: "Co się dzieje z ciałkiem żółtym, jeśli nie dojdzie do zapłodnienia?", options: [{ text: "Zachodzą w nim zmiany wsteczne, co prowadzi do spadku stężenia E i P", isCorrect: true }, { text: "Przekształca się w łożysko", isCorrect: false }, { text: "Pozostaje aktywne do kolejnego cyklu", isCorrect: false }, { text: "Wędruje do macicy", isCorrect: false }] },
-            { question: "Czym z punktu widzenia fizjologii hormonalnej jest krwawienie miesiączkowe?", options: [{ text: "Krwawieniem z odstawienia endogennych hormonów", isCorrect: true }, { text: "Krwawieniem z pękniętego pęcherzyka", isCorrect: false }, { text: "Krwawieniem z nadmiaru hormonów", isCorrect: false }, { text: "Objawem choroby", isCorrect: false }] },
-            { question: "Które warstwy błony śluzowej macicy ulegają złuszczeniu podczas miesiączki?", options: [{ text: "Warstwa czynnościowa, składająca się z warstwy zbitej i gąbczastej", isCorrect: true }, { text: "Warstwa podstawna", isCorrect: false }, { text: "Mięśniówka macicy", isCorrect: false }, { text: "Cała błona śluzowa łącznie z podstawną", isCorrect: false }] },
-            { question: "Z jakich elementów odnawia się nabłonek macicy po menstruacji?", options: [{ text: "Z pozostałych elementów gruczołowych warstwy podstawnej", isCorrect: true }, { text: "Z komórek jajowodu", isCorrect: false }, { text: "Z nabłonka pochwy", isCorrect: false }, { text: "Nie odnawia się", isCorrect: false }] },
-            { question: "Wymień jedną z faz cyklu endometrialnego.", options: [{ text: "Folikularna (wzrostowa)", isCorrect: true }, { text: "Jajnikowa", isCorrect: false }, { text: "Przysadkowa", isCorrect: false }, { text: "Podwzgórzowa", isCorrect: false }] },
-            { question: "W których dniach cyklu następuje odbudowa warstwy czynnościowej endometrium?", options: [{ text: "Od 6 do 13 dnia cyklu (faza wzrostowa)", isCorrect: true }, { text: "Podczas miesiączki (1-5 dzień)", isCorrect: false }, { text: "Po owulacji (15-28 dzień)", isCorrect: false }, { text: "Nie następuje odbudowa", isCorrect: false }] },
-            { question: "Do jakiej grubości rozrasta się błona śluzowa macicy w fazie lutealnej?", options: [{ text: "Do 7-8 mm", isCorrect: true }, { text: "Do 1-2 mm", isCorrect: false }, { text: "Do 20 mm", isCorrect: false }, { text: "Do 15 cm", isCorrect: false }] },
-            { question: "Jakie substancje odżywcze gromadzą komórki endometrium podczas przemiany doczesnowej?", options: [{ text: "Glikogen, lipidy, białka", isCorrect: true }, { text: "Tylko wodę", isCorrect: false }, { text: "Witaminy i minerały", isCorrect: false }, { text: "Toksyny", isCorrect: false }] },
-            { question: "Jak zmienia się stężenie gonadotropin bezpośrednio przed owulacją?", options: [{ text: "Występuje gwałtowny wzrost stężenia LH oraz mniejszy wzrost FSH", isCorrect: true }, { text: "Spada poziom LH i FSH", isCorrect: false }, { text: "Wzrasta tylko FSH", isCorrect: false }, { text: "Nie zmieniają się", isCorrect: false }] },
-            { question: "Wymień 2 pewne objawy świadczące o dokonanej owulacji.", options: [{ text: "Ciąża oraz uwidocznienie momentu owulacji w laparoskopii", isCorrect: true }, { text: "Ból brzucha i podwyższona temperatura", isCorrect: false }, { text: "Zmiana śluzu i plamienie", isCorrect: false }, { text: "Dobry nastrój i wzrost libido", isCorrect: false }] },
-            { question: "Wymień jedną z metod pomocniczych w rozpoznawaniu owulacji.", options: [{ text: "Pomiar temperatury", isCorrect: true }, { text: "Pomiar ciśnienia krwi", isCorrect: false }, { text: "Badanie moczu na obecność glukozy", isCorrect: false }, { text: "Morfologia krwi", isCorrect: false }] },
-            { question: "Opisz charakterystykę śluzu szyjkowego w fazie przedowulacyjnej.", options: [{ text: "Przezroczysty, ciągliwy (8-12 cm), wykazujący zjawisko krystalizacji", isCorrect: true }, { text: "Mętny, lepki, nieciągliwy", isCorrect: false }, { text: "Biały, serowaty", isCorrect: false }, { text: "Żółty, ropny", isCorrect: false }] },
-            { question: "Dlaczego w fazie poowulacyjnej plemniki nie mogą wędrować w głąb kanału szyjki?", options: [{ text: "Śluz staje się lepki, mętny i nieciągliwy pod wpływem progesteronu", isCorrect: true }, { text: "Kanał szyjki zamyka się całkowicie", isCorrect: false }, { text: "Plemniki giną w kwaśnym środowisku pochwy", isCorrect: false }, { text: "Macica odrzuca plemniki", isCorrect: false }] }
+            {
+                question: "Co oznacza skrót PIH w kontekście defektów skórnych?",
+                options: [
+                    { text: "Przebarwienia hormonalne", isCorrect: false },
+                    { text: "Przebarwienia pozapalne (Post-Inflammatory Hyperpigmentation)", isCorrect: true },
+                    { text: "Przewlekłe infekcje histaminowe", isCorrect: false },
+                    { text: "Procesy intensywnego hamowania melanogenezy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Która z poniższych substancji należy do grupy GAGs (glikozoaminoglikanów)?",
+                options: [
+                    { text: "Kolagen typu I", isCorrect: false },
+                    { text: "Elastyna", isCorrect: false },
+                    { text: "Kwas hialuronowy", isCorrect: true },
+                    { text: "Kwas salicylowy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co jest uznawane za charakterystyczny objaw endogennego starzenia się skóry na poziomie histologicznym?",
+                options: [
+                    { text: "Znaczne pogrubienie warstwy rogowej", isCorrect: false },
+                    { text: "Spłaszczenie granicy skórno-naskórkowej", isCorrect: true },
+                    { text: "Zwiększenie liczby melanocytów", isCorrect: false },
+                    { text: "Przerost gruczołów łojowych", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co obejmuje termin \"blush area\"?",
+                options: [
+                    { text: "Tylko policzki („jabłuszka”)", isCorrect: false },
+                    { text: "Twarz, szyję i dekolt", isCorrect: true },
+                    { text: "Strefę T (czoło, nos, broda)", isCorrect: false },
+                    { text: "Grzbiety dłoni i przedramiona", isCorrect: false }
+                ]
+            },
+            {
+                question: "Gdzie najczęściej lokalizują się tzw. zmarszczki senne?",
+                options: [
+                    { text: "W kącikach oczu (kurze łapki)", isCorrect: false },
+                    { text: "Na czole (zmarszczki poprzeczne)", isCorrect: false },
+                    { text: "Na dekolcie", isCorrect: true },
+                    { text: "W bruzdach nosowo-wargowych", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaki rodzaj lasera jest wskazany do terapii skóry naczyniowej?",
+                options: [
+                    { text: "Laser diodowy do epilacji (810 nm)", isCorrect: false },
+                    { text: "Laser KTP", isCorrect: true },
+                    { text: "Laser CO2 frakcyjny ablacyjny", isCorrect: false },
+                    { text: "Laser rubinowy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Które komórki w naskórku pełnią funkcje związane z układem odpornościowym/ochronnym?",
+                options: [
+                    { text: "Wyłącznie komórki Langerhansa", isCorrect: false },
+                    { text: "Tylko melanocyty (ochrona UV)", isCorrect: false },
+                    { text: "Tylko korneocyty (bariera fizyczna)", isCorrect: false },
+                    { text: "Wszystkie wymienione (korneocyty, melanocyty, komórki Langerhansa)", isCorrect: true }
+                ]
+            },
+            {
+                question: "Jaki jest docelowy chromatofor przy zamykaniu naczynek krwionośnych?",
+                options: [
+                    { text: "Melanina", isCorrect: false },
+                    { text: "Woda tkankowa", isCorrect: false },
+                    { text: "Oksyhemoglobina", isCorrect: true },
+                    { text: "Egzogenny barwnik tatuażu", isCorrect: false }
+                ]
+            },
+            {
+                question: "Który rodzaj promieniowania ma najistotniejszy wpływ na proces fotostarzenia (dociera najgłębiej i działa przez cały rok)?",
+                options: [
+                    { text: "UVC", isCorrect: false },
+                    { text: "UVB", isCorrect: false },
+                    { text: "UVA", isCorrect: true },
+                    { text: "Światło niebieskie (HEV) emitowane przez ekrany", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co jest głównym czynnikiem egzogennym starzenia się skóry?",
+                options: [
+                    { text: "Zanieczyszczenie powietrza (smog)", isCorrect: false },
+                    { text: "Dieta bogata w cukry proste (glikacja)", isCorrect: false },
+                    { text: "Promieniowanie UV", isCorrect: true },
+                    { text: "Dym tytoniowy", isCorrect: false }
+                ]
+            },
+            {
+                question: "W jaki rodzaj zmarszczek przekształcają się z czasem utrwalone zmarszczki mimiczne?",
+                options: [
+                    { text: "W zmarszczki grawitacyjne", isCorrect: false },
+                    { text: "W zmarszczki strukturalne", isCorrect: true },
+                    { text: "W zmarszczki senne", isCorrect: false },
+                    { text: "W zmarszczki przesuszenia", isCorrect: false }
+                ]
+            },
+            {
+                question: "Gdzie występują „zmarszczki królicze”?",
+                options: [
+                    { text: "W kącikach ust", isCorrect: false },
+                    { text: "Na bocznych powierzchniach nosa", isCorrect: true },
+                    { text: "Na płatkach uszu", isCorrect: false },
+                    { text: "Pomiędzy brwiami (lwia zmarszczka)", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jaka skala służy do oceny stopnia fotostarzenia się skóry?",
+                options: [
+                    { text: "Skala Fitzpatricka", isCorrect: false },
+                    { text: "Skala Glogau", isCorrect: true },
+                    { text: "Skala Apgar", isCorrect: false },
+                    { text: "Skala Glasgow", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jak nazywa się proces zwyrodnienia włókien sprężystych w skórze pod wpływem promieniowania UV (charakterystyczny dla fotostarzenia)?",
+                options: [
+                    { text: "Elastoza", isCorrect: true },
+                    { text: "Fibroplazja", isCorrect: false },
+                    { text: "Keratynizacja", isCorrect: false },
+                    { text: "Melanogeneza", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co oznacza skrót DEJ?",
+                options: [
+                    { text: "Dolna warstwa naskórka (Deep Epidermal Junction)", isCorrect: false },
+                    { text: "Granica skórno-naskórkowa (Dermal-Epidermal Junction)", isCorrect: true },
+                    { text: "Dermatologiczna elastyczność jąder", isCorrect: false },
+                    { text: "Dno ewentualnego jarzma", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie hormony są znane z tego, że przyspieszają melanogenezę (powstawanie przebarwień)?",
+                options: [
+                    { text: "Insulina i glukagon", isCorrect: false },
+                    { text: "Progesteron i estrogeny", isCorrect: true },
+                    { text: "Adrenalina i kortyzol", isCorrect: false },
+                    { text: "Testosteron i androstendion", isCorrect: false }
+                ]
+            },
+            {
+                question: "Czym charakteryzuje się starzenie chronologiczne?",
+                options: [
+                    { text: "Jest wywołane głównie przez słońce", isCorrect: false },
+                    { text: "Jest związane z naturalnym upływem czasu", isCorrect: true },
+                    { text: "Jest efektem niewłaściwej pielęgnacji", isCorrect: false },
+                    { text: "Pojawia się tylko u palaczy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Co składa się na skuteczną profilaktykę przeciwstarzeniową?",
+                options: [
+                    { text: "Tylko stosowanie filtrów SPF", isCorrect: false },
+                    { text: "Tylko zabiegi medycyny estetycznej", isCorrect: false },
+                    { text: "Wyłącznie suplementacja antyoksydantami", isCorrect: false },
+                    { text: "Wszystkie wymienione działania (holistyczne podejście)", isCorrect: true }
+                ]
+            },
+            {
+                question: "Co zazwyczaj nasila rumień przy cerze naczyniowej?",
+                options: [
+                    { text: "Stosowanie zimnych okładów", isCorrect: false },
+                    { text: "Dieta lekkostrawna i picie wody", isCorrect: false },
+                    { text: "Pikantne potrawy, alkohol, nagłe zmiany temperatur", isCorrect: true },
+                    { text: "Stosowanie kremów z ceramidami", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie peelingi są rekomendowane przy skórze naczyniowej?",
+                options: [
+                    { text: "Gruboziarniste mechaniczne (scruby)", isCorrect: false },
+                    { text: "Głębokie peelingi fenolowe", isCorrect: false },
+                    { text: "Delikatne (np. enzymatyczne, kwas laktobionowy, azelaic)", isCorrect: true },
+                    { text: "Silne roztwory kwasu glikolowego", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jakie odczucia subiektywne mogą towarzyszyć cerze naczyniowej i rumieniowi?",
+                options: [
+                    { text: "Całkowity brak czucia w miejscu zaczerwienienia", isCorrect: false },
+                    { text: "Świąd, pieczenie, uczucie gorąca/ściągnięcia", isCorrect: true },
+                    { text: "Nadmierne przetłuszczanie się bez podrażnienia", isCorrect: false },
+                    { text: "Ból promieniujący do kości", isCorrect: false }
+                ]
+            }
         ];
 
+        // Zmienne stanu
         let questions = [];
         let currentQuestionIndex = 0;
-        let score = 0; // Licznik punktów
+        let score = 0;
 
         const questionElement = document.getElementById('question');
         const optionsElement = document.getElementById('options');
@@ -351,10 +378,12 @@
         const liveScoreElement = document.getElementById('live-score');
 
         function initTest() {
-            questions = shuffleArray([...rawQuestions]);
+            // Resetujemy stan
+            questions = shuffleArray([...rawQuestions]); // Tasujemy pytania
             currentQuestionIndex = 0;
             score = 0;
             
+            // Resetujemy widok
             checkButton.style.display = 'inline-block';
             nextButton.style.display = 'none';
             restartButton.style.display = 'none';
@@ -410,7 +439,7 @@
                 score++;
             }
 
-            // Aktualizacja Live Score
+            // Aktualizacja wyniku na bieżąco
             const questionsAnswered = currentQuestionIndex + 1;
             const percentage = Math.round((score / questionsAnswered) * 100);
             liveScoreElement.textContent = `Wynik: ${score}/${questionsAnswered} (${percentage}%)`;
@@ -422,11 +451,11 @@
                 if (radio.value === 'correct') {
                     parentLabel.style.backgroundColor = '#1b5e20';
                     parentLabel.style.borderColor = '#2e7d32';
-                    parentLabel.style.color = '#fff';
+                    parentLabel.style.color = '#ffffff'; 
                 } else if (radio.checked && radio.value === 'incorrect') {
                     parentLabel.style.backgroundColor = '#b71c1c';
                     parentLabel.style.borderColor = '#c62828';
-                    parentLabel.style.color = '#fff';
+                    parentLabel.style.color = '#ffffff'; 
                 }
             });
 
@@ -445,7 +474,7 @@
 
         function showFinalResult() {
             questionElement.textContent = "Koniec testu!";
-            optionsElement.innerHTML = `<div class="final-score">Twój wynik: ${score} na ${questions.length} punktów.</div>`;
+            optionsElement.innerHTML = `<div class="final-score">Twój wynik końcowy: ${score} na ${questions.length} punktów.</div>`;
             
             const percentage = Math.round((score / questions.length) * 100);
             optionsElement.innerHTML += `<p>Skuteczność: ${percentage}%</p>`;
@@ -462,6 +491,7 @@
             nextButton.style.display = 'none';
             resultElement.textContent = '';
             statusBar.textContent = '';
+            liveScoreElement.textContent = ''; // Czyścimy pasek live score na końcu
             
             restartButton.style.display = 'inline-block';
         }
