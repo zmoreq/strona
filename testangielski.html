@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Językowy: Uzupełnianie Luk & Czytanie</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #e67e22; /* Kolor nawiązujący do "orange peel" */
+        }
+        
+        /* Styl dla sekcji z tekstem do czytania */
+        .reading-text {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 1.05em;
+            text-align: justify;
+        }
+        .reading-text h3 {
+            margin-top: 0;
+        }
+
+        .cloze-text {
+            font-size: 1.1em;
+            text-align: justify;
+            margin-bottom: 20px;
+            background-color: #fafafa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+
+        /* Styl dla rozwijanej listy w tekście */
+        select {
+            font-family: inherit;
+            font-size: 0.95em;
+            padding: 3px 5px;
+            margin: 0 3px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #333;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        select.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        select.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .tf-question {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+        }
+        .tf-options {
+            display: inline-block;
+            margin-left: 15px;
+        }
+        
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Egzamin: Czytanie i Słownictwo</h1>
+
+    <h2>Part 1: Reading Text & True/False</h2>
+    
+    <div class="reading-text">
+        <h3>Text 2: Combat the Orange Peel Skin</h3>
+        <p>
+            How to reduce cellulite? – It’s a problem occupying the minds of women of practically all ages and scientists seeking an effective method of its reduction and prevention.<br><br>
+            
+            What is cellulite? – To a woman it is an unhealthy, unsightly orange peel look of the surface of her thighs, buttocks and arms, a sign of aging. To a scientist it is the effect of a slowed down process of fats removal (lipolysis) leading to their accumulation in the skin.<br><br>
+            
+            What to do? – There are many ways to follow, preferably in combination. Firstly, to apply a comprehensive anticellulite cosmetic treatment, including a set of different cosmetics designed to remove dead cells from the epidermis, to improve circulation and accelerate the removal of the superfluous products of metabolism from the skin, giving the skin a healthy look and making it smooth to touch. Secondly, to adapt a healthy lifestyle, that is, a healthy diet rich in fruit and vegetables and regular exercise. And, thirdly, to make use of the anticellulite treatments offered by beauty salons. These include not only massages but also other, often high-tech using procedures such as lipocuction, mesotherapy, mechanical roller massage therapy.<br><br>
+            
+            The term “cellulite” came to be used in cosmetology in 1973. However, the condition described as the orange skin syndrome, cottage cheese skin or mattress has long been known. We can even see it in some of the baroque pictures of Rubens’ beauties. The orange peel syndrome was first described by European physicians at the beginning of the 19th century, deficient circulation and fatty deposits being indicated as causes of the dimpled, orange peel-like texture of the skin. Cellulite is now reported to affect the thighs and buttocks of about 80 per cent of women worldwide.<br><br>
+            
+            <strong>There are three stages of cellulite:</strong><br>
+            1st degree: orange peel appearance of the skin becomes visible when we pinch the skin of the thighs or buttocks;<br>
+            2nd degree: orange peel appearance of the skin is visible to the naked eye, without pinching;<br>
+            3rd degree: orange peel appearance of the skin is accompanied by nodules and puffed areas.<br><br>
+            
+            <strong>Anti-cellulite creams, gels, scrubs</strong><br>
+            Cellulite combating cosmetics are usually a combination of ingredients such as caffeine, geranium, sandal tree, ginkgo, alpha hydroxy acids, theophylline, keratolin, zinc, manganese, copper and seaweeds such as kelp and fucus, centella asiatica, grape seed extract. They reduce the cellulite appearance by improving skin elasticity, strengthening and softening the skin. They also increase microcirculation and promote oxygen supply, emulsify fat, firm up the skin and encourage enzyme activity in breaking down fatty deposits under the skin surface.<br>
+            They should be applied generously over the affected areas, being rubbed into the skin after a bath when the skin is still warm and the lymphatic flow increased. It is necessary to use them at least once or twice a day for a period of three months to obtain visible effects.<br><br>
+            
+            <strong>Anti-cellulite treatments</strong><br>
+            Numerous anti-cellulite treatments have been developed to cater for the needs of women. They include body wraps, liposuction, fat injections, mesotherapy, mechanical roller massage therapy, endermologie.<br><br>
+            
+            Body wraps involve wrapping the body in linen sheets soaked with a variety of substances, including herbal extracts, seaweed and mud. The combined action of perspiration and compression has a body shaping effect and leads to a reduction of body dimensions due to loss of fluids. They produce temporary improvement in appearance but do not reduce or eliminate cellulite.<br><br>
+            
+            Liposuction is a cosmetic surgical procedure during which fat layers are removed producing firmer and thinner legs, buttocks, stomach and even arms. Fatty deposits are sucked up with the help of a hollow steel rod called cannula which is attached to a powerful vacuum. Postoperative bleeding and fluid accumulation are reduced by firm bandaging.<br><br>
+            
+            Fat injections consist in the injection of fat to smooth out cellulite dimples and bumps. Fat is obtained from other parts of the body and injected to the cellulite affected area. First developed for treating wrinkles, fat injection is now used to treat cellulite. However, the dimpling often reappears after a few months.<br><br>
+            
+            Mesotherapy involves multiple injections of homeopathic preparations to the cellulite area with the purpose of breaking down cellulite deposits and stimulating circulation. Multiple injections over a period of several weeks or months are needed to produce effects.<br><br>
+            
+            Mechanical roller massage therapy uses a mechanical roller and regulated suction to generate symmetrical skin folds. This non-invasive procedure, lasting from 30 to 45 minutes is a deep massage temporarily stimulating circulation in the area.<br><br>
+            
+            Endermologie is a procedure which involves massage with a highpowered, handheld massage tool, consisting of a treatment head and two motorised rollers with a suction device that compresses the tissue between the two rollers. Best results are obtained after 10 to 20 treatments followed by one or two maintenance treatments a month.
+        </p>
+    </div>
+
+    <p><strong>Decide if the following statements are true (T) or false (F) based on the text above.</strong></p>
+    
+    <div id="tf-quiz">
+        </div>
+
+    <h2>Part 2: Multiple Choice Cloze - Illiteracy</h2>
+    <div class="cloze-text">
+        While many people tend to think that Illiteracy is connected to developing countries it (1) 
+        <select id="gap1_1">
+            <option value="">---</option>
+            <option value="A">turning</option>
+            <option value="B">has turned</option>
+            <option value="C">was turning</option>
+            <option value="D">was being turned</option>
+        </select> 
+        into a major problem in industrialised nations too. It is (2) 
+        <select id="gap1_2">
+            <option value="">---</option>
+            <option value="A">related</option>
+            <option value="B">allied</option>
+            <option value="C">shared</option>
+            <option value="D">joined</option>
+        </select>
+        to many other problems, such as poverty, population growth and political corruption.<br><br>
+        
+        One (3) 
+        <select id="gap1_3">
+            <option value="">---</option>
+            <option value="A">sharp</option>
+            <option value="B">strong</option>
+            <option value="C">only</option>
+            <option value="D">obvious</option>
+        </select>
+        reason for the spread of illiteracy in the western world is increased television and media (4) 
+        <select id="gap1_4">
+            <option value="">---</option>
+            <option value="A">consumption</option>
+            <option value="B">using</option>
+            <option value="C">spending</option>
+            <option value="D">waste</option>
+        </select>. 
+        Young people get all of their information from TV, social media and other digital publications. This method (5) 
+        <select id="gap1_5">
+            <option value="">---</option>
+            <option value="A">in</option>
+            <option value="B">of</option>
+            <option value="C">for</option>
+            <option value="D">at</option>
+        </select>
+        attaining information is more relaxing and less strenuous than reading. Another reason for increasing illiteracy is the (6) 
+        <select id="gap1_6">
+            <option value="">---</option>
+            <option value="A">key</option>
+            <option value="B">point</option>
+            <option value="C">fact</option>
+            <option value="D">result</option>
+        </select>
+        that women aren’t at home anymore and a growing number are engaged in the work force. (7) 
+        <select id="gap1_7">
+            <option value="">---</option>
+            <option value="A">As a result</option>
+            <option value="B">Nevertheless</option>
+            <option value="C">In spite of</option>
+            <option value="D">However</option>
+        </select>, 
+        many children are left at home unsupervised, without (8) 
+        <select id="gap1_8">
+            <option value="">---</option>
+            <option value="A">anybody</option>
+            <option value="B">somebody</option>
+            <option value="C">nobody</option>
+            <option value="D">everybody</option>
+        </select>
+        to care for them. When parents come home after a hard day’s (9) 
+        <select id="gap1_9">
+            <option value="">---</option>
+            <option value="A">employment</option>
+            <option value="B">labouring</option>
+            <option value="C">job</option>
+            <option value="D">work</option>
+        </select>, 
+        they are often too exhausted to spend time with their children. A lot of blame for not being able to read and write is placed on schools.<br><br>
+        
+        Experts say that teachers are not putting enough focus on (10) 
+        <select id="gap1_10">
+            <option value="">---</option>
+            <option value="A">most</option>
+            <option value="B">basic</option>
+            <option value="C">minor</option>
+            <option value="D">chief</option>
+        </select>
+        skills like reading and writing. Illiteracy leads to several problems, including unemployment, alcohol and drug (11) 
+        <select id="gap1_11">
+            <option value="">---</option>
+            <option value="A">misuse</option>
+            <option value="B">use</option>
+            <option value="C">abuse</option>
+            <option value="D">usage</option>
+        </select>. 
+        The economy of a country or regions suffers and, ultimately, the standard of living (12) 
+        <select id="gap1_12">
+            <option value="">---</option>
+            <option value="A">declines</option>
+            <option value="B">has declined</option>
+            <option value="C">declined</option>
+            <option value="D">has been declined</option>
+        </select>. 
+        There are no easy solutions to this problem. However, parents need to take their (13) 
+        <select id="gap1_13">
+            <option value="">---</option>
+            <option value="A">reliabilities</option>
+            <option value="B">possibilities</option>
+            <option value="C">opportunities</option>
+            <option value="D">responsibilities</option>
+        </select>
+        more seriously and schools need to think about changing teaching (14) 
+        <select id="gap1_14">
+            <option value="">---</option>
+            <option value="A">methods</option>
+            <option value="B">ways</option>
+            <option value="C">paths</option>
+            <option value="D">routes</option>
+        </select>
+        and aspects of the curriculum. If this (15) 
+        <select id="gap1_15">
+            <option value="">---</option>
+            <option value="A">can't</option>
+            <option value="B">isn't</option>
+            <option value="C">doesn't</option>
+            <option value="D">won't</option>
+        </select>
+        happen, illiteracy will become even more of a problem than it is at the moment.
+    </div>
+
+    <h2>Part 3: Multiple Choice Cloze - Cell Phones</h2>
+    <div class="cloze-text">
+        New (1) 
+        <select id="gap2_1">
+            <option value="">---</option>
+            <option value="A">courses</option>
+            <option value="B">guidelines</option>
+            <option value="C">controls</option>
+            <option value="D">outlines</option>
+        </select>
+        on how to handle cell phones have been published recently. It warns that radiation (2) 
+        <select id="gap2_2">
+            <option value="">---</option>
+            <option value="A">sent</option>
+            <option value="B">broadcast</option>
+            <option value="C">emitted</option>
+            <option value="D">absorbed</option>
+        </select>
+        from cell phones can be harmful but (3) 
+        <select id="gap2_3">
+            <option value="">---</option>
+            <option value="A">had said</option>
+            <option value="B">does not say</option>
+            <option value="C">has not been said</option>
+            <option value="D">isn't said</option>
+        </select>
+        that cell phones are dangerous. Health authorities in California (4) 
+        <select id="gap2_4">
+            <option value="">---</option>
+            <option value="A">advise</option>
+            <option value="B">suggest</option>
+            <option value="C">submit</option>
+            <option value="D">remind</option>
+        </select>
+        a few measures cell phone users should take. (5) 
+        <select id="gap2_5">
+            <option value="">---</option>
+            <option value="A">When</option>
+            <option value="B">During</option>
+            <option value="C">Over</option>
+            <option value="D">Through</option>
+        </select>
+        sleeping, you should keep your phone at least an arm's (6) 
+        <select id="gap2_6">
+            <option value="">---</option>
+            <option value="A">piece</option>
+            <option value="B">size</option>
+            <option value="C">length</option>
+            <option value="D">stretch</option>
+        </select>
+        away from your body. You should also avoid (7) 
+        <select id="gap2_7">
+            <option value="">---</option>
+            <option value="A">to have kept</option>
+            <option value="B">keeping</option>
+            <option value="C">to keeping</option>
+            <option value="D">to keep</option>
+        </select>
+        your cell phone in your pocket. They also recommend only using cell phones when reception is strong. Some doctors (8) 
+        <select id="gap2_8">
+            <option value="">---</option>
+            <option value="A">approve</option>
+            <option value="B">decide</option>
+            <option value="C">accept</option>
+            <option value="D">agree</option>
+        </select>
+        that carrying cell phones close to your body could (9) 
+        <select id="gap2_9">
+            <option value="">---</option>
+            <option value="A">rise</option>
+            <option value="B">grow</option>
+            <option value="C">increase</option>
+            <option value="D">improve</option>
+        </select>
+        the risk of getting brain tumours, cancer and becoming infertile. It may also lead to headaches, hearing problems and a loss (10) 
+        <select id="gap2_10">
+            <option value="">---</option>
+            <option value="A">of</option>
+            <option value="B">to</option>
+            <option value="C">in</option>
+            <option value="D">for</option>
+        </select>
+        memory. On the other hand, there are many health experts who say that the risks cell phone usage (11) 
+        <select id="gap2_11">
+            <option value="">---</option>
+            <option value="A">do present</option>
+            <option value="B">presented</option>
+            <option value="C">have presented</option>
+            <option value="D">present</option>
+        </select>
+        are not proven. Cell phones emit radiation in form of low-energy radio waves when they (12) 
+        <select id="gap2_12">
+            <option value="">---</option>
+            <option value="A">deliver</option>
+            <option value="B">collect</option>
+            <option value="C">accept</option>
+            <option value="D">receive</option>
+        </select>
+        and send signals from cell towers. The frequencies that cell phones use (13) 
+        <select id="gap2_13">
+            <option value="">---</option>
+            <option value="A">should be</option>
+            <option value="B">could be</option>
+            <option value="C">will be</option>
+            <option value="D">need to be</option>
+        </select>
+        linked to various illnesses. The new cell phone guidelines (14) 
+        <select id="gap2_14">
+            <option value="">---</option>
+            <option value="A">have existed</option>
+            <option value="B">existed</option>
+            <option value="C">would exist</option>
+            <option value="D">exist</option>
+        </select>
+        since 2009 but not been published. (15) 
+        <select id="gap2_15">
+            <option value="">---</option>
+            <option value="A">Recently</option>
+            <option value="B">Currently</option>
+            <option value="C">Lately</option>
+            <option value="D">Now</option>
+        </select>, 
+        a Berkeley professor won a lawsuit against the Department of Health to release the guidelines.
+    </div>
+
+    <button onclick="checkAnswers()">Sprawdź odpowiedzi</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    // Konfiguracja pytań True/False
+    const tfQuestions = [
+        { q: "Cellulite affects only the thighs.", a: "F" },
+        { q: "Cellulite is a sign of aging.", a: "T" },
+        { q: "Anti-cellulite cosmetics must improve blood circulation.", a: "F" },
+        { q: "Lifestyle has no influence on the development of cellulite.", a: "F" },
+        { q: "Mechanical massage at a beauty salon is the best treatment for cellulite.", a: "F" },
+        { q: "The condition referred to as “cellulite” is a relatively new problem for women.", a: "F" },
+        { q: "Cosmetology distinguishes three stages of cellulite.", a: "T" },
+        { q: "Anti-cellulite cosmetics do not contain any minerals or seaweeds.", a: "F" },
+        { q: "Anti-cellulite cosmetics act only on the surface layer of the skin.", a: "F" },
+        { q: "Anti-cellulite cosmetics should be applied generously and frequently.", a: "T" },
+        { q: "Few anti-cellulite treatments have been developed so far.", a: "F" },
+        { q: "The effect of every anti-cellulite treatment is visible after one procedure.", a: "F" },
+        { q: "Liposuction is a massage.", a: "F" },
+        { q: "Mesotherapy involves multiple injections of homeopathic preparations.", a: "T" },
+        { q: "One endermologie treatment eliminates cellulite for a month.", a: "F" }
+    ];
+
+    // Klucz odpowiedzi do luk (Illiteracy)
+    const answers1 = {
+        gap1_1: 'B', gap1_2: 'A', gap1_3: 'D', gap1_4: 'A', gap1_5: 'B',
+        gap1_6: 'C', gap1_7: 'A', gap1_8: 'B', gap1_9: 'D', gap1_10: 'B',
+        gap1_11: 'A', gap1_12: 'A', gap1_13: 'D', gap1_14: 'A', gap1_15: 'C'
+    };
+
+    // Klucz odpowiedzi do luk (Cell Phones)
+    const answers2 = {
+        gap2_1: 'B', gap2_2: 'D', gap2_3: 'B', gap2_4: 'A', gap2_5: 'A',
+        gap2_6: 'C', gap2_7: 'B', gap2_8: 'D', gap2_9: 'C', gap2_10: 'A',
+        gap2_11: 'D', gap2_12: 'D', gap2_13: 'B', gap2_14: 'A', gap2_15: 'A'
+    };
+
+    // Generowanie HTML dla pytań T/F
+    const tfContainer = document.getElementById('tf-quiz');
+    tfQuestions.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'tf-question';
+        div.innerHTML = `
+            <strong>${index + 1}.</strong> ${item.q}
+            <div class="tf-options">
+                <label><input type="radio" name="tf${index}" value="T"> True</label>
+                <label><input type="radio" name="tf${index}" value="F"> False</label>
+            </div>
+        `;
+        tfContainer.appendChild(div);
+    });
+
+    function checkAnswers() {
+        let score = 0;
+        let total = tfQuestions.length + Object.keys(answers1).length + Object.keys(answers2).length;
+
+        // Sprawdzanie T/F
+        tfQuestions.forEach((item, index) => {
+            const radios = document.getElementsByName(`tf${index}`);
+            let selected = null;
+            let container = radios[0].parentElement.parentElement.parentElement;
+            
+            for (const radio of radios) {
+                if (radio.checked) selected = radio.value;
+            }
+
+            // Reset stylu
+            container.style.backgroundColor = "#fff";
+
+            if (selected === item.a) {
+                score++;
+                container.style.backgroundColor = "#d4edda"; // Zielony
+            } else if (selected) {
+                container.style.backgroundColor = "#f8d7da"; // Czerwony
+            }
+        });
+
+        // Funkcja pomocnicza do sprawdzania selectów
+        function checkSelects(answerKey) {
+            for (const [id, correctVal] of Object.entries(answerKey)) {
+                const select = document.getElementById(id);
+                select.classList.remove('correct', 'incorrect');
+                
+                if (select.value === correctVal) {
+                    score++;
+                    select.classList.add('correct');
+                } else {
+                    select.classList.add('incorrect');
+                }
+            }
+        }
+
+        checkSelects(answers1);
+        checkSelects(answers2);
+
+        // Wynik
+        const resultDiv = document.getElementById('result');
+        const percentage = Math.round((score / total) * 100);
+        resultDiv.innerHTML = `Twój wynik: ${score} / ${total} (${percentage}%)`;
+        
+        if(percentage >= 80) resultDiv.style.color = "green";
+        else if(percentage >= 50) resultDiv.style.color = "orange";
+        else resultDiv.style.color = "red";
+    }
+</script>
+
+</body>
+</html>
