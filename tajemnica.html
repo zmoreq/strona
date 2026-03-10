@@ -117,10 +117,18 @@
             position: fixed;
             pointer-events: none;
             z-index: 5;
-            top: -150px; 
-            left: -150px;
+            top: -200px; 
+            left: -200px;
             will-change: transform; 
             animation: floatRandomly linear forwards; 
+        }
+
+        /* --- STYL DLA LATAJĄCYCH ZDJĘĆ --- */
+        .floating-photo {
+            border: 6px solid #ffb6c1; /* Różowa ramka */
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            object-fit: cover; /* Zdjęcie wypełnia ramkę */
         }
 
         @keyframes floatRandomly {
@@ -160,18 +168,32 @@
     <audio id="hiddenAudio"></audio>
 
     <script>
+        // ==========================================
+        // KONFIGURACJA ZDJĘĆ
+        // ==========================================
+        // Wklej tutaj dokładne nazwy plików i ich rozszerzenia!
+        const imageFiles = [
+            'zdjecie1.jpg',
+            'zdjecie2.jpg',
+            'zdjecie3.jpg',
+            'zdjecie4.jpg',
+            'zdjecie5.jpg',
+            'zdjecie6.jpg',
+            'zdjecie7.jpg',
+            'zdjecie8.jpg',
+            'zdjecie9.jpg'
+        ];
+
         const card = document.getElementById('valentineCard');
         const btn = document.getElementById('readyBtn');
         const audio = document.getElementById('hiddenAudio');
         let isEffectRunning = false; 
 
-        // Trik z automatycznym pobraniem utworu!
-        // Gdy strona się ładuje, dyskretnie szukamy Olivii Dean w Apple Music
+        // Trik z automatycznym pobraniem utworu
         fetch('https://itunes.apple.com/search?term=olivia+dean+so+easy+to+fall+in+love&entity=song&limit=1')
             .then(response => response.json())
             .then(data => {
                 if(data.results && data.results.length > 0) {
-                    // Ładujemy plik muzyczny do naszego ukrytego odtwarzacza
                     audio.src = data.results[0].previewUrl;
                 }
             })
@@ -191,37 +213,56 @@
             if (!isEffectRunning) {
                 isEffectRunning = true;
                 
-                // AUTOPLAY: Odpalamy muzykę natychmiast! (Działa na 100%, bo jest wewnątrz kliknięcia)
+                // AUTOPLAY: Odpalamy muzykę natychmiast!
                 if (audio.src) {
                     audio.volume = 1.0;
                     audio.play().catch(e => console.log("Przeglądarka zablokowała audio: ", e));
                 }
 
-                // Ukrywamy przycisk
                 btn.style.opacity = '0';
                 btn.style.pointerEvents = 'none';
 
-                // Uruchamiamy efekty latających serduszek
+                // Uruchamiamy efekty latających serduszek ORAZ zdjęć!
                 setInterval(createHugeFloatingItem, 100); 
             }
         });
 
-        // 3. Efekty wizualne
+        // 3. Główna funkcja generująca efekty wizualne
         function createHugeFloatingItem() {
-            const emojis = ['❤️', '💖', '🌸', '🌺', '✨', '🌹', '💝', '😘'];
-            const el = document.createElement('div');
-            el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            el.classList.add('floating-item');
-            
-            const size = Math.random() * 80 + 40;
-            el.style.fontSize = size + 'px';
+            // Losujemy: 50% szans na emotkę, 50% szans na Wasze zdjęcie
+            const isPhoto = Math.random() < 0.5;
+            let el;
 
+            if (isPhoto) {
+                // --- GENEROWANIE ZDJĘCIA ---
+                el = document.createElement('img');
+                // Wybieramy losowe zdjęcie z naszej tablicy
+                const randomPhoto = imageFiles[Math.floor(Math.random() * imageFiles.length)];
+                el.src = randomPhoto;
+                el.classList.add('floating-item', 'floating-photo');
+
+                // Losowy rozmiar zdjęcia od 80px do 180px
+                const size = Math.random() * 100 + 80;
+                el.style.width = size + 'px';
+                el.style.height = size + 'px'; // Utrzymujemy kwadrat
+
+            } else {
+                // --- GENEROWANIE EMOTKI (bez zmian) ---
+                el = document.createElement('div');
+                const emojis = ['❤️', '💖', '🌸', '🌺', '✨', '🌹', '💝', '😘'];
+                el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                el.classList.add('floating-item');
+
+                const size = Math.random() * 80 + 40;
+                el.style.fontSize = size + 'px';
+            }
+
+            // --- TOR LOTU (bez zmian, ten sam "BOOM" z każdego boku) ---
             const w = window.innerWidth;
             const h = window.innerHeight;
-
             const side = Math.floor(Math.random() * 4);
             let startX, startY, endX, endY;
-            const padding = 150; 
+            const padding = 200; 
 
             switch (side) {
                 case 0: startX = Math.random() * w; startY = -padding; endX = Math.random() * w * 1.5 - (w * 0.25); endY = h + padding; break;
@@ -234,6 +275,7 @@
             el.style.setProperty('--startY', startY + 'px');
             el.style.setProperty('--endX', endX + 'px');
             el.style.setProperty('--endY', endY + 'px');
+            // ZDJĘCIA RÓWNIEŻ SIĘ OBRACAJĄ!
             el.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
             el.style.animationDuration = (Math.random() * 4 + 3) + 's';
 
