@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dla Oliwkiii ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #9730c7, #551274);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; 
+        }
+
+        .scene {
+            width: 850px;
+            height: 550px;
+            perspective: 1000px;
+            z-index: 20; 
+            position: relative;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 1s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border-radius: 15px;
+        }
+
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+
+        .card-front {
+            background-color: #7700ff;
+            color: white;
+            border: 5px solid #fff;
+        }
+        
+        .card-front h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .card-front .hint {
+            font-size: 1em;
+            opacity: 0.9;
+            animation: pulse 2s infinite;
+        }
+
+        .card-back {
+            background-color: #fff0f3;
+            color: #590d22;
+            transform: rotateY(180deg);
+            border: 5px solid #2e055e;
+        }
+
+        .custom-text {
+            font-size: 1.25em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        #readyBtn {
+            background-color: #7700ff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5);
+        }
+
+        #readyBtn:hover {
+            background-color: #c9184a;
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 77, 109, 0.6);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.08); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .floating-item {
+            position: fixed;
+            pointer-events: none;
+            z-index: 5;
+            top: -150px; 
+            left: -150px;
+            will-change: transform; 
+            animation: floatRandomly linear forwards; 
+        }
+
+        @keyframes floatRandomly {
+            0% { transform: translate(var(--startX), var(--startY)) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translate(var(--endX), var(--endY)) rotate(var(--rot)); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scene">
+        <div class="card" id="valentineCard">
+            <div class="card-face card-front">
+                <h1>Dla Oliwkiii 💌</h1>
+                <p class="hint">(Pssss... teraz musisz kliknąć)</p>
+            </div>
+
+            <div class="card-face card-back">
+                <div class="custom-text" id="mainText">
+                    ❤️ Hejka, that's me Roberto ❤️<br>
+                    Bardzo spóźnione to wszystko, ale to nie o tym teraz...<br><br>
+                    ✨✨✨✨✨ <br>
+                    Kocham Cię z każdym dniem mocniej, jesteś super zabawna, śliczna, masz nietuzinkowe oczęta<br>
+                    Super zakręcone włosy, ale i zakręcony charakter co uwielbiam, czasem stonowana, a czasem odjechana - świetne combo <br>
+                    Świetne combo też jest z Nas i mam nadzieje, że na całą wieczność <br>
+                    ✨✨✨✨✨ <br><br>
+                    A tu coś co jak słyszę to widzę Ciebie opiewającą Swoim blaskiem... Muaaaaaaaa... <br>
+                    ❤️❤️❤️ Kocham Cię ❤️❤️❤️
+                </div>
+                <button id="readyBtn">❤️ Odkryj ❤️</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="hiddenAudio"></audio>
+
+    <script>
+        const card = document.getElementById('valentineCard');
+        const btn = document.getElementById('readyBtn');
+        const audio = document.getElementById('hiddenAudio');
+        let isEffectRunning = false; 
+
+        // Trik z automatycznym pobraniem utworu!
+        // Gdy strona się ładuje, dyskretnie szukamy Olivii Dean w Apple Music
+        fetch('https://itunes.apple.com/search?term=olivia+dean+so+easy+to+fall+in+love&entity=song&limit=1')
+            .then(response => response.json())
+            .then(data => {
+                if(data.results && data.results.length > 0) {
+                    // Ładujemy plik muzyczny do naszego ukrytego odtwarzacza
+                    audio.src = data.results[0].previewUrl;
+                }
+            })
+            .catch(err => console.error("Nie udało się załadować muzyki: ", err));
+
+        // 1. Obracanie kartki
+        card.addEventListener('click', function() {
+            if (!card.classList.contains('is-flipped')) {
+                card.classList.add('is-flipped');
+            }
+        });
+
+        // 2. Akcja po kliknięciu przycisku
+        btn.addEventListener('click', function(event) {
+            event.stopPropagation(); 
+            
+            if (!isEffectRunning) {
+                isEffectRunning = true;
+                
+                // AUTOPLAY: Odpalamy muzykę natychmiast! (Działa na 100%, bo jest wewnątrz kliknięcia)
+                if (audio.src) {
+                    audio.volume = 1.0;
+                    audio.play().catch(e => console.log("Przeglądarka zablokowała audio: ", e));
+                }
+
+                // Ukrywamy przycisk
+                btn.style.opacity = '0';
+                btn.style.pointerEvents = 'none';
+
+                // Uruchamiamy efekty latających serduszek
+                setInterval(createHugeFloatingItem, 100); 
+            }
+        });
+
+        // 3. Efekty wizualne
+        function createHugeFloatingItem() {
+            const emojis = ['❤️', '💖', '🌸', '🌺', '✨', '🌹', '💝', '😘'];
+            const el = document.createElement('div');
+            el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            el.classList.add('floating-item');
+            
+            const size = Math.random() * 80 + 40;
+            el.style.fontSize = size + 'px';
+
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+
+            const side = Math.floor(Math.random() * 4);
+            let startX, startY, endX, endY;
+            const padding = 150; 
+
+            switch (side) {
+                case 0: startX = Math.random() * w; startY = -padding; endX = Math.random() * w * 1.5 - (w * 0.25); endY = h + padding; break;
+                case 1: startX = w + padding; startY = Math.random() * h; endX = -padding; endY = Math.random() * h * 1.5 - (h * 0.25); break;
+                case 2: startX = Math.random() * w; startY = h + padding; endX = Math.random() * w * 1.5 - (w * 0.25); endY = -padding; break;
+                case 3: startX = -padding; startY = Math.random() * h; endX = w + padding; endY = Math.random() * h * 1.5 - (h * 0.25); break;
+            }
+
+            el.style.setProperty('--startX', startX + 'px');
+            el.style.setProperty('--startY', startY + 'px');
+            el.style.setProperty('--endX', endX + 'px');
+            el.style.setProperty('--endY', endY + 'px');
+            el.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+            el.style.animationDuration = (Math.random() * 4 + 3) + 's';
+
+            document.body.appendChild(el);
+            setTimeout(() => { el.remove(); }, 7000); 
+        }
+    </script>
+
+</body>
+</html>
