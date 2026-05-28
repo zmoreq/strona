@@ -407,6 +407,7 @@
         let questions = [];
         let currentQuestionIndex = 0;
         let score = 0;
+        let shuffleNeeded = false; // To change if you want to shuffle the questions
 
         const questionElement = document.getElementById('question');
         const optionsElement = document.getElementById('options');
@@ -419,7 +420,11 @@
 
         function initTest() {
             // Resetujemy stan
-            questions = shuffleArray([...rawQuestions]); // Tasujemy pytania
+            if (shuffleNeeded) {
+                questions = shuffleArray([...rawQuestions]); // Tasujemy pytania
+            } else {
+                questions = [...rawQuestions];
+            }
             currentQuestionIndex = 0;
             score = 0;
             
