@@ -420,11 +420,7 @@
 
         function initTest() {
             // Resetujemy stan
-            if (shuffleNeeded) {
-                questions = shuffleArray([...rawQuestions]); // Tasujemy pytania
-            } else {
-                questions = [...rawQuestions];
-            }
+            questions = shuffleArray([...rawQuestions]); // Tasujemy pytania
             currentQuestionIndex = 0;
             score = 0;
             
@@ -451,9 +447,14 @@
             resultElement.style.display = 'none';
             resultElement.className = '';
 
-            const shuffledOptions = shuffleArray([...currentQuestion.options]);
+            if (shuffleNeeded) {
+                currentQuestion.options = shuffleArray([...currentQuestion.options]);
+            }
+            else {
+                currentQuestion.options = [...currentQuestion.options];
+            }
 
-            shuffledOptions.forEach((option, index) => {
+            currentQuestion.options.forEach((option, index) => {
                 const label = document.createElement('label');
                 const radio = document.createElement('input');
                 radio.type = 'radio';
