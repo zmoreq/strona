@@ -169,213 +169,280 @@
             }
             return array;
         }
+        
 const rawQuestions = [
-            {
-                question: "Do zabiegu jonoforezy u osoby z problemami skóry naczyniowej użyjemy:",
-                options: [
-                    { text: "chlorek wapnia, elektroda czynna anoda", isCorrect: true }
-                ]
-            },
-            {
-                question: "Podczas wykonywania zabiegu sonoforezy niezbędne jest:",
-                options: [
-                    { text: "zastosowanie sono-żelu", isCorrect: true }
-                ]
-            },
-            {
-                question: "Do metod aparaturowych zwiększania przenikania substancji zawartych w kosmetykach należy:",
-                options: [
-                    { text: "masaż", isCorrect: true }
-                ]
-            },
-            {
-                question: "W zabiegach z użyciem ultradźwięków dawki średnie mają wartość:",
-                options: [
-                    { text: "0,5 do 1,5 W/cm2", isCorrect: true }
-                ]
-            },
-            {
-                question: "Przedstawicielem BHA jest:",
-                options: [
-                    { text: "kwas salicylowy", isCorrect: true }
-                ]
-            },
-            {
-                question: "Do działań anody w galwanizacji zaliczamy:",
-                options: [
-                    { text: "spadek napięcia mięśniowego", isCorrect: true }
-                ]
-            },
-            {
-                question: "Nieprawdziwe zdanie na temat zabiegu radiofrekwencji to:",
-                options: [
-                    { text: "emitowane fale radiowe ogrzewają skórę właściwą bez ingerencji w strukturę naskórka", isCorrect: false },
-                    { text: "opiera się na wywołaniu efektu termicznego", isCorrect: false },
-                    { text: "wykorzystuje efekt podgrzania tkanek", isCorrect: false },
-                    { text: "wszystkie zdania są prawdziwe", isCorrect: true }
-                ]
-            },
-            {
-                question: "Najlepszy efekt poprawy napięcia owalu twarzy uzyskuje się wykorzystując:",
-                options: [
-                    { text: "radiofrekwencje", isCorrect: true }
-                ]
-            },
-            {
-                question: "Przeciwwskazaniem do zabiegu jonoforezy nie jest:",
-                options: [
-                    { text: "trądzik różowaty", isCorrect: true }
-                ]
-            },
-            {
-                question: "Kolejne warstwy naskórka licząc od wierzchniej to:",
-                options: [
-                    { text: "rogowa, jasna, ziarnista, kolczysta, podstawna", isCorrect: true }
-                ]
-            },
-            {
-                question: "Nieprawdziwe zdanie dotyczące zabiegu darsonwalizacji to:",
-                options: [
-                    { text: "zabieg wykonywane jest po oczyszczaniu manualnym", isCorrect: false },
-                    { text: "podczas zabiegu wytwarza się ozon, który ma działanie antybakteryjne", isCorrect: false },
-                    { text: "wyróżniamy zabieg tylko darsonwalizacji miejscowej", isCorrect: false },
-                    { text: "wszystkie zdania są prawdziwe", isCorrect: true }
-                ]
-            },
-            {
-                question: "Pielęgnacja gabinetowa dla cery naczyniowej oraz trądziku różowatego obejmuje:",
-                options: [
-                    { text: "zabiegi uszczelniające ściany naczyń krwionośnych", isCorrect: false },
-                    { text: "zabiegi łagodzące", isCorrect: false },
-                    { text: "zabiegi nawilżające", isCorrect: false },
-                    { text: "wszystkie odpowiedzi są prawdziwe", isCorrect: true }
-                ]
-            },
-            {
-                question: "Do zabiegu mikrodermabrazji nie stosuje się:",
-                options: [
-                    { text: "korundu", isCorrect: false },
-                    { text: "pierścieni diamentowych", isCorrect: false },
-                    { text: "tlenku glinu", isCorrect: false },
-                    { text: "wszystkie z wymienionych używamy", isCorrect: true }
-                ]
-            },
-            {
-                question: "W jakiej kolejności stosuje się poszczególne techniki podczas masażu klasycznego?:",
-                options: [
-                    { text: "głaskanie, rozcieranie, ugniatanie, oklepywanie, wibracja", isCorrect: true }
-                ]
-            },
-            {
-                question: "Do substancji aktywnych kosmetyków o działaniu keratolitycznym należą:",
-                options: [
-                    { text: "alfahydroksykwasy", isCorrect: true }
-                ]
-            },
-            {
-                question: "Fibroblasty to:",
-                options: [
-                    { text: "komórki skóry właściwej, które wytwarzają kolagen i elastynę", isCorrect: true }
-                ]
-            },
-            {
-                question: "W celu rozpulchnienia skóry przed manualnym oczyszczaniem możemy zastosować maskę:",
-                options: [
-                    { text: "borowinową", isCorrect: true }
-                ]
-            },
-            {
-                question: "Nieprawdziwe zdanie dotyczące zabiegu jonoforezy to:",
-                options: [
-                    { text: "dla wprowadzenia jonów dodatnich podkład z lekiem układa się pod katodą", isCorrect: true }
-                ]
-            },
-            {
-                question: "Proces odnowy komórkowej w naskórku trwa zazwyczaj około:",
-                options: [
-                    { text: "25-30 dni", isCorrect: true }
-                ]
-            },
-            {
-                question: "Najbezpieczniejszym zabiegiem dla kobiety w ciąży będzie:",
-                options: [
-                    { text: "peeling enzymatyczny z masażem twarzy", isCorrect: true }
-                ]
-            },
-            {
-                question: "Skuteczność zabiegu peelingu chemicznego nie zależy od:",
-                options: [
-                    { text: "stanu skóry", isCorrect: false },
-                    { text: "pH", isCorrect: false },
-                    { text: "pKa", isCorrect: false },
-                    { text: "brak prawidłowej odpowiedzi", isCorrect: true }
-                ]
-            },
-            {
-                question: "Do zabiegu peelingu kawitacyjnego nie zastosujemy:",
-                options: [
-                    { text: "wody przegotowanej", isCorrect: false },
-                    { text: "wody destylowanej", isCorrect: false },
-                    { text: "toniku nawilżającego", isCorrect: false },
-                    { text: "wszystkie powyższe preparaty możemy użyć do zabiegu", isCorrect: true }
-                ]
-            },
-            {
-                question: "Cera tłusta wymaga przeprowadzenia zabiegów:",
-                options: [
-                    { text: "normalizujących pracę gruczołów łojowych", isCorrect: true }
-                ]
-            },
-            {
-                question: "Wskazaniem do galwanizacji nie jest:",
-                options: [
-                    { text: "rozszerzone ujścia gruczołów łojowych", isCorrect: false },
-                    { text: "skóra słabo ukrwiona", isCorrect: false },
-                    { text: "skóra dojrzała", isCorrect: false },
-                    { text: "wszystkie wymienione są wskazaniem", isCorrect: true }
-                ]
-            },
-            {
-                question: "Przeciwwskazaniem do zabiegu złuszczania naskórka przy użyciu peelingów chemicznych jest przyjmowanie witaminy:",
-                options: [
-                    { text: "A", isCorrect: true }
-                ]
-            },
-            {
-                question: "W etiopatogenezie trądziku pospolitego znaczącej roli nie odgrywa:",
-                options: [
-                    { text: "kolonizacja bakterii Helicobacter pylori", isCorrect: true }
-                ]
-            },
-            {
-                question: "Zabiegi wykorzystujące działanie prądu stałego to:",
-                options: [
-                    { text: "jonoforeza i galwanizacja", isCorrect: true }
-                ]
-            },
-            {
-                question: "Peeling kawitacyjny należy do peelingów:",
-                options: [
-                    { text: "fizycznych", isCorrect: true }
-                ]
-            },
-            {
-                question: "Przeciwwskazaniem do zabiegu mikrodermabrazji są:",
-                options: [
-                    { text: "trądzik zapalny", isCorrect: true }
-                ]
-            },
-            {
-                question: "Warstwa rogowa i ziarnista zaliczane są do:",
-                options: [
-                    { text: "warstwy żywej naskórka", isCorrect: false },
-                    { text: "do warstwy żywej i warstwy Malphiego", isCorrect: false },
-                    { text: "warstwy Malphiego", isCorrect: false },
-                    { text: "brak prawidłowej odpowiedzi", isCorrect: true }
-                ]
-            }
-        ];
-        // Zmienne stanu
+{
+    question: "Do zabiegu jonoforezy u osoby z problemami skóry naczyniowej użyjemy:",
+    options: [
+        { text: "chlorek wapnia, elektroda czynna anoda", isCorrect: true },
+        { text: "kwas salicylowy, elektroda czynna katoda", isCorrect: false },
+        { text: "witamina C, elektroda bierna katoda", isCorrect: false },
+        { text: "retinol, elektroda czynna katoda", isCorrect: false }
+    ]
+},
+{
+    question: "Podczas wykonywania zabiegu sonoforezy niezbędne jest:",
+    options: [
+        { text: "zastosowanie sono-żelu", isCorrect: true },
+        { text: "użycie spirytusu kosmetycznego", isCorrect: false },
+        { text: "wykonanie zabiegu na suchej skórze", isCorrect: false },
+        { text: "zastosowanie maski algowej", isCorrect: false }
+    ]
+},
+{
+    question: "Do metod aparaturowych zwiększania przenikania substancji zawartych w kosmetykach należy:",
+    options: [
+        { text: "masaż", isCorrect: true },
+        { text: "henna pudrowa", isCorrect: false },
+        { text: "depilacja woskiem", isCorrect: false },
+        { text: "regulacja brwi", isCorrect: false }
+    ]
+},
+{
+    question: "W zabiegach z użyciem ultradźwięków dawki średnie mają wartość:",
+    options: [
+        { text: "0,5 do 1,5 W/cm2", isCorrect: true },
+        { text: "3 do 5 W/cm2", isCorrect: false },
+        { text: "0,1 do 0,3 W/cm2", isCorrect: false },
+        { text: "5 do 8 W/cm2", isCorrect: false }
+    ]
+},
+{
+    question: "Przedstawicielem BHA jest:",
+    options: [
+        { text: "kwas salicylowy", isCorrect: true },
+        { text: "kwas glikolowy", isCorrect: false },
+        { text: "kwas migdałowy", isCorrect: false },
+        { text: "kwas mlekowy", isCorrect: false }
+    ]
+},
+{
+    question: "Do działań anody w galwanizacji zaliczamy:",
+    options: [
+        { text: "spadek napięcia mięśniowego", isCorrect: true },
+        { text: "pobudzenie zakończeń nerwowych", isCorrect: false },
+        { text: "silne przekrwienie skóry", isCorrect: false },
+        { text: "wzrost wydzielania sebum", isCorrect: false }
+    ]
+},
+{
+    question: "Nieprawdziwe zdanie na temat zabiegu radiofrekwencji to:",
+    options: [
+        { text: "emitowane fale radiowe ogrzewają skórę właściwą bez ingerencji w strukturę naskórka", isCorrect: false },
+        { text: "opiera się na wywołaniu efektu termicznego", isCorrect: false },
+        { text: "wykorzystuje efekt podgrzania tkanek", isCorrect: false },
+        { text: "wszystkie zdania są prawdziwe", isCorrect: true }
+    ]
+},
+{
+    question: "Najlepszy efekt poprawy napięcia owalu twarzy uzyskuje się wykorzystując:",
+    options: [
+        { text: "radiofrekwencje", isCorrect: true },
+        { text: "darsonwalizację", isCorrect: false },
+        { text: "galwanizację", isCorrect: false },
+        { text: "peeling kawitacyjny", isCorrect: false }
+    ]
+},
+{
+    question: "Przeciwwskazaniem do zabiegu jonoforezy nie jest:",
+    options: [
+        { text: "trądzik różowaty", isCorrect: true },
+        { text: "ciąża", isCorrect: false },
+        { text: "rozrusznik serca", isCorrect: false },
+        { text: "metalowe implanty", isCorrect: false }
+    ]
+},
+{
+    question: "Kolejne warstwy naskórka licząc od wierzchniej to:",
+    options: [
+        { text: "rogowa, jasna, ziarnista, kolczysta, podstawna", isCorrect: true },
+        { text: "rogowa, kolczysta, ziarnista, jasna, podstawna", isCorrect: false },
+        { text: "jasna, rogowa, ziarnista, podstawna, kolczysta", isCorrect: false },
+        { text: "ziarnista, rogowa, jasna, kolczysta, podstawna", isCorrect: false }
+    ]
+},
+{
+    question: "Nieprawdziwe zdanie dotyczące zabiegu darsonwalizacji to:",
+    options: [
+        { text: "zabieg wykonywane jest po oczyszczaniu manualnym", isCorrect: false },
+        { text: "podczas zabiegu wytwarza się ozon, który ma działanie antybakteryjne", isCorrect: false },
+        { text: "wyróżniamy zabieg tylko darsonwalizacji miejscowej", isCorrect: false },
+        { text: "wszystkie zdania są prawdziwe", isCorrect: true }
+    ]
+},
+{
+    question: "Pielęgnacja gabinetowa dla cery naczyniowej oraz trądziku różowatego obejmuje:",
+    options: [
+        { text: "zabiegi uszczelniające ściany naczyń krwionośnych", isCorrect: false },
+        { text: "zabiegi łagodzące", isCorrect: false },
+        { text: "zabiegi nawilżające", isCorrect: false },
+        { text: "wszystkie odpowiedzi są prawdziwe", isCorrect: true }
+    ]
+},
+{
+    question: "Do zabiegu mikrodermabrazji nie stosuje się:",
+    options: [
+        { text: "korundu", isCorrect: false },
+        { text: "pierścieni diamentowych", isCorrect: false },
+        { text: "tlenku glinu", isCorrect: false },
+        { text: "wszystkie z wymienionych używamy", isCorrect: true }
+    ]
+},
+{
+    question: "W jakiej kolejności stosuje się poszczególne techniki podczas masażu klasycznego?:",
+    options: [
+        { text: "głaskanie, rozcieranie, ugniatanie, oklepywanie, wibracja", isCorrect: true },
+        { text: "ugniatanie, głaskanie, rozcieranie, wibracja, oklepywanie", isCorrect: false },
+        { text: "rozcieranie, ugniatanie, głaskanie, oklepywanie, wibracja", isCorrect: false },
+        { text: "oklepywanie, wibracja, ugniatanie, rozcieranie, głaskanie", isCorrect: false }
+    ]
+},
+{
+    question: "Do substancji aktywnych kosmetyków o działaniu keratolitycznym należą:",
+    options: [
+        { text: "alfahydroksykwasy", isCorrect: true },
+        { text: "ceramidy", isCorrect: false },
+        { text: "kolagen", isCorrect: false },
+        { text: "elastyna", isCorrect: false }
+    ]
+},
+{
+    question: "Fibroblasty to:",
+    options: [
+        { text: "komórki skóry właściwej, które wytwarzają kolagen i elastynę", isCorrect: true },
+        { text: "komórki odpowiedzialne za produkcję melaniny", isCorrect: false },
+        { text: "martwe komórki warstwy rogowej", isCorrect: false },
+        { text: "gruczoły łojowe skóry", isCorrect: false }
+    ]
+},
+{
+    question: "W celu rozpulchnienia skóry przed manualnym oczyszczaniem możemy zastosować maskę:",
+    options: [
+        { text: "borowinową", isCorrect: true },
+        { text: "ściągającą", isCorrect: false },
+        { text: "algową chłodzącą", isCorrect: false },
+        { text: "parafinową", isCorrect: false }
+    ]
+},
+{
+    question: "Nieprawdziwe zdanie dotyczące zabiegu jonoforezy to:",
+    options: [
+        { text: "dla wprowadzenia jonów dodatnich podkład z lekiem układa się pod katodą", isCorrect: true },
+        { text: "jonoforeza wykorzystuje prąd stały", isCorrect: false },
+        { text: "w zabiegu stosuje się elektrody", isCorrect: false },
+        { text: "jonoforeza zwiększa przenikanie substancji aktywnych", isCorrect: false }
+    ]
+},
+{
+    question: "Proces odnowy komórkowej w naskórku trwa zazwyczaj około:",
+    options: [
+        { text: "25-30 dni", isCorrect: true },
+        { text: "5-7 dni", isCorrect: false },
+        { text: "60-90 dni", isCorrect: false },
+        { text: "12 godzin", isCorrect: false }
+    ]
+},
+{
+    question: "Najbezpieczniejszym zabiegiem dla kobiety w ciąży będzie:",
+    options: [
+        { text: "peeling enzymatyczny z masażem twarzy", isCorrect: true },
+        { text: "radiofrekwencja", isCorrect: false },
+        { text: "mikrodermabrazja korundowa", isCorrect: false },
+        { text: "galwanizacja", isCorrect: false }
+    ]
+},
+{
+    question: "Skuteczność zabiegu peelingu chemicznego nie zależy od:",
+    options: [
+        { text: "stanu skóry", isCorrect: false },
+        { text: "pH", isCorrect: false },
+        { text: "pKa", isCorrect: false },
+        { text: "brak prawidłowej odpowiedzi", isCorrect: true }
+    ]
+},
+{
+    question: "Do zabiegu peelingu kawitacyjnego nie zastosujemy:",
+    options: [
+        { text: "wody przegotowanej", isCorrect: false },
+        { text: "wody destylowanej", isCorrect: false },
+        { text: "toniku nawilżającego", isCorrect: false },
+        { text: "wszystkie powyższe preparaty możemy użyć do zabiegu", isCorrect: true }
+    ]
+},
+{
+    question: "Cera tłusta wymaga przeprowadzenia zabiegów:",
+    options: [
+        { text: "normalizujących pracę gruczołów łojowych", isCorrect: true },
+        { text: "silnie natłuszczających", isCorrect: false },
+        { text: "wyłącznie liftingujących", isCorrect: false },
+        { text: "rozgrzewających", isCorrect: false }
+    ]
+},
+{
+    question: "Wskazaniem do galwanizacji nie jest:",
+    options: [
+        { text: "rozszerzone ujścia gruczołów łojowych", isCorrect: false },
+        { text: "skóra słabo ukrwiona", isCorrect: false },
+        { text: "skóra dojrzała", isCorrect: false },
+        { text: "wszystkie wymienione są wskazaniem", isCorrect: true }
+    ]
+},
+{
+    question: "Przeciwwskazaniem do zabiegu złuszczania naskórka przy użyciu peelingów chemicznych jest przyjmowanie witaminy:",
+    options: [
+        { text: "A", isCorrect: true },
+        { text: "C", isCorrect: false },
+        { text: "D", isCorrect: false },
+        { text: "B12", isCorrect: false }
+    ]
+},
+{
+    question: "W etiopatogenezie trądziku pospolitego znaczącej roli nie odgrywa:",
+    options: [
+        { text: "kolonizacja bakterii Helicobacter pylori", isCorrect: true },
+        { text: "nadmierne wydzielanie sebum", isCorrect: false },
+        { text: "Cutibacterium acnes", isCorrect: false },
+        { text: "zaburzenia keratynizacji", isCorrect: false }
+    ]
+},
+{
+    question: "Zabiegi wykorzystujące działanie prądu stałego to:",
+    options: [
+        { text: "jonoforeza i galwanizacja", isCorrect: true },
+        { text: "darsonwalizacja i sonoforeza", isCorrect: false },
+        { text: "mikrodermabrazja i oksybrazja", isCorrect: false },
+        { text: "radiofrekwencja i peeling kawitacyjny", isCorrect: false }
+    ]
+},
+{
+    question: "Peeling kawitacyjny należy do peelingów:",
+    options: [
+        { text: "fizycznych", isCorrect: true },
+        { text: "chemicznych", isCorrect: false },
+        { text: "enzymatycznych", isCorrect: false },
+        { text: "kwasowych", isCorrect: false }
+    ]
+},
+{
+    question: "Przeciwwskazaniem do zabiegu mikrodermabrazji są:",
+    options: [
+        { text: "trądzik zapalny", isCorrect: true },
+        { text: "cera mieszana", isCorrect: false },
+        { text: "skóra odwodniona", isCorrect: false },
+        { text: "drobne zmarszczki", isCorrect: false }
+    ]
+},
+{
+    question: "Warstwa rogowa i ziarnista zaliczane są do:",
+    options: [
+        { text: "warstwy żywej naskórka", isCorrect: false },
+        { text: "do warstwy żywej i warstwy Malphiego", isCorrect: false },
+        { text: "warstwy Malphiego", isCorrect: false },
+        { text: "brak prawidłowej odpowiedzi", isCorrect: true }
+    ]
+}
+];
+
         let questions = [];
         let currentQuestionIndex = 0;
         let score = 0;
