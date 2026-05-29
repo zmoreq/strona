@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test - Egzamin Patologie Odżywiania (Live Score)</title>
+    <title>Test - organizacja i zarządzanie gabinetem kosmetycznym</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -139,7 +139,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Test Wiedzy: Kosmetologia Estetyczna</h1>
+        <h1>Test Wiedzy: Organizacja i zarządzanie gabinetem kosmetycznym</h1>
         
         <div class="stats-container">
             <div id="status-bar" class="status-bar">Ładowanie...</div>
@@ -171,234 +171,303 @@
         }
 
         const rawQuestions = [
+            // Test pierwszy
             {
-                question: "Czynnikami, które predysponują do wystąpienia zaburzeń odżywiania (np. anorexia nervosa, bulimia nervosa) są:",
+                question: "Prowadząca we własnym imieniu działalność gospodarczą: osoba fizyczna, osoba prawna i jednostka organizacyjna niebędąca osobą prawną to:",
                 options: [
-                    { text: "trudności w osiągnięciu ….", isCorrect: false },
-                    { text: "stresy związane z funkcjonowaniem społecznym", isCorrect: false },
-                    { text: "brak tendencji do perfekcjonizmu i/lub niska potrzeba osiągnięć", isCorrect: false },
-                    { text: "odpowiedzi a i b są prawidłowe", isCorrect: true },
-                    { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+                    { text: "Biznesmen", isCorrect: false },
+                    { text: "Przedsiębiorca", isCorrect: true },
+                    { text: "Człowiek sukcesu", isCorrect: false },
+                    { text: "Prokurent", isCorrect: false }
                 ]
             },
             {
-                question: "Zaburzenia odżywiania mogą powodować:",
+                question: "Daleko idące dostosowanie oferty przedsiębiorstwa do popytu i preferencji nabywców to wynik",
                 options: [
-                    { text: "uszkodzenia narządów wewnętrznych np. wątroby, trzustki, nerek", isCorrect: false },
-                    { text: "defekt metaboliczny jakim jest spowolnienie przemiany materii", isCorrect: false },
-                    { text: "zmiany ….. w OUN", isCorrect: false },
-                    { text: "odp a i c są prawidłowe", isCorrect: false },
-                    { text: "wszystkie odp są prawidłowe", isCorrect: true }
+                    { text: "Segmentacji rynku", isCorrect: true },
+                    { text: "Marketingu", isCorrect: false },
+                    { text: "PR", isCorrect: false },
+                    { text: "Reklamy", isCorrect: false }
                 ]
             },
             {
-                question: "Niekonwencjonalne diety odchudzające, ale są zgodne z zasadami zdrowego żywienia, ponieważ wskazują na:",
+                question: "Do najważniejszych założeń prowadzenia biznesu według orientacji marketingowej należą następujące tezy:",
                 options: [
-                    { text: "wyeliminowanie pewnych .. produktów spożywczych np., mięsa", isCorrect: true },
-                    { text: "spożywanie gotowych preparatów/ środków specjalnego przeznaczenia żywieniowego, które mają zastępować produkty spożywcze", isCorrect: false },
-                    { text: "spożywanie bardzo niskich wartości kalorii w ciągu doby np. 1000kcal", isCorrect: false },
-                    { text: "odpowiedzi b i c są prawidłowe", isCorrect: false },
-                    { text: "wszystkie odp są prawidłowe", isCorrect: false }
+                    { text: "Konsument i jego potrzeby są głównymi obiektami zainteresowania firmy", isCorrect: false },
+                    { text: "Dobre wyniki sprzedażowe i ekonomiczne firma osiąga utożsamiając swoje sukcesy z korzyściami i zadowoleniem klientów", isCorrect: false },
+                    { text: "Systematyczne badania rynku, w tym jego segmentacja są podstawą podejmowania decyzji", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
                 ]
             },
             {
-                question: "Wybierz informacje nt diety dukana, która należy do diet szczególnie niebezpiecznych:",
+                question: "Prowadząc działalność nierejestrowaną musisz",
                 options: [
-                    { text: "należy znacznie zwiększyć spożycie tłuszczów z równoczesnym ograniczeniem (wykluczeniem) produktów białkowych i węglowodanowych", isCorrect: false },
-                    { text: "należy znacznie zwiększyć spożycie białek z równoczesnym ograniczeniem (wykluczeniem) produktów węglowodanowych i tłuszczów", isCorrect: true },
-                    { text: "należy znacznie zwiększyć spożycie węglowodanów z równoczesnym ograniczeniem (wykluczeniem) produktów białkowych i tłuszczowych", isCorrect: false }
+                    { text: "Złożyć wniosek o wpis do CEIDG", isCorrect: false },
+                    { text: "Odprowadzać zaliczki na PIT", isCorrect: false },
+                    { text: "Prowadzić skomplikowaną rachunkowość", isCorrect: false },
+                    { text: "Żadna z powyższych odpowiedzi nie jest poprawna", isCorrect: true }
                 ]
             },
             {
-                question: "Stosowanie niekonwencjonalnej diety odchudzającej może wiązać się z:",
+                question: "Zryczałtowane formy opodatkowania to:",
                 options: [
-                    { text: "wystąpieniem efektu jo-jo (tj. przerostem masy ciała) po zakończeniu kuracji", isCorrect: false },
-                    { text: "wystąpieniem chorób związanych z nieprawidłowym odżywianiem np. niedokrwistość, cukrzyca typu II, miażdżyca, dysfunkcja nerek czy osteoporoza", isCorrect: false },
-                    { text: "poprawieniem stanu skóry, wykluczeniem chorób skórnych", isCorrect: false },
-                    { text: "odpowiedzi a i b są prawidłowe", isCorrect: true },
-                    { text: "wszystkie odp są prawidłowe", isCorrect: false }
+                    { text: "Skala podatkowa i podatek liniowy", isCorrect: false },
+                    { text: "Ryczałt ewidencjonowany i karta podatkowa", isCorrect: true },
+                    { text: "Podatek liniowy i karta podatkowa", isCorrect: false },
+                    { text: "Ryczałt ewidencjonowany i skala podatkowa", isCorrect: false }
                 ]
             },
             {
-                question: "Stosowanie diety wysokotluszkowej np. Kwaśniewskiego lub Atkinsa może wiązać się z:",
+                question: "Autorskie prawa osobiste chronią nieograniczoną w czasie i niepodlegającą zrzeczeniu się lub zbyciu więź twórcy z utworem. W szczególności twórca ma prawo do:",
                 options: [
-                    { text: "wystąpieniem miażdżycy", isCorrect: true },
-                    { text: "poprawą profilu lipidowego krwi", isCorrect: false }, // dodana opcja
-                    { text: "obniżeniem poziomu cholesterolu we krwi", isCorrect: false } // dodana opcja
+                    { text: "Autorstwa utworu", isCorrect: false },
+                    { text: "Oznaczenia utworu swoim nazwiskiem lub pseudonimem albo do udostępniania go anonimowo", isCorrect: false },
+                    { text: "Nienaruszalności treści i formy utworu oraz jego rzetelnego wykorzystania", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
                 ]
             },
             {
-                question: "Stosowanie diet niekonwencjonalnych w których eliminowane są produkty mleczne, może w późniejszym wieku doprowadzić do:",
+                question: "Według Kodeksu Pracy obowiązki pracodawcy wobec pracownika to:",
                 options: [
-                    { text: "osteoporozy", isCorrect: true },
-                    { text: "cukrzycy typu I", isCorrect: false }, // dodana opcja
-                    { text: "nadciśnienia tętniczego", isCorrect: false } // dodana opcja
+                    { text: "Terminowe wypłacanie określonego w umowie wynagrodzenia", isCorrect: false },
+                    { text: "Informowanie pracownika o obowiązkach i organizacji pracy", isCorrect: false },
+                    { text: "Umożliwienie pracownikowi podnoszenie kwalifikacji zawodowych", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
                 ]
             },
             {
-                question: "Podczas stosowania diet eliminacyjnych, w których nie spożywa się mięsa i produktów pochodzenia zwierzęcego np dieta wegańska, konieczna jest suplementacja:",
+                question: "Numery identyfikacyjne PESEL, NIP, paszport, dowód osobisty to:",
                 options: [
-                    { text: "witaminy B12", isCorrect: true },
-                    { text: "witaminy C", isCorrect: false }, // dodana opcja
-                    { text: "witaminy A", isCorrect: false } // dodana opcja
+                    { text: "Dane osobowe", isCorrect: true },
+                    { text: "Dane urzędowe", isCorrect: false },
+                    { text: "Dane zindywidualizowane", isCorrect: false },
+                    { text: "Dane udokumentowane", isCorrect: false }
                 ]
             },
             {
-                question: "Każde prawidłowo zaplanowane śniadanie powinno zawierać:",
+                question: "Przedsiębiorstwo obejmuje:",
                 options: [
-                    { text: "pełnowartościowe białko", isCorrect: false }, // dodana opcja dla 'wszystkie poprawne'
-                    { text: "węglowodany złożone", isCorrect: false }, // dodana opcja
-                    { text: "zdrowe tłuszcze", isCorrect: false }, // dodana opcja
-                    { text: "wszystkie odp są prawidłowe", isCorrect: true }
+                    { text: "Zasoby ludzkie", isCorrect: false },
+                    { text: "Zasoby finansowe", isCorrect: false },
+                    { text: "Strukturę organizacyjną", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
                 ]
             },
             {
-                question: "Źródłem cukrów prostych w diecie, których należy ograniczać, ponieważ są jedynie źródłem łatwo przyswajalnej energii są:",
+                question: "Do podstawowych funkcji przedsiębiorstwa zaliczamy:",
                 options: [
-                    { text: "słodycze i wyroby cukiernicze", isCorrect: false }, // dodana opcja
-                    { text: "słodzone napoje gazowane", isCorrect: false }, // dodana opcja
-                    { text: "białe pieczywo i jasne makarony", isCorrect: false }, // dodana opcja
-                    { text: "wszystkie odp są prawidłowe", isCorrect: true }
+                    { text: "Funkcję organizacyjną", isCorrect: false },
+                    { text: "Funkcję finansową", isCorrect: false },
+                    { text: "Funkcję przedsiębiorczości", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
                 ]
             },
             {
-                question: "Podstawowe zasady układania zdrowego jadłospisu dla osób zdrowych to:",
+                question: "Utworami w rozumieniu prawa autorskiego nie są:",
                 options: [
-                    { text: "regularne spożywanie posiłków", isCorrect: false }, // dodana opcja a
-                    { text: "odpowiednia podaż wody i warzyw", isCorrect: false }, // dodana opcja b
-                    { text: "opieranie diety wyłącznie na suplementach", isCorrect: false }, // dodana opcja c
-                    { text: "odp a i b są poprawne", isCorrect: true }
+                    { text: "Know how", isCorrect: false },
+                    { text: "Procedury z zakresu administracji państwowej", isCorrect: false },
+                    { text: "Odkrycia naukowe", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
                 ]
             },
             {
-                question: "Możemy podejrzewać bulimię gdy osoba:",
+                question: "Najważniejsza ustawa w pakiecie Konstytucja Biznesu to:",
                 options: [
-                    { text: "znacznie traci na wadze z powodu głodówek", isCorrect: false }, // dodana opcja a
-                    { text: "ma epizody niekontrolowanego objadania się", isCorrect: false }, // dodana opcja b
-                    { text: "stosuje zachowania kompensacyjne np. wymioty lub środki przeczyszczające", isCorrect: false }, // dodana opcja c
-                    { text: "odp b i c są poprawne", isCorrect: true }
+                    { text: "Centralna Ewidencja i Informacja o Działalności Gospodarczej", isCorrect: false },
+                    { text: "Ustawa dla małych i średnich przedsiębiorstw", isCorrect: false },
+                    { text: "Prawo przedsiębiorców", isCorrect: true },
+                    { text: "Prawo podatkowe", isCorrect: false }
                 ]
             },
             {
-                question: "Do nieprawidłowych zachowań związanych z jedzeniem należą:",
+                question: "Wynagrodzenie minimalne, prawo do płatnego urlopu, wynagrodzenie chorobowe w czasie choroby, to gwarancje:",
                 options: [
-                    { text: "restrykcje kaloryczne i głodówki", isCorrect: false }, // dodana opcja a
-                    { text: "kompulsywne objadanie się", isCorrect: false }, // dodana opcja b
-                    { text: "picie 2 litrów wody dziennie", isCorrect: false }, // dodana opcja c
-                    { text: "odp a i b są prawidłowe", isCorrect: true }
+                    { text: "Samozatrudnienia", isCorrect: false },
+                    { text: "Umowy zlecenie", isCorrect: false },
+                    { text: "Umowy o pracę", isCorrect: true },
+                    { text: "Umowy o dzieło", isCorrect: false }
+                ]
+            },
+            // Drugi test
+            {
+                question: "Podpunkt zawierający informacje prawidłowo charakteryzujące definicję podatku to:",
+                options: [
+                    { text: "Podatkiem jest publicznoprawne, nieodpłatne, przymusowe oraz bezzwrotne świadczenie pieniężne na rzecz Skarbu Państwa, województwa, powiatu lub gminy, wynikające z ustawy podatkowej", isCorrect: false },
+                    { text: "Podatki są jednym z podstawowych dochodów budżetu, które zapewniają pokrycie wydatków państwa", isCorrect: false },
+                    { text: "Podatki pełnią funkcję stymulacyjną, czyli stymulują gospodarkę do rozwoju", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
                 ]
             },
             {
-                question: "W celu poprawy skóry, włosów i paznokci należy:",
+                question: "Do zalet skali podatkowej należy:",
                 options: [
-                    { text: "unikać niedojrzałych owoców", isCorrect: true },
-                    { text: "zwiększyć podaż cukrów prostych", isCorrect: false }, // dodana opcja
-                    { text: "wyeliminować całkowicie tłuszcze z diety", isCorrect: false } // dodana opcja
+                    { text: "Prawo do wspólnego rozliczania z małżonkiem", isCorrect: true },
+                    { text: "Obowiązek prowadzenia Podatkowej Księgi Przychodów i Rozchodów", isCorrect: false },
+                    { text: "Więcej formalności związanej z dokumentacją firmową", isCorrect: false },
+                    { text: "Żadna z powyższych odpowiedzi nie jest poprawna", isCorrect: false }
                 ]
             },
             {
-                question: "Wykluczenie z jadłospisu przetworów zbożowych (pieczywo pełnoziarniste i razowe, niełuskany ryż, gruboziarniste kasze czy brązowe makarony) może się wiązać ze zmianami dermatologicznymi które w tym przypadku mogą być konsekwencją:",
+                question: "Do wad podatku liniowego zaliczyć możemy:",
                 options: [
-                    { text: "niedoboru witamin z grupy B", isCorrect: true },
-                    { text: "nadmiaru witaminy C", isCorrect: false }, // dodana opcja
-                    { text: "przebiałkowania organizmu", isCorrect: false } // dodana opcja
+                    { text: "Jedną stawkę podatku, bez względu na wysokość osiągniętego dochodu", isCorrect: false },
+                    { text: "Możliwość odliczenia od przychodu poniesionych kosztów podatkowych", isCorrect: false },
+                    { text: "Brak kwoty wolnej od podatku", isCorrect: true },
+                    { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: false }
                 ]
             },
             {
-                question: "Do składników polecanych osobom, które chcą poprawić wygląd włosów i paznokci należą:",
+                question: "Jedna stawka podatku wynosząca niezmiennie 19% bez względu na wysokość osiągniętego dochodu dotyczy:",
                 options: [
-                    { text: "krzem", isCorrect: false },
-                    { text: "witaminy z grupy b", isCorrect: false },
-                    { text: "sód", isCorrect: false },
-                    { text: "odpowiedzi a i b są prawidłowe", isCorrect: true },
-                    { text: "wszystkie odp są prawidłowe", isCorrect: false }
+                    { text: "Skali podatkowej", isCorrect: false },
+                    { text: "Podatku liniowego", isCorrect: true },
+                    { text: "Ryczałtu ewidencjonowanego", isCorrect: false },
+                    { text: "Karty podatkowej", isCorrect: false }
                 ]
             },
             {
-                question: "Jakich dodatkowych informacji należy udzielić osobie, której sugeruje się zakup suplementu diety:",
+                question: "Według prawa autorskiego utworami nie są:",
                 options: [
-                    { text: "suplement diety może zastąpić prawidłowo zbilansowaną dietę", isCorrect: false },
-                    { text: "suplement diety najlepiej kupić w aptece", isCorrect: false },
-                    { text: "należy kupić kilka suplementów diety o tym samym działaniu, żeby zwiększyć szansę na wystąpienie pożądanego efektu", isCorrect: false },
-                    { text: "odpowiedzi a i b są prawidłowe", isCorrect: true },
-                    { text: "wszystkie odp są prawidłowe", isCorrect: false }
+                    { text: "Odkrycia", isCorrect: false },
+                    { text: "Idee", isCorrect: false },
+                    { text: "Procedury", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
                 ]
             },
             {
-                question: "Kobieta spożywa śniadanie o godzinie 5.00, II śniadanie o godzinie 13.00, obiad o godz. 15.00 i kolację o godz. 19.00. Codziennie stara się spożywać różnorodne produkty spożywcze z każdej grupy produktów. Czy można uznać, że kobieta odżywia się prawidłowo:",
+                question: "Zgodnie z ustawą „O prawie autorskim” ochronie prawem autorskim podlegają:",
                 options: [
-                    { text: "Tak", isCorrect: false },
-                    { text: "Nie", isCorrect: true }
+                    { text: "Akty normatywne lub ich urzędowe projekty", isCorrect: false },
+                    { text: "Urzędowe dokumenty, materiały, znaki i symbole", isCorrect: false },
+                    { text: "Proste informacje prasowe", isCorrect: false },
+                    { text: "Żadna odpowiedź nie jest poprawna", isCorrect: true }
                 ]
             },
             {
-                question: "Nadmiar białka w diecie wiąże się ze zwiększonym ryzykiem:",
+                question: "Przepisy o utworach pracowniczych dotyczą:",
                 options: [
-                    { text: "wystąpienia osteoporozy", isCorrect: false },
-                    { text: "wystąpienia ostrego zapalenia trzustki", isCorrect: false },
-                    { text: "rozwojem dny moczanowej", isCorrect: false },
-                    { text: "odpowiedzi a i c są prawidłowe", isCorrect: true },
-                    { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+                    { text: "Zleceniobiorców", isCorrect: false },
+                    { text: "Wykonawców dzieła na podstawie umowy o dzieło", isCorrect: false },
+                    { text: "Pracowników zatrudnionych na podstawie umowy o pracę", isCorrect: true },
+                    { text: "Samozatrudnionych", isCorrect: false }
                 ]
             },
             {
-                question: "Prawidłowo zaplanowana racja pokarmowa powinna zawierać:",
+                question: "Zatrudnienie pracownika na podstawie umowy o pracę wiąże się z gwarancjami takimi jak:",
                 options: [
-                    { text: "20-35% CPM z tłuszczu", isCorrect: true },
-                    { text: "15-20% CPM z białka", isCorrect: false },
-                    { text: "70-80% CPM z węglowodanów", isCorrect: false },
-                    { text: "odpowiedzi a i b są prawidłowe", isCorrect: false },
-                    { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+                    { text: "Wynagrodzenie minimalne", isCorrect: false },
+                    { text: "Prawo do płatnego urlopu", isCorrect: false },
+                    { text: "Wynagrodzenie chorobowe w czasie choroby", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
                 ]
             },
             {
-                question: "Dieta śródziemnomorska bazuje na spożyciu:",
+                question: "Umowy cywilnoprawne regulowane przez Kodeks Cywilny to:",
                 options: [
-                    { text: "dużej ilości warzyw i owoców,", isCorrect: false },
-                    { text: "kasz, makaronów i pieczywa pełnoziarnistego", isCorrect: false },
-                    { text: "tłustych ryb", isCorrect: false },
-                    { text: "odpowiedzi A i B są prawidłowe", isCorrect: false },
-                    { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+                    { text: "Umowa zlecenie", isCorrect: false },
+                    { text: "Umowa o dzieło", isCorrect: false },
+                    { text: "Umowa agencyjna", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
                 ]
             },
             {
-                question: "Odpowiednie spożycie włókna pokarmowego w diecie jest bardzo ważne, ponieważ:",
+                question: "Funkcja redystrybucyjna i alokacyjna cen polega na:",
                 options: [
-                    { text: "usuwa zaparcia i zapewnia regularną przemianę materii", isCorrect: false },
-                    { text: "obniża poziom cholesterolu i stabilizuje poziom glukozy we krwi", isCorrect: false },
-                    { text: "daje uczucie sytości", isCorrect: false },
-                    { text: "odpowiedzi A i B są prawidłowe", isCorrect: false },
-                    { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+                    { text: "Dostarczaniu danych wyrażonych za pomocą jednostek pieniężnych potrzebnych do prowadzenia rachunku ekonomicznego", isCorrect: false },
+                    { text: "Podziale dochodów pomiędzy uczestnikami rynku", isCorrect: true },
+                    { text: "Motywowaniu uczestników rynku do określonego działania", isCorrect: false },
+                    { text: "Żadna odpowiedź nie jest poprawna", isCorrect: false }
                 ]
             },
             {
-                question: "W profilaktyce i leczeniu miażdżycy należy ograniczać produkty będące źródłem:",
+                question: "Do czynników kształtujących podaż zaliczyć możemy:",
                 options: [
-                    { text: "nasyconych kwasów tłuszczowych i tłuszczów trans", isCorrect: false },
-                    { text: "cukrów prostych", isCorrect: false },
-                    { text: "sodu", isCorrect: false },
-                    { text: "odpowiedzi A i C są poprawne", isCorrect: false },
-                    { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+                    { text: "Ceny dóbr substytucyjnych", isCorrect: false },
+                    { text: "Ceny dóbr komplementarnych", isCorrect: false },
+                    { text: "Technologie", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
                 ]
             },
             {
-                question: "Ocena ilościowa jadłospisu polega na :",
+                question: "Składnikami majątku firmy w przedsiębiorstwach usługowych są:",
                 options: [
-                    { text: "rodzajach produktów spożywczych", isCorrect: false },
-                    { text: "liczbie posiłków w ciągu dnia i przerw między nimi", isCorrect: false },
-                    { text: "obliczeniu ilości spożytych z żywnością składników pokarmowych", isCorrect: false },
-                    { text: "odpowiedzi A i B są prawidłowe", isCorrect: false },
-                    { text: "wszystkie odpowiedzi są poprawne", isCorrect: true } // Zgodnie z formatem pliku źródłowego
+                    { text: "Kapitał ludzki", isCorrect: false },
+                    { text: "Środki obrotowe", isCorrect: false },
+                    { text: "Środki trwałe", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
                 ]
             },
             {
-                question: "Do powikłań Anorexia Nervosa należą:",
+                question: "Do bezpośredniego otoczenia przedsiębiorstwa zalicza się:",
                 options: [
-                    { text: "trwałe zmiany ograniczone w OUN", isCorrect: false },
-                    { text: "niepłodność i inne dysfunkcje hormonalne", isCorrect: false },
-                    { text: "łysienie plackowate i atopowe zapalenie skóry", isCorrect: false },
-                    { text: "odpowiedzi A i B są prawidłowe", isCorrect: false },
-                    { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+                    { text: "Organizacje i instytucje rynku zaopatrzenia", isCorrect: true },
+                    { text: "Instytucje polityczno-prawne", isCorrect: false },
+                    { text: "Instytucje ekologiczne", isCorrect: false },
+                    { text: "Instytucje międzynarodowe", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do pośredniego otoczenia przedsiębiorstwa zalicza się:",
+                options: [
+                    { text: "Organizacje i instytucje rynku zaopatrzenia", isCorrect: false },
+                    { text: "Instytucje rynku pracy", isCorrect: false },
+                    { text: "Instytucje polityczno-prawne", isCorrect: true },
+                    { text: "Instytucje i organizacje rynku finansowego", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do form organizacyjno-prawnych przedsiębiorstw należy:",
+                options: [
+                    { text: "Jednoosobowa działalność gospodarcza", isCorrect: false },
+                    { text: "Spółka jawna", isCorrect: false },
+                    { text: "Spółka akcyjna", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+                ]
+            },
+            {
+                question: "Biorąc pod uwagę formy organizacyjno-prawne przedsiębiorstw, osoba fizyczna może prowadzić:",
+                options: [
+                    { text: "Spółkę jawną", isCorrect: false },
+                    { text: "Spółkę akcyjną", isCorrect: false },
+                    { text: "Jednoosobową, samodzielną działalność gospodarczą", isCorrect: true },
+                    { text: "Spółdzielnię", isCorrect: false }
+                ]
+            },
+            {
+                question: "Jednostka organizacyjna niebędąca osobą prawną, której odrębna ustawa przyznaje zdolność prawną to:",
+                options: [
+                    { text: "Osoba fizyczna", isCorrect: false },
+                    { text: "Ułomna osoba prawna", isCorrect: true },
+                    { text: "Żadna odpowiedź nie jest poprawna", isCorrect: false },
+                    { text: "Odpowiedź a i b są poprawne", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do osobowych spółek handlowych zalicza się:",
+                options: [
+                    { text: "Spółkę jawną", isCorrect: false },
+                    { text: "Spółkę komantydową", isCorrect: false },
+                    { text: "Spółkę komandytowo-akcyjną", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+                ]
+            },
+            {
+                question: "Do zalet jednoosobowej działalności gospodarczej należy:",
+                options: [
+                    { text: "Elastyczność w otwieraniu, zawieszaniu i likwidacji działalności", isCorrect: true },
+                    { text: "Odpowiedzialność całym majątkiem za zobowiązania", isCorrect: false },
+                    { text: "Obowiązek odprowadzania składek na ubezpieczenia do ZUS", isCorrect: false },
+                    { text: "Konieczność podstawowej znajomości przepisów związanych z opodatkowaniem", isCorrect: false }
+                ]
+            },
+            {
+                question: "Wniosek CEIDG-1 możemy złożyć:",
+                options: [
+                    { text: "Osobiście w urzędzie miasta lub gminy", isCorrect: false },
+                    { text: "Listem poleconym (poświadczonym notarialnie)", isCorrect: false },
+                    { text: "Elektronicznie z użyciem bezpiecznego podpisu kwalifikowanego", isCorrect: false },
+                    { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
                 ]
             }
         ];

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - 6</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #121212; /* Ciemne tło */
+            color: #e0e0e0; /* Jasny tekst */
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            margin: 20px auto;
+            border: 1px solid #333;
+        }
+        h1 {
+            color: #f48fb1; /* Różowy odcień pasujący do estetyki */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        /* --- SEKCJA STATYSTYK --- */
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+            font-size: 1.1em;
+        }
+        .status-bar {
+            color: #aaa;
+        }
+        .live-score {
+            font-weight: bold;
+            color: #4caf50; /* Zielony kolor dla wyniku */
+        }
+        
+        .question-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        .question-section p {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #ffffff;
+        }
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+        }
+        .options label:hover {
+            background-color: #383838;
+            border-color: #555;
+        }
+        .options input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: #f48fb1;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .button-group button {
+            padding: 12px 30px;
+            margin: 0 10px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.3s;
+            font-weight: bold;
+        }
+        .button-group button:active {
+            transform: scale(0.98);
+        }
+        #check-button {
+            background-color: #c2185b;
+            color: white;
+        }
+        #check-button:hover {
+            background-color: #ad1457;
+        }
+        #next-button {
+            background-color: #2e7d32;
+            color: white;
+            display: none;
+        }
+        #next-button:hover {
+            background-color: #1b5e20;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2em;
+            display: none;
+        }
+        .correct-msg {
+            background-color: #1b5e20;
+            color: #ffffff;
+            border: 1px solid #2e7d32;
+        }
+        .incorrect-msg {
+            background-color: #b71c1c;
+            color: #ffffff;
+            border: 1px solid #c62828;
+        }
+        .final-score {
+            font-size: 1.5em;
+            color: #f48fb1;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test Wiedzy: Egzamin 6</h1>
+        
+        <div class="stats-container">
+            <div id="status-bar" class="status-bar">Ładowanie...</div>
+            <div id="live-score" class="live-score">Wynik: 0/0 (0%)</div>
+        </div>
+        
+        <div class="question-section">
+            <p id="question"></p>
+            <div class="options" id="options">
+                </div>
+        </div>
+
+        <div class="button-group">
+            <button id="check-button">Sprawdź</button>
+            <button id="next-button">Następne pytanie</button>
+            <button id="restart-button" style="display: none; background-color: #ff9800; color: white;">Rozpocznij od nowa</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+        
+        const rawQuestions = [
+    {
+        question: "Wskaż cechy charakterystyczne dla kultury organizacyjnej:",
+        options: [
+            { text: "zbiór wartości, norm i zasad obowiązujących w firmie", isCorrect: true },
+            { text: "wyłącznie wystrój wnętrza biura", isCorrect: false },
+            { text: "rodzaj używanych maszyn", isCorrect: false },
+            { text: "tylko lokalizacja firmy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Co jest celem działań public relations (PR)?",
+        options: [
+            { text: "bezpośrednia sprzedaż produktów", isCorrect: false },
+            { text: "budowanie pozytywnego wizerunku firmy w otoczeniu", isCorrect: true },
+            { text: "wyłącznie księgowanie faktur", isCorrect: false },
+            { text: "zastąpienie działu kadr", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do jakich działań zaliczamy delegowanie uprawnień w zarządzaniu?",
+        options: [
+            { text: "przekazania części zadań i odpowiedzialności pracownikom", isCorrect: true },
+            { text: "pracy w całkowitej izolacji od zespołu", isCorrect: false },
+            { text: "braku kontroli nad wykonanymi zadaniami", isCorrect: false },
+            { text: "podejmowania wszystkich decyzji samodzielnie", isCorrect: false }
+        ]
+    },
+    {
+        question: "Czym jest autoprezentacja w środowisku pracy?",
+        options: [
+            { text: "sposobem prowadzenia księgowości", isCorrect: false },
+            { text: "procesem zarządzania wrażeniem, jakie wywieramy na innych", isCorrect: true },
+            { text: "jedynie pisaniem CV", isCorrect: false },
+            { text: "ocenianiem współpracowników", isCorrect: false }
+        ]
+    },
+    {
+        question: "Co wchodzi w skład komunikacji niewerbalnej?",
+        options: [
+            { text: "słowa i gramatyka", isCorrect: false },
+            { text: "gesty, mimika, postawa ciała, kontakt wzrokowy", isCorrect: true },
+            { text: "tylko ton głosu", isCorrect: false },
+            { text: "tylko raporty pisemne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Jakie są cechy stylu kierowania autokratycznego?",
+        options: [
+            { text: "decyzje podejmuje kierownik bez udziału zespołu", isCorrect: true },
+            { text: "kierownik angażuje zespół w każdą decyzję", isCorrect: false },
+            { text: "brak jakiegokolwiek kierowania zespołem", isCorrect: false },
+            { text: "duża swoboda i samodzielność pracowników", isCorrect: false }
+        ]
+    },
+    {
+        question: "Na czym polega motywacja wewnętrzna?",
+        options: [
+            { text: "na działaniu dla samej przyjemności wykonywania zadania", isCorrect: true },
+            { text: "na pracy tylko dla pieniędzy", isCorrect: false },
+            { text: "na pracy pod groźbą kary", isCorrect: false },
+            { text: "na pracy wywołanej tylko pochwałą szefa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Czym charakteryzuje się asertywność?",
+        options: [
+            { text: "uleganiem zdaniu innych osób", isCorrect: false },
+            { text: "wyrażaniem własnego zdania przy poszanowaniu innych", isCorrect: true },
+            { text: "agresywnym atakowaniem współpracowników", isCorrect: false },
+            { text: "brakiem wyrażania własnych potrzeb", isCorrect: false }
+        ]
+    },
+    {
+        question: "Co oznacza skrót SWOT w analizie strategicznej?",
+        options: [
+            { text: "Mocne i słabe strony, szanse i zagrożenia", isCorrect: true },
+            { text: "Sprzedaż, Wyniki, Obroty, Towary", isCorrect: false },
+            { text: "Strategię, Wzrost, Obserwację, Tabelę", isCorrect: false },
+            { text: "System, Wynik, Organizację, Technologię", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż prawidłową zasadę prowadzenia negocjacji:",
+        options: [
+            { text: "dążenie do rozwiązania typu 'wygrana-wygrana'", isCorrect: true },
+            { text: "wykorzystywanie słabości partnera", isCorrect: false },
+            { text: "całkowite niesłuchanie argumentów drugiej strony", isCorrect: false },
+            { text: "kończenie rozmowy w agresywny sposób", isCorrect: false }
+        ]
+    },
+    {
+        question: "Co oznacza pojęcie 'stres' w kontekście psychologii pracy?",
+        options: [
+            { text: "stan pełnego relaksu", isCorrect: false },
+            { text: "reakcję organizmu na nadmierne wymagania lub presję", isCorrect: true },
+            { text: "zbyt dużą ilość czasu wolnego", isCorrect: false },
+            { text: "brak jakichkolwiek zadań", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do jakich celów służy analiza SWOT?",
+        options: [
+            { text: "do planowania strategii firmy w oparciu o czynniki wewnętrzne i zewnętrzne", isCorrect: true },
+            { text: "tylko do liczenia zysków", isCorrect: false },
+            { text: "do rekrutacji nowych pracowników", isCorrect: false },
+            { text: "do naprawy sprzętu w gabinecie", isCorrect: false }
+        ]
+    },
+    {
+        question: "Co może być sygnałem ostrzegawczym w zespole?",
+        options: [
+            { text: "nadmierna rotacja pracowników i częste konflikty", isCorrect: true },
+            { text: "wysoka satysfakcja z pracy", isCorrect: false },
+            { text: "punktualność pracowników", isCorrect: false },
+            { text: "dobra komunikacja", isCorrect: false }
+        ]
+    },
+    {
+        question: "Na czym polega rekrutacja zewnętrzna?",
+        options: [
+            { text: "na pozyskiwaniu pracowników spoza organizacji", isCorrect: true },
+            { text: "na awansowaniu obecnych pracowników", isCorrect: false },
+            { text: "na przenoszeniu pracowników między oddziałami", isCorrect: false },
+            { text: "na zwalnianiu pracowników", isCorrect: false }
+        ]
+    },
+    {
+        question: "Co to jest kultura organizacyjna?",
+        options: [
+            { text: "wystrój wnętrza firmy", isCorrect: false },
+            { text: "zbiór niepisanych zasad, norm i wartości panujących w firmie", isCorrect: true },
+            { text: "tylko logo firmy", isCorrect: false },
+            { text: "godziny pracy biura", isCorrect: false }
+        ]
+    }
+];
+
+        // Zmienne stanu
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let shuffleNeeded = false; // To change if you want to shuffle the questions
+
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const checkButton = document.getElementById('check-button');
+        const nextButton = document.getElementById('next-button');
+        const restartButton = document.getElementById('restart-button');
+        const resultElement = document.getElementById('result');
+        const statusBar = document.getElementById('status-bar');
+        const liveScoreElement = document.getElementById('live-score');
+
+        function initTest() {
+            // Resetujemy stan
+            questions = shuffleArray([...rawQuestions]); // Tasujemy pytania
+            currentQuestionIndex = 0;
+            score = 0;
+            
+            // Resetujemy widok
+            checkButton.style.display = 'inline-block';
+            nextButton.style.display = 'none';
+            restartButton.style.display = 'none';
+            resultElement.style.display = 'none';
+            liveScoreElement.textContent = "Wynik: 0/0 (0%)";
+            
+            loadNewQuestion();
+        }
+
+        function loadNewQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                showFinalResult();
+                return;
+            }
+
+            const currentQuestion = questions[currentQuestionIndex];
+            statusBar.textContent = `Pytanie ${currentQuestionIndex + 1} z ${questions.length}`;
+            questionElement.textContent = currentQuestion.question;
+            optionsElement.innerHTML = '';
+            resultElement.style.display = 'none';
+            resultElement.className = '';
+
+            if (shuffleNeeded) {
+                currentQuestion.options = shuffleArray([...currentQuestion.options]);
+            }
+            else {
+                currentQuestion.options = [...currentQuestion.options];
+            }
+
+            currentQuestion.options.forEach((option, index) => {
+                const label = document.createElement('label');
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'answer';
+                radio.value = option.isCorrect ? 'correct' : 'incorrect';
+                
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(option.text));
+                optionsElement.appendChild(label);
+            });
+
+            checkButton.style.display = 'inline-block';
+            nextButton.style.display = 'none';
+        }
+
+        function checkAnswer() {
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+
+            if (!selectedOption) {
+                alert("Proszę zaznaczyć odpowiedź!");
+                return;
+            }
+
+            const isCorrect = selectedOption.value === 'correct';
+            const allRadios = optionsElement.querySelectorAll('input[type="radio"]');
+
+            if (isCorrect) {
+                score++;
+            }
+
+            // Aktualizacja wyniku na bieżąco
+            const questionsAnswered = currentQuestionIndex + 1;
+            const percentage = Math.round((score / questionsAnswered) * 100);
+            liveScoreElement.textContent = `Wynik: ${score}/${questionsAnswered} (${percentage}%)`;
+
+            allRadios.forEach(radio => {
+                const parentLabel = radio.parentElement;
+                radio.disabled = true;
+                
+                if (radio.value === 'correct') {
+                    parentLabel.style.backgroundColor = '#1b5e20';
+                    parentLabel.style.borderColor = '#2e7d32';
+                    parentLabel.style.color = '#ffffff'; 
+                } else if (radio.checked && radio.value === 'incorrect') {
+                    parentLabel.style.backgroundColor = '#b71c1c';
+                    parentLabel.style.borderColor = '#c62828';
+                    parentLabel.style.color = '#ffffff'; 
+                }
+            });
+
+            resultElement.style.display = 'block';
+            if (isCorrect) {
+                resultElement.textContent = "Poprawna odpowiedź!";
+                resultElement.className = 'correct-msg';
+            } else {
+                resultElement.textContent = "Niepoprawna odpowiedź.";
+                resultElement.className = 'incorrect-msg';
+            }
+
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'inline-block';
+        }
+
+        function showFinalResult() {
+            questionElement.textContent = "Koniec testu!";
+            optionsElement.innerHTML = `<div class="final-score">Twój wynik końcowy: ${score} na ${questions.length} punktów.</div>`;
+            
+            const percentage = Math.round((score / questions.length) * 100);
+            optionsElement.innerHTML += `<p>Skuteczność: ${percentage}%</p>`;
+
+            if (percentage >= 80) {
+                optionsElement.innerHTML += `<p style="color: #4caf50; font-weight: bold;">Świetny wynik! Gratulacje.</p>`;
+            } else if (percentage >= 50) {
+                optionsElement.innerHTML += `<p style="color: #ff9800; font-weight: bold;">Nieźle, ale warto powtórzyć materiał.</p>`;
+            } else {
+                optionsElement.innerHTML += `<p style="color: #f44336; font-weight: bold;">Musisz jeszcze poćwiczyć.</p>`;
+            }
+
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'none';
+            resultElement.textContent = '';
+            statusBar.textContent = '';
+            liveScoreElement.textContent = ''; // Czyścimy pasek live score na końcu
+            
+            restartButton.style.display = 'inline-block';
+        }
+
+        checkButton.addEventListener('click', checkAnswer);
+        nextButton.addEventListener('click', () => {
+            currentQuestionIndex++;
+            loadNewQuestion();
+        });
+        restartButton.addEventListener('click', initTest);
+
+        document.addEventListener('DOMContentLoaded', initTest);
+    </script>
+</body>
+</html>

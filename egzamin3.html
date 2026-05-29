@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - egzamin pani S</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #121212; /* Ciemne tło */
+            color: #e0e0e0; /* Jasny tekst */
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            margin: 20px auto;
+            border: 1px solid #333;
+        }
+        h1 {
+            color: #f48fb1; /* Różowy odcień pasujący do estetyki */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        /* --- SEKCJA STATYSTYK --- */
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+            font-size: 1.1em;
+        }
+        .status-bar {
+            color: #aaa;
+        }
+        .live-score {
+            font-weight: bold;
+            color: #4caf50; /* Zielony kolor dla wyniku */
+        }
+        
+        .question-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        .question-section p {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #ffffff;
+        }
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+        }
+        .options label:hover {
+            background-color: #383838;
+            border-color: #555;
+        }
+        .options input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: #f48fb1;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .button-group button {
+            padding: 12px 30px;
+            margin: 0 10px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.3s;
+            font-weight: bold;
+        }
+        .button-group button:active {
+            transform: scale(0.98);
+        }
+        #check-button {
+            background-color: #c2185b;
+            color: white;
+        }
+        #check-button:hover {
+            background-color: #ad1457;
+        }
+        #next-button {
+            background-color: #2e7d32;
+            color: white;
+            display: none;
+        }
+        #next-button:hover {
+            background-color: #1b5e20;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2em;
+            display: none;
+        }
+        .correct-msg {
+            background-color: #1b5e20;
+            color: #ffffff;
+            border: 1px solid #2e7d32;
+        }
+        .incorrect-msg {
+            background-color: #b71c1c;
+            color: #ffffff;
+            border: 1px solid #c62828;
+        }
+        .final-score {
+            font-size: 1.5em;
+            color: #f48fb1;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test Wiedzy: egzamin pani S</h1>
+        
+        <div class="stats-container">
+            <div id="status-bar" class="status-bar">Ładowanie...</div>
+            <div id="live-score" class="live-score">Wynik: 0/0 (0%)</div>
+        </div>
+        
+        <div class="question-section">
+            <p id="question"></p>
+            <div class="options" id="options">
+                </div>
+        </div>
+
+        <div class="button-group">
+            <button id="check-button">Sprawdź</button>
+            <button id="next-button">Następne pytanie</button>
+            <button id="restart-button" style="display: none; background-color: #ff9800; color: white;">Rozpocznij od nowa</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+const rawQuestions = [
+            {
+                question: "Przedstawicielem BHA jest:",
+                options: [
+                    { text: "kwas glikolowy", isCorrect: false },
+                    { text: "kwas pirogronowy", isCorrect: false },
+                    { text: "kwas salicylowy", isCorrect: true },
+                    { text: "kwas mlekowy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Warstwa rogowa i ziarnista zaliczają się do:",
+                options: [
+                    { text: "warstwy żywej naskórka", isCorrect: false },
+                    { text: "warstwy Malpighiego", isCorrect: false },
+                    { text: "odpowiedzi A i B są prawidłowe", isCorrect: false },
+                    { text: "brak prawidłowej odpowiedzi", isCorrect: true }
+                ]
+            },
+            {
+                question: "Do zabiegu peelingu kawitacyjnego nie zastosujemy:",
+                options: [
+                    { text: "toniku nawilżającego", isCorrect: false },
+                    { text: "wody destylowanej", isCorrect: false },
+                    { text: "wody przegotowanej", isCorrect: false },
+                    { text: "wszystkie powyższe preparaty możemy użyć do zabiegu", isCorrect: true }
+                ]
+            },
+            {
+                question: "Pielęgnacja gabinetowa dla cery naczyniowej oraz trądziku różowatego obejmuje:",
+                options: [
+                    { text: "zabiegi uszczelniające ściany naczyń krwionośnych", isCorrect: false },
+                    { text: "zabiegi nawilżające", isCorrect: false },
+                    { text: "zabiegi łagodzące", isCorrect: false },
+                    { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+                ]
+            },
+            {
+                question: "Melanocyty znajdują się w:",
+                options: [
+                    { text: "warstwie kolczystej naskórka", isCorrect: false },
+                    { text: "warstwie jasnej naskórka", isCorrect: false },
+                    { text: "skórze właściwej", isCorrect: false },
+                    { text: "warstwie podstawnej naskórka", isCorrect: true }
+                ]
+            },
+            {
+                question: "Kolejne warstwy naskórka licząc od wierzchniej warstwy to:",
+                options: [
+                    { text: "rogowa, kolczysta, jasna, ziarnista, podstawna", isCorrect: false },
+                    { text: "rogowa, jasna, ziarnista, kolczysta, podstawna", isCorrect: true },
+                    { text: "rogowa, kolczysta, jasna, ziarnista, podstawna,", isCorrect: false },
+                    { text: "rogowa, jasna, kolczysta, ziarnista, podstawna", isCorrect: false }
+                ]
+            },
+            {
+                question: "Które stwierdzenie dotyczące zabiegu elektroporacji jest nieprawdziwe:",
+                options: [
+                    { text: "jest to jedna z metod zwiększania transportu przez naskórkowego", isCorrect: false },
+                    { text: "występuje zjawisko wytwarzania elektroporów, które stanowią dodatkową drogę transportu cząsteczek", isCorrect: false },
+                    { text: "powstałe elektropory utrzymują się przez okres nawet do 48h po zakończeniu zabiegu", isCorrect: true },
+                    { text: "wszystkie powyższe stwierdzenia są prawdziwe", isCorrect: false }
+                ]
+            },
+            {
+                question: "Przeciwskazaniem do zabiegu mikrodermabrazji są:",
+                options: [
+                    { text: "przebarwienia pozapalne", isCorrect: false },
+                    { text: "przebarwienia słoneczne", isCorrect: false },
+                    { text: "trądzik zapalny", isCorrect: true },
+                    { text: "blizny po trądzikowe", isCorrect: false }
+                ]
+            },
+            {
+                question: "Głębokie złuszczanie skóry można uzyskać poprzez zastosowanie:",
+                options: [
+                    { text: "70% kwasu glikolowego", isCorrect: true },
+                    { text: "brushingu", isCorrect: false },
+                    { text: "mikrodermabrazji", isCorrect: false },
+                    { text: "peelingu kawitacyjnego", isCorrect: false }
+                ]
+            },
+            {
+                question: "Zabiegi wykorzystujące działanie prądu stałego to:",
+                options: [
+                    { text: "jonoforeza i sonoforeza", isCorrect: false },
+                    { text: "darsonwalizacja i peeling kawitacyjny", isCorrect: false },
+                    { text: "peeling kawitacyjny i sonoforeza", isCorrect: false },
+                    { text: "jonoforeza i galwanizacja", isCorrect: true }
+                ]
+            },
+            {
+                question: "Do zabiegu jonoforezy u osób z problemami skóry naczyniowej używamy:",
+                options: [
+                    { text: "chlorek wapnia, elektroda czynna anoda", isCorrect: true },
+                    { text: "kwas askorbinowy, elektroda czynna anoda", isCorrect: false },
+                    { text: "jodek potasu, elektroda czynna katoda", isCorrect: false },
+                    { text: "odpowiedzi A i B są prawidłowe", isCorrect: false }
+                ]
+            },
+            {
+                question: "Peeling kawitacyjny należy do peelingów:",
+                options: [
+                    { text: "mechanicznych", isCorrect: false },
+                    { text: "enzymatycznych", isCorrect: false },
+                    { text: "chemicznych", isCorrect: false },
+                    { text: "fizycznych", isCorrect: true }
+                ]
+            },
+            {
+                question: "Który z poniższych kwasów nie jest wykorzystywany w zabiegach złuszczania:",
+                options: [
+                    { text: "mlekowy", isCorrect: false },
+                    { text: "pirogronowy", isCorrect: false },
+                    { text: "arachidowy", isCorrect: true },
+                    { text: "azelainowy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Zabieg złuszczania naskórka z wykorzystaniem ultradźwięków to:",
+                options: [
+                    { text: "peeling azjatycki", isCorrect: false },
+                    { text: "zabieg RF", isCorrect: false },
+                    { text: "kawitacja", isCorrect: true },
+                    { text: "oxybrazja", isCorrect: false }
+                ]
+            },
+            {
+                question: "Przeciwskazaniem do zabiegu złuszczania naskórka przy użyciu peelingów chemicznych jest jednoczesne stosowanie pochodnych witaminy:",
+                options: [
+                    { text: "C", isCorrect: false },
+                    { text: "A", isCorrect: true },
+                    { text: "K", isCorrect: false },
+                    { text: "B", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do metod aparaturowych zwiększania przenikania substancji aktywnych zawartych w kosmetykach stosowanych w kosmetologii nie należy:",
+                options: [
+                    { text: "jonoforeza", isCorrect: false },
+                    { text: "masaż", isCorrect: true },
+                    { text: "sonoforeza", isCorrect: false },
+                    { text: "wszystkie powyższe metody należą", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do zabiegu mikrodermabrazji nie stosuje się:",
+                options: [
+                    { text: "korundu", isCorrect: false },
+                    { text: "tlenku glinu", isCorrect: false },
+                    { text: "pierścieni diamentowych", isCorrect: false },
+                    { text: "wszystkie powyższe się stosuje", isCorrect: true }
+                ]
+            },
+            {
+                question: "W jakiej kolejności stosuje się poszczególne techniki podczas masażu klasycznego twarzy:",
+                options: [
+                    { text: "rozcieranie, głaskanie, ugniatanie, oklepywanie, wibracja", isCorrect: false },
+                    { text: "głaskanie, rozcieranie, ugniatanie, oklepywanie, wibracja", isCorrect: true },
+                    { text: "głaskanie, rozcieranie, ugniatanie, wibracja, oklepywanie", isCorrect: false },
+                    { text: "głaskanie, rozcieranie, oklepywanie, ugniatanie, wibracja", isCorrect: false }
+                ]
+            },
+            {
+                question: "W zabiegach z użyciem ultradźwięków dawki średnie mają wartość:",
+                options: [
+                    { text: "0,05 do 0,5 kW/cm2", isCorrect: false },
+                    { text: "0,05 do 0,5 W/cm2", isCorrect: false },
+                    { text: "0,05 do 1,5 kW/cm2", isCorrect: false },
+                    { text: "0,05 do 1,5 W/cm2", isCorrect: true }
+                ]
+            },
+            {
+                question: "Podczas wykonywania zabiegu sonoforezy niezbędne jest:",
+                options: [
+                    { text: "zwilżenie skóry wodą", isCorrect: false },
+                    { text: "zastosowanie sono-żelu", isCorrect: true },
+                    { text: "użycie kremu do masażu", isCorrect: false },
+                    { text: "zastosowanie gazy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do peelingów mechanicznych zaliczamy:",
+                options: [
+                    { text: "mikrodermabrazja i brushing", isCorrect: true },
+                    { text: "mikrodermabrazja i peeling kawitacyjny", isCorrect: false },
+                    { text: "brushing i peeling kawitacyjny", isCorrect: false },
+                    { text: "scrub i peeling kawitacyjny", isCorrect: false }
+                ]
+            },
+            {
+                question: "Przed wykonaniem peelingu chemicznego nie trzeba:",
+                options: [
+                    { text: "przeprowadzać dokładnego wywiadu", isCorrect: false },
+                    { text: "wykluczać przeciwskazań", isCorrect: false },
+                    { text: "ustalać oczekiwań Klienta", isCorrect: false },
+                    { text: "wszystkie powyższe czynności należy przeprowadzić", isCorrect: true }
+                ]
+            },
+            {
+                question: "Skuteczność zabiegu peelingu chemicznego nie zależy od:",
+                options: [
+                    { text: "pH", isCorrect: false },
+                    { text: "pKa", isCorrect: false },
+                    { text: "stanu skóry", isCorrect: false },
+                    { text: "brak prawidłowej odpowiedzi", isCorrect: true }
+                ]
+            },
+            {
+                question: "Nieprawdziwe zdanie dotyczące peelingu z kwasem laktobionowym to:",
+                options: [
+                    { text: "jest przedstawicielem polihydroksykwasów", isCorrect: false },
+                    { text: "wykazuje łagodniejsze działanie niż AHA", isCorrect: false },
+                    { text: "może być stosowany z innymi kwasami", isCorrect: false },
+                    { text: "wszystkie powyższe zdania są prawdziwe", isCorrect: true }
+                ]
+            },
+            {
+                question: "Nieprawidłowe zdanie dotyczące zabiegu galwanizacji to:",
+                options: [
+                    { text: "jest zabiegiem elektroleczniczym", isCorrect: false },
+                    { text: "polega na przepływie prądu zmiennego przez tkanki pomiędzy dwiema elektrodami", isCorrect: true },
+                    { text: "do zabiegu wykorzystywana jest elektroda czynna i bierna", isCorrect: false },
+                    { text: "wszystkie powyższe zdania są prawdziwe", isCorrect: false }
+                ]
+            },
+            {
+                question: "Cera tłusta wymaga przeprowadzenia zabiegów:",
+                options: [
+                    { text: "hamujących pracę gruczołów łojowych", isCorrect: false },
+                    { text: "normalizujące pracę gruczołów łojowych", isCorrect: true },
+                    { text: "nie wpływających na pracę gruczołów łojowych", isCorrect: false },
+                    { text: "pobudzających pracę gruczołów łojowych", isCorrect: false }
+                ]
+            },
+            {
+                question: "Nieprawidłowe zdanie na temat zabiegu radiofrekwencji to:",
+                options: [
+                    { text: "emitowane fale radiowe ogrzewają skórę właściwą bez ingerencji w strukturę naskórka", isCorrect: false },
+                    { text: "zabiegi radiofrekwencji wykazują efekt podgrzania tkanek, który powstaje w wyniku przepływu przez skórę prądu wysokiej częstotliwości", isCorrect: false },
+                    { text: "zabiegi z wykorzystaniem radiofrekwencji opierają się na wywołaniu efektu termicznego w tkance", isCorrect: false },
+                    { text: "wszystkie powyższe zdania są prawdziwe", isCorrect: true }
+                ]
+            },
+            {
+                question: "Które zdanie jest nieprawdziwe o procesie przeznaskórkowej utraty wody:",
+                options: [
+                    { text: "jest miarą szczelności bariery naskórkowej", isCorrect: false },
+                    { text: "uszkodzenia bariery naskórkowej powoduje przyspieszenie procesu", isCorrect: false },
+                    { text: "jest procesem patologicznym", isCorrect: true },
+                    { text: "wszystkie zdania są prawdziwe", isCorrect: false }
+                ]
+            },
+            {
+                question: "Najlepsze efekty poprawy napięcia owalu twarzy uzyskuje się wykorzystując:",
+                options: [
+                    { text: "maskę termomodelującą", isCorrect: false },
+                    { text: "laser biostymulujący", isCorrect: false },
+                    { text: "ultradźwięki", isCorrect: false },
+                    { text: "Radiofrekwencje", isCorrect: true }
+                ]
+            },
+            {
+                question: "Przepływ prądu między elektrodami w zabiegu galwanizacji zależy od:",
+                options: [
+                    { text: "rozmiarów elektrod", isCorrect: false },
+                    { text: "wzajemnego ułożenia elektrod", isCorrect: false },
+                    { text: "odległości między elektrodami", isCorrect: false },
+                    { text: "od wszystkich powyższych czynników", isCorrect: true }
+                ]
+            },
+            {
+                question: "Do działania anody w galwanizacji zaliczamy:",
+                options: [
+                    { text: "lekki obrzęk skóry", isCorrect: false },
+                    { text: "wzrost pH", isCorrect: false },
+                    { text: "spadek napięcia mięśniowego", isCorrect: true },
+                    { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+                ]
+            },
+            {
+                question: "Przed wykonaniem galwanizacji należy:",
+                options: [
+                    { text: "posmarować skórę klientki oraz elektrody podkładem lekowym", isCorrect: false },
+                    { text: "zabezpieczyć elektrody zwilżonymi podkładami z waty lub gazy", isCorrect: true },
+                    { text: "zabezpieczyć elektrody natłuszczonymi podkładami waty lub gazy", isCorrect: false },
+                    { text: "posmarować skórę klientki preparatem natłuszczającym", isCorrect: false }
+                ]
+            },
+            {
+                question: "Wskazaniem do galwanizacji katodowej nie jest:",
+                options: [
+                    { text: "skóra słabo ukrwiona", isCorrect: false },
+                    { text: "skóra dojrzała", isCorrect: false },
+                    { text: "rozszerzone ujścia gruczołów łojowych", isCorrect: true },
+                    { text: "wszystkie powyższe stany są wskazaniem", isCorrect: false }
+                ]
+            },
+            {
+                question: "Nieprawidłowe zdanie dotyczące zabiegu jonoforezy to:",
+                options: [
+                    { text: "dla wprowadzenia jonów dodatnich podkład z lekiem układa się pod katodą", isCorrect: true },
+                    { text: "do zabiegu należy stosować preparaty, które ulegają dysocjacji elektrolitycznej", isCorrect: false },
+                    { text: "proces polegający na przenoszeniu małocząsteczkowych substancji czynnych w polu elektrycznym o małym napięciu", isCorrect: false },
+                    { text: "wszystkie powyższe zdania są prawdziwe", isCorrect: false }
+                ]
+            },
+            {
+                question: "Nieprawidłowe zdanie dotyczące zabiegu darsonwalizacji to:",
+                options: [
+                    { text: "zabieg wykorzystywany jest po mechanicznym oczyszczaniu skóry", isCorrect: false },
+                    { text: "podczas zabiegu wytwarza się ozon, który ma działanie dezynfekujące", isCorrect: false },
+                    { text: "wyróżniamy tylko zabieg darsonwalizacji miejscowej", isCorrect: false },
+                    { text: "wszystkie powyższe zdania są prawidłowe", isCorrect: true }
+                ]
+            },
+            {
+                question: "Przeciwskazaniem do zabiegu jonoforezy nie jest:",
+                options: [
+                    { text: "stany gorączkowe", isCorrect: false },
+                    { text: "trądzik różowaty", isCorrect: true },
+                    { text: "podrażnienia spastyczne", isCorrect: false },
+                    { text: "wszystkie powyższe stany są przeciwskazaniem do wykonywania zabiegu", isCorrect: false }
+                ]
+            },
+            {
+                question: "Właściwie skompletowaną procedurą zabiegową do cery z niezapalną formą trądziku pospolitego w gabinecie kosmetologicznym, obejmuje następujące działania:",
+                options: [
+                    { text: "demakijaż \u2192 tonizacja \u2192 peeling kawitacyjny \u2192 serum normalizujące \u2192 maska gipsowa \u2192 tonizacja \u2192 krem nawilżający", isCorrect: false },
+                    { text: "demakijaż \u2192 tonizacja \u2192 mikrodermabrazja \u2192 serum liftingujące \u2192 maska łagodząca \u2192 krem nawilżający z filtrem UVA/UVB", isCorrect: false },
+                    { text: "demakijaż \u2192 tonizacja \u2192 mikrodermabrazja \u2192 serum normalizujące \u2192 maska ściągająco- łagodząca \u2192 krem nawilżający z filtrem UVA/UVB", isCorrect: true },
+                    { text: "demakijaż \u2192 tonizacja \u2192 peeling kwasowy 70% glikolowy \u2192 maska gipsowa \u2192 krem z filtrem UVA/UVB", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do substancji aktywnych kosmetyków o działaniu keratolitycznym należą:",
+                options: [
+                    { text: "alfahydroksykwasy", isCorrect: true },
+                    { text: "allantoina i d- pantenol", isCorrect: false },
+                    { text: "tlenek cynku i retinol", isCorrect: false },
+                    { text: "witamina B6 i rutyna", isCorrect: false }
+                ]
+            },
+            {
+                question: "Siarka, wyciąg z fiołka trójbarwnego, olejek z drzewa herbacianego to składniki aktywne kosmetyków do cery:",
+                options: [
+                    { text: "tłustej", isCorrect: true },
+                    { text: "suchej", isCorrect: false },
+                    { text: "dojrzałej", isCorrect: false },
+                    { text: "wrażliwej", isCorrect: false }
+                ]
+            },
+            {
+                question: "Witamina A, E, C, koenzym Q-10, fitohormony to składniki aktywne przeznaczone zwłaszcza dla cery:",
+                options: [
+                    { text: "wrażliwej", isCorrect: false },
+                    { text: "dojrzałej", isCorrect: true },
+                    { text: "tłustej", isCorrect: false },
+                    { text: "suchej", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do substancji aktywnych kosmetyków o działaniu sebostatycznym należą:",
+                options: [
+                    { text: "mocznik i kwas hialuronowy", isCorrect: false },
+                    { text: "allantoina i d- pantenol", isCorrect: false },
+                    { text: "tlenek cynku i witamina B6", isCorrect: true },
+                    { text: "rutyna u escyna", isCorrect: false }
+                ]
+            },
+            {
+                question: "Wykonując sonoforezę klientce z cerą naczyniową należy zastosować preparat z:",
+                options: [
+                    { text: "witaminą C, wyciągiem z rumianku i olejkiem z drzewa herbacianego", isCorrect: false },
+                    { text: "rutyną, ekstraktem z kasztanowca i arniki", isCorrect: true },
+                    { text: "witaminą E, wyciągiem z tymianku i szałwii", isCorrect: false },
+                    { text: "ekstraktem z oczaru wirginijskiego i kory wierzby", isCorrect: false }
+                ]
+            },
+            {
+                question: "W celu rozpulchnienia skóry przed manualnym oczyszczeniem stosowana jest maska:",
+                options: [
+                    { text: "borowinowa", isCorrect: false },
+                    { text: "peel-off", isCorrect: false },
+                    { text: "algowa", isCorrect: true },
+                    { text: "gipsowa", isCorrect: false }
+                ]
+            },
+            {
+                question: "Fibroblasty to:",
+                options: [
+                    { text: "komórki warstwy podstawnej, które gromadzą tłuszcz", isCorrect: false },
+                    { text: "martwe komórki warstwy podstawnej", isCorrect: false },
+                    { text: "żywe komórki warstwy podstawnej", isCorrect: false },
+                    { text: "komórki skóry właściwej, które wytwarzają kolagen i elastynę", isCorrect: true }
+                ]
+            },
+            {
+                question: "Do objawów charakterystycznych dla trądziku różowatego zalicza się:",
+                options: [
+                    { text: "rumień, rozszerzone pory, liczne zaskórniki", isCorrect: false },
+                    { text: "rumień, liczne teleangiektazje, zapalne grudki", isCorrect: true },
+                    { text: "liczne teleangiektazje, występowanie prosaków, błyszcząca skóra", isCorrect: false },
+                    { text: "obecność teleangiektazji i uciążliwy świąd", isCorrect: false }
+                ]
+            },
+            {
+                question: "Który z przedstawionych schematów zabiegów przeznaczony jest dla skóry dojrzałej:",
+                options: [
+                    { text: "peeling drobnoziarnisty, masaż, maska kojąca", isCorrect: false },
+                    { text: "peeling kawitacyjny, maska normalizująca, maska algowa", isCorrect: false },
+                    { text: "peeling enzymatyczny, maska odżywcza, maska termoaktywna", isCorrect: true },
+                    { text: "peeling gruboziarnisty, maska odżywcza, maska ściągająco- łagodząca", isCorrect: false }
+                ]
+            },
+            {
+                question: "Metodami wprowadzania składników aktywnych w głąb skóry są:",
+                options: [
+                    { text: "sonoforeza, galwanizacja, kawitacja", isCorrect: false },
+                    { text: "mezoterapia bezigłowa, sonoforeza, kawitacja", isCorrect: false },
+                    { text: "mezoterapia bezigłowa, sonoforeza, jonoforeza", isCorrect: true },
+                    { text: "sonoforeza, jonoforeza, kawitacja", isCorrect: false }
+                ]
+            },
+            {
+                question: "Keratynocyty to komórki:",
+                options: [
+                    { text: "martwe, tworzące łuski", isCorrect: false },
+                    { text: "barwnikowe, występujące w warstwie podstawnej", isCorrect: false },
+                    { text: "żywe, występujące w warstwie podstawnej naskórka", isCorrect: true },
+                    { text: "martwe, występujące w warstwie rogowej naskórka", isCorrect: false }
+                ]
+            },
+            {
+                question: "Naturalny czynnik nawilżający to:",
+                options: [
+                    { text: "NNKT", isCorrect: false },
+                    { text: "NFM", isCorrect: true },
+                    { text: "NCN", isCorrect: false },
+                    { text: "NMF", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do domowych zaleceń pielęgnacyjnych po zabiegu silnej eksfoliacji kwasami wykorzystywanej w serii należy:",
+                options: [
+                    { text: "ochrona przeciwsłoneczna o wysokim SPF oraz wykonywanie w domu, pomiędzy zabiegami profesjonalnymi, peelingów mechanicznych lub enzymatycznych", isCorrect: false },
+                    { text: "ochrona przeciwsłoneczna o wysokim SPF oraz używanie środków myjących o silnym zasadowym pH", isCorrect: false },
+                    { text: "ochrona przeciwsłoneczna o wysokim SPF oraz używanie kremów wykazujących działanie łagodzące i nawilżające", isCorrect: true },
+                    { text: "żadna odpowiedz nie jest poprawna", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do substancji aktywnych szczególnie zalecanych w pielęgnacji skóry okolic oczu ze względu na poprawę drenażu żylno-limfatycznego oraz redukcję obrzęków należy:",
+                options: [
+                    { text: "nostrzyk żółty oraz wyciąg z karczocha", isCorrect: true },
+                    { text: "koenzym Q10 oraz kwas hialuronowy", isCorrect: false },
+                    { text: "kwas migdałowy i kwas mlekowy", isCorrect: false },
+                    { text: "witamina A i E", isCorrect: false }
+                ]
+            },
+            {
+                question: "Najbezpieczniejszym zabiegiem dla kobiety w ciąży będzie:",
+                options: [
+                    { text: "peeling enzymatyczny z sonoforezą", isCorrect: false },
+                    { text: "peeling kawitacyjny z sonoforezą", isCorrect: false },
+                    { text: "peeling enzymatyczny z masażem twarzy", isCorrect: true },
+                    { text: "peeling kawitacyjny z masażem twarzy", isCorrect: false }
+                ]
+            },
+            {
+                question: "Proces odnowy komórkowej w naskóru trwa zazwyczaj:",
+                options: [
+                    { text: "10-15 dni", isCorrect: false },
+                    { text: "15-20 dni", isCorrect: false },
+                    { text: "26-30 dni", isCorrect: true },
+                    { text: "35-40 dni", isCorrect: false }
+                ]
+            },
+            {
+                question: "Preparaty zawierające wyciąg z kasztanowca zaleca się przede wszystkim do pielęgnacji cery:",
+                options: [
+                    { text: "wrażliwej", isCorrect: false },
+                    { text: "suchej", isCorrect: false },
+                    { text: "naczyniowej", isCorrect: true },
+                    { text: "łojotokowej", isCorrect: false }
+                ]
+            },
+            {
+                question: "Faza przejściowa wzrostu włosa to:",
+                options: [
+                    { text: "telogen", isCorrect: false },
+                    { text: "antygen", isCorrect: false },
+                    { text: "katogen", isCorrect: true },
+                    { text: "anagen", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do diagnozowania stanu skóry służy lampa:",
+                options: [
+                    { text: "Minina", isCorrect: false },
+                    { text: "Wooda", isCorrect: true },
+                    { text: "Sollux", isCorrect: false },
+                    { text: "Infra- rouge", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do czynników zaostrzających przebieg trądziku różowatego nie należy:",
+                options: [
+                    { text: "nieprawidłowa pielęgnacja", isCorrect: false },
+                    { text: "alkohol i kofeina", isCorrect: false },
+                    { text: "negatywne emocje", isCorrect: false },
+                    { text: "wszystkie powyższe czynniki należą", isCorrect: true }
+                ]
+            },
+            {
+                question: "Teleangiektazje to:",
+                options: [
+                    { text: "zmiany występujące w przebiegu trądziku pospolitego", isCorrect: false },
+                    { text: "trwale rozszerzone naczynia krwionośne", isCorrect: true },
+                    { text: "rozsiane wykwity krwotoczne w obrębie kończyn dolnych", isCorrect: false },
+                    { text: "zmiany związane ze starczym zwyrodnieniem skóry", isCorrect: false }
+                ]
+            },
+            {
+                question: "Do pomiaru stopnia nawilżenia skóry służy:",
+                options: [
+                    { text: "pehametr", isCorrect: false },
+                    { text: "korneometr", isCorrect: true },
+                    { text: "sebumetr", isCorrect: false },
+                    { text: "kutometr", isCorrect: false }
+                ]
+            },
+            {
+                question: "W etiopatogenezie trądziku pospolitego znaczącej roli nie odgrywa:",
+                options: [
+                    { text: "zaburzenia rogowacenia naskórka", isCorrect: false },
+                    { text: "wzmożona produkcja łoju", isCorrect: false },
+                    { text: "kolonizacja bakterii Helicobacter pylori", isCorrect: true },
+                    { text: "wszystkie powyższe czynniki odgrywają znaczącą rolę", isCorrect: false }
+                ]
+            }
+        ];
+
+        // Zmienne stanu
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let shuffleNeeded = false; // To change if you want to shuffle the questions
+
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const checkButton = document.getElementById('check-button');
+        const nextButton = document.getElementById('next-button');
+        const restartButton = document.getElementById('restart-button');
+        const resultElement = document.getElementById('result');
+        const statusBar = document.getElementById('status-bar');
+        const liveScoreElement = document.getElementById('live-score');
+
+        function initTest() {
+            // Resetujemy stan
+            questions = shuffleArray([...rawQuestions]); // Tasujemy pytania
+            currentQuestionIndex = 0;
+            score = 0;
+            
+            // Resetujemy widok
+            checkButton.style.display = 'inline-block';
+            nextButton.style.display = 'none';
+            restartButton.style.display = 'none';
+            resultElement.style.display = 'none';
+            liveScoreElement.textContent = "Wynik: 0/0 (0%)";
+            
+            loadNewQuestion();
+        }
+
+        function loadNewQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                showFinalResult();
+                return;
+            }
+
+            const currentQuestion = questions[currentQuestionIndex];
+            statusBar.textContent = `Pytanie ${currentQuestionIndex + 1} z ${questions.length}`;
+            questionElement.textContent = currentQuestion.question;
+            optionsElement.innerHTML = '';
+            resultElement.style.display = 'none';
+            resultElement.className = '';
+
+            if (shuffleNeeded) {
+                currentQuestion.options = shuffleArray([...currentQuestion.options]);
+            }
+            else {
+                currentQuestion.options = [...currentQuestion.options];
+            }
+
+            currentQuestion.options.forEach((option, index) => {
+                const label = document.createElement('label');
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'answer';
+                radio.value = option.isCorrect ? 'correct' : 'incorrect';
+                
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(option.text));
+                optionsElement.appendChild(label);
+            });
+
+            checkButton.style.display = 'inline-block';
+            nextButton.style.display = 'none';
+        }
+
+        function checkAnswer() {
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+
+            if (!selectedOption) {
+                alert("Proszę zaznaczyć odpowiedź!");
+                return;
+            }
+
+            const isCorrect = selectedOption.value === 'correct';
+            const allRadios = optionsElement.querySelectorAll('input[type="radio"]');
+
+            if (isCorrect) {
+                score++;
+            }
+
+            // Aktualizacja wyniku na bieżąco
+            const questionsAnswered = currentQuestionIndex + 1;
+            const percentage = Math.round((score / questionsAnswered) * 100);
+            liveScoreElement.textContent = `Wynik: ${score}/${questionsAnswered} (${percentage}%)`;
+
+            allRadios.forEach(radio => {
+                const parentLabel = radio.parentElement;
+                radio.disabled = true;
+                
+                if (radio.value === 'correct') {
+                    parentLabel.style.backgroundColor = '#1b5e20';
+                    parentLabel.style.borderColor = '#2e7d32';
+                    parentLabel.style.color = '#ffffff'; 
+                } else if (radio.checked && radio.value === 'incorrect') {
+                    parentLabel.style.backgroundColor = '#b71c1c';
+                    parentLabel.style.borderColor = '#c62828';
+                    parentLabel.style.color = '#ffffff'; 
+                }
+            });
+
+            resultElement.style.display = 'block';
+            if (isCorrect) {
+                resultElement.textContent = "Poprawna odpowiedź!";
+                resultElement.className = 'correct-msg';
+            } else {
+                resultElement.textContent = "Niepoprawna odpowiedź.";
+                resultElement.className = 'incorrect-msg';
+            }
+
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'inline-block';
+        }
+
+        function showFinalResult() {
+            questionElement.textContent = "Koniec testu!";
+            optionsElement.innerHTML = `<div class="final-score">Twój wynik końcowy: ${score} na ${questions.length} punktów.</div>`;
+            
+            const percentage = Math.round((score / questions.length) * 100);
+            optionsElement.innerHTML += `<p>Skuteczność: ${percentage}%</p>`;
+
+            if (percentage >= 80) {
+                optionsElement.innerHTML += `<p style="color: #4caf50; font-weight: bold;">Świetny wynik! Gratulacje.</p>`;
+            } else if (percentage >= 50) {
+                optionsElement.innerHTML += `<p style="color: #ff9800; font-weight: bold;">Nieźle, ale warto powtórzyć materiał.</p>`;
+            } else {
+                optionsElement.innerHTML += `<p style="color: #f44336; font-weight: bold;">Musisz jeszcze poćwiczyć.</p>`;
+            }
+
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'none';
+            resultElement.textContent = '';
+            statusBar.textContent = '';
+            liveScoreElement.textContent = ''; // Czyścimy pasek live score na końcu
+            
+            restartButton.style.display = 'inline-block';
+        }
+
+        checkButton.addEventListener('click', checkAnswer);
+        nextButton.addEventListener('click', () => {
+            currentQuestionIndex++;
+            loadNewQuestion();
+        });
+        restartButton.addEventListener('click', initTest);
+
+        document.addEventListener('DOMContentLoaded', initTest);
+    </script>
+</body>
+</html>
