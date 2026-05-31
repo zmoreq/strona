@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test - zaawansowane techniki makijazu</title>
+    <title>Test - 6</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -139,7 +139,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Test Wiedzy: Zaawansowane techniki makijazu</h1>
+        <h1>Test Wiedzy: Egzamin 6</h1>
         
         <div class="stats-container">
             <div id="status-bar" class="status-bar">Ładowanie...</div>
@@ -171,188 +171,143 @@
         }
         
         const rawQuestions = [
-            {
-                question: "Kto może korzystać ze zwolnienia z podatku VAT podmiotowego?",
-                options: [
-                    { text: "Podatnicy, których obroty roczne nie przekroczyły limitu", isCorrect: true },
-                    { text: "Przedsiębiorcy prowadzący sprzedaż detaliczną", isCorrect: false },
-                    { text: "Każdy podatnik", isCorrect: false },
-                    { text: "Tylko podatnicy świadczący usługi medyczne", isCorrect: false }
-                ]
-            },
-            {
-                question: "Do metod poszukiwania kandydatów w rekrutacji wewnętrznej NIE należy:",
-                options: [
-                    { text: "Awansowanie pracownika w obrębie firmy", isCorrect: false },
-                    { text: "Skorzystanie z usług agencji doradztwa personalnego", isCorrect: true },
-                    { text: "Oferowanie stanowiska osobom w innych działach", isCorrect: false },
-                    { text: "Przeniesienie pracownika z innej filii", isCorrect: false }
-                ]
-            },
-            {
-                question: "Selekcja kandydatów polega na:",
-                options: [
-                    { text: "Zachęcaniu osób do aplikowania", isCorrect: false },
-                    { text: "Wyborze najlepszego kandydata", isCorrect: true },
-                    { text: "Ustaleniu wynagrodzenia", isCorrect: false },
-                    { text: "Podpisaniu umowy", isCorrect: false }
-                ]
-            },
-            {
-                question: "Głównym celem rekrutacji na stanowisko pracy jest:",
-                options: [
-                    { text: "Ocena dotychczasowych pracowników", isCorrect: false },
-                    { text: "Szkolenie nowego zespołu", isCorrect: false },
-                    { text: "Pozyskanie kandydatów o wymaganych kwalifikacjach", isCorrect: true },
-                    { text: "Określenie budżetu", isCorrect: false }
-                ]
-            },
-            {
-                question: "Stres w miejscu pracy jest najczęściej wynikiem:",
-                options: [
-                    { text: "Zbyt długich przerw", isCorrect: false },
-                    { text: "Wysokich wymagań przy braku wsparcia przełożonych", isCorrect: true },
-                    { text: "Wysokiego wynagrodzenia", isCorrect: false },
-                    { text: "Pracy w zespole", isCorrect: false }
-                ]
-            },
-            {
-                question: "Które z wymienionych zachowań może świadczyć o mobbingu?",
-                options: [
-                    { text: "Jednorazowa uwaga szefa", isCorrect: false },
-                    { text: "Regularne publiczne krytykowanie i wyśmiewanie pracownika", isCorrect: true },
-                    { text: "Zmiana obowiązków po awansie", isCorrect: false },
-                    { text: "Konflikt na tle poglądów", isCorrect: false }
-                ]
-            },
-            {
-                question: "Mobbing to zjawisko, które polega na:",
-                options: [
-                    { text: "Jednorazowym konflikcie", isCorrect: false },
-                    { text: "Sporadycznych nieporozumieniach", isCorrect: false },
-                    { text: "Systematycznym i długotrwałym nękaniu psychicznym", isCorrect: true },
-                    { text: "Konstruktywnej krytyce", isCorrect: false }
-                ]
-            },
-            {
-                question: "Główną cechą odróżniającą mobbing od zwykłego konfliktu jest:",
-                options: [
-                    { text: "Przemoc fizyczna", isCorrect: false },
-                    { text: "Asymetria sił (ofiara w słabszej pozycji)", isCorrect: true },
-                    { text: "Krótki czas trwania", isCorrect: false },
-                    { text: "Łatwa mediacja", isCorrect: false }
-                ]
-            },
-            {
-                question: "Jakie działania profilaktyczne może podjąć pracodawca, aby zapobiec mobbingowi?",
-                options: [
-                    { text: "Ignorowanie konfliktów", isCorrect: false },
-                    { text: "Stworzenie jasnych procedur antymobbingowych i edukacja", isCorrect: true },
-                    { text: "Unikanie rozmów z pracownikami", isCorrect: false },
-                    { text: "Karanie bez weryfikacji", isCorrect: false }
-                ]
-            },
-            {
-                question: "Przewlekły stres (dystres) może prowadzić do:",
-                options: [
-                    { text: "Podwyższenia odporności", isCorrect: false },
-                    { text: "Zwiększenia kreatywności", isCorrect: false },
-                    { text: "Wyczerpania organizmu i chorób somatycznych", isCorrect: true },
-                    { text: "Poprawy relacji", isCorrect: false }
-                ]
-            },
-            {
-                question: "Podstawową cechą dobrego kierownika jest:",
-                options: [
-                    { text: "Delegowanie uprawnień", isCorrect: true },
-                    { text: "Praca w izolacji", isCorrect: false },
-                    { text: "Brak kontroli nad pracownikami", isCorrect: false },
-                    { text: "Szybkie podejmowanie decyzji bez konsultacji", isCorrect: false }
-                ]
-            },
-            {
-                question: "Co to jest autoprezentacja?",
-                options: [
-                    { text: "Proces zarządzania wrażeniem, jakie wywieramy na innych", isCorrect: true },
-                    { text: "Wystawianie oceny pracownikom", isCorrect: false },
-                    { text: "Pisanie CV", isCorrect: false },
-                    { text: "Sposób prowadzenia księgowości", isCorrect: false }
-                ]
-            },
-            {
-                question: "Jakie są elementy komunikacji niewerbalnej?",
-                options: [
-                    { text: "Słowa i gramatyka", isCorrect: false },
-                    { text: "Gesty, mimika, postawa ciała, kontakt wzrokowy", isCorrect: true },
-                    { text: "Tylko ton głosu", isCorrect: false },
-                    { text: "Pisanie raportów", isCorrect: false }
-                ]
-            },
-            {
-                question: "Czym charakteryzuje się styl kierowania autokratyczny?",
-                options: [
-                    { text: "Decyzje podejmuje kierownik bez udziału zespołu", isCorrect: true },
-                    { text: "Kierownik angażuje zespół w decyzje", isCorrect: false },
-                    { text: "Brak jakiegokolwiek kierowania", isCorrect: false },
-                    { text: "Duża swoboda pracowników", isCorrect: false }
-                ]
-            },
-            {
-                question: "Co to jest motywacja wewnętrzna?",
-                options: [
-                    { text: "Działanie dla samej przyjemności wykonywania zadania", isCorrect: true },
-                    { text: "Praca tylko dla pieniędzy", isCorrect: false },
-                    { text: "Praca pod groźbą kary", isCorrect: false },
-                    { text: "Praca dla pochwały szefa", isCorrect: false }
-                ]
-            },
-            {
-                question: "Na czym polega asertywność?",
-                options: [
-                    { text: "Wyrażaniu własnego zdania przy poszanowaniu innych", isCorrect: true },
-                    { text: "Uleganiu innym", isCorrect: false },
-                    { text: "Atakowaniu innych", isCorrect: false },
-                    { text: "Byciu osobą nieśmiałą", isCorrect: false }
-                ]
-            },
-            {
-                question: "Co oznacza skrót SWOT w analizie strategicznej?",
-                options: [
-                    { text: "Mocne i słabe strony, szanse i zagrożenia", isCorrect: true },
-                    { text: "Sprzedaż, Wyniki, Obroty, Towary", isCorrect: false },
-                    { text: "System, Wynik, Organizacja, Technologia", isCorrect: false },
-                    { text: "Strategia, Wzrost, Obserwacja, Tabela", isCorrect: false }
-                ]
-            },
-            {
-                question: "Wskaż zasadę prowadzenia negocjacji:",
-                options: [
-                    { text: "Dążenie do rozwiązania 'wygrana-wygrana'", isCorrect: true },
-                    { text: "Wykorzystywanie słabości partnera", isCorrect: false },
-                    { text: "Niesłuchanie argumentów drugiej strony", isCorrect: false },
-                    { text: "Kończenie rozmowy w agresywny sposób", isCorrect: false }
-                ]
-            },
-            {
-                question: "Co to jest kultura organizacyjna?",
-                options: [
-                    { text: "Zbiór wartości, norm i zasad obowiązujących w firmie", isCorrect: true },
-                    { text: "Wystrój wnętrza biura", isCorrect: false },
-                    { text: "Rodzaj maszyn używanych w produkcji", isCorrect: false },
-                    { text: "Lokalizacja siedziby firmy", isCorrect: false }
-                ]
-            },
-            {
-                question: "Co jest celem public relations (PR)?",
-                options: [
-                    { text: "Budowanie pozytywnego wizerunku firmy w otoczeniu", isCorrect: true },
-                    { text: "Bezpośrednia sprzedaż produktów", isCorrect: false },
-                    { text: "Księgowanie faktur", isCorrect: false },
-                    { text: "Zatrudnianie nowych pracowników", isCorrect: false }
-                ]
-            }
-        ];
-
+    {
+        question: "Dobór technik do zabiegu masażu zależy od:",
+        options: [
+            { text: "wskazań do masażu", isCorrect: false },
+            { text: "budowy masowanej okolicy", isCorrect: false },
+            { text: "stanu fizycznego i psychicznego Klienta", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskazaniem do masażu pałeczkami bambusowymi jest:",
+        options: [
+            { text: "poprawa krążenia krwi i limfy", isCorrect: false },
+            { text: "zmniejszenie napięć mięśniowych", isCorrect: false },
+            { text: "poprawa trofiki skóry", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Przeciwwskazaniem do masażu ud i pośladków bańką chińską jest:",
+        options: [
+            { text: "cellulit II stopnia", isCorrect: false },
+            { text: "przerwana ciągłość naskórka w okolicy brzucha", isCorrect: false },
+            { text: "ciąża", isCorrect: true },
+            { text: "zwiększona ilość tkanki tłuszczowej (zwiększony obwód ciała) w okolicy zabiegowej", isCorrect: false }
+        ]
+    },
+    {
+        question: "Kamienie używane do masażu w kosmetologii oddziałują na organizm człowieka:",
+        options: [
+            { text: "statycznie", isCorrect: false },
+            { text: "dynamicznie", isCorrect: false },
+            { text: "poprzez temperaturę", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Pozycja ułożenia ciała Klienta podczas masażu:",
+        options: [
+            { text: "powinna być bezpieczna i komfortowa dla Klienta", isCorrect: false },
+            { text: "jest sugerowana przez masażystę", isCorrect: false },
+            { text: "powinna zapewnić ułożenie stawów w tzw. pozycjach neutralnych lub zerowych", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Temperatura kamieni bazaltowych używanych do masażu powinna być dostosowana do indywidualnych odczuć osoby masowanej i oscylować w granicach:",
+        options: [
+            { text: "temperatury ciała ludzkiego", isCorrect: false },
+            { text: "55 stopni Celsjusza", isCorrect: true },
+            { text: "65 stopni Celsjusza", isCorrect: false },
+            { text: "40 stopni Celsjusza", isCorrect: false }
+        ]
+    },
+    {
+        question: "Konserwacja pałeczek bambusowych używanych do zabiegu masażu obejmuje następujące czynności:",
+        options: [
+            { text: "mycie i oliwienie pałeczek", isCorrect: false },
+            { text: "mycie, dezynfekcję i oliwienie pałeczek", isCorrect: true },
+            { text: "mycie i dezynfekcję pałeczek", isCorrect: false },
+            { text: "mycie, sterylizację i oliwienie pałeczek", isCorrect: false }
+        ]
+    },
+    {
+        question: "Prawdziwym stwierdzeniem dotyczącym techniki wykonywania relaksacyjnego masażu aromaterapeutycznego jest:",
+        options: [
+            { text: "masaż wykonywany jest przy muzyce relaksacyjnej", isCorrect: false },
+            { text: "masaż charakteryzuje się stosowaniem technik o charakterze ruchów płynnych i spokojnych", isCorrect: false },
+            { text: "masaż charakteryzuje się stosowaniem technik głaskania i rozcierania", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe stwierdzenie dotyczące ogólnych zasad wykonywania masażu:",
+        options: [
+            { text: "charakter pracy masażysty nie wymaga predyspozycji psychicznych", isCorrect: false },
+            { text: "Klient powinien być przykryty podczas zabiegu, odkrywa się jedynie aktualnie masowane partie ciała", isCorrect: true },
+            { text: "wywiad z Klientem przeprowadza się po zakończonym zabiegu", isCorrect: false },
+            { text: "masaż powinien być wykonywany zgodnie z zasadami higieny, które dotyczą wyłącznie masażysty", isCorrect: false }
+        ]
+    },
+    {
+        question: "W celu modelowania sylwetki można wykonać:",
+        options: [
+            { text: "masaż bambusem", isCorrect: false },
+            { text: "masaż bańką chińską", isCorrect: false },
+            { text: "masaż gorącymi kamieniami", isCorrect: false },
+            { text: "odpowiedzi a i b są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Przygotowanie masażysty obejmuje następujące czynności:",
+        options: [
+            { text: "umycie i zdezynfekowanie dłoni", isCorrect: false },
+            { text: "upięcie długich włosów", isCorrect: false },
+            { text: "swobodny ubiór", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Prawdziwym stwierdzeniem dotyczącym kwalifikacji zawodowych masażysty jest:",
+        options: [
+            { text: "kwalifikacje zawodowe są dane raz na zawsze i nie ma sensu ich podnosić", isCorrect: false },
+            { text: "kwalifikacje zawodowe nie odgrywają znaczącej roli na rynku pracy", isCorrect: false },
+            { text: "kwalifikacje zawodowe powinno się ustawicznie podnosić odbywając szkolenia, uczestnicząc w konferencjach, pokazach itp.", isCorrect: true },
+            { text: "odbyte kursy masaży nie mają żadnego wpływu na poziom świadczonych usług", isCorrect: false }
+        ]
+    },
+    {
+        question: "W czasie zabiegu masażu należy uwzględnić siłę bodźca mechanicznego, którą dobiera się w zależności od:",
+        options: [
+            { text: "wieku i płci", isCorrect: false },
+            { text: "stanu zdrowia", isCorrect: false },
+            { text: "reaktywności układu nerwowego", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe stwierdzenie dotyczące masażu modelującego bańką chińską:",
+        options: [
+            { text: "przystawienie bańki chińskiej powoduje wciągnięcie tkanki skórnej i podskórnej do wnętrza bańki, prowadząc do pojawienia się silnego przekrwienia", isCorrect: true },
+            { text: "masaż bańką chińską to doskonała terapia odchudzająca dla otyłych", isCorrect: false },
+            { text: "masaż powinien być wykonywany codziennie", isCorrect: false },
+            { text: "masaż powinien być wykonywany spokojnie i wolno", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do masażu aromaterapeutycznego używa się:",
+        options: [
+            { text: "oliwki w połączeniu z naturalnym olejkiem eterycznym", isCorrect: false },
+            { text: "oleju bazowego w połączeniu z syntetycznym olejkiem eterycznym", isCorrect: false },
+            { text: "oleju bazowego w połączeniu z naturalnym olejkiem eterycznym", isCorrect: true },
+            { text: "balsamu aromaterapeutycznego na bazie parafiny", isCorrect: false }
+        ]
+    }
+];
+        
         // Zmienne stanu
         let questions = [];
         let currentQuestionIndex = 0;

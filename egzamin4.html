@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test - Kosmetologia pielegnacyjna</title>
+    <title>Test - zaawansowane techniki makijazu</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -139,7 +139,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Test Wiedzy: Kosmetologia pielegnacyjna</h1>
+        <h1>Test Wiedzy: Zaawansowane techniki makijazu</h1>
         
         <div class="stats-container">
             <div id="status-bar" class="status-bar">Ładowanie...</div>
@@ -170,279 +170,189 @@
             return array;
         }
         
-const rawQuestions = [
-{
-    question: "Do zabiegu jonoforezy u osoby z problemami skóry naczyniowej użyjemy:",
-    options: [
-        { text: "chlorek wapnia, elektroda czynna anoda", isCorrect: true },
-        { text: "kwas salicylowy, elektroda czynna katoda", isCorrect: false },
-        { text: "witamina C, elektroda bierna katoda", isCorrect: false },
-        { text: "retinol, elektroda czynna katoda", isCorrect: false }
-    ]
-},
-{
-    question: "Podczas wykonywania zabiegu sonoforezy niezbędne jest:",
-    options: [
-        { text: "zastosowanie sono-żelu", isCorrect: true },
-        { text: "użycie spirytusu kosmetycznego", isCorrect: false },
-        { text: "wykonanie zabiegu na suchej skórze", isCorrect: false },
-        { text: "zastosowanie maski algowej", isCorrect: false }
-    ]
-},
-{
-    question: "Do metod aparaturowych zwiększania przenikania substancji zawartych w kosmetykach należy:",
-    options: [
-        { text: "masaż", isCorrect: true },
-        { text: "henna pudrowa", isCorrect: false },
-        { text: "depilacja woskiem", isCorrect: false },
-        { text: "regulacja brwi", isCorrect: false }
-    ]
-},
-{
-    question: "W zabiegach z użyciem ultradźwięków dawki średnie mają wartość:",
-    options: [
-        { text: "0,5 do 1,5 W/cm2", isCorrect: true },
-        { text: "3 do 5 W/cm2", isCorrect: false },
-        { text: "0,1 do 0,3 W/cm2", isCorrect: false },
-        { text: "5 do 8 W/cm2", isCorrect: false }
-    ]
-},
-{
-    question: "Przedstawicielem BHA jest:",
-    options: [
-        { text: "kwas salicylowy", isCorrect: true },
-        { text: "kwas glikolowy", isCorrect: false },
-        { text: "kwas migdałowy", isCorrect: false },
-        { text: "kwas mlekowy", isCorrect: false }
-    ]
-},
-{
-    question: "Do działań anody w galwanizacji zaliczamy:",
-    options: [
-        { text: "spadek napięcia mięśniowego", isCorrect: true },
-        { text: "pobudzenie zakończeń nerwowych", isCorrect: false },
-        { text: "silne przekrwienie skóry", isCorrect: false },
-        { text: "wzrost wydzielania sebum", isCorrect: false }
-    ]
-},
-{
-    question: "Nieprawdziwe zdanie na temat zabiegu radiofrekwencji to:",
-    options: [
-        { text: "emitowane fale radiowe ogrzewają skórę właściwą bez ingerencji w strukturę naskórka", isCorrect: false },
-        { text: "opiera się na wywołaniu efektu termicznego", isCorrect: false },
-        { text: "wykorzystuje efekt podgrzania tkanek", isCorrect: false },
-        { text: "wszystkie zdania są prawdziwe", isCorrect: true }
-    ]
-},
-{
-    question: "Najlepszy efekt poprawy napięcia owalu twarzy uzyskuje się wykorzystując:",
-    options: [
-        { text: "radiofrekwencje", isCorrect: true },
-        { text: "darsonwalizację", isCorrect: false },
-        { text: "galwanizację", isCorrect: false },
-        { text: "peeling kawitacyjny", isCorrect: false }
-    ]
-},
-{
-    question: "Przeciwwskazaniem do zabiegu jonoforezy nie jest:",
-    options: [
-        { text: "trądzik różowaty", isCorrect: true },
-        { text: "ciąża", isCorrect: false },
-        { text: "rozrusznik serca", isCorrect: false },
-        { text: "metalowe implanty", isCorrect: false }
-    ]
-},
-{
-    question: "Kolejne warstwy naskórka licząc od wierzchniej to:",
-    options: [
-        { text: "rogowa, jasna, ziarnista, kolczysta, podstawna", isCorrect: true },
-        { text: "rogowa, kolczysta, ziarnista, jasna, podstawna", isCorrect: false },
-        { text: "jasna, rogowa, ziarnista, podstawna, kolczysta", isCorrect: false },
-        { text: "ziarnista, rogowa, jasna, kolczysta, podstawna", isCorrect: false }
-    ]
-},
-{
-    question: "Nieprawdziwe zdanie dotyczące zabiegu darsonwalizacji to:",
-    options: [
-        { text: "zabieg wykonywane jest po oczyszczaniu manualnym", isCorrect: false },
-        { text: "podczas zabiegu wytwarza się ozon, który ma działanie antybakteryjne", isCorrect: false },
-        { text: "wyróżniamy zabieg tylko darsonwalizacji miejscowej", isCorrect: false },
-        { text: "wszystkie zdania są prawdziwe", isCorrect: true }
-    ]
-},
-{
-    question: "Pielęgnacja gabinetowa dla cery naczyniowej oraz trądziku różowatego obejmuje:",
-    options: [
-        { text: "zabiegi uszczelniające ściany naczyń krwionośnych", isCorrect: false },
-        { text: "zabiegi łagodzące", isCorrect: false },
-        { text: "zabiegi nawilżające", isCorrect: false },
-        { text: "wszystkie odpowiedzi są prawdziwe", isCorrect: true }
-    ]
-},
-{
-    question: "Do zabiegu mikrodermabrazji nie stosuje się:",
-    options: [
-        { text: "korundu", isCorrect: false },
-        { text: "pierścieni diamentowych", isCorrect: false },
-        { text: "tlenku glinu", isCorrect: false },
-        { text: "wszystkie z wymienionych używamy", isCorrect: true }
-    ]
-},
-{
-    question: "W jakiej kolejności stosuje się poszczególne techniki podczas masażu klasycznego?:",
-    options: [
-        { text: "głaskanie, rozcieranie, ugniatanie, oklepywanie, wibracja", isCorrect: true },
-        { text: "ugniatanie, głaskanie, rozcieranie, wibracja, oklepywanie", isCorrect: false },
-        { text: "rozcieranie, ugniatanie, głaskanie, oklepywanie, wibracja", isCorrect: false },
-        { text: "oklepywanie, wibracja, ugniatanie, rozcieranie, głaskanie", isCorrect: false }
-    ]
-},
-{
-    question: "Do substancji aktywnych kosmetyków o działaniu keratolitycznym należą:",
-    options: [
-        { text: "alfahydroksykwasy", isCorrect: true },
-        { text: "ceramidy", isCorrect: false },
-        { text: "kolagen", isCorrect: false },
-        { text: "elastyna", isCorrect: false }
-    ]
-},
-{
-    question: "Fibroblasty to:",
-    options: [
-        { text: "komórki skóry właściwej, które wytwarzają kolagen i elastynę", isCorrect: true },
-        { text: "komórki odpowiedzialne za produkcję melaniny", isCorrect: false },
-        { text: "martwe komórki warstwy rogowej", isCorrect: false },
-        { text: "gruczoły łojowe skóry", isCorrect: false }
-    ]
-},
-{
-    question: "W celu rozpulchnienia skóry przed manualnym oczyszczaniem możemy zastosować maskę:",
-    options: [
-        { text: "borowinową", isCorrect: true },
-        { text: "ściągającą", isCorrect: false },
-        { text: "algową chłodzącą", isCorrect: false },
-        { text: "parafinową", isCorrect: false }
-    ]
-},
-{
-    question: "Nieprawdziwe zdanie dotyczące zabiegu jonoforezy to:",
-    options: [
-        { text: "dla wprowadzenia jonów dodatnich podkład z lekiem układa się pod katodą", isCorrect: true },
-        { text: "jonoforeza wykorzystuje prąd stały", isCorrect: false },
-        { text: "w zabiegu stosuje się elektrody", isCorrect: false },
-        { text: "jonoforeza zwiększa przenikanie substancji aktywnych", isCorrect: false }
-    ]
-},
-{
-    question: "Proces odnowy komórkowej w naskórku trwa zazwyczaj około:",
-    options: [
-        { text: "25-30 dni", isCorrect: true },
-        { text: "5-7 dni", isCorrect: false },
-        { text: "60-90 dni", isCorrect: false },
-        { text: "12 godzin", isCorrect: false }
-    ]
-},
-{
-    question: "Najbezpieczniejszym zabiegiem dla kobiety w ciąży będzie:",
-    options: [
-        { text: "peeling enzymatyczny z masażem twarzy", isCorrect: true },
-        { text: "radiofrekwencja", isCorrect: false },
-        { text: "mikrodermabrazja korundowa", isCorrect: false },
-        { text: "galwanizacja", isCorrect: false }
-    ]
-},
-{
-    question: "Skuteczność zabiegu peelingu chemicznego nie zależy od:",
-    options: [
-        { text: "stanu skóry", isCorrect: false },
-        { text: "pH", isCorrect: false },
-        { text: "pKa", isCorrect: false },
-        { text: "brak prawidłowej odpowiedzi", isCorrect: true }
-    ]
-},
-{
-    question: "Do zabiegu peelingu kawitacyjnego nie zastosujemy:",
-    options: [
-        { text: "wody przegotowanej", isCorrect: false },
-        { text: "wody destylowanej", isCorrect: false },
-        { text: "toniku nawilżającego", isCorrect: false },
-        { text: "wszystkie powyższe preparaty możemy użyć do zabiegu", isCorrect: true }
-    ]
-},
-{
-    question: "Cera tłusta wymaga przeprowadzenia zabiegów:",
-    options: [
-        { text: "normalizujących pracę gruczołów łojowych", isCorrect: true },
-        { text: "silnie natłuszczających", isCorrect: false },
-        { text: "wyłącznie liftingujących", isCorrect: false },
-        { text: "rozgrzewających", isCorrect: false }
-    ]
-},
-{
-    question: "Wskazaniem do galwanizacji nie jest:",
-    options: [
-        { text: "rozszerzone ujścia gruczołów łojowych", isCorrect: false },
-        { text: "skóra słabo ukrwiona", isCorrect: false },
-        { text: "skóra dojrzała", isCorrect: false },
-        { text: "wszystkie wymienione są wskazaniem", isCorrect: true }
-    ]
-},
-{
-    question: "Przeciwwskazaniem do zabiegu złuszczania naskórka przy użyciu peelingów chemicznych jest przyjmowanie witaminy:",
-    options: [
-        { text: "A", isCorrect: true },
-        { text: "C", isCorrect: false },
-        { text: "D", isCorrect: false },
-        { text: "B12", isCorrect: false }
-    ]
-},
-{
-    question: "W etiopatogenezie trądziku pospolitego znaczącej roli nie odgrywa:",
-    options: [
-        { text: "kolonizacja bakterii Helicobacter pylori", isCorrect: true },
-        { text: "nadmierne wydzielanie sebum", isCorrect: false },
-        { text: "Cutibacterium acnes", isCorrect: false },
-        { text: "zaburzenia keratynizacji", isCorrect: false }
-    ]
-},
-{
-    question: "Zabiegi wykorzystujące działanie prądu stałego to:",
-    options: [
-        { text: "jonoforeza i galwanizacja", isCorrect: true },
-        { text: "darsonwalizacja i sonoforeza", isCorrect: false },
-        { text: "mikrodermabrazja i oksybrazja", isCorrect: false },
-        { text: "radiofrekwencja i peeling kawitacyjny", isCorrect: false }
-    ]
-},
-{
-    question: "Peeling kawitacyjny należy do peelingów:",
-    options: [
-        { text: "fizycznych", isCorrect: true },
-        { text: "chemicznych", isCorrect: false },
-        { text: "enzymatycznych", isCorrect: false },
-        { text: "kwasowych", isCorrect: false }
-    ]
-},
-{
-    question: "Przeciwwskazaniem do zabiegu mikrodermabrazji są:",
-    options: [
-        { text: "trądzik zapalny", isCorrect: true },
-        { text: "cera mieszana", isCorrect: false },
-        { text: "skóra odwodniona", isCorrect: false },
-        { text: "drobne zmarszczki", isCorrect: false }
-    ]
-},
-{
-    question: "Warstwa rogowa i ziarnista zaliczane są do:",
-    options: [
-        { text: "warstwy żywej naskórka", isCorrect: false },
-        { text: "do warstwy żywej i warstwy Malphiego", isCorrect: false },
-        { text: "warstwy Malphiego", isCorrect: false },
-        { text: "brak prawidłowej odpowiedzi", isCorrect: true }
-    ]
-}
+        const rawQuestions = [
+    {
+        question: "Makijaż ślubny łączy w sobie cechy makijażu:",
+        options: [
+            { text: "Dziennego", isCorrect: false },
+            { text: "Wieczorowego", isCorrect: false },
+            { text: "Fotograficznego", isCorrect: false },
+            { text: "Wszystkie odp. Są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Kolor roku 2022 to:",
+        options: [
+            { text: "Kolarowy", isCorrect: false },
+            { text: "Very Peri", isCorrect: true },
+            { text: "Żółć i szarość", isCorrect: false },
+            { text: "Bakłażan", isCorrect: false }
+        ]
+    },
+    {
+        question: "Makijaż biżuteryjny czerpiący z filozofii haute couture powinien mieć charakter :",
+        options: [
+            { text: "Upiększający", isCorrect: true },
+            { text: "Przesadnie strojny", isCorrect: false },
+            { text: "Zachowawczy", isCorrect: false },
+            { text: "Kiczowaty", isCorrect: false }
+        ]
+    },
+    {
+        question: "Cechy makijażu artystycznego to:",
+        options: [
+            { text: "Teatralność", isCorrect: false },
+            { text: "Nowoczesne techniki aplikacji", isCorrect: false },
+            { text: "Wyraziste barwy", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Makijaż brokatowy czerpie z makijażu",
+        options: [
+            { text: "Fotograficznego", isCorrect: false },
+            { text: "Epokowego", isCorrect: false },
+            { text: "Estradowego", isCorrect: true },
+            { text: "Żadna odpowiedz nie jest poprawna", isCorrect: false }
+        ]
+    },
+    {
+        question: "Makijaż który powinien uwzględnić filozofię marki i grupę docelową to:",
+        options: [
+            { text: "Makijaż reklamowy", isCorrect: true },
+            { text: "Makijaż reprezentacyjny", isCorrect: false },
+            { text: "Makijaż rekultywujący", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "W makijażu artystycznym można sobie pozwolić na nowoczesne podejście do:",
+        options: [
+            { text: "Modelarzu", isCorrect: false },
+            { text: "Kształtu oka", isCorrect: false },
+            { text: "Proporcji twarzy", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Teatralność w makijażu artystycznym oznacza:",
+        options: [
+            { text: "Subtelność", isCorrect: false },
+            { text: "Dbałość o detale", isCorrect: false },
+            { text: "Wyrazistość", isCorrect: true },
+            { text: "Minimalizm", isCorrect: false }
+        ]
+    },
+    {
+        question: "Aby właściwie wykonać makijaż fotograficzny najważniejsze jest:",
+        options: [
+            { text: "Przeznaczenie makijażu", isCorrect: true },
+            { text: "Poznanie modelki", isCorrect: false },
+            { text: "Oglądanie sesji zdjęciowej", isCorrect: false },
+            { text: "Przybycie na czas", isCorrect: false }
+        ]
+    },
+    {
+        question: "W makijażu artystycznym istnieje możliwość kreowania go za pomocą:",
+        options: [
+            { text: "Sztucznych rzęs", isCorrect: false },
+            { text: "Tłustego podłoża", isCorrect: false },
+            { text: "Akcentów kolorystycznych", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Face paiting może być wykonywany technikami:",
+        options: [
+            { text: "Pędzla i gąbki", isCorrect: false },
+            { text: "Airbrush", isCorrect: false },
+            { text: "Odpowiedzi A i B są poprawne", isCorrect: true },
+            { text: "Żadna odpowiedz nie jest poprawna", isCorrect: false }
+        ]
+    },
+    {
+        question: "Makijaż prezentowany w pismach poradnikowych powinien być:",
+        options: [
+            { text: "Utrzymywany w klasycznej konwencji", isCorrect: true },
+            { text: "Utrzymywany w nowoczesnej konwencji", isCorrect: false },
+            { text: "Utrzymywany w ciepłych barwach", isCorrect: false },
+            { text: "Utrzymywany w chłodnych barwach", isCorrect: false }
+        ]
+    },
+    {
+        question: "Rodzaje makijażu artystycznego to:",
+        options: [
+            { text: "Makijaż fashion", isCorrect: false },
+            { text: "Face painting", isCorrect: false },
+            { text: "Makijaż biżuteryjny", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Przy oświetleniu cieplnym makijaż powinien być:",
+        options: [
+            { text: "Neutralny", isCorrect: false },
+            { text: "W chłodnych tonach", isCorrect: false },
+            { text: "W ciepłych tonach", isCorrect: true },
+            { text: "Żadna odpowiedz nie jest poprawna", isCorrect: false }
+        ]
+    },
+    {
+        question: "Istotą makijażu reklamowego jest:",
+        options: [
+            { text: "Zaprezentowanie linii kosmetyków", isCorrect: true },
+            { text: "Nieuwzględnienie grupy docelowej", isCorrect: false },
+            { text: "Chłodna tonacja kolorystyczna", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Makijaż fashion czerpie z :",
+        options: [
+            { text: "Charakteryzacji", isCorrect: false },
+            { text: "Makijażu epokowego", isCorrect: false },
+            { text: "Makijażu estradowego", isCorrect: false },
+            { text: "Wszystkie odp są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "W świetle ostrym bezpośrednio skierowanym:",
+        options: [
+            { text: "Dobrze wyjdzie portret macho", isCorrect: false },
+            { text: "Należy uwzględnić precyzyjne modelowanie", isCorrect: false },
+            { text: "Odpowiedzi A i B są poprawne", isCorrect: true },
+            { text: "Wychodzą idealne portrety kobiece", isCorrect: false }
+        ]
+    },
+    {
+        question: "Makijaż najczęściej spotykany jest w fotografii reklamowej, szczególnie w przypadku produktów pielęgnacyjnych to:",
+        options: [
+            { text: "Make-up no make-up", isCorrect: true },
+            { text: "Makijaż epokowy", isCorrect: false },
+            { text: "Makijaż Beauty", isCorrect: false },
+            { text: "Makijaż airbrush", isCorrect: false }
+        ]
+    },
+    {
+        question: "Światło białe – neutralne ma temperaturę:",
+        options: [
+            { text: "3000 K", isCorrect: false },
+            { text: "4500-5000 K", isCorrect: true },
+            { text: "6000-8000K", isCorrect: false },
+            { text: "10000K", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przy oświetleniu chłodnym makijaż powinien być:",
+        options: [
+            { text: "Ekstrawagancki", isCorrect: false },
+            { text: "W chłodnych tonach", isCorrect: true },
+            { text: "W ciepłych tonach", isCorrect: false }
+        ]
+    }
 ];
 
+        // Zmienne stanu
         let questions = [];
         let currentQuestionIndex = 0;
         let score = 0;
