@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test - 6</title>
+    <title>Test - Egzamin dyplmowy part 3/5</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -139,7 +139,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Test Wiedzy: Egzamin 6</h1>
+        <h1>Test Wiedzy: Egzamin dyplmowy part 3/5</h1>
         
         <div class="stats-container">
             <div id="status-bar" class="status-bar">Ładowanie...</div>
@@ -169,145 +169,17 @@
             }
             return array;
         }
-        
-        const rawQuestions = [
-    {
-        question: "Dobór technik do zabiegu masażu zależy od:",
-        options: [
-            { text: "wskazań do masażu", isCorrect: false },
-            { text: "budowy masowanej okolicy", isCorrect: false },
-            { text: "stanu fizycznego i psychicznego Klienta", isCorrect: false },
-            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
-        ]
-    },
-    {
-        question: "Wskazaniem do masażu pałeczkami bambusowymi jest:",
-        options: [
-            { text: "poprawa krążenia krwi i limfy", isCorrect: false },
-            { text: "zmniejszenie napięć mięśniowych", isCorrect: false },
-            { text: "poprawa trofiki skóry", isCorrect: false },
-            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
-        ]
-    },
-    {
-        question: "Przeciwwskazaniem do masażu ud i pośladków bańką chińską jest:",
-        options: [
-            { text: "cellulit II stopnia", isCorrect: false },
-            { text: "przerwana ciągłość naskórka w okolicy brzucha", isCorrect: false },
-            { text: "ciąża", isCorrect: true },
-            { text: "zwiększona ilość tkanki tłuszczowej (zwiększony obwód ciała) w okolicy zabiegowej", isCorrect: false }
-        ]
-    },
-    {
-        question: "Kamienie używane do masażu w kosmetologii oddziałują na organizm człowieka:",
-        options: [
-            { text: "statycznie", isCorrect: false },
-            { text: "dynamicznie", isCorrect: false },
-            { text: "poprzez temperaturę", isCorrect: false },
-            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
-        ]
-    },
-    {
-        question: "Pozycja ułożenia ciała Klienta podczas masażu:",
-        options: [
-            { text: "powinna być bezpieczna i komfortowa dla Klienta", isCorrect: false },
-            { text: "jest sugerowana przez masażystę", isCorrect: false },
-            { text: "powinna zapewnić ułożenie stawów w tzw. pozycjach neutralnych lub zerowych", isCorrect: false },
-            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
-        ]
-    },
-    {
-        question: "Temperatura kamieni bazaltowych używanych do masażu powinna być dostosowana do indywidualnych odczuć osoby masowanej i oscylować w granicach:",
-        options: [
-            { text: "temperatury ciała ludzkiego", isCorrect: false },
-            { text: "55 stopni Celsjusza", isCorrect: true },
-            { text: "65 stopni Celsjusza", isCorrect: false },
-            { text: "40 stopni Celsjusza", isCorrect: false }
-        ]
-    },
-    {
-        question: "Konserwacja pałeczek bambusowych używanych do zabiegu masażu obejmuje następujące czynności:",
-        options: [
-            { text: "mycie i oliwienie pałeczek", isCorrect: false },
-            { text: "mycie, dezynfekcję i oliwienie pałeczek", isCorrect: true },
-            { text: "mycie i dezynfekcję pałeczek", isCorrect: false },
-            { text: "mycie, sterylizację i oliwienie pałeczek", isCorrect: false }
-        ]
-    },
-    {
-        question: "Prawdziwym stwierdzeniem dotyczącym techniki wykonywania relaksacyjnego masażu aromaterapeutycznego jest:",
-        options: [
-            { text: "masaż wykonywany jest przy muzyce relaksacyjnej", isCorrect: false },
-            { text: "masaż charakteryzuje się stosowaniem technik o charakterze ruchów płynnych i spokojnych", isCorrect: false },
-            { text: "masaż charakteryzuje się stosowaniem technik głaskania i rozcierania", isCorrect: false },
-            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
-        ]
-    },
-    {
-        question: "Zaznacz prawdziwe stwierdzenie dotyczące ogólnych zasad wykonywania masażu:",
-        options: [
-            { text: "charakter pracy masażysty nie wymaga predyspozycji psychicznych", isCorrect: false },
-            { text: "Klient powinien być przykryty podczas zabiegu, odkrywa się jedynie aktualnie masowane partie ciała", isCorrect: true },
-            { text: "wywiad z Klientem przeprowadza się po zakończonym zabiegu", isCorrect: false },
-            { text: "masaż powinien być wykonywany zgodnie z zasadami higieny, które dotyczą wyłącznie masażysty", isCorrect: false }
-        ]
-    },
-    {
-        question: "W celu modelowania sylwetki można wykonać:",
-        options: [
-            { text: "masaż bambusem", isCorrect: false },
-            { text: "masaż bańką chińską", isCorrect: false },
-            { text: "masaż gorącymi kamieniami", isCorrect: false },
-            { text: "odpowiedzi a i b są prawidłowe", isCorrect: true }
-        ]
-    },
-    {
-        question: "Przygotowanie masażysty obejmuje następujące czynności:",
-        options: [
-            { text: "umycie i zdezynfekowanie dłoni", isCorrect: false },
-            { text: "upięcie długich włosów", isCorrect: false },
-            { text: "swobodny ubiór", isCorrect: false },
-            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
-        ]
-    },
-    {
-        question: "Prawdziwym stwierdzeniem dotyczącym kwalifikacji zawodowych masażysty jest:",
-        options: [
-            { text: "kwalifikacje zawodowe są dane raz na zawsze i nie ma sensu ich podnosić", isCorrect: false },
-            { text: "kwalifikacje zawodowe nie odgrywają znaczącej roli na rynku pracy", isCorrect: false },
-            { text: "kwalifikacje zawodowe powinno się ustawicznie podnosić odbywając szkolenia, uczestnicząc w konferencjach, pokazach itp.", isCorrect: true },
-            { text: "odbyte kursy masaży nie mają żadnego wpływu na poziom świadczonych usług", isCorrect: false }
-        ]
-    },
-    {
-        question: "W czasie zabiegu masażu należy uwzględnić siłę bodźca mechanicznego, którą dobiera się w zależności od:",
-        options: [
-            { text: "wieku i płci", isCorrect: false },
-            { text: "stanu zdrowia", isCorrect: false },
-            { text: "reaktywności układu nerwowego", isCorrect: false },
-            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
-        ]
-    },
-    {
-        question: "Zaznacz prawdziwe stwierdzenie dotyczące masażu modelującego bańką chińską:",
-        options: [
-            { text: "przystawienie bańki chińskiej powoduje wciągnięcie tkanki skórnej i podskórnej do wnętrza bańki, prowadząc do pojawienia się silnego przekrwienia", isCorrect: true },
-            { text: "masaż bańką chińską to doskonała terapia odchudzająca dla otyłych", isCorrect: false },
-            { text: "masaż powinien być wykonywany codziennie", isCorrect: false },
-            { text: "masaż powinien być wykonywany spokojnie i wolno", isCorrect: false }
-        ]
-    },
-    {
-        question: "Do masażu aromaterapeutycznego używa się:",
-        options: [
-            { text: "oliwki w połączeniu z naturalnym olejkiem eterycznym", isCorrect: false },
-            { text: "oleju bazowego w połączeniu z syntetycznym olejkiem eterycznym", isCorrect: false },
-            { text: "oleju bazowego w połączeniu z naturalnym olejkiem eterycznym", isCorrect: true },
-            { text: "balsamu aromaterapeutycznego na bazie parafiny", isCorrect: false }
-        ]
-    }
-];
-        
+const rawQuestions = [
+            {
+                question: "Ile wynosi temperatura wrzenia podtlenku azotu?",
+                options: [
+                    { text: "-195,8°C", isCorrect: false },
+                    { text: "-88°C", isCorrect: true },
+                    { text: "-78,9°C", isCorrect: false },
+                    { text: "-40,8°C", isCorrect: false }
+                ]
+            },
+        ];
         // Zmienne stanu
         let questions = [];
         let currentQuestionIndex = 0;

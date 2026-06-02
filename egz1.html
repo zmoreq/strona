@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Egzamin dyplmowy part 1/5</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #121212; /* Ciemne tło */
+            color: #e0e0e0; /* Jasny tekst */
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            margin: 20px auto;
+            border: 1px solid #333;
+        }
+        h1 {
+            color: #f48fb1; /* Różowy odcień pasujący do estetyki */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        /* --- SEKCJA STATYSTYK --- */
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+            font-size: 1.1em;
+        }
+        .status-bar {
+            color: #aaa;
+        }
+        .live-score {
+            font-weight: bold;
+            color: #4caf50; /* Zielony kolor dla wyniku */
+        }
+        
+        .question-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        .question-section p {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #ffffff;
+        }
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            cursor: pointer;
+            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            background-color: #2c2c2c;
+            color: #e0e0e0;
+        }
+        .options label:hover {
+            background-color: #383838;
+            border-color: #555;
+        }
+        .options input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: #f48fb1;
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .button-group button {
+            padding: 12px 30px;
+            margin: 0 10px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.3s;
+            font-weight: bold;
+        }
+        .button-group button:active {
+            transform: scale(0.98);
+        }
+        #check-button {
+            background-color: #c2185b;
+            color: white;
+        }
+        #check-button:hover {
+            background-color: #ad1457;
+        }
+        #next-button {
+            background-color: #2e7d32;
+            color: white;
+            display: none;
+        }
+        #next-button:hover {
+            background-color: #1b5e20;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.2em;
+            display: none;
+        }
+        .correct-msg {
+            background-color: #1b5e20;
+            color: #ffffff;
+            border: 1px solid #2e7d32;
+        }
+        .incorrect-msg {
+            background-color: #b71c1c;
+            color: #ffffff;
+            border: 1px solid #c62828;
+        }
+        .final-score {
+            font-size: 1.5em;
+            color: #f48fb1;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test Wiedzy: Egzamin dyplmowy part 1/5</h1>
+        
+        <div class="stats-container">
+            <div id="status-bar" class="status-bar">Ładowanie...</div>
+            <div id="live-score" class="live-score">Wynik: 0/0 (0%)</div>
+        </div>
+        
+        <div class="question-section">
+            <p id="question"></p>
+            <div class="options" id="options">
+                </div>
+        </div>
+
+        <div class="button-group">
+            <button id="check-button">Sprawdź</button>
+            <button id="next-button">Następne pytanie</button>
+            <button id="restart-button" style="display: none; background-color: #ff9800; color: white;">Rozpocznij od nowa</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+        
+    const rawQuestions = [
+    {
+        question: "Naruszenie praw autorskich skutkować może:",
+        options: [
+            { text: "wyłącznie odpowiedzialnością cywilną", isCorrect: false },
+            { text: "odpowiedzialnością zarówno w zakresie prawa cywilnego i karnego", isCorrect: true },
+            { text: "wyłącznie odpowiedzialnością karną", isCorrect: false },
+            { text: "wyłącznie odpowiedzialnością kontraktową", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zdrowie psychiczne jednostki zależy do dobrze funkcjonującej rodziny. Członkowie rodziny powinni dbać o równowagę między:",
+        options: [
+            { text: "podsystemami", isCorrect: false },
+            { text: "stylami wychowawczymi", isCorrect: false },
+            { text: "matką a dzieckiem", isCorrect: false },
+            { text: "indywidualnością człowieka a relacjami", isCorrect: true }
+        ]
+    },
+    {
+        question: "Tajemnica firmy (wiedza, technologia produkcji, skład produktów itp.) określa się z angielskiego mianem:",
+        options: [
+            { text: "know how", isCorrect: true },
+            { text: "who is who", isCorrect: false },
+            { text: "who know", isCorrect: false },
+            { text: "does not matter", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do praw autorskich i pokrewnych zalicza się:",
+        options: [
+            { text: "znak towarowy", isCorrect: false },
+            { text: "wzór przemysłowy", isCorrect: false },
+            { text: "utwory (w tym programy komputerowe)", isCorrect: true },
+            { text: "wynalazek (patent)", isCorrect: false }
+        ]
+    },
+    {
+        question: "Kazimierz Dąbrowski uważa, że człowiek nie może się rozwijać bez:",
+        options: [
+            { text: "zaspokojenia potrzeb wyższego rzędu", isCorrect: false },
+            { text: "dezintegracji pozytywnej", isCorrect: true },
+            { text: "kontaktu z ważnym obiektem", isCorrect: false },
+            { text: "możliwości wyrażania uczuć", isCorrect: false }
+        ]
+    },
+    {
+        question: "Centrami energetycznymi komórki są:",
+        options: [
+            { text: "Rybosomy", isCorrect: false },
+            { text: "Mezosomy", isCorrect: false },
+            { text: "Mitochondria", isCorrect: true },
+            { text: "Jąderka", isCorrect: false }
+        ]
+    },
+    {
+        question: "Która z wymienionych części skóry zawiera komórki barwnikowe (melanocyty):",
+        options: [
+            { text: "Naskórek", isCorrect: true },
+            { text: "Warstwa brodawkowata skóry właściwej", isCorrect: false },
+            { text: "Warstwa siateczkowta skory", isCorrect: false },
+            { text: "Tkanka podskórna", isCorrect: false }
+        ]
+    },
+    {
+        question: "Który z hormonów nie występuje u kobiet:",
+        options: [
+            { text: "Progesteron", isCorrect: false },
+            { text: "Estrogen", isCorrect: false },
+            { text: "Testosteron", isCorrect: false },
+            { text: "Żadna z odpowiedzi nie jest prawidłowa", isCorrect: true }
+        ]
+    },
+    {
+        question: "Mutacje w komórkach mogą być wywoływane przez:",
+        options: [
+            { text: "Metale ciężkie", isCorrect: false },
+            { text: "UV", isCorrect: false },
+            { text: "Promienie RTG", isCorrect: false },
+            { text: "Wszystkie wyżej wymienione czynniki", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zespół Downa jest spowodowany:",
+        options: [
+            { text: "Trisomią chromosomu 13", isCorrect: false },
+            { text: "Delecją chromosomu 21", isCorrect: false },
+            { text: "Trisomią chromosomu 21", isCorrect: true },
+            { text: "Złamaniem chromosomu X", isCorrect: false }
+        ]
+    },
+    {
+        question: "Skóra pełni funkcje:",
+        options: [
+            { text: "Receptorowe", isCorrect: false },
+            { text: "Ochronne", isCorrect: false },
+            { text: "Termoregulacyjne", isCorrect: false },
+            { text: "Wszystkie wymienione", isCorrect: true }
+        ]
+    },
+    {
+        question: "Naskórek utworzony jest z komórek nabłonka wielowarstwowego:",
+        options: [
+            { text: "Kostkowego", isCorrect: false },
+            { text: "Cylindrycznego", isCorrect: false },
+            { text: "Płaskiego", isCorrect: true },
+            { text: "Przejściowego", isCorrect: false }
+        ]
+    },
+    {
+        question: "Lewa tętnica wieńcowa odchodzi od:",
+        options: [
+            { text: "wstępującej części aorty", isCorrect: true },
+            { text: "łuku aorty", isCorrect: false },
+            { text: "pnia płucnego", isCorrect: false },
+            { text: "lewej tętnicy płucnej", isCorrect: false }
+        ]
+    },
+    {
+        question: "W gabinecie kosmetologicznym podczas kontaktu z klientem na pewno nie zarazimy się:",
+        options: [
+            { text: "Wszami", isCorrect: false },
+            { text: "Owsikami", isCorrect: false },
+            { text: "Glistą ludzką", isCorrect: true },
+            { text: "Świerzbem", isCorrect: false }
+        ]
+    },
+    {
+        question: "„Ich odnóża oraz odchody są alergenami powodującymi reakcje alergiczne takie jak kaszel, duszności, czy swędzenie u osób uczulonych. Są odpowiedzialne za objawy całoroczne” – opis ten dotyczy:",
+        options: [
+            { text: "Kleszczy", isCorrect: false },
+            { text: "Owsików", isCorrect: false },
+            { text: "Nużeńców", isCorrect: false },
+            { text: "Roztoczy kurzu domowego", isCorrect: true }
+        ]
+    },
+    {
+        question: "Endospory wytwarzane przez bakterie to:",
+        options: [
+            { text: "pęcherzyki z enzymami trawiennymi wydzielane przez bakterie do otoczenia biorące udział w odżywianiu", isCorrect: false },
+            { text: "formy przetrwalnikowe bakterii", isCorrect: true },
+            { text: "struktury w komórce bakteryjnej biorące udział w usuwaniu zbędnych substancji", isCorrect: false },
+            { text: "„rozmnóżki” bakteryjne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Kosmetyki przeznaczone do okolic oczu i dla dzieci do lat 3:",
+        options: [
+            { text: "Ogólna liczba drobnoustrojów tlenowych mezofilnych nie może przekraczać 10 jtk/g lub ml", isCorrect: false },
+            { text: "Ogólna liczba drobnoustrojów tlenowych mezofilnych nie może przekraczać 100 jtk/g lub ml", isCorrect: true },
+            { text: "Ogólna liczna drobnoustrojów tlenowych mezofilnych nie może przekraczać 1.000 jtk/g lub ml", isCorrect: false },
+            { text: "żadna z odpowiedzi nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przed przystąpieniem do zabiegu kosmetolog powinien zastosować:",
+        options: [
+            { text: "higieniczne mycie rąk", isCorrect: true },
+            { text: "Socjalne mycie rąk", isCorrect: false },
+            { text: "Chirurgiczne mycie rąk", isCorrect: false },
+            { text: "żadna z wymienionych odpowiedzi nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Sprawność układu immunologicznego człowieka nie jest zależna od:",
+        options: [
+            { text: "Wieku", isCorrect: false },
+            { text: "Nałogów i chorób", isCorrect: false },
+            { text: "Zażywanych leków", isCorrect: false },
+            { text: "Płci", isCorrect: true }
+        ]
+    },
+    {
+        question: "Lepkość cieczy (np. ciekłego kosmetyku):",
+        options: [
+            { text: "rośnie ze wzrostem temperatury", isCorrect: false },
+            { text: "nie zmienia się ze zmianą temperatury", isCorrect: false },
+            { text: "maleje ze wzrostem temperatury", isCorrect: true },
+            { text: "nie jest monotoniczną funkcją temperatury", isCorrect: false }
+        ]
+    },
+    {
+        question: "Liczba porządkowa wodoru wynosi 1. Oznacza to, że:",
+        options: [
+            { text: "wodór tworzy tylko jeden tlenek", isCorrect: false },
+            { text: "atom wodoru ma jeden elektron", isCorrect: true },
+            { text: "atom wodoru ma po jednym elektronie walencyjnym i rdzeniowym", isCorrect: false },
+            { text: "wszystkie powyższe odpowiedzi są błędne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wykorzystywany w mikrodermabrazji korund jest:",
+        options: [
+            { text: "odmianą diamentu", isCorrect: false },
+            { text: "krystaliczną postacią tlenku żelaza", isCorrect: false },
+            { text: "minerałem nazywanym także miką", isCorrect: false },
+            { text: "wszystkie powyższe odpowiedzi są błędne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Informacyjny RNA to:",
+        options: [
+            { text: "mRNA", isCorrect: true },
+            { text: "tRNA", isCorrect: false },
+            { text: "rRNA", isCorrect: false },
+            { text: "snRNA", isCorrect: false }
+        ]
+    },
+    {
+        question: "Podczas resuscytacji krążeniowo-oddechowej dorosłego, prowadzonej przez 2 osoby, stosunek masażu do wentylacji wynosi:",
+        options: [
+            { text: "10:2", isCorrect: false },
+            { text: "30:2", isCorrect: true },
+            { text: "15:2", isCorrect: false },
+            { text: "5:1", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wykonanie manewru Heimlicha u osoby dorosłej polega na:",
+        options: [
+            { text: "Wykonaniu 5 silnych uderzeń w plecy ratowanego, a następnie 5-ciu uciśnięć nadbrzusza, ratownik stoi za poszkodowanym,", isCorrect: false },
+            { text: "Zgięciu poszkodowanego ku przodowi i wyprostowaniu go gwałtownym ruchem do pozycji pionowej,", isCorrect: false },
+            { text: "Usunięciu z jamy ustnej widocznych fragmentów ciał obcych i sprowokowaniu u poszkodowanego kaszlu,", isCorrect: false },
+            { text: "Uciśnięciu rękoma złożonymi w pięść okolicy nadbrzusza poszkodowanego stając za nim.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Pielęgnowanie kończyn górnych obejmuje wykonywanie zabiegów w obrębie:",
+        options: [
+            { text: "dłoni i ramion,", isCorrect: false },
+            { text: "dłoni,", isCorrect: false },
+            { text: "dłoni, ramion i łokci,", isCorrect: true },
+            { text: "ramion i łokci.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż prawdziwe stwierdzenie dotyczące otyłości:",
+        options: [
+            { text: "otyłość to stan charakteryzujący się zwiększeniem masy ciała poprzez wzrost ilości tkanki mięśniowej", isCorrect: false },
+            { text: "badania rozpowszechnienia problemu nadwagi i otyłości wskazują na spadek występowania tego zjawiska na świecie", isCorrect: false },
+            { text: "otyłość to stan charakteryzujący się przyrostem tkanki tłuszczowej spowodowany hipertrofią i/lub hiperplazją adipocytów", isCorrect: true },
+            { text: "odpowiedzi b i c są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zabieg z użyciem kataplazmy stosuje się przy:",
+        options: [
+            { text: "rogowaceniu okołomieszkowym,", isCorrect: true },
+            { text: "otyłości ramion,", isCorrect: false },
+            { text: "zwiotczeniu mięśni,", isCorrect: false },
+            { text: "zwiotczeniu powłok skórnych", isCorrect: false }
+        ]
+    },
+    {
+        question: "Masaż dłoni przy manicure klasycznym wykonuje się przed:",
+        options: [
+            { text: "wycięciem naskórka okalającego paznokieć,", isCorrect: false },
+            { text: "lakierowaniem paznokci,", isCorrect: true },
+            { text: "obcięciem paznokci,", isCorrect: false },
+            { text: "opiłowaniem paznokci.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Stosowanie do codziennej pielęgnacji stóp maści zawierających kwas salicylowy chroni przed:",
+        options: [
+            { text: "wrastaniem paznokci,", isCorrect: false },
+            { text: "poceniem się stóp,", isCorrect: false },
+            { text: "powstawaniem obrzęków,", isCorrect: false },
+            { text: "tworzeniem nagniotków i modzeli.", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wrastające paznokcie powstają na skutek:",
+        options: [
+            { text: "noszenia zbyt ciasnego i niewygodnego obuwia", isCorrect: false },
+            { text: "obcinania paznokci zbyt krótko", isCorrect: false },
+            { text: "noszenie zbyt długich paznokci", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Substancje o działaniu regenerującym stosowane w odżywkach do paznokci to:",
+        options: [
+            { text: "biotyna, wit. A, pierwiastki śladowe,", isCorrect: false },
+            { text: "NNKT, wit. Z grupy B, pantenol,", isCorrect: false },
+            { text: "biotyna, wit. E, hydrolizaty keratyny i kolagenu,", isCorrect: true },
+            { text: "pantenol, hydrolizaty elastyny, wit. C.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Występujący w ludzkim serum skwalen jest:",
+        options: [
+            { text: "nasyconym węglowodorem", isCorrect: false },
+            { text: "nienasyconym węglowodorem", isCorrect: true },
+            { text: "aromatycznym węglowodorem", isCorrect: false },
+            { text: "wszystkie powyższe odpowiedzi są błędne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Kwas hialuronowy to:",
+        options: [
+            { text: "poliketokwas powodujący efekt delikatnego złuszczania", isCorrect: false },
+            { text: "lipid wykorzystywany do wypełniania zmarszczek", isCorrect: false },
+            { text: "peptyd stosowany do wygładzania zmarszczek", isCorrect: false },
+            { text: "żadna z powyższych odpowiedzi nie jest poprawna", isCorrect: true }
+        ]
+    },
+    {
+        question: "Lecytyny są:",
+        options: [
+            { text: "hydroksy-kwasami", isCorrect: false },
+            { text: "białkami", isCorrect: false },
+            { text: "fosfolipidami", isCorrect: true },
+            { text: "wszystkie odpowiedzi są błędne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Ekstrakt z orzecha włoskiego zawiera:",
+        options: [
+            { text: "juglon", isCorrect: true },
+            { text: "Lawson", isCorrect: false },
+            { text: "inermion", isCorrect: false },
+            { text: "reglon", isCorrect: false }
+        ]
+    },
+    {
+        question: "Substancją barwiącą naskórek w hennie jest:",
+        options: [
+            { text: "juglon", isCorrect: false },
+            { text: "Lawson", isCorrect: true },
+            { text: "inermion", isCorrect: false },
+            { text: "reglon", isCorrect: false }
+        ]
+    },
+    {
+        question: "Toksyna botulinowa typu A, wytwarzana przez bakterie Clostridium botulinum, to:",
+        options: [
+            { text: "aminokwas powodujący efekt wygładzenia zmarszczek", isCorrect: false },
+            { text: "lipid wykorzystywany do wypełniania zmarszczek", isCorrect: false },
+            { text: "cukier stymulujący syntezę kolagenu w skórze właściwej", isCorrect: false },
+            { text: "wszystkie odpowiedzi są niepoprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "W pudrach prasowanych (stałych) karboksymetyloceluloza pełni funkcję:",
+        options: [
+            { text: "składnika poślizgowego", isCorrect: false },
+            { text: "lepiszcza", isCorrect: true },
+            { text: "ścierniwa", isCorrect: false },
+            { text: "wszystkie odpowiedzi są błędne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Układ dyspersyjny złożony powietrza lub innego gazu rozproszonego w cieczy to:",
+        options: [
+            { text: "aerozol", isCorrect: false },
+            { text: "emulsja ciekła", isCorrect: false },
+            { text: "piana", isCorrect: true },
+            { text: "wszystkie odpowiedzi są błędne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Inhibicja tyrozynazy skutkuje:",
+        options: [
+            { text: "rozjaśnieniem barwy skóry", isCorrect: true },
+            { text: "zwiększeniem produkcji melanin", isCorrect: false },
+            { text: "nie ma wpływu na melanogenezę", isCorrect: false },
+            { text: "wszystkie powyższe odpowiedzi są błędne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Kosmetyk o składzie: Aqua, Hexyl Laurate, Isopropyl My-ristate, Prunus Amygdalus Dulcis Oil, Ethylhexyl Metho-xycinnamate, Stearyl Heptanoate, Stearyl Capryla-te,Cera Alba,Propylene Glycol,Aesculus Hippocastanum Fruit Extract, Alcohol, Arnica Montana Herb Extract, Arnica Chamissonis Herb Extract,Sodium Chloride,Ginkgo Biloba Leaf Extract,Tocopheryl Acetate, Panthenol, Parfum, Imidazolidinyl Urea, Alpha Isomethyl Ionone zawiera:",
+        options: [
+            { text: "barwniki i glikole", isCorrect: false },
+            { text: "konserwanty i estry kwasu galusowego", isCorrect: false },
+            { text: "ekstrakty roślinne i barwniki", isCorrect: false },
+            { text: "konserwanty i oleje roślinne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Kosmetyk o składzie:Calendula Officinalis Flower, Planta-go Lanceolata Leaf, Chamomolla Recutita Flower, Salvia Officinalis Leaf, Trigonella Foenum-Graecum Seed, Junipe-rus Communis Fruit, Agrypyron Repens jest peelingiem:",
+        options: [
+            { text: "enzymatycznym", isCorrect: false },
+            { text: "ziołowym", isCorrect: true },
+            { text: "wykorzystującym hydroksykwasy jako jedyne substancje czynne", isCorrect: false },
+            { text: "gommage", isCorrect: false }
+        ]
+    },
+    {
+        question: "Kosmetyk o składzie Aqua (Water), Cyclopentasiloxane, Isohexadecane, Sodium Chloride, Sodium Benzoate, 2-Bromo-2-Nitropropane-1,3-Diol, CI 42090 jest:",
+        options: [
+            { text: "zawierającym witaminy balsamem nawilżającym", isCorrect: false },
+            { text: "bezacetonowym zmywaczem do paznokci", isCorrect: false },
+            { text: "dwufazowym płynem do demakijażu", isCorrect: true },
+            { text: "wszystkie powyższe odpowiedzi są błędne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do chorób bakteryjnych zalicza się:",
+        options: [
+            { text: "czyrak", isCorrect: true },
+            { text: "wyprysk bakteryjny", isCorrect: false },
+            { text: "mięczak zakaźny", isCorrect: false },
+            { text: "świerzb", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wirusem HIV można się zakazić:",
+        options: [
+            { text: "przez kontakt ze skórą zakażonego", isCorrect: false },
+            { text: "przez ukłucie komara", isCorrect: false },
+            { text: "przez kleszcze", isCorrect: false },
+            { text: "drogą płciową", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wykwitem charakterystycznym dla trądziku różowatego nie jest:",
+        options: [
+            { text: "rumień", isCorrect: false },
+            { text: "krosta", isCorrect: false },
+            { text: "grudka", isCorrect: false },
+            { text: "zaskórnik", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskazaniem do wykonania zabiegu mikrodermabrazji diamentowej jest:",
+        options: [
+            { text: "aktywna faza trądziku grudkowo - krostkowego", isCorrect: false },
+            { text: "faza prerosacea trądziku różowatego", isCorrect: false },
+            { text: "łuszczyca", isCorrect: false },
+            { text: "skóra z plamami soczewicowatymi", isCorrect: true }
+        ]
+    },
+    {
+        question: "Który z przedstawionych schematów zabiegów przeznaczony jest dla skóry dojrzałej:",
+        options: [
+            { text: "peeling drobnoziarnisty, masaż, maska ściągająca", isCorrect: false },
+            { text: "peeling kawitacyjny, maska normalizująca, maska algowa", isCorrect: false },
+            { text: "peeling enzymatyczny, maska odżywcza, maska termoaktywna", isCorrect: true },
+            { text: "peeling gruboziarnisty, maska odżywcza, maska ściągająca", isCorrect: false }
+        ]
+    },
+    {
+        question: "Metodą wprowadzania składników aktywnych w głąb skóry jest:",
+        options: [
+            { text: "sonoforeza, galwanizacja, kawitacja", isCorrect: false },
+            { text: "mezoterapia bezigłowa, sonoforeza, kawitacja", isCorrect: false },
+            { text: "mezoterapia bezigłowa, sonoforeza, jonoforeza", isCorrect: true },
+            { text: "sonoforeza, jonoforeza, kawitacja", isCorrect: false }
+        ]
+    },
+    {
+        question: "Preparaty kosmetyczne zawierające wyciąg z kasztanowca stosuje się do:",
+        options: [
+            { text: "zabiegów dla skóry trądzikowej", isCorrect: false },
+            { text: "zabiegów odżywczych", isCorrect: false },
+            { text: "zabiegów dla skóry suchej", isCorrect: false },
+            { text: "zabiegów dla skóry naczynkowej", isCorrect: true }
+        ]
+    },
+    {
+        question: "Prąd stały wykorzystuje się wykonują zabieg:",
+        options: [
+            { text: "darsonwalizacji", isCorrect: false },
+            { text: "galwanizacji", isCorrect: true },
+            { text: "kawitacji", isCorrect: false },
+            { text: "sonoforezy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Keratynocyty to komórki:",
+        options: [
+            { text: "martwe, tworzące łuski", isCorrect: false },
+            { text: "barwnikowe, występujące w warstwie podstawnej", isCorrect: false },
+            { text: "żywe, występujące w warstwie podstawnej naskórka", isCorrect: true },
+            { text: "martwe, występujące w warstwie rogowej naskórka", isCorrect: false }
+        ]
+    },
+    {
+        question: "Mikrodermabrazja zaliczana jest do grupy peelingów:",
+        options: [
+            { text: "biologicznych", isCorrect: false },
+            { text: "mechanicznych", isCorrect: true },
+            { text: "fizycznych", isCorrect: false },
+            { text: "chemicznych", isCorrect: false }
+        ]
+    },
+    {
+        question: "Nieprawdziwym stwierdzeniem dotyczącym cery naczyniowej jest:",
+        options: [
+            { text: "nadmierna i nieprawidłowa pobudliwość naczyń krwionośnych skóry", isCorrect: false },
+            { text: "skłonność to tzw. flushingu", isCorrect: false },
+            { text: "cera naczyniowa jest wstępnym stadium trądziku różowatego", isCorrect: false },
+            { text: "powstaje wyłącznie na podłożu skóry suchej", isCorrect: true }
+        ]
+    },
+    {
+        question: "Metodą aparaturową wspomagania transportu substancji czynnych stosowaną w gabinecie kosmetycznym nie jest:",
+        options: [
+            { text: "sonoforeza", isCorrect: false },
+            { text: "mezoterapia bezigłowa", isCorrect: false },
+            { text: "dezinkrustacja", isCorrect: true },
+            { text: "elektroporacja", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do składników czynnych kosmetyków uszczelniających naczynia krwionośne zalicza się:",
+        options: [
+            { text: "rutynę i escynę", isCorrect: true },
+            { text: "kwas hialuronowy", isCorrect: false },
+            { text: "alantoinę", isCorrect: false },
+            { text: "związki cynku i siarki", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do błędów pielęgnacyjnych prowadzących do zaostrzenia trądziku różowatego zalicza się:",
+        options: [
+            { text: "brak wysokiej fotoprotekcji w okresach nasłonecznienia", isCorrect: true },
+            { text: "używanie peelingów enzymatycznych", isCorrect: false },
+            { text: "stosowanie delikatnych środków myjących o kwaśnym Ph", isCorrect: false },
+            { text: "stosowanie wyłącznie toników bezalkoholowych", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przeciwwskazaniem bezwzględnym do wykonania zabiegu farbowania brwi (henny) nie jest:",
+        options: [
+            { text: "zapalenie spojówek", isCorrect: false },
+            { text: "świeżo regulowane brwi", isCorrect: false },
+            { text: "noszenie soczewek kontaktowych", isCorrect: true },
+            { text: "stany zapalne skóry", isCorrect: false }
+        ]
+    },
+    {
+        question: "Który z wykwitów pierwotnych ustępuje pozostawiając bliznę:",
+        options: [
+            { text: "bąbel pokrzywkowy", isCorrect: false },
+            { text: "grudka", isCorrect: false },
+            { text: "guzek", isCorrect: true },
+            { text: "krosta", isCorrect: false }
+        ]
+    },
+    {
+        question: "Które ze składowych skóry są pozbawione naczyń krwionośnych:",
+        options: [
+            { text: "tkanka podskórna", isCorrect: false },
+            { text: "skóra właściwa", isCorrect: false },
+            { text: "naskórek", isCorrect: true },
+            { text: "gruczoły potowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "W świerzbie podstawowym wykwitem jest:",
+        options: [
+            { text: "przeczos", isCorrect: false },
+            { text: "grudka", isCorrect: false },
+            { text: "pęcherzyk", isCorrect: false },
+            { text: "nora świerzbowcowa", isCorrect: true }
+        ]
+    },
+    {
+        question: "Objawem typowym dla łuszczycy jest:",
+        options: [
+            { text: "objaw Köbnera", isCorrect: true },
+            { text: "objaw Raynauda", isCorrect: false },
+            { text: "objaw Nikolskiego", isCorrect: false },
+            { text: "żadne z powyższych", isCorrect: false }
+        ]
+    },
+    {
+        question: "Stany przedrakowe skóry to:",
+        options: [
+            { text: "róg skórny", isCorrect: false },
+            { text: "rogowacenie słoneczne", isCorrect: false },
+            { text: "rogowacenie białe", isCorrect: false },
+            { text: "wszystkie wymienione", isCorrect: true }
+        ]
+    },
+    {
+        question: "Najczęściej obserwowane objawy uboczne po przewlekłym stosowaniu silnych kortykosteroidów to:",
+        options: [
+            { text: "ścieńczenie skóry (zaniki, rozstępy, wybroczyny i wylewy)", isCorrect: false },
+            { text: "teleangiektazje", isCorrect: false },
+            { text: "zaostrzenia infekcji bakteryjnych, wirusowych i grzybiczych", isCorrect: false },
+            { text: "wszystkie wymienione", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz zdanie fałszywe:",
+        options: [
+            { text: "fizjoterapia obejmuje kinezyterapię, fizykoterapię oraz masaż", isCorrect: false },
+            { text: "większość stosowanych w SPA form odnowy biologicznej i zabiegów to fizjoterapia", isCorrect: false },
+            { text: "fizykoterapia wykorzystuje różne metody ćwiczeń fizycznych", isCorrect: true },
+            { text: "kinezyterapia wykorzystuje różne metody ćwiczeń fizycznych", isCorrect: false }
+        ]
+    },
+    {
+        question: "Powiązanie między człowiekiem a jego środowiskiem odzwierciedlone jest w nowej koncepcji zwanej Mandalą Zdrowia, która jest:",
+        options: [
+            { text: "baza teoretyczna dla promocji zdrowia, zależność między środowiskiem fizycznym, społecznym, kulturalnym a zdrowiem;", isCorrect: true },
+            { text: "aktywność fizyczna, racjonalne odżywianie, higiena ciała i otoczenia, zachowanie bezpieczeństwa i higiena psychiczna;", isCorrect: false },
+            { text: "podejmowanie wyborów i decyzji sprzyjających zdrowiu kształtowanie potrzeby rozwiązywania problemów i zwiększenie potencjału zdrowia;", isCorrect: false },
+            { text: "rozpoznanie społecznych czynników ryzyka oraz sprecyzowanie i wdrożenie zaleceń prozdrowotnego stylu życia;", isCorrect: false }
+        ]
+    },
+    {
+        question: "Składowe edukacji zdrowotnej wynikające z definicji to:",
+        options: [
+            { text: "proces, w którym ludzie uczą się dbać o zdrowie własne i społeczeństwa w którym żyją;", isCorrect: true },
+            { text: "uzyskanie odpowiedniej wiedzy na temat własnego zdrowia i zdrowia społeczeństw;", isCorrect: false },
+            { text: "dziedzina wiedzy działań i działań praktycznych zorientowanych na zdrowie jednostek i społeczeństw;", isCorrect: false },
+            { text: "kierunek wszechstronnego rozumienia, odkrywania i tworzenia nowych wartości życia jednostek i społeczeństw;", isCorrect: false }
+        ]
+    },
+    {
+        question: "Promocja zdrowia to proces umożliwiający ludziom:",
+        options: [
+            { text: "zwiększenie wpływu na naszą osobowość i zdrowie;", isCorrect: false },
+            { text: "zwiększenie kontroli nad swoim zdrowiem;", isCorrect: true },
+            { text: "wyznaczenie norm społecznych w aspekcie zdrowia;", isCorrect: false },
+            { text: "ochronę zdrowia oraz pomnażanie jego potencjału;", isCorrect: false }
+        ]
+    },
+    {
+        question: "Henna to:",
+        options: [
+            { text: "Substancja pochodzenia roślinnego", isCorrect: false },
+            { text: "Substancja o działaniu grzybobójczym", isCorrect: false },
+            { text: "Barwnik do włosów i ciała", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Micele tworzą się w wodnym roztworze substancji powierzchniowoczynnej (SPC):",
+        options: [
+            { text: "Przy dowolnym stężeniu SPC", isCorrect: false },
+            { text: "Przy stężeniu SPC mniejszym niż krytyczne stężenie micelarne", isCorrect: false },
+            { text: "Przy stężeniu SPC większym niż krytyczne stężenie micelarne", isCorrect: true },
+            { text: "W żadnych warunkach w roztworze SPC nie następuje agregacja drobin SPC", isCorrect: false }
+        ]
+    },
+    {
+        question: "Piżmo to:",
+        options: [
+            { text: "Substancja pochodzenia roślinnego używana do wyrobu maści", isCorrect: false },
+            { text: "Wydzielina gruczołów zapachowych okołoodbytniczych piżmowca syberyjskiego używane do wyrobu perfum", isCorrect: true },
+            { text: "Wydaliny kaszalota używane do wyrobu pachnideł", isCorrect: false },
+            { text: "Żadna z odpowiedzi nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Dezynfekcja to:",
+        options: [
+            { text: "proces niszczący drobnoustroje chorobotwórcze i ich formy przetrwalnikowe środkami fizycznymi i chemicznymi, w celu zapobiegania zakażeniu;", isCorrect: false },
+            { text: "zabijanie i usuwanie wszelkich drobnoustrojów, w celach antyseptycznych, przy konserwacji artykułów spożywczych;", isCorrect: false },
+            { text: "niszczy formy wegetatywne mikroorganizmów, ale nie zawsze usuwa formy przetrwalnikowe", isCorrect: true },
+            { text: "żadna z odpowiedzi nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "W miejscu naświetlania promieniami IR (podczerwonymi) widoczny jest:",
+        options: [
+            { text: "rumień cieplny – zaczerwienie nierównomierne, marmurkowate", isCorrect: true },
+            { text: "rumień fotochemiczny – zaczerwienienie o wyraźnych granicach z obszarem nienaświetlanym", isCorrect: false },
+            { text: "rumień cieplny – zaczerwienienie jednolite, które nie zależy od czasu naświetlania", isCorrect: false },
+            { text: "rumień fotochemiczny - zaczerwienie nierównomierne, marmurkowate, które nasila się kilka godzin po naświetlaniu IR", isCorrect: false }
+        ]
+    },
+    {
+        question: "Współczesne SPA prowadzi kompleksową terapię uzdrowiskową wykorzystując zabiegi i działania z zakresu:",
+        options: [
+            { text: "kosmetologii", isCorrect: false },
+            { text: "fizjoterapii i odnowy biologicznej", isCorrect: false },
+            { text: "dietetyki", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Kobiecie o jesiennym typie urody kosmetolog powinna zaproponować makijaż w odcieniach:",
+        options: [
+            { text: "ciepłych,", isCorrect: true },
+            { text: "zimnych,", isCorrect: false },
+            { text: "kontrastowych,", isCorrect: false },
+            { text: "neutralnych.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zadaniem tonerów jest neutralizowanie zmian barwnych na skórze, działają one w oparciu o:",
+        options: [
+            { text: "system addytywny", isCorrect: false },
+            { text: "zasadę barw komplementarnych", isCorrect: true },
+            { text: "system subtraktywny", isCorrect: false },
+            { text: "zasadę harmonii barw", isCorrect: false }
+        ]
+    },
+    {
+        question: "Dominująca linia pozioma twarzy o kształcie serca jest zlokalizowana:",
+        options: [
+            { text: "na linii kości jarzmowych", isCorrect: false },
+            { text: "na linii czoła", isCorrect: true },
+            { text: "na linii kości żuchwy", isCorrect: false },
+            { text: "na linii kości policzkowych", isCorrect: false }
+        ]
+    },
+    {
+        question: "W analizie kolorystycznej wiosna jest porą roku/urodą:",
+        options: [
+            { text: "ciepłą, jasną, czystą", isCorrect: true },
+            { text: "chłodną, jasną, przygaszoną", isCorrect: false },
+            { text: "ciepłą, ciemną, przygaszoną", isCorrect: false },
+            { text: "chłodną, ciemną, czystą", isCorrect: false }
+        ]
+    },
+    {
+        question: "Jaką temperaturę wrzenia ma ciekły azot wykorzystywany w krioterapii:",
+        options: [
+            { text: "-88⁰C", isCorrect: false },
+            { text: "-195,8⁰C", isCorrect: true },
+            { text: "-100,0⁰C", isCorrect: false },
+            { text: "-78,9⁰C", isCorrect: false }
+        ]
+    },
+    {
+        question: "Kamufluje rozszerzone naczynia krwionośne oraz niewielkie zaróżowienia na twarzy korektor:",
+        options: [
+            { text: "niebieski", isCorrect: false },
+            { text: "beżowy", isCorrect: false },
+            { text: "zielony", isCorrect: true },
+            { text: "fioletowy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Barwniki do farbowania włosów w kolorze blond przedstawiane przez malarzy Tycjana i Boticiellego wynaleziono w okresie:",
+        options: [
+            { text: "Odrodzenia", isCorrect: true },
+            { text: "Oświecenia", isCorrect: false },
+            { text: "Starożytności", isCorrect: false },
+            { text: "Starożytnego Rzymu", isCorrect: false }
+        ]
+    },
+    {
+        question: "Jakie metale nie mogą być wykorzystywane w biżuterii stosowanej w body piercing:",
+        options: [
+            { text: "tytan", isCorrect: false },
+            { text: "platyna", isCorrect: false },
+            { text: "nikiel", isCorrect: true },
+            { text: "14 lub 18- karatowe lite złoto", isCorrect: false }
+        ]
+    },
+    {
+        question: "Boczne partie twarzy należy przyciemnić przy twarz o kształcie:",
+        options: [
+            { text: "okrągłym,", isCorrect: true },
+            { text: "owalnym,", isCorrect: false },
+            { text: "odwróconego trójkąta,", isCorrect: false },
+            { text: "trójkątnej", isCorrect: false }
+        ]
+    },
+    {
+        question: "Jakie zabiegi medycyny estetycznej są bezpieczne dla pacjentów z łuszczycą:",
+        options: [
+            { text: "Eksfoliacja kwasami", isCorrect: false },
+            { text: "Ozonoterapia (Darsonval)", isCorrect: false },
+            { text: "Botox", isCorrect: true },
+            { text: "Karboksyterapia", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zgłoszenie do ewidencji działalności gospodarczej powinno zawierać:",
+        options: [
+            { text: "numer rachunku bankowego", isCorrect: false },
+            { text: "wielkość wnoszonego kapitału", isCorrect: false },
+            { text: "przedmiot działalności gospodarczej", isCorrect: true },
+            { text: "liczbę zatrudnionych pracowników", isCorrect: false }
+        ]
+    },
+    {
+        question: "Analiza SWOT:",
+        options: [
+            { text: "to ocena mocnych stron, słabych stron, szans oraz zagrożeń", isCorrect: false },
+            { text: "jest narzędziem służącym do wewnętrznej analizy przedsiębiorstwa", isCorrect: false },
+            { text: "jest narzędziem służącym do analizy otoczenia przedsiębiorstwa", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Do miejscowych zabiegów cieplnych stosowanych w kosmetologii w terapii otyłości i cellulitu zalicza się:",
+        options: [
+            { text: "saunę fińską", isCorrect: false },
+            { text: "saunę parową", isCorrect: false },
+            { text: "okłady termiczne", isCorrect: true },
+            { text: "żadna odpowiedź nie jest poprawna", isCorrect: false }
+        ]
+    },
+    {
+        question: "Promieniowane UVA:",
+        options: [
+            { text: "odpowiada za natychmiastową hiperpigmentację skóry", isCorrect: true },
+            { text: "odpowiada za opóźnioną hiperpigmentację skóry", isCorrect: false },
+            { text: "pochłaniane jest głównie przez warstwę rogową naskórka", isCorrect: false },
+            { text: "odpowiada za powstawanie rumienia fotochemicznego oraz poparzenia słoneczne", isCorrect: false }
+        ]
+    },
+    {
+        question: "W negocjacjach trudnych i beznadziejnych ważnym jest:",
+        options: [
+            { text: "Nawiązanie relacji", isCorrect: true },
+            { text: "Korzyść", isCorrect: false },
+            { text: "Kwestie interpersonalne", isCorrect: false },
+            { text: "Unikanie ustępstw", isCorrect: false }
+        ]
+    },
+    {
+        question: "Podstawową jednostką systematyczną jest:",
+        options: [
+            { text: "takson", isCorrect: false },
+            { text: "gatunek", isCorrect: true },
+            { text: "domena", isCorrect: false },
+            { text: "królestwo", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zgodnie z zasadą nazewnictwa binominalnego prawidłowo pisana nazwa gatunku „Człowieka rozumnego” to:",
+        options: [
+            { text: "Homo sapiens", isCorrect: true },
+            { text: "Homo Sapiens", isCorrect: false },
+            { text: "homo Sapiens", isCorrect: false },
+            { text: "homo sapiens", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz prawidłowe zakończenie zdania: Takson parafiletyczny...",
+        options: [
+            { text: "jest jednym z taksonów sztucznych, który obejmuje tylko część potomków wspólnego przodka", isCorrect: true },
+            { text: "łączy organizmy, które nie mają wspólnego przodka i jedynie reprezentują ten sam poziom ewolucyjny", isCorrect: false },
+            { text: "jest taksonem, do którego należą obleńce", isCorrect: false },
+            { text: "zrzesza wszystkich potomków mających jednego, wspólnego przodka", isCorrect: false }
+        ]
+    },
+    {
+        question: "Cecha apomorficzna charakteryzuje się tym, że:",
+        options: [
+            { text: "jest nabytkiem ewolucyjnym danego taksonu", isCorrect: false },
+            { text: "jest cechą nieobecną u przodka", isCorrect: false },
+            { text: "jej przykładem jest zdolność ptaków do lotu", isCorrect: false },
+            { text: "wszystkie wymienione", isCorrect: true }
+        ]
+    },
+    {
+        question: "Do podtypu kręgowce nie należą:",
+        options: [
+            { text: "ryby", isCorrect: false },
+            { text: "płazy", isCorrect: false },
+            { text: "gady", isCorrect: false },
+            { text: "stawonogi", isCorrect: true }
+        ]
+    },
+    {
+        question: "Cechą charakterystyczną dla wirusów nie jest:",
+        options: [
+            { text: "obecność genomu", isCorrect: false },
+            { text: "kodowanie własnych białek enzymatycznych", isCorrect: false },
+            { text: "budowa komórkowa", isCorrect: true },
+            { text: "brak własnego metabolizmu poza komórką gospodarza", isCorrect: false }
+        ]
+    },
+    {
+        question: "Chorobą wirusową skóry jest:",
+        options: [
+            { text: "zapalenie mieszków włosowych", isCorrect: false },
+            { text: "trądzik pospolity", isCorrect: false },
+            { text: "opryszczka wargowa", isCorrect: true },
+            { text: "czyrak", isCorrect: false }
+        ]
+    },
+    {
+        question: "Czynnikiem wywołującym opryszczkę wargową może być:",
+        options: [
+            { text: "promieniowanie UV", isCorrect: false },
+            { text: "immunosupresja", isCorrect: false },
+            { text: "stres", isCorrect: false },
+            { text: "wszystkie wymienione", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zapalenie mieszków włosowych jest:",
+        options: [
+            { text: "infekcją górnej części mieszka włosowego", isCorrect: true },
+            { text: "głęboką, ropną infekcją całego mieszka włosowego", isCorrect: false },
+            { text: "wywołane przez laseczkę zgorzeli gazowej", isCorrect: false },
+            { text: "chorobą potencjalnie zagrażającą życiu", isCorrect: false }
+        ]
+    },
+    {
+        question: "Podstawową jednostką morfologiczno-funkcjonalną ustroju jest:",
+        options: [
+            { text: "cząsteczka", isCorrect: false },
+            { text: "komórka", isCorrect: true },
+            { text: "tkanka", isCorrect: false },
+            { text: "narząd", isCorrect: false }
+        ]
+    },
+    {
+        question: "Cechą charakterystyczną dla komórki eukariotycznej jest:",
+        options: [
+            { text: "brak systemu błon wewnątrzkomórkowych", isCorrect: false },
+            { text: "brak organelli komórkowych", isCorrect: false },
+            { text: "brak cytoszkieletu", isCorrect: false },
+            { text: "dynamiczny ruch cytoplazmy i organelli komórkowych", isCorrect: true }
+        ]
+    }
+];
+        
+        // Zmienne stanu
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let shuffleNeeded = false; // To change if you want to shuffle the questions
+
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const checkButton = document.getElementById('check-button');
+        const nextButton = document.getElementById('next-button');
+        const restartButton = document.getElementById('restart-button');
+        const resultElement = document.getElementById('result');
+        const statusBar = document.getElementById('status-bar');
+        const liveScoreElement = document.getElementById('live-score');
+
+        function initTest() {
+            // Resetujemy stan
+            questions = shuffleArray([...rawQuestions]); // Tasujemy pytania
+            currentQuestionIndex = 0;
+            score = 0;
+            
+            // Resetujemy widok
+            checkButton.style.display = 'inline-block';
+            nextButton.style.display = 'none';
+            restartButton.style.display = 'none';
+            resultElement.style.display = 'none';
+            liveScoreElement.textContent = "Wynik: 0/0 (0%)";
+            
+            loadNewQuestion();
+        }
+
+        function loadNewQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                showFinalResult();
+                return;
+            }
+
+            const currentQuestion = questions[currentQuestionIndex];
+            statusBar.textContent = `Pytanie ${currentQuestionIndex + 1} z ${questions.length}`;
+            questionElement.textContent = currentQuestion.question;
+            optionsElement.innerHTML = '';
+            resultElement.style.display = 'none';
+            resultElement.className = '';
+
+            if (shuffleNeeded) {
+                currentQuestion.options = shuffleArray([...currentQuestion.options]);
+            }
+            else {
+                currentQuestion.options = [...currentQuestion.options];
+            }
+
+            currentQuestion.options.forEach((option, index) => {
+                const label = document.createElement('label');
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'answer';
+                radio.value = option.isCorrect ? 'correct' : 'incorrect';
+                
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(option.text));
+                optionsElement.appendChild(label);
+            });
+
+            checkButton.style.display = 'inline-block';
+            nextButton.style.display = 'none';
+        }
+
+        function checkAnswer() {
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+
+            if (!selectedOption) {
+                alert("Proszę zaznaczyć odpowiedź!");
+                return;
+            }
+
+            const isCorrect = selectedOption.value === 'correct';
+            const allRadios = optionsElement.querySelectorAll('input[type="radio"]');
+
+            if (isCorrect) {
+                score++;
+            }
+
+            // Aktualizacja wyniku na bieżąco
+            const questionsAnswered = currentQuestionIndex + 1;
+            const percentage = Math.round((score / questionsAnswered) * 100);
+            liveScoreElement.textContent = `Wynik: ${score}/${questionsAnswered} (${percentage}%)`;
+
+            allRadios.forEach(radio => {
+                const parentLabel = radio.parentElement;
+                radio.disabled = true;
+                
+                if (radio.value === 'correct') {
+                    parentLabel.style.backgroundColor = '#1b5e20';
+                    parentLabel.style.borderColor = '#2e7d32';
+                    parentLabel.style.color = '#ffffff'; 
+                } else if (radio.checked && radio.value === 'incorrect') {
+                    parentLabel.style.backgroundColor = '#b71c1c';
+                    parentLabel.style.borderColor = '#c62828';
+                    parentLabel.style.color = '#ffffff'; 
+                }
+            });
+
+            resultElement.style.display = 'block';
+            if (isCorrect) {
+                resultElement.textContent = "Poprawna odpowiedź!";
+                resultElement.className = 'correct-msg';
+            } else {
+                resultElement.textContent = "Niepoprawna odpowiedź.";
+                resultElement.className = 'incorrect-msg';
+            }
+
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'inline-block';
+        }
+
+        function showFinalResult() {
+            questionElement.textContent = "Koniec testu!";
+            optionsElement.innerHTML = `<div class="final-score">Twój wynik końcowy: ${score} na ${questions.length} punktów.</div>`;
+            
+            const percentage = Math.round((score / questions.length) * 100);
+            optionsElement.innerHTML += `<p>Skuteczność: ${percentage}%</p>`;
+
+            if (percentage >= 80) {
+                optionsElement.innerHTML += `<p style="color: #4caf50; font-weight: bold;">Świetny wynik! Gratulacje.</p>`;
+            } else if (percentage >= 50) {
+                optionsElement.innerHTML += `<p style="color: #ff9800; font-weight: bold;">Nieźle, ale warto powtórzyć materiał.</p>`;
+            } else {
+                optionsElement.innerHTML += `<p style="color: #f44336; font-weight: bold;">Musisz jeszcze poćwiczyć.</p>`;
+            }
+
+            checkButton.style.display = 'none';
+            nextButton.style.display = 'none';
+            resultElement.textContent = '';
+            statusBar.textContent = '';
+            liveScoreElement.textContent = ''; // Czyścimy pasek live score na końcu
+            
+            restartButton.style.display = 'inline-block';
+        }
+
+        checkButton.addEventListener('click', checkAnswer);
+        nextButton.addEventListener('click', () => {
+            currentQuestionIndex++;
+            loadNewQuestion();
+        });
+        restartButton.addEventListener('click', initTest);
+
+        document.addEventListener('DOMContentLoaded', initTest);
+    </script>
+</body>
+</html>

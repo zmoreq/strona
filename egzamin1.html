@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test - organizacja i zarządzanie gabinetem kosmetycznym</title>
+    <title>Test - Niefarmakologiczne metody leczenia</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -139,7 +139,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Test Wiedzy: Organizacja i zarządzanie gabinetem kosmetycznym</h1>
+        <h1>Test Wiedzy: Niefarmakologiczne metody leczenia</h1>
         
         <div class="stats-container">
             <div id="status-bar" class="status-bar">Ładowanie...</div>
@@ -169,309 +169,143 @@
             }
             return array;
         }
-
-        const rawQuestions = [
-            // Test pierwszy
+const rawQuestions = [
             {
-                question: "Prowadząca we własnym imieniu działalność gospodarczą: osoba fizyczna, osoba prawna i jednostka organizacyjna niebędąca osobą prawną to:",
+                question: "Ile wynosi temperatura wrzenia podtlenku azotu?",
                 options: [
-                    { text: "Biznesmen", isCorrect: false },
-                    { text: "Przedsiębiorca", isCorrect: true },
-                    { text: "Człowiek sukcesu", isCorrect: false },
-                    { text: "Prokurent", isCorrect: false }
+                    { text: "-195,8°C", isCorrect: false },
+                    { text: "-88°C", isCorrect: true },
+                    { text: "-78,9°C", isCorrect: false },
+                    { text: "-40,8°C", isCorrect: false }
                 ]
             },
             {
-                question: "Daleko idące dostosowanie oferty przedsiębiorstwa do popytu i preferencji nabywców to wynik",
+                question: "Które z promieni UV są najbardziej szkodliwe dla skóry?",
                 options: [
-                    { text: "Segmentacji rynku", isCorrect: true },
-                    { text: "Marketingu", isCorrect: false },
-                    { text: "PR", isCorrect: false },
-                    { text: "Reklamy", isCorrect: false }
+                    { text: "UVB (290-320 nm)", isCorrect: false },
+                    { text: "UVA (320-400nm)", isCorrect: true },
+                    { text: "UVC (200-290 nm)", isCorrect: false },
+                    { text: "Wszystkie", isCorrect: false }
                 ]
             },
             {
-                question: "Do najważniejszych założeń prowadzenia biznesu według orientacji marketingowej należą następujące tezy:",
+                question: "Który z laserów pełni rolę skalpela chirurgicznego?",
                 options: [
-                    { text: "Konsument i jego potrzeby są głównymi obiektami zainteresowania firmy", isCorrect: false },
-                    { text: "Dobre wyniki sprzedażowe i ekonomiczne firma osiąga utożsamiając swoje sukcesy z korzyściami i zadowoleniem klientów", isCorrect: false },
-                    { text: "Systematyczne badania rynku, w tym jego segmentacja są podstawą podejmowania decyzji", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
+                    { text: "Neodymowo-yagowy", isCorrect: false },
+                    { text: "Aleksandrytowy", isCorrect: false },
+                    { text: "CO2", isCorrect: true },
+                    { text: "Erbowo-yagowy", isCorrect: false }
                 ]
             },
             {
-                question: "Prowadząc działalność nierejestrowaną musisz",
+                question: "Kąpiele siarczkowo-siarkowodorowe znajdują zastosowanie w:",
                 options: [
-                    { text: "Złożyć wniosek o wpis do CEIDG", isCorrect: false },
-                    { text: "Odprowadzać zaliczki na PIT", isCorrect: false },
-                    { text: "Prowadzić skomplikowaną rachunkowość", isCorrect: false },
-                    { text: "Żadna z powyższych odpowiedzi nie jest poprawna", isCorrect: true }
+                    { text: "Łuszczycy", isCorrect: true },
+                    { text: "Trądziku różowatym", isCorrect: false },
+                    { text: "Pokrzywce", isCorrect: false },
+                    { text: "Zaburzenia ukrwienia naczyń krwionośnych w cukrzycy", isCorrect: false }
                 ]
             },
             {
-                question: "Zryczałtowane formy opodatkowania to:",
+                question: "Efekt działania alfa-hydroksykwasów zależy między innymi od:",
                 options: [
-                    { text: "Skala podatkowa i podatek liniowy", isCorrect: false },
-                    { text: "Ryczałt ewidencjonowany i karta podatkowa", isCorrect: true },
-                    { text: "Podatek liniowy i karta podatkowa", isCorrect: false },
-                    { text: "Ryczałt ewidencjonowany i skala podatkowa", isCorrect: false }
+                    { text: "Jego stężenia", isCorrect: false },
+                    { text: "Biodostępności", isCorrect: false },
+                    { text: "Czasu ekspozycji", isCorrect: false },
+                    { text: "Od wszystkich powyższych czynników", isCorrect: true }
                 ]
             },
             {
-                question: "Autorskie prawa osobiste chronią nieograniczoną w czasie i niepodlegającą zrzeczeniu się lub zbyciu więź twórcy z utworem. W szczególności twórca ma prawo do:",
+                question: "W których chorobach skóry ostrożnie powinny być stosowane zabiegi medycyny estetycznej?",
                 options: [
-                    { text: "Autorstwa utworu", isCorrect: false },
-                    { text: "Oznaczenia utworu swoim nazwiskiem lub pseudonimem albo do udostępniania go anonimowo", isCorrect: false },
-                    { text: "Nienaruszalności treści i formy utworu oraz jego rzetelnego wykorzystania", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
+                    { text: "Łuszczyca", isCorrect: false },
+                    { text: "Liszaj płaski", isCorrect: false },
+                    { text: "Brodawki płaskie młodocianych", isCorrect: false },
+                    { text: "We wszystkich wymienionych", isCorrect: true }
                 ]
             },
             {
-                question: "Według Kodeksu Pracy obowiązki pracodawcy wobec pracownika to:",
+                question: "W leczeniu przebarwień nie znajduje zastosowania:",
                 options: [
-                    { text: "Terminowe wypłacanie określonego w umowie wynagrodzenia", isCorrect: false },
-                    { text: "Informowanie pracownika o obowiązkach i organizacji pracy", isCorrect: false },
-                    { text: "Umożliwienie pracownikowi podnoszenie kwalifikacji zawodowych", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
+                    { text: "Kwas migdałowy", isCorrect: false },
+                    { text: "Kwas kojowy", isCorrect: false },
+                    { text: "Kwas salicylowy", isCorrect: true },
+                    { text: "Kwas azelainowy", isCorrect: false }
                 ]
             },
             {
-                question: "Numery identyfikacyjne PESEL, NIP, paszport, dowód osobisty to:",
+                question: "Kriopeeling to:",
                 options: [
-                    { text: "Dane osobowe", isCorrect: true },
-                    { text: "Dane urzędowe", isCorrect: false },
-                    { text: "Dane zindywidualizowane", isCorrect: false },
-                    { text: "Dane udokumentowane", isCorrect: false }
+                    { text: "Peeling chemiczny", isCorrect: false },
+                    { text: "Peeling fizyczny", isCorrect: true },
+                    { text: "Peeling mechaniczny", isCorrect: false },
+                    { text: "Peeling złożony", isCorrect: false }
                 ]
             },
             {
-                question: "Przedsiębiorstwo obejmuje:",
+                question: "Które dane dotyczące cellulitu nie są prawdziwe?",
                 options: [
-                    { text: "Zasoby ludzkie", isCorrect: false },
-                    { text: "Zasoby finansowe", isCorrect: false },
-                    { text: "Strukturę organizacyjną", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
+                    { text: "Częściej dotyczy kobiet", isCorrect: false },
+                    { text: "Częściej dotyczy rasy kaukaskiej", isCorrect: false },
+                    { text: "Ryzyko rozwoju rośnie z wiekiem", isCorrect: false },
+                    { text: "Nigdy nie występuje u mężczyzn", isCorrect: true }
                 ]
             },
             {
-                question: "Do podstawowych funkcji przedsiębiorstwa zaliczamy:",
+                question: "Które z cech są charakterystyczne dla znamienia atypowego?",
                 options: [
-                    { text: "Funkcję organizacyjną", isCorrect: false },
-                    { text: "Funkcję finansową", isCorrect: false },
-                    { text: "Funkcję przedsiębiorczości", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
+                    { text: "Asymetryczne", isCorrect: false },
+                    { text: "Nieregularna struktura i nierównomierny rozkład barwnika", isCorrect: false },
+                    { text: "Średnica >1 mm", isCorrect: false },
+                    { text: "Wszystkie wymienione cechy", isCorrect: true }
                 ]
             },
             {
-                question: "Utworami w rozumieniu prawa autorskiego nie są:",
+                question: "Które kąpiele lecznicze znajdują zastosowanie w chorobach łojotokowych?",
                 options: [
-                    { text: "Know how", isCorrect: false },
-                    { text: "Procedury z zakresu administracji państwowej", isCorrect: false },
-                    { text: "Odkrycia naukowe", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
+                    { text: "Kąpiele siarczkowo-siarkowodorowe", isCorrect: true },
+                    { text: "Radonowe", isCorrect: false },
+                    { text: "Kwasowęglowe", isCorrect: false },
+                    { text: "Solankowe", isCorrect: false }
                 ]
             },
             {
-                question: "Najważniejsza ustawa w pakiecie Konstytucja Biznesu to:",
+                question: "Temperatura wrzenia ciekłego azotu używanego podczas zabiegów wynosi:",
                 options: [
-                    { text: "Centralna Ewidencja i Informacja o Działalności Gospodarczej", isCorrect: false },
-                    { text: "Ustawa dla małych i średnich przedsiębiorstw", isCorrect: false },
-                    { text: "Prawo przedsiębiorców", isCorrect: true },
-                    { text: "Prawo podatkowe", isCorrect: false }
+                    { text: "-195,8°C", isCorrect: true },
+                    { text: "-88°C", isCorrect: false },
+                    { text: "-78,9°C", isCorrect: false },
+                    { text: "-58°C", isCorrect: false }
                 ]
             },
             {
-                question: "Wynagrodzenie minimalne, prawo do płatnego urlopu, wynagrodzenie chorobowe w czasie choroby, to gwarancje:",
+                question: "Cząsteczkami absorbującymi, czyli chromoforami dla światła laserowego są?",
                 options: [
-                    { text: "Samozatrudnienia", isCorrect: false },
-                    { text: "Umowy zlecenie", isCorrect: false },
-                    { text: "Umowy o pracę", isCorrect: true },
-                    { text: "Umowy o dzieło", isCorrect: false }
-                ]
-            },
-            // Drugi test
-            {
-                question: "Podpunkt zawierający informacje prawidłowo charakteryzujące definicję podatku to:",
-                options: [
-                    { text: "Podatkiem jest publicznoprawne, nieodpłatne, przymusowe oraz bezzwrotne świadczenie pieniężne na rzecz Skarbu Państwa, województwa, powiatu lub gminy, wynikające z ustawy podatkowej", isCorrect: false },
-                    { text: "Podatki są jednym z podstawowych dochodów budżetu, które zapewniają pokrycie wydatków państwa", isCorrect: false },
-                    { text: "Podatki pełnią funkcję stymulacyjną, czyli stymulują gospodarkę do rozwoju", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+                    { text: "Hemoglobina", isCorrect: false },
+                    { text: "Melanina", isCorrect: false },
+                    { text: "Kolagen", isCorrect: false },
+                    { text: "Wszystkie wyżej wymienione", isCorrect: true }
                 ]
             },
             {
-                question: "Do zalet skali podatkowej należy:",
+                question: "Które z zabiegów wykorzystywane są w cellulicie?",
                 options: [
-                    { text: "Prawo do wspólnego rozliczania z małżonkiem", isCorrect: true },
-                    { text: "Obowiązek prowadzenia Podatkowej Księgi Przychodów i Rozchodów", isCorrect: false },
-                    { text: "Więcej formalności związanej z dokumentacją firmową", isCorrect: false },
-                    { text: "Żadna z powyższych odpowiedzi nie jest poprawna", isCorrect: false }
+                    { text: "Radiofrekwencja", isCorrect: false },
+                    { text: "Endermologia", isCorrect: false },
+                    { text: "Mezoterapia", isCorrect: false },
+                    { text: "Wszystkie wyżej wymienione zabiegi", isCorrect: true }
                 ]
             },
             {
-                question: "Do wad podatku liniowego zaliczyć możemy:",
+                question: "Która z podanych cech kwasu glikolowego jest nieprawdziwa?",
                 options: [
-                    { text: "Jedną stawkę podatku, bez względu na wysokość osiągniętego dochodu", isCorrect: false },
-                    { text: "Możliwość odliczenia od przychodu poniesionych kosztów podatkowych", isCorrect: false },
-                    { text: "Brak kwoty wolnej od podatku", isCorrect: true },
-                    { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: false }
-                ]
-            },
-            {
-                question: "Jedna stawka podatku wynosząca niezmiennie 19% bez względu na wysokość osiągniętego dochodu dotyczy:",
-                options: [
-                    { text: "Skali podatkowej", isCorrect: false },
-                    { text: "Podatku liniowego", isCorrect: true },
-                    { text: "Ryczałtu ewidencjonowanego", isCorrect: false },
-                    { text: "Karty podatkowej", isCorrect: false }
-                ]
-            },
-            {
-                question: "Według prawa autorskiego utworami nie są:",
-                options: [
-                    { text: "Odkrycia", isCorrect: false },
-                    { text: "Idee", isCorrect: false },
-                    { text: "Procedury", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
-                ]
-            },
-            {
-                question: "Zgodnie z ustawą „O prawie autorskim” ochronie prawem autorskim podlegają:",
-                options: [
-                    { text: "Akty normatywne lub ich urzędowe projekty", isCorrect: false },
-                    { text: "Urzędowe dokumenty, materiały, znaki i symbole", isCorrect: false },
-                    { text: "Proste informacje prasowe", isCorrect: false },
-                    { text: "Żadna odpowiedź nie jest poprawna", isCorrect: true }
-                ]
-            },
-            {
-                question: "Przepisy o utworach pracowniczych dotyczą:",
-                options: [
-                    { text: "Zleceniobiorców", isCorrect: false },
-                    { text: "Wykonawców dzieła na podstawie umowy o dzieło", isCorrect: false },
-                    { text: "Pracowników zatrudnionych na podstawie umowy o pracę", isCorrect: true },
-                    { text: "Samozatrudnionych", isCorrect: false }
-                ]
-            },
-            {
-                question: "Zatrudnienie pracownika na podstawie umowy o pracę wiąże się z gwarancjami takimi jak:",
-                options: [
-                    { text: "Wynagrodzenie minimalne", isCorrect: false },
-                    { text: "Prawo do płatnego urlopu", isCorrect: false },
-                    { text: "Wynagrodzenie chorobowe w czasie choroby", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
-                ]
-            },
-            {
-                question: "Umowy cywilnoprawne regulowane przez Kodeks Cywilny to:",
-                options: [
-                    { text: "Umowa zlecenie", isCorrect: false },
-                    { text: "Umowa o dzieło", isCorrect: false },
-                    { text: "Umowa agencyjna", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
-                ]
-            },
-            {
-                question: "Funkcja redystrybucyjna i alokacyjna cen polega na:",
-                options: [
-                    { text: "Dostarczaniu danych wyrażonych za pomocą jednostek pieniężnych potrzebnych do prowadzenia rachunku ekonomicznego", isCorrect: false },
-                    { text: "Podziale dochodów pomiędzy uczestnikami rynku", isCorrect: true },
-                    { text: "Motywowaniu uczestników rynku do określonego działania", isCorrect: false },
-                    { text: "Żadna odpowiedź nie jest poprawna", isCorrect: false }
-                ]
-            },
-            {
-                question: "Do czynników kształtujących podaż zaliczyć możemy:",
-                options: [
-                    { text: "Ceny dóbr substytucyjnych", isCorrect: false },
-                    { text: "Ceny dóbr komplementarnych", isCorrect: false },
-                    { text: "Technologie", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
-                ]
-            },
-            {
-                question: "Składnikami majątku firmy w przedsiębiorstwach usługowych są:",
-                options: [
-                    { text: "Kapitał ludzki", isCorrect: false },
-                    { text: "Środki obrotowe", isCorrect: false },
-                    { text: "Środki trwałe", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
-                ]
-            },
-            {
-                question: "Do bezpośredniego otoczenia przedsiębiorstwa zalicza się:",
-                options: [
-                    { text: "Organizacje i instytucje rynku zaopatrzenia", isCorrect: true },
-                    { text: "Instytucje polityczno-prawne", isCorrect: false },
-                    { text: "Instytucje ekologiczne", isCorrect: false },
-                    { text: "Instytucje międzynarodowe", isCorrect: false }
-                ]
-            },
-            {
-                question: "Do pośredniego otoczenia przedsiębiorstwa zalicza się:",
-                options: [
-                    { text: "Organizacje i instytucje rynku zaopatrzenia", isCorrect: false },
-                    { text: "Instytucje rynku pracy", isCorrect: false },
-                    { text: "Instytucje polityczno-prawne", isCorrect: true },
-                    { text: "Instytucje i organizacje rynku finansowego", isCorrect: false }
-                ]
-            },
-            {
-                question: "Do form organizacyjno-prawnych przedsiębiorstw należy:",
-                options: [
-                    { text: "Jednoosobowa działalność gospodarcza", isCorrect: false },
-                    { text: "Spółka jawna", isCorrect: false },
-                    { text: "Spółka akcyjna", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
-                ]
-            },
-            {
-                question: "Biorąc pod uwagę formy organizacyjno-prawne przedsiębiorstw, osoba fizyczna może prowadzić:",
-                options: [
-                    { text: "Spółkę jawną", isCorrect: false },
-                    { text: "Spółkę akcyjną", isCorrect: false },
-                    { text: "Jednoosobową, samodzielną działalność gospodarczą", isCorrect: true },
-                    { text: "Spółdzielnię", isCorrect: false }
-                ]
-            },
-            {
-                question: "Jednostka organizacyjna niebędąca osobą prawną, której odrębna ustawa przyznaje zdolność prawną to:",
-                options: [
-                    { text: "Osoba fizyczna", isCorrect: false },
-                    { text: "Ułomna osoba prawna", isCorrect: true },
-                    { text: "Żadna odpowiedź nie jest poprawna", isCorrect: false },
-                    { text: "Odpowiedź a i b są poprawne", isCorrect: false }
-                ]
-            },
-            {
-                question: "Do osobowych spółek handlowych zalicza się:",
-                options: [
-                    { text: "Spółkę jawną", isCorrect: false },
-                    { text: "Spółkę komantydową", isCorrect: false },
-                    { text: "Spółkę komandytowo-akcyjną", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
-                ]
-            },
-            {
-                question: "Do zalet jednoosobowej działalności gospodarczej należy:",
-                options: [
-                    { text: "Elastyczność w otwieraniu, zawieszaniu i likwidacji działalności", isCorrect: true },
-                    { text: "Odpowiedzialność całym majątkiem za zobowiązania", isCorrect: false },
-                    { text: "Obowiązek odprowadzania składek na ubezpieczenia do ZUS", isCorrect: false },
-                    { text: "Konieczność podstawowej znajomości przepisów związanych z opodatkowaniem", isCorrect: false }
-                ]
-            },
-            {
-                question: "Wniosek CEIDG-1 możemy złożyć:",
-                options: [
-                    { text: "Osobiście w urzędzie miasta lub gminy", isCorrect: false },
-                    { text: "Listem poleconym (poświadczonym notarialnie)", isCorrect: false },
-                    { text: "Elektronicznie z użyciem bezpiecznego podpisu kwalifikowanego", isCorrect: false },
-                    { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+                    { text: "Jest otrzymywany z trzciny cukrowej", isCorrect: false },
+                    { text: "Ma najdłuższy łańcuch węglowy", isCorrect: true },
+                    { text: "Jest nietoksyczny", isCorrect: false },
+                    { text: "Wygładza naskórek, aktywuje syntezę kolagenu, elastyny i glikozoaminoglikanów", isCorrect: false }
                 ]
             }
         ];
-
         // Zmienne stanu
         let questions = [];
         let currentQuestionIndex = 0;
