@@ -170,16 +170,817 @@
             return array;
         }
         const rawQuestions = [
-            {
-                question: "Ile wynosi temperatura wrzenia podtlenku azotu?",
-                options: [
-                    { text: "-195,8°C", isCorrect: false },
-                    { text: "-88°C", isCorrect: true },
-                    { text: "-78,9°C", isCorrect: false },
-                    { text: "-40,8°C", isCorrect: false }
-                ]
-            },
-        ];// Zmienne stanu
+    {
+        question: "Za zaopatrzenie skóry w tlen oraz składniki odżywcze odpowiada układ:",
+        options: [
+            { text: "żylny", isCorrect: false },
+            { text: "tętniczy", isCorrect: true },
+            { text: "limfatyczny", isCorrect: false },
+            { text: "żadna odpowiedź nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Za czucie dotyku odpowiedzialne są:",
+        options: [
+            { text: "ciałka Meissnera", isCorrect: false },
+            { text: "ciałka Merkela", isCorrect: false },
+            { text: "wolne zakończenia nerwowe oplatające pochewkę włosa", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Włos zbudowany jest przede wszystkim z:",
+        options: [
+            { text: "keratyny", isCorrect: true },
+            { text: "składników nieorganicznych", isCorrect: false },
+            { text: "wody", isCorrect: false },
+            { text: "melaniny", isCorrect: false }
+        ]
+    },
+    {
+        question: "Testosteron i progesteron powodują:",
+        options: [
+            { text: "spadek aktywności gruczołów łojowych oraz ich zmniejszenie", isCorrect: false },
+            { text: "wzrost aktywności gruczołów łojowych oraz ich zmniejszenie", isCorrect: false },
+            { text: "spadek aktywności gruczołów łojowych oraz ich przerost", isCorrect: false },
+            { text: "wzrost aktywności gruczołów łojowych oraz ich przerost", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zjawisko rogowacenia w warunkach fizjologicznych trwa:",
+        options: [
+            { text: "24 godziny", isCorrect: false },
+            { text: "15 dni", isCorrect: false },
+            { text: "28 dni", isCorrect: true },
+            { text: "5 dni", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przykładem onychodystrofii są:",
+        options: [
+            { text: "paznokcie pałeczkowate", isCorrect: false },
+            { text: "paznokcie łyżeczkowate", isCorrect: false },
+            { text: "leukonychie", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Do mięśni klatki piersiowej i obręczy barkowej, które warunkują odpowiednie napięcie piersi, należy:",
+        options: [
+            { text: "mięsień zębaty tylny", isCorrect: false },
+            { text: "mięsień piersiowy większy", isCorrect: true },
+            { text: "mięsień czworogłowy", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Na kształt i anomalie ułożenia piersi wpływ mają:",
+        options: [
+            { text: "siły grawitacji", isCorrect: false },
+            { text: "dieta", isCorrect: false },
+            { text: "nawyki w trakcie siedzenia", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Światło emitowane przez IPL jest:",
+        options: [
+            { text: "koherentne", isCorrect: false },
+            { text: "monochromatyczne", isCorrect: false },
+            { text: "polichromatyczne", isCorrect: true },
+            { text: "spolaryzowane", isCorrect: false }
+        ]
+    },
+    {
+        question: "Możliwe powikłania pozabiegowe, po zastosowaniu terapii IPL obejmują:",
+        options: [
+            { text: "obrzęk", isCorrect: false },
+            { text: "oparzenia III stopnia", isCorrect: false },
+            { text: "aktywację wirusa HSV II", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Przygotowanie do zabiegu epilacji laserowej, z wykorzystaniem lasera diodowego obejmuje:",
+        options: [
+            { text: "ogolenie włosów bezpośrednio przed zabiegiem", isCorrect: false },
+            { text: "odstawienie preparatów do stosowania miejscowego, zawierających witaminę A, aplikowanych na okolicę zabiegową", isCorrect: false },
+            { text: "unikanie promieniowania UV", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Efektem zastosowania LLLT jest:",
+        options: [
+            { text: "zmniejszona odpowiedź czynnika wzrostu", isCorrect: false },
+            { text: "zwiększona synteza ATP", isCorrect: true },
+            { text: "zmniejszona proliferacja komórek", isCorrect: false },
+            { text: "zwiększona stabilność komórek", isCorrect: false }
+        ]
+    },
+    {
+        question: "Nadmierny porost włosów, związany z przekształcaniem się włosów meszkowych w pełni skeratynizowane struktury to:",
+        options: [
+            { text: "hipotrychoza", isCorrect: false },
+            { text: "hipertrychoza", isCorrect: false },
+            { text: "hirsutyzm", isCorrect: true },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Lasery wykorzystywane w fotoepilacji to:",
+        options: [
+            { text: "laser diodowy", isCorrect: false },
+            { text: "laser aleksandrytowy", isCorrect: false },
+            { text: "laser Nd:YAG", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Do czynników rozszerzających naczynia skórne w mechanizmie humoralnym należą:",
+        options: [
+            { text: "histamina", isCorrect: true },
+            { text: "wazopresyna", isCorrect: false },
+            { text: "trombina", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Trwale rozszerzone, powierzchowne naczynia krwionośne włosowatego splotu podbrodawkowatego, przeświecające przez naskórek to:",
+        options: [
+            { text: "teleangiektazje", isCorrect: true },
+            { text: "żylaki", isCorrect: false },
+            { text: "naczyniaki płaskie", isCorrect: false },
+            { text: "naczyniaki głębokie", isCorrect: false }
+        ]
+    },
+    {
+        question: "Kierunki działania substancji i zabiegów kosmetologicznych w przypadku skóry naczyniowej obejmują:",
+        options: [
+            { text: "usprawnienie przepływu krwi w naczyniach", isCorrect: false },
+            { text: "uszczelnianie, wzmacnianie, uelastycznianie naczyń włosowatych", isCorrect: false },
+            { text: "zapobieganie wynaczynieniu/siniakom", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Do charakterystycznych objawów stanu zapalnego należy:",
+        options: [
+            { text: "wzrost temperatury", isCorrect: false },
+            { text: "obrzęk", isCorrect: false },
+            { text: "bolesność, tkliwość", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Do skórnego układu immunologicznego zaliczymy:",
+        options: [
+            { text: "melanocyty", isCorrect: false },
+            { text: "komórki Langerhansa", isCorrect: false },
+            { text: "keratynocyty", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zabiegami kosmetologicznymi wspomagającymi leczenie trądziku różowatego są:",
+        options: [
+            { text: "zabiegi uszczelniające naczynia krwionośne", isCorrect: true },
+            { text: "mikrodermabrazja diamentowa lub korundowa", isCorrect: false },
+            { text: "zabiegi z wykorzystaniem fal radiowych", isCorrect: false },
+            { text: "peelingi chemiczne z użyciem kwasu glikolowego", isCorrect: false }
+        ]
+    },
+    {
+        question: "Efekt ujędrnienia skóry będący wynikiem zabiegów z wykorzystaniem fal radiowych osiągamy dzięki:",
+        options: [
+            { text: "rozszerzeniu naczyń krwionośnych", isCorrect: false },
+            { text: "obkurczeniu włókien kolagenowych", isCorrect: true },
+            { text: "przyspieszeniu metabolizmu", isCorrect: false },
+            { text: "spalaniu tkanki tłuszczowej", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przeciwwskazaniem do wykonania zabiegów z wykorzystaniem fal radiowych jest:",
+        options: [
+            { text: "ciąża", isCorrect: false },
+            { text: "trądzik różowaty", isCorrect: false },
+            { text: "choroba nowotworowa", isCorrect: false },
+            { text: "wszystkie wyżej wymienione", isCorrect: true }
+        ]
+    },
+    {
+        question: "Maskę borowinową aplikujemy na skórę uprzednio ją:",
+        options: [
+            { text: "chłodząc", isCorrect: false },
+            { text: "lekko podgrzewając", isCorrect: true },
+            { text: "doprowadzając do wrzenia", isCorrect: false },
+            { text: "maska ma mieć temperaturę pokojową", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przeciwwskazaniem do stosowania maski borowinowej w zabiegach kosmetologicznych jest:",
+        options: [
+            { text: "trądzik różowaty", isCorrect: true },
+            { text: "skóra dojrzała", isCorrect: false },
+            { text: "„skóra palacza”", isCorrect: false },
+            { text: "skóra ze skłonnością do trądziku pospolitego", isCorrect: false }
+        ]
+    },
+    {
+        question: "Czynnikiem wpływającym na intensywność złuszczania podczas zabiegu mikrodermabrazji diamentowej jest:",
+        options: [
+            { text: "siła zasysania skóry (podciśnienie)", isCorrect: false },
+            { text: "rodzaj gradacji", isCorrect: false },
+            { text: "średnica głowicy", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Przeciwwskazaniem do zastosowania złuszczania metodą oksybrazji jest:",
+        options: [
+            { text: "ciąża", isCorrect: false },
+            { text: "AZS", isCorrect: false },
+            { text: "RZS", isCorrect: false },
+            { text: "żadna odpowiedź nie jest prawidłowa", isCorrect: true }
+        ]
+    },
+    {
+        question: "Przykładem peelingu chemicznego jest:",
+        options: [
+            { text: "kwas hialuronowy", isCorrect: false },
+            { text: "preparat na bazie papainy", isCorrect: true },
+            { text: "mikrodermabrazja korundowa", isCorrect: false },
+            { text: "oksybrazja", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przenikanie substancji aktywnych zawartych w kosmetykach u kobiety ciężarnej możemy usprawniać poprzez wykonanie:",
+        options: [
+            { text: "sonoforezy", isCorrect: false },
+            { text: "jonoforezy", isCorrect: false },
+            { text: "masażu", isCorrect: true },
+            { text: "mezoterapii bezigłowej", isCorrect: false }
+        ]
+    },
+    {
+        question: "Peelingiem, który możemy wykonać u kobiety ciężarnej jest:",
+        options: [
+            { text: "mikrodermabrazja korundowa", isCorrect: false },
+            { text: "peeling kawitacyjny", isCorrect: true },
+            { text: "peeling chemiczny kwasem glikolowym", isCorrect: false },
+            { text: "peeling laserem ablacyjnym", isCorrect: false }
+        ]
+    },
+    {
+        question: "Kwasem, który nie wymaga neutralizacji jest:",
+        options: [
+            { text: "kwas migdałowy", isCorrect: false },
+            { text: "kwas salicylowy", isCorrect: true },
+            { text: "kwas jabłkowy", isCorrect: false },
+            { text: "kwas cytrynowy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przeciwwskazaniem do wykonania peelingu z zastosowaniem kwasu laktobionowego jest:",
+        options: [
+            { text: "skóra sucha", isCorrect: false },
+            { text: "skóra z plamami soczewicowatymi", isCorrect: false },
+            { text: "rozrusznik serca", isCorrect: false },
+            { text: "żadna odpowiedź nie jest prawidłowa", isCorrect: true }
+        ]
+    },
+    {
+        question: "Maskę borowinową aplikujemy:",
+        options: [
+            { text: "bezpośrednio na skórę", isCorrect: false },
+            { text: "na suchą gazę", isCorrect: false },
+            { text: "na zwilżoną gazę", isCorrect: true },
+            { text: "żadna odpowiedź nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Ciepło maski borowinowej utrzymujemy stosując:",
+        options: [
+            { text: "okluzję", isCorrect: false },
+            { text: "wapozon", isCorrect: false },
+            { text: "odpowiedzi a i b są prawidłowe", isCorrect: true },
+            { text: "żadna odpowiedź nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Właściwa kolejność ruchów wykonywanych w masażu klasycznym to:",
+        options: [
+            { text: "głaskanie, ugniatanie, rozcieranie, oklepywanie, głaskanie końcowe", isCorrect: false },
+            { text: "rozcieranie, oklepywanie, ugniatanie, głaskanie", isCorrect: false },
+            { text: "głaskanie, rozcieranie, oklepywanie, ugniatanie, głaskanie końcowe", isCorrect: false },
+            { text: "głaskanie, rozcieranie, ugniatanie, oklepywanie, głaskanie końcowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Efektem działania fali radiowych na skórę jest:",
+        options: [
+            { text: "obkurczenie się włókien kolagenowych", isCorrect: false },
+            { text: "wytworzenie w tkance ciepła endogennego", isCorrect: false },
+            { text: "zaczerwienienie obszaru poddawanego zabiegowi", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Przykładem maski termo-modelującej jest:",
+        options: [
+            { text: "maska gipsowa", isCorrect: true },
+            { text: "maska algowa", isCorrect: false },
+            { text: "maska glinkowa", isCorrect: false },
+            { text: "żadna odpowiedź nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przeciwwskazaniem do zastosowania masek termo-modulujących jest:",
+        options: [
+            { text: "trądzik różowaty", isCorrect: false },
+            { text: "klaustrofobia", isCorrect: false },
+            { text: "infekcja HSV1", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Do peelingów średniogłębokich zaliczamy:",
+        options: [
+            { text: "kwas salicylowy", isCorrect: false },
+            { text: "kwas glikolowy 50%", isCorrect: false },
+            { text: "kwas TCA 50%", isCorrect: true },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Maski glinkowe aplikujemy:",
+        options: [
+            { text: "bezpośrednio na oczyszczoną skórę", isCorrect: true },
+            { text: "na skórę, na którą zaaplikowano uprzednio serum", isCorrect: false },
+            { text: "przed wykonaniem oczyszczania manualnego", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zabiegi z wykorzystaniem lampy Sollux z filtrem niebieskim wywołują:",
+        options: [
+            { text: "mniejsze przegrzanie skóry, aniżeli zabiegi z zastosowaniem filtra czerwonego", isCorrect: false },
+            { text: "większe przegrzanie skóry, aniżeli zabiegi z zastosowaniem filtra czerwonego", isCorrect: false },
+            { text: "efekt chłodzenia okolicy zabiegowej", isCorrect: false },
+            { text: "odpowiedzi a i c są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Podczas przeprowadzania zabiegu złuszczania metodą kawitacji, należy zastosować aparat emitujący:",
+        options: [
+            { text: "prąd stały", isCorrect: false },
+            { text: "prąd zmienny", isCorrect: false },
+            { text: "ultradźwięki", isCorrect: true },
+            { text: "IR", isCorrect: false }
+        ]
+    },
+    {
+        question: "Która informacja uzyskana od Klienta, wyklucza wykonanie peelingu kawitacyjnego?:",
+        options: [
+            { text: "początek osteoporozy", isCorrect: true },
+            { text: "alergia na migdały", isCorrect: false },
+            { text: "skłonność do powstawania keloidów", isCorrect: false },
+            { text: "liczne plamy soczewicowate", isCorrect: false }
+        ]
+    },
+    {
+        question: "Spektrum promieniowania podczerwonego, najgłębiej penetrujące tkankę to:",
+        options: [
+            { text: "IR – A", isCorrect: true },
+            { text: "IR – B", isCorrect: false },
+            { text: "IR – C", isCorrect: false },
+            { text: "promieniowanie podczerwone nie ma zdolności przenikania w głąb tkanki", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz poprawną kolejność wykonania procedury manicure spa:",
+        options: [
+            { text: "piling, maska parafinowa, serum, masaż, krem", isCorrect: false },
+            { text: "piling z elementem masażu, serum, maska parafinowa, krem", isCorrect: true },
+            { text: "piling, krem, maska parafinowa z elementem masażu, serum", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Dezynfekcję dłoni Klienta w przebiegu zabiegu manicure spa należy wykonać:",
+        options: [
+            { text: "przed pilingiem dłoni przy użyciu preparatu Skinsept", isCorrect: true },
+            { text: "po masce parafinowej przy użyciu preparatu Incidin", isCorrect: false },
+            { text: "przed pilingiem przy użyciu preparatu Incid", isCorrect: false },
+            { text: "po pilingu dłoni przy użyciu preparatu Octenisept", isCorrect: false }
+        ]
+    },
+    {
+        question: "Połowę każdego prawidłowo zaplanowanego posiłku powinny stanowić:",
+        options: [
+            { text: "produkty dostarczające węglowodany złożone", isCorrect: false },
+            { text: "warzywa i/lub owoce", isCorrect: true },
+            { text: "produkty białkowe o wysokiej jakości", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do prawidłowych zachowań związanych z jedzeniem należy:",
+        options: [
+            { text: "jedzenie posiłków lub przekąsek w nocy", isCorrect: false },
+            { text: "spożywanie wielu (np. 8 czy 10) ale bardzo małych porcji pożywienia w ciągu dnia", isCorrect: false },
+            { text: "spożywanie 5 posiłków w ciągu dnia co 3 godziny", isCorrect: true },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaźnikiem dystrybucji tkanki tłuszczowej, oceniającym typ otyłości (otyłość brzuszna lub otyłość pośladkowo-udowa) jest:",
+        options: [
+            { text: "WHR", isCorrect: true },
+            { text: "BMI", isCorrect: false },
+            { text: "BMR", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Prawidłowo skomponowana dieta ubogoenergetyczna powinna:",
+        options: [
+            { text: "zapewnić stopniową, powolną redukcję masę ciała i zapobiegać występowaniu efektu \"jo-jo\"", isCorrect: false },
+            { text: "zapewnić prawidłowe funkcjonowanie organizmu", isCorrect: false },
+            { text: "zapewnić utrzymanie dobrego samopoczucia chorego", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Nadmiar cukrów prostych w diecie i niedobór błonnika:",
+        options: [
+            { text: "Przyspieszają starzenie się skóry", isCorrect: false },
+            { text: "Sprzyjają powstawaniu zmian trądzikowych", isCorrect: false },
+            { text: "Sprzyjają zwiększeniu masy ciała i występowaniu cellulitu", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Niedobór białka w diecie wiąże się z:",
+        options: [
+            { text: "Nadmiernym wypadaniem włosów i łamliwością paznokci", isCorrect: true },
+            { text: "Wzmożoną odnową naskórka", isCorrect: false },
+            { text: "Występowaniem zmian trądzikowych", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Dieta uboga w wielonienasycone kwasy tłuszczowe (omega 3 i omega 6):",
+        options: [
+            { text: "Powoduje zwiększoną utratę wody przez skórę", isCorrect: false },
+            { text: "Powoduje pogorszenie gojenia się ran", isCorrect: false },
+            { text: "Sprzyja zapaleniom skóry", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Składnikiem mineralnym, który może wspomagać leczenie trądziku są:",
+        options: [
+            { text: "Cynk", isCorrect: false },
+            { text: "Selen", isCorrect: false },
+            { text: "Krzem", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Dieta ubogoenergetyczna polega na zmniejszeniu dziennego spożycia energii o … (ile kcal?).... w stosunku do zapotrzebowania (całkowitego wydatku energetycznego)",
+        options: [
+            { text: "300 – 400 kcal", isCorrect: false },
+            { text: "500 – 600 kcal", isCorrect: true },
+            { text: "800 – 900 kcal", isCorrect: false },
+            { text: "900 – 1000 kcal", isCorrect: false }
+        ]
+    },
+    {
+        question: "Na rozwój otyłości mają wpływ czynniki:",
+        options: [
+            { text: "środowiskowe", isCorrect: false },
+            { text: "hormonalne i genetyczne", isCorrect: false },
+            { text: "psychologiczne i społeczne", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zadaniem bazy pod podkład jest:",
+        options: [
+            { text: "przedłużenie trwałości makijażu", isCorrect: false },
+            { text: "ułatwienie aplikacji podkładu", isCorrect: false },
+            { text: "kontrola połysku", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Kolorystyczne i fakturowe wyrównanie powierzchni skóry to zadanie:",
+        options: [
+            { text: "podkładu", isCorrect: true },
+            { text: "pudru", isCorrect: false },
+            { text: "bronzera", isCorrect: false },
+            { text: "korektora", isCorrect: false }
+        ]
+    },
+    {
+        question: "Konturowanie twarzy w technice na mokro polega na zastosowaniu jasnych i ciemnych:",
+        options: [
+            { text: "podkładów lub korektorów", isCorrect: true },
+            { text: "podkładów mineralnych", isCorrect: false },
+            { text: "pudrów fiksujących", isCorrect: false },
+            { text: "pudrów wypiekanych", isCorrect: false }
+        ]
+    },
+    {
+        question: "Malformacja kapilarna jako zmiana kwalifikowana do wykonania makijażu medycznego, jest zmianą o podłożu:",
+        options: [
+            { text: "Medycznym - wrodzoną", isCorrect: true },
+            { text: "Medycznym – nabytą", isCorrect: false },
+            { text: "Kosmetycznym", isCorrect: false },
+            { text: "Kosmetologicznym", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskazaniem do wykonania makijażu medycznego NIE jest:",
+        options: [
+            { text: "Bielactwo nabyte", isCorrect: false },
+            { text: "Ostuda", isCorrect: false },
+            { text: "Rumień", isCorrect: false },
+            { text: "Grzybica skóry", isCorrect: true }
+        ]
+    },
+    {
+        question: "Barwy dopełniające, inaczej określane jako komplementarne dopełniają się do:",
+        options: [
+            { text: "Szarości", isCorrect: true },
+            { text: "Czerni", isCorrect: false },
+            { text: "Bieli", isCorrect: false },
+            { text: "Beżu", isCorrect: false }
+        ]
+    },
+    {
+        question: "Technika wykonania makijażu medycznego, która pozwala na bezdotykową aplikację kosmetyku to:",
+        options: [
+            { text: "Airbrush", isCorrect: true },
+            { text: "Makijaż typu pasta", isCorrect: false },
+            { text: "Makijaż płynny", isCorrect: false },
+            { text: "Makijaż mineralny", isCorrect: false }
+        ]
+    },
+    {
+        question: "Pozamedycznym wskazaniem do zastosowania kamuflażu jest:",
+        options: [
+            { text: "Makijaż ślubny", isCorrect: false },
+            { text: "Makijaż fotograficzny", isCorrect: false },
+            { text: "Makijaż sceniczny", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Makijaż mineralny aplikuje się za pomocą:",
+        options: [
+            { text: "Pędzla Kabuki", isCorrect: true },
+            { text: "Zestawu airbrush", isCorrect: false },
+            { text: "Płaskich pędzli syntetycznych", isCorrect: false },
+            { text: "Pędzla do pudru", isCorrect: false }
+        ]
+    },
+    {
+        question: "Linia wyznaczająca pionowy podział twarzy na dwie połówki to:",
+        options: [
+            { text: "Oś proporcji", isCorrect: false },
+            { text: "Oś dwuboczna", isCorrect: false },
+            { text: "Oś symetrii", isCorrect: true },
+            { text: "Żadna odpowiedź nie jest poprawna", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zabieg kriolipolizy:",
+        options: [
+            { text: "mechanizm działania zabiegu oparty jest na apoptozie komórek skóry właściwej pod wpływem szoku termicznego", isCorrect: false },
+            { text: "zabieg wymaga użycia kaniuli i wykonywany jest w warunkach ambulatoryjnych", isCorrect: false },
+            { text: "częstotliwość zabiegów wynosi około 2-3 zabiegi w tygodniu", isCorrect: false },
+            { text: "jednym z etapów zabiegu jest zassanie fałdu skórno-tłuszczowego między panele chłodzące", isCorrect: true }
+        ]
+    },
+    {
+        question: "Metodą z zakresu medycyny estetycznej służącą do miejscowej likwidacji tkanki tłuszczowej jest:",
+        options: [
+            { text: "mezoterapia bezigłowa", isCorrect: false },
+            { text: "lipoliza iniekcyjna", isCorrect: true },
+            { text: "zabieg osoczem bogatopłytkowym", isCorrect: false },
+            { text: "iniekcja z użyciem toksyny botulinowej typu A", isCorrect: false }
+        ]
+    },
+    {
+        question: "Podczas wykonywania masażu należy uwzględnić stopniowanie siły bodźca mechanicznego:",
+        options: [
+            { text: "od bodźców słabych do coraz silniejszych, od tkanek położonych powierzchownie stopniowo przechodząc do tkanek głębszych", isCorrect: true },
+            { text: "od bodźców silnych do coraz słabszych, od tkanek położonych głęboko stopniowo przechodząc do tkanek położonych powierzchownie", isCorrect: false },
+            { text: "od bodźców silnych do coraz słabszych, od tkanek położonych powierzchownie stopniowo przechodząc do tkanek głębszych", isCorrect: false },
+            { text: "od bodźców słabych do coraz silniejszych, od tkanek położonych głęboko stopniowo przechodząc do tkanek położonych powierzchownie", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do domowych zaleceń pielęgnacyjnych po zabiegu silnej eksfoliacji kwasami wykonywanej w serii należy:",
+        options: [
+            { text: "ochrona przeciwsłoneczna o wysokim SPF oraz wykonywanie w domu, pomiędzy zabiegami profesjonalnymi, peelingów mechanicznych lub enzymatycznych", isCorrect: false },
+            { text: "ochrona przeciwsłoneczna o wysokim SPF oraz używanie środków myjących o silnie zasadowym pH", isCorrect: false },
+            { text: "ochrona przeciwsłoneczna o wysokim SPF oraz używanie kremów wykazujących działanie łagodzące i nawilżające", isCorrect: true },
+            { text: "żadna z odpowiedzi nie jest poprawna", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zabieg infuzji tlenowej:",
+        options: [
+            { text: "może być wykonywany w obszarze skóry głowy", isCorrect: true },
+            { text: "najczęściej wiąże się z 3 dniowym okresem złuszczania skóry", isCorrect: false },
+            { text: "jest zabiegiem dozwolonym do wykonania wyłącznie w okresie jesienno-zimowym", isCorrect: false },
+            { text: "to forma powierzchniowego pilingu fizykalnego", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przeciwwskazaniem do zabiegu mikrodermabrazji są:",
+        options: [
+            { text: "przebarwienia pozapalne", isCorrect: false },
+            { text: "poszerzone ujścia gruczołów łojowych", isCorrect: false },
+            { text: "trądzik zapalny", isCorrect: true },
+            { text: "blizny potrądzikowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz poprawne stwierdzenie:",
+        options: [
+            { text: "zużyte igły i kartridże wyrzucamy do odpadów komunalnych", isCorrect: false },
+            { text: "maska alginianowa ma silne działanie rozgrzewające", isCorrect: false },
+            { text: "kwas hialuronowy silnie złuszcza skórę, dlatego dedykowany jest dla cery dojrzałej", isCorrect: false },
+            { text: "piling enzymatyczny zawiera najczęściej bromelainę i papainę", isCorrect: true }
+        ]
+    },
+    {
+        question: "Do betahydroksykwasów należy:",
+        options: [
+            { text: "kwas mlekowy", isCorrect: false },
+            { text: "kwas salicylowy", isCorrect: true },
+            { text: "kwas migdałowy", isCorrect: false },
+            { text: "kwas octowy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Działanie ścierające tlenku glinu można zaobserwować w mikrodermabrazji:",
+        options: [
+            { text: "diamentowej", isCorrect: false },
+            { text: "korundowej", isCorrect: true },
+            { text: "tlenowej", isCorrect: false },
+            { text: "szafirowej", isCorrect: false }
+        ]
+    },
+    {
+        question: "Po wykonanym zabiegu mikrodermabrazji diamentowej głowice aparatu należy:",
+        options: [
+            { text: "opłukać pod bieżącą wodą, poddać dezynfekcji w myjce ultradźwiękowej, a następnie sterylizować w autoklawie", isCorrect: true },
+            { text: "poddać dezynfekcji, a następnie sanityzacji UV", isCorrect: false },
+            { text: "opłukać pod bieżąca wodą i zdezynfekować", isCorrect: false },
+            { text: "opłukać pod bieżąca woda i wysterylizować", isCorrect: false }
+        ]
+    },
+    {
+        question: "Jaki rodzaj naświetlania należy zastosować w celu złagodzenia rumienia po zbyt długim opalaniu twarzy w solarium?",
+        options: [
+            { text: "naświetlanie lampą kwarcową", isCorrect: false },
+            { text: "naświetlanie lampą infra- rouge", isCorrect: false },
+            { text: "naświetlanie lampą sollux z niebieskim filtrm", isCorrect: true },
+            { text: "naświetlanie lampą sollux z czerwonym filtrem", isCorrect: false }
+        ]
+    },
+    {
+        question: "Podczas wykonywania zabiegu mikrodermabrazji należy pamiętać, że:",
+        options: [
+            { text: "długi i powolny ruch głowicy powoduje głębokie złuszczenie naskórka oraz stwarza możliwość przerwania ciągłości skóry oraz powstania krwiaków", isCorrect: true },
+            { text: "krótki i szybki ruch głowicy powoduje głębokie złuszczenie naskórka, ale zmniejsza ryzyko powstania krwiaków i przeczosów", isCorrect: false },
+            { text: "długi i powolny ruch głowicy powoduje płytkie złuszczenie naskórka i stwarza ryzyko przerwania ciągłości skóry oraz powstania krwiaków", isCorrect: false },
+            { text: "krótki i szybki ruch głowicy powoduje płytkie złuszczenie naskórka i zwiększa ryzyko powstania krwiaków i przeczosów", isCorrect: false }
+        ]
+    },
+    {
+        question: "Trądzik pospolity wywołany jest między innymi przez:",
+        options: [
+            { text: "Helikobacter pylori", isCorrect: false },
+            { text: "Straphylococcus aureus", isCorrect: false },
+            { text: "Propionibacterium acnes", isCorrect: true },
+            { text: "Pseudomonas aeruginosa", isCorrect: false }
+        ]
+    },
+    {
+        question: "W leczeniu nadpotliwości miejscowej najskuteczniejszy jest zabieg z użyciem:",
+        options: [
+            { text: "kąpieli ziołowych", isCorrect: false },
+            { text: "toksyny butlinowej", isCorrect: true },
+            { text: "kwasu hialuronowego", isCorrect: false },
+            { text: "mikrodermabrazji", isCorrect: false }
+        ]
+    },
+    {
+        question: "Głównym czynnikiem egzogennym odpowiedzialnym za zmiany związane ze starzeniem się skóry jest/są:",
+        options: [
+            { text: "promieniowanie UV", isCorrect: true },
+            { text: "zanieczyszczenie środowiska", isCorrect: false },
+            { text: "nieprawidłowa dieta", isCorrect: false },
+            { text: "uwarunkowania genetyczne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Skrót PIH oznacza:",
+        options: [
+            { text: "przebarwienia hormonalne", isCorrect: false },
+            { text: "przebarwienia posłoneczne", isCorrect: false },
+            { text: "przebarwienia pozapalne", isCorrect: true },
+            { text: "przebarwienia senne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Laseroterapia zmian naczyniowych uwzględnia zastosowanie:",
+        options: [
+            { text: "lasera frakcyjnego ablacyjnego", isCorrect: false },
+            { text: "lasera frakcyjnego nieablacyjnego", isCorrect: false },
+            { text: "lasera KTP", isCorrect: true },
+            { text: "intensywnego źródła światła", isCorrect: false }
+        ]
+    },
+    {
+        question: "Peelingiem dedykowanym cerze naczyniowej jest:",
+        options: [
+            { text: "eksfoliacja chemiczna BHA", isCorrect: false },
+            { text: "eksfoliacja chemiczna kwasem laktobionowym", isCorrect: true },
+            { text: "mikrodermabrazja korundowa", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Działania z zakresu profilaktyki przeciwstarzeniowej obejmują:",
+        options: [
+            { text: "stosowanie fotoprotekcji", isCorrect: false },
+            { text: "stosowanie zbilansowanej diety", isCorrect: false },
+            { text: "prowadzenie higienicznego trybu życia", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Starzenie chronologiczne wynika z:",
+        options: [
+            { text: "ekspozycji skóry na promieniowanie UVA", isCorrect: false },
+            { text: "ekspozycji skóry na promieniowanie UVB", isCorrect: false },
+            { text: "ekspozycji skóry na promieniowanie UVC", isCorrect: false },
+            { text: "upływu czasu", isCorrect: true }
+        ]
+    },
+    {
+        question: "Przedstawicielem grupy GAGs jest:",
+        options: [
+            { text: "kolagen", isCorrect: false },
+            { text: "elastyna", isCorrect: false },
+            { text: "kwas hialuronowy", isCorrect: true },
+            { text: "kolagenaza", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zmarszczki powstałe na skutek utrwalenia zmarszczek dynamicznych to:",
+        options: [
+            { text: "zmarszczki mimiczne", isCorrect: false },
+            { text: "zmarszczki wyrazowe", isCorrect: false },
+            { text: "zmarszczki statyczne", isCorrect: true },
+            { text: "zmarszczki grawitacyjne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Skalą służącą ocenie stopnia starzenia się skóry jest:",
+        options: [
+            { text: "skala jakości życia", isCorrect: false },
+            { text: "skala Ferrimana", isCorrect: false },
+            { text: "skala Glogau", isCorrect: true },
+            { text: "skala Hamiltona", isCorrect: false }
+        ]
+    },
+    {
+        question: "Skrót DEJ oznacza:",
+        options: [
+            { text: "połączenie skórno-naskórkowe", isCorrect: true },
+            { text: "wolne rodniki tlenowe", isCorrect: false },
+            { text: "cykl życia naskórka", isCorrect: false },
+            { text: "przeznazkórkową utratę wody", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do wystąpienia melasmy predysponuje:",
+        options: [
+            { text: "ciąża", isCorrect: true },
+            { text: "okres dojrzewania", isCorrect: false },
+            { text: "autoimmunologiczne zapalenie tarczycy", isCorrect: false },
+            { text: "przyjmowanie leków przeciwhistaminowych", isCorrect: false }
+        ]
+    }
+];// Zmienne stanu
         let questions = [];
         let currentQuestionIndex = 0;
         let score = 0;

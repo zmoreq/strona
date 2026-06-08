@@ -170,16 +170,907 @@
             return array;
         }
         const rawQuestions = [
-            {
-                question: "Ile wynosi temperatura wrzenia podtlenku azotu?",
-                options: [
-                    { text: "-195,8°C", isCorrect: false },
-                    { text: "-88°C", isCorrect: true },
-                    { text: "-78,9°C", isCorrect: false },
-                    { text: "-40,8°C", isCorrect: false }
-                ]
-            },
-        ];// Zmienne stanu
+    {
+        question: "Na utrzymanie zdrowia wpływ mają:",
+        options: [
+            { text: "okresowe badania kontrolne", isCorrect: false },
+            { text: "antropopresja", isCorrect: false },
+            { text: "higiena", isCorrect: false },
+            { text: "odpowiedzi a i c są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Higiena to nauka:",
+        options: [
+            { text: "zajmująca się utrzymywaniem i przywracaniem zdrowia", isCorrect: true },
+            { text: "zajmują sie zdrowiem", isCorrect: false },
+            { text: "badająca czynniki wywołujące chorobę", isCorrect: false },
+            { text: "badająca mechanizmy powstawania i rozwoju choroby", isCorrect: false }
+        ]
+    },
+    {
+        question: "Amoniak znajdujący się w zanieczyszczonym powietrzu:",
+        options: [
+            { text: "wywołuje rozedmę płuc", isCorrect: false },
+            { text: "blokuje przenoszenie tlenu przez hemolobinę", isCorrect: false },
+            { text: "silnie drażni górne drogi oddechowe i spojówki", isCorrect: true },
+            { text: "zwiększa zapadalność na bakteryjne zapalenie płuc", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zanieczyszczenia pokarmowe są wywołane:",
+        options: [
+            { text: "zmianami jakości wody", isCorrect: false },
+            { text: "kwaśnymi deszczami", isCorrect: false },
+            { text: "zanieczyszczeniem powietrza", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Jednostką sprawującą nadzór nad higieną komunalną jest:",
+        options: [
+            { text: "Państwowa Stacja Sanitarno-Epidemiologiczna", isCorrect: true },
+            { text: "Państwowa Inspekcja Pracy", isCorrect: false },
+            { text: "Prokuratura", isCorrect: false },
+            { text: "Najwyższa Izba Kontroli", isCorrect: false }
+        ]
+    },
+    {
+        question: "Działania profilaktyczne mające na celu zapobieganie zakażeniom przenoszonym przez ręce obejmują:",
+        options: [
+            { text: "mycie rąk ciepłą wodą z użyciem mydła w kostce", isCorrect: false },
+            { text: "wycieranie rąk ręcznikiem wielokrotnego użytku", isCorrect: false },
+            { text: "ochronę rąk za pomocą jednorazowych rękawiczek ochronnych", isCorrect: true },
+            { text: "sterylizację skóry", isCorrect: false }
+        ]
+    },
+    {
+        question: "Najpopularniejszą metodą unieszkodliwiania odpadów medycznych w Polsce jest:",
+        options: [
+            { text: "składowanie odpadów", isCorrect: false },
+            { text: "piroliza", isCorrect: false },
+            { text: "autoklawowanie", isCorrect: true },
+            { text: "dezynfekcja", isCorrect: false }
+        ]
+    },
+    {
+        question: "Celem ergonomii jest:",
+        options: [
+            { text: "badanie warunków pracy", isCorrect: false },
+            { text: "zapobieganie chorobom zawodowym", isCorrect: false },
+            { text: "optymalizacja warunków pracy", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Ekspozycja zawodowa jest to:",
+        options: [
+            { text: "kontakt pracownika z materiałem zakaźnym", isCorrect: true },
+            { text: "zwiększone ryzyko zapadalności na choroby zawodowe", isCorrect: false },
+            { text: "zwiększone ryzyko zapadalności na choroby cywilizacyjne", isCorrect: false },
+            { text: "nagłe zdarzenie wywołane przyczyną zewnętrzną, które zaszło w miejscu pracy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do czynników szkodliwych wchodzących w skład zagrożenia zawodowego nie zaliczamy:",
+        options: [
+            { text: "ostrych narzędzi", isCorrect: false },
+            { text: "wymuszonej pozycji ciała", isCorrect: true },
+            { text: "metali ciężkich", isCorrect: false },
+            { text: "pleśni", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do chorób zawodowych zaliczamy:",
+        options: [
+            { text: "kurzą ślepotę", isCorrect: false },
+            { text: "nadciśnienie tętnicze", isCorrect: false },
+            { text: "przewlekłe zapalenie okołostawowe barku", isCorrect: true },
+            { text: "miażdżycę", isCorrect: false }
+        ]
+    },
+    {
+        question: "Objawem reakcji alarmowej po zadziałaniu stresora jest:",
+        options: [
+            { text: "rozszerzenie źrenic", isCorrect: true },
+            { text: "zwężenie źrenic", isCorrect: false },
+            { text: "odpływ krwi z mięśni do skóry", isCorrect: false },
+            { text: "pobudzenie procesów trawiennych", isCorrect: false }
+        ]
+    },
+    {
+        question: "Glikokortykosteroidy regulują:",
+        options: [
+            { text: "stężenie elektrolitów w krwioobiegu", isCorrect: false },
+            { text: "zawartość glukozy we kwri", isCorrect: true },
+            { text: "gospodarkę mineralną", isCorrect: false },
+            { text: "stężenie hormonów tarczycy we krwi", isCorrect: false }
+        ]
+    },
+    {
+        question: "Narządy wydzielania wewnętrznego biorące udział w reakcji stresowej to:",
+        options: [
+            { text: "nadnercza", isCorrect: true },
+            { text: "jądra", isCorrect: false },
+            { text: "jajniki", isCorrect: false },
+            { text: "przytarczyce", isCorrect: false }
+        ]
+    },
+    {
+        question: "Sterylizacja polega na:",
+        options: [
+            { text: "niszczeniu bakterii na powierzchni skóry i błon śluzowych", isCorrect: false },
+            { text: "usuwaniu bakterii z narzędzi za pomocą alkoholu", isCorrect: false },
+            { text: "niszczeniu wegetatywnych form bakterii", isCorrect: false },
+            { text: "usuwaniu zarówno wegetatywnych jak i przetrwalnikowych form bakterii", isCorrect: true }
+        ]
+    },
+    {
+        question: "Dezynfekcję możemy przeprowadzić przy użyciu:",
+        options: [
+            { text: "alkoholu", isCorrect: false },
+            { text: "formaliny", isCorrect: false },
+            { text: "promieni UV", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Aminokwasy, które muszą być dostarczone do organizmu z pożywieniem to aminokwasy:",
+        options: [
+            { text: "endogenne", isCorrect: false },
+            { text: "półendogenne", isCorrect: false },
+            { text: "egzogenne", isCorrect: true },
+            { text: "półegzogenne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Aminokwasem egzogennym nie jest:",
+        options: [
+            { text: "glicyna", isCorrect: true },
+            { text: "tryptofan", isCorrect: false },
+            { text: "fenyloalanina", isCorrect: false },
+            { text: "metionina", isCorrect: false }
+        ]
+    },
+    {
+        question: "Białkiem strukturalnym jest:",
+        options: [
+            { text: "fibrynogen", isCorrect: false },
+            { text: "aktyna", isCorrect: false },
+            { text: "glukagon", isCorrect: false },
+            { text: "elastyna", isCorrect: true }
+        ]
+    },
+    {
+        question: "Białka, które mogą zawierać wszystkie niezbędne aminokwasy, ale niektóre w niedostatecznej ilości to białka:",
+        options: [
+            { text: "pełnowartościowe", isCorrect: false },
+            { text: "częściowo niepełnowartościowe", isCorrect: true },
+            { text: "niepełnowartościowe", isCorrect: false },
+            { text: "pochodzenia zwierzęcego", isCorrect: false }
+        ]
+    },
+    {
+        question: "Materiałem zapasowym w organizmie człowieka jest:",
+        options: [
+            { text: "glikogen", isCorrect: true },
+            { text: "skrobia", isCorrect: false },
+            { text: "sacharoza", isCorrect: false },
+            { text: "błonnik", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do długołańcuchowych wielonienasyconych kwasów tłuszczowych należą:",
+        options: [
+            { text: "NNKT", isCorrect: false },
+            { text: "kwas linolowy", isCorrect: false },
+            { text: "kwas alfa linolenowy", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Do witamin rozpuszczalnych w tłuszczach zaliczamy:",
+        options: [
+            { text: "witaminę K", isCorrect: true },
+            { text: "pirydoksynę", isCorrect: false },
+            { text: "niacynę", isCorrect: false },
+            { text: "ryboflawinę", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe zdanie dotyczące lipidów:",
+        options: [
+            { text: "są głównym źródłem energii dla organizmu", isCorrect: false },
+            { text: "stanowią podstawowy składnik krwi", isCorrect: false },
+            { text: "spalenie 1g lipidów dostarcza organizmowi 4 kcal", isCorrect: false },
+            { text: "są prekursorem syntezy hormonów steroidowych", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zespół chorobowy wywołany głębokim i długotrwałym niedoborem witamin to:",
+        options: [
+            { text: "hiperwitaminoza", isCorrect: false },
+            { text: "hipowitaminoza", isCorrect: false },
+            { text: "awitaminoza", isCorrect: true },
+            { text: "żadna odpowiedź nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaźnik masy ciała kobiety ważącej 59 kg o wzroście 175 cm wynosi:",
+        options: [
+            { text: "20", isCorrect: false },
+            { text: "19,28", isCorrect: true },
+            { text: "1,92", isCorrect: false },
+            { text: "19,29", isCorrect: false }
+        ]
+    },
+    {
+        question: "Uszereguj regiony ciała od miejsc najsilniej skolonizowanych do tych, w których liczba drobnoustrojów w przeliczeniu na m2 jest najmniejsza:",
+        options: [
+            { text: "skóra, jama nosowa, jama ustna", isCorrect: false },
+            { text: "skóra, żołądek, jama nosowa", isCorrect: false },
+            { text: "jelito grube, skóra, worek spojówkowy", isCorrect: true },
+            { text: "wszystkie z powyższych", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wybierz drobnoustrój, który NIE jest czynnikiem etiologicznym ropnych zakażeń skóry:",
+        options: [
+            { text: "Staphylococccus aureus", isCorrect: false },
+            { text: "Streptococcus pyogenes", isCorrect: false },
+            { text: "GAS", isCorrect: false },
+            { text: "Borrelia burgdorferi", isCorrect: true }
+        ]
+    },
+    {
+        question: "Klimatyzatory zwiększają ryzyko zakażenia:",
+        options: [
+            { text: "Legionella pneumophila", isCorrect: false },
+            { text: "grzybami pleśniowymi", isCorrect: false },
+            { text: "Yersinia pestis", isCorrect: false },
+            { text: "Prawidłowe odpowiedzi to a i b", isCorrect: true }
+        ]
+    },
+    {
+        question: "Komórkami skóry biorącymi udział w odpowiedzi immunologicznej są:",
+        options: [
+            { text: "Keratynocyty", isCorrect: false },
+            { text: "Limfocyty B", isCorrect: false },
+            { text: "Komórki dendrytyczne", isCorrect: false },
+            { text: "wszystkie wymienione", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wybierz zdanie prawidłowo opisujące sterylizację:",
+        options: [
+            { text: "szereg czynności prowadzących do uzyskania produktu jałowego", isCorrect: true },
+            { text: "szereg czynności mających na celu umożliwienie patogenom wywołanie bezobjawowego zakażenia", isCorrect: false },
+            { text: "w zakładzie kosmetycznym sterylizacji muszą być poddawane: powierzchnie, z którymi klient ma bezpośredni kontakt, narzędzia i sprzęt, ręce personelu, skóra klientów poddawanych zabiegom przebiegającym z naruszeniem ciągłości tkanek, odzież robocza lub ochronna personelu, sanitariaty", isCorrect: false },
+            { text: "szereg czynności prowadzących do zmniejszenia liczby form wegetatywnych do poziomu bezpiecznego dla człowieka", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wybierz zdanie prawidłowo opisujące probiotyki:",
+        options: [
+            { text: "szczepy wywołujące zakażenia trudne do leczenia", isCorrect: false },
+            { text: "żywe drobnoustroje, które podawane w odpowiednich ilościach wywierają korzystny efekt zdrowotny poprzez poprawę endogennej mikroflory jelitowej gospodarza", isCorrect: true },
+            { text: "szczepy wrażliwe na działanie antybiotyków i innych leków", isCorrect: false },
+            { text: "odpowiedź a i c są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Podaj prawidłową kolejność czynności wykonywanych w celu uzyskania produktu jałowego w przypadku narzędzi wielkokrotnego użycia:",
+        options: [
+            { text: "mycie, suszenie, pakowanie, dezynfekcja, sterylizacja", isCorrect: false },
+            { text: "mycie, dezynfekcja, pakowanie, sterylizacja, suszenie", isCorrect: false },
+            { text: "mycie, suszenie, dezynfekcja, pakowanie, sterylizacja", isCorrect: true },
+            { text: "wszystkie wymienione", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wybierz cechy idealnego środka dezynfekcyjnego:",
+        options: [
+            { text: "powinien działać szybko i mieć wąski zakres aktywności biobójczej", isCorrect: false },
+            { text: "powinien indukować rozwój oporności drobnoustroju", isCorrect: false },
+            { text: "powinien posiadać odpowiedni zapach długo utrzymujący się w powietrzu (aby pamiętać, że dezynfekcja została przeprowadzona)", isCorrect: false },
+            { text: "brak prawidłowej odpowiedzi", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wspólną drogą transmisji zakażeń HBV, HCV, HIV jest:",
+        options: [
+            { text: "droga krwiopochodna", isCorrect: false },
+            { text: "niesterylne narzędzia, zanieczyszczone krwią", isCorrect: false },
+            { text: "ślina", isCorrect: false },
+            { text: "odpowiedzi a i b", isCorrect: true }
+        ]
+    },
+    {
+        question: "Do działań aseptycznych NIE zalicza się:",
+        options: [
+            { text: "używania środków ochrony osobistej", isCorrect: false },
+            { text: "stosowania sprzętu jednorazowego użytku", isCorrect: false },
+            { text: "dezynfekcji i sterylizacji przeprowadzonej bez kontroli jakości procesu", isCorrect: true },
+            { text: "brak prawidłowej odpowiedzi", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wtórnym skażeniom produktów kosmetycznych sprzyjają:",
+        options: [
+            { text: "wysoka temperatura i wilgotne środowisko", isCorrect: false },
+            { text: "większe opakowanie", isCorrect: false },
+            { text: "obecność konserwantów w kosmetykach", isCorrect: false },
+            { text: "prawidłowe odpowiedzi to a i b", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wybierz zdanie nieprawidłowo opisujące zakażenie HSV:",
+        options: [
+            { text: "Jest to zakażenie o typowo ostrym przebiegu, które pojawia się raz i szybko znika.", isCorrect: true },
+            { text: "Do zakażenia może dojść w wyniku wspólnego używania szklanek, bądź wszelkich innych przedmiotów zanieczyszczonych śliną; wrotami zakażenia są mikrouszkodzenia skóry.", isCorrect: false },
+            { text: "Zakażenia wirusem HSV są niezwykle powszechne.", isCorrect: false },
+            { text: "Zakażenie objawia się jako bolesna zmiana, najczęściej na czerwieni wargowej, ma charakter nawrotowy.", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do zakażenia wirusem HCV może dojść w sytuacji:",
+        options: [
+            { text: "podania ręki", isCorrect: false },
+            { text: "korzystania ze wspólnych szklanek", isCorrect: false },
+            { text: "korzystania ze wspólnej łazienki", isCorrect: false },
+            { text: "w żadnej z w/w sytuacji raczej nie może dojść do zakażenia HCV", isCorrect: true }
+        ]
+    },
+    {
+        question: "Która z czynności może stanowić ryzyko zakażenia HIV:",
+        options: [
+            { text: "Korzystanie ze wspólnych naczyń kuchennych", isCorrect: false },
+            { text: "Korzystanie ze wspólnych ręczników", isCorrect: false },
+            { text: "Podawanie ręki", isCorrect: false },
+            { text: "Zabieg manicure wykonywany sprzętem niejałowym podczas którego doszło do uszkodzenia warstw naskórka z kroplą krwi", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wybierz nieprawidłowe zdanie opisujące zakażenia HPV:",
+        options: [
+            { text: "Wirusy te mogą wywoływać brodawki zwykle, brodawki płaskie, brodawki stóp i brodawki płciowe.", isCorrect: false },
+            { text: "Zdolność HPV do wywoływania nowotworu nadal jest w trakcie badań i są to badania hipotetyczne.", isCorrect: true },
+            { text: "Brodawki spontanicznie zanikają ale proces ten może trwać od wielu msc do lat, wywołując dyskomfort. Stąd można je usuwać metodą krioterapii, koagulacji prądem elektrycznym lub środkami chemicznymi (np. 10 i 20% roztwór podofiliny) , nawroty jednak są częste.", isCorrect: false },
+            { text: "Brak prawidłowej odpowiedzi", isCorrect: false }
+        ]
+    },
+    {
+        question: "Które z opisów może sugerować zakażenie grzybicze:",
+        options: [
+            { text: "ropne zmiany z obecnością ziaren siarki", isCorrect: false },
+            { text: "zmiany naczynioruchowe w środkowej części twarzy", isCorrect: false },
+            { text: "oddzielanie płytki paznokciowej od łożyska, zgrubienie lub zwiększona łamliwość paznokci", isCorrect: true },
+            { text: "zmiany grudkowo – krostkowe w okolicy przedniej rynny łojotokowej", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do dezynfekcji rąk zaleca się stosowanie środka na bazie:",
+        options: [
+            { text: "chloru", isCorrect: false },
+            { text: "oktenidyny", isCorrect: false },
+            { text: "formaldehydu", isCorrect: false },
+            { text: "brak prawidłowej odpowiedzi", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wpływ czynników fizykalnych na organizm człowieka powoduje:",
+        options: [
+            { text: "stymulowanie układu immunologicznego człowieka", isCorrect: false },
+            { text: "poprawę krążenia", isCorrect: false },
+            { text: "zwiększa przepuszczalność błony komórkowej", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Do elektrostymulacji wykorzystujemy:",
+        options: [
+            { text: "prąd stały niskiej częstotliwości", isCorrect: false },
+            { text: "prąd stały wielkiej częstotliwości", isCorrect: false },
+            { text: "prąd zmienny niskiej częstotliwości", isCorrect: true },
+            { text: "prąd zmienny średniej częstotliwości", isCorrect: false }
+        ]
+    },
+    {
+        question: "Celem masażu leczniczego jest:",
+        options: [
+            { text: "wywołanie reakcji w tkankach", isCorrect: false },
+            { text: "rozszerzenie naczyń krwionośnych", isCorrect: false },
+            { text: "obniżenie napięcia mięśniowego", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Cechy światła laserowego to:",
+        options: [
+            { text: "monochromatyczność", isCorrect: false },
+            { text: "spójność", isCorrect: false },
+            { text: "równoległość", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Przeciwskazaniem do stosowanie promieniowania laserowego jest:",
+        options: [
+            { text: "uczulenie na światło, nowotwory, nadczynność gruczołów dokrewnych", isCorrect: false },
+            { text: "ciąża, miesiączka, wszczepiony rozrusznik serca", isCorrect: false },
+            { text: "niewyrównana cukrzyca, uszkodzenia skóry przez promieniowanie nadfioletowe, rtg", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Promieniowanie widzialne jest promieniowaniem o długości fali:",
+        options: [
+            { text: "od 400 do 760 nm", isCorrect: true },
+            { text: "od 100 do 400 nm", isCorrect: false },
+            { text: "od 770 do 15000 nm", isCorrect: false },
+            { text: "od 0 do 100", isCorrect: false }
+        ]
+    },
+    {
+        question: "Największe przekrwienie masowanych tkanek wywołuje technika:",
+        options: [
+            { text: "głaskania", isCorrect: false },
+            { text: "rozcierania", isCorrect: false },
+            { text: "ugniatania", isCorrect: false },
+            { text: "oklepywania", isCorrect: true }
+        ]
+    },
+    {
+        question: "Stosując techniki manualnego drenażu limfatycznego:",
+        options: [
+            { text: "kierunek masażu nie ma znaczenia", isCorrect: false },
+            { text: "wykonujemy od części dystalnej do proksymalnej", isCorrect: true },
+            { text: "jeżeli jest taka możliwość to układamy kończynę poniżej serca", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Masaż jest bodźcem wywołującym odczyn, który zależy od:",
+        options: [
+            { text: "wieku, płci", isCorrect: false },
+            { text: "budowy ciała", isCorrect: false },
+            { text: "stanu psychicznego fazy choroby", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "W celu ujędrnienia pośladków u osoby prowadzącej siedzący tryb życia w pierwszej kolejności zastosujesz zabieg elektrostymulacji o przebiegu prądu:",
+        options: [
+            { text: "prostokątnego", isCorrect: true },
+            { text: "trójkątnego", isCorrect: false },
+            { text: "sinusoidalnego", isCorrect: false },
+            { text: "brak poprawnej odpowiedzi", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przedstawicielem BHA jest:",
+        options: [
+            { text: "kwas glikolowy", isCorrect: false },
+            { text: "kwas pirogronowy", isCorrect: false },
+            { text: "kwas salicylowy", isCorrect: true },
+            { text: "kwas mlekowy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do zabiegu peelingu kawitacyjnego nie zastosujemy:",
+        options: [
+            { text: "toniku nawilżającego", isCorrect: false },
+            { text: "wody destylowanej", isCorrect: false },
+            { text: "wody przegotowanej", isCorrect: false },
+            { text: "wszystkie powyższe preparaty możemy użyć do zabiegu", isCorrect: true }
+        ]
+    },
+    {
+        question: "Pielęgnacja gabinetowa dla cery naczyniowej oraz trądziku różowatego obejmuje:",
+        options: [
+            { text: "zabiegi uszczelniające ściany naczyń krwionośnych", isCorrect: false },
+            { text: "zabiegi nawilżające", isCorrect: false },
+            { text: "zabiegi łagodzące", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Kolejne warstwy naskórka licząc od wierzchniej warstwy to:",
+        options: [
+            { text: "rogowa, kolczysta, jasna, ziarnista, podstawna", isCorrect: false },
+            { text: "rogowa, jasna, ziarnista, kolczysta, podstawna", isCorrect: true },
+            { text: "rogowa, kolczysta, jasna, ziarnista, podstawna", isCorrect: false },
+            { text: "rogowa, jasna, kolczysta, ziarnista, podstawna", isCorrect: false }
+        ]
+    },
+    {
+        question: "Które stwierdzenie dotyczące zabiegu elektroporacji jest nieprawdziwe:",
+        options: [
+            { text: "jest to jedna z metod zwiększania transportu przeznaskórkowego", isCorrect: false },
+            { text: "występuje zjawisko wytwarzania elektroporów, które stanowią dodatkową drogę transportu cząsteczek", isCorrect: false },
+            { text: "powstałe elektropory utrzymują się przez okres nawet do 48 godzin po zakończonym zabiegu", isCorrect: true },
+            { text: "wszystkie powyższe stwierdzenia są prawdziwe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przeciwwskazaniem do zabiegu mikrodermabrazji są:",
+        options: [
+            { text: "przebarwienia pozapalne", isCorrect: false },
+            { text: "przebarwienia posłoneczne", isCorrect: false },
+            { text: "trądzik zapalny", isCorrect: true },
+            { text: "blizny potrądzikowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zabiegi wykorzystujące działanie prądu stałego to:",
+        options: [
+            { text: "jonoforeza i sonoforeza", isCorrect: false },
+            { text: "darsonwalizacja i peeling kawitacyjny", isCorrect: false },
+            { text: "peeling kawitacyjny i sonoforeza", isCorrect: false },
+            { text: "jonoforeza i galwanizacja", isCorrect: true }
+        ]
+    },
+    {
+        question: "W jakiej kolejności stosuje się poszczególne techniki podczas masażu klasycznego twarzy:",
+        options: [
+            { text: "rozcieranie, głaskanie, ugniatanie, oklepywanie, wibracja", isCorrect: false },
+            { text: "głaskanie, rozcieranie, ugniatanie, oklepywanie, wibracja", isCorrect: true },
+            { text: "głaskanie, rozcieranie, ugniatanie, wibracja, oklepywanie", isCorrect: false },
+            { text: "głaskanie, rozcieranie, oklepywanie, ugniatanie, wibracja", isCorrect: false }
+        ]
+    },
+    {
+        question: "Skuteczność zabiegu peelingu chemicznego nie zależy od:",
+        options: [
+            { text: "pH", isCorrect: false },
+            { text: "pKa", isCorrect: false },
+            { text: "stanu skóry", isCorrect: false },
+            { text: "brak prawidłowej odpowiedzi", isCorrect: true }
+        ]
+    },
+    {
+        question: "Nieprawdziwe zdanie dotyczące peelingu z kwasem laktobionowym to:",
+        options: [
+            { text: "jest przedstawicielem polihydroksykwasów", isCorrect: false },
+            { text: "wykazuje łagodniejsze działanie niż AHA", isCorrect: false },
+            { text: "może być stosowany z innymi kwasami", isCorrect: false },
+            { text: "wszystkie powyższe zdania są prawdziwe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Nieprawdziwe zdanie dotyczące zabiegu galwanizacji to:",
+        options: [
+            { text: "jest zabiegiem elektroleczniczym", isCorrect: false },
+            { text: "polega na przepływie prądu zmiennego przez tkanki pomiędzy dwiema elektrodami", isCorrect: true },
+            { text: "do zabiegu wykorzystywana jest elektroda czynna i bierna", isCorrect: false },
+            { text: "wszystkie powyższe zdania są prawdziwe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Cera tłusta wymaga przeprowadzenia zabiegów:",
+        options: [
+            { text: "hamujących pracę gruczołów łojowych", isCorrect: false },
+            { text: "normalizujących pracę gruczołów łojowych", isCorrect: true },
+            { text: "nie wpływających na pracę gruczołów łojowych", isCorrect: false },
+            { text: "pobudzających pracę gruczołów łojowych", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do działań anody w galwanizacji zaliczymy:",
+        options: [
+            { text: "lekki obrzęk skóry", isCorrect: false },
+            { text: "wzrost pH", isCorrect: false },
+            { text: "spadek napięcia mięśniowego", isCorrect: true },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Nieprawdziwe zdanie dotyczące zabiegu jonoforezy to:",
+        options: [
+            { text: "dla wprowadzenia jonów dodatnich podkład z lekiem układa się pod katodą", isCorrect: true },
+            { text: "do zabiegu należy stosować preparaty, które ulegają dysocjacji elektrolitycznej", isCorrect: false },
+            { text: "jest to proces polegający na przenoszeniu małocząsteczkowych substancji czynnych w polu elektrycznym o małym napięciu", isCorrect: false },
+            { text: "wszystkie powyższe zdania są prawdziwe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do substancji o działaniu keratolitycznym należą:",
+        options: [
+            { text: "alfahydroksykwasy", isCorrect: true },
+            { text: "alantoina i d-pantenol", isCorrect: false },
+            { text: "witamina C i retinol", isCorrect: false },
+            { text: "witamina B6 i rutyna", isCorrect: false }
+        ]
+    },
+    {
+        question: "Fibroblasty to:",
+        options: [
+            { text: "komórki warstwy podskórnej, które gromadzą tłuszcz", isCorrect: false },
+            { text: "martwe komórki warstwy podstawnej", isCorrect: false },
+            { text: "żywe komórki warstwy podstawnej", isCorrect: false },
+            { text: "komórki skóry właściwej, które wytwarzają kolagen i elastynę", isCorrect: true }
+        ]
+    },
+    {
+        question: "Najbezpieczniejszym zabiegiem dla kobiety w ciąży będzie:",
+        options: [
+            { text: "peeling enzymatyczny z sonoforezą", isCorrect: false },
+            { text: "peeling kawitacyjny z sonoforezą", isCorrect: false },
+            { text: "peeling enzymatyczny z masażem twarzy", isCorrect: true },
+            { text: "peeling kawitacyjny z masażem twarzy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do pomiaru stopnia nawilżenia skóry służy:",
+        options: [
+            { text: "pehametr", isCorrect: false },
+            { text: "korneometr", isCorrect: true },
+            { text: "sebumetr", isCorrect: false },
+            { text: "kutometr", isCorrect: false }
+        ]
+    },
+    {
+        question: "Największym elementem paznokcia jest:",
+        options: [
+            { text: "płytka paznokciowa", isCorrect: true },
+            { text: "wolny brzeg paznokcia", isCorrect: false },
+            { text: "macierz paznokcia", isCorrect: false },
+            { text: "obrąbek naskórkowy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Gruczoły uchodzące bezpośrednio na powierzchnię skóry to:",
+        options: [
+            { text: "gruczoły mlekowe", isCorrect: false },
+            { text: "gruczoły potowe ekrynowe", isCorrect: true },
+            { text: "gruczoły potowe apokrynowe", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Naczynia krwionośne, mieszki włosowe, gruczoły łojowe i potowe znajdują się w:",
+        options: [
+            { text: "warstwie siateczkowatej skóry właściwej", isCorrect: true },
+            { text: "warstwie kolczystej naskórka", isCorrect: false },
+            { text: "warstwie brodawkowatej skóry właściwej", isCorrect: false },
+            { text: "warstwie podstawnej naskórka", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaburzenia wzrostu całego paznokcia wynikają z uszkodzenia:",
+        options: [
+            { text: "obrąbka naskórkowego", isCorrect: false },
+            { text: "macierzy paznokcia", isCorrect: true },
+            { text: "obłączka", isCorrect: false },
+            { text: "płytki paznokciowej", isCorrect: false }
+        ]
+    },
+    {
+        question: "Gruczoły uchodzące do mieszka włosowego to:",
+        options: [
+            { text: "gruczoły potowe ekrynowe", isCorrect: false },
+            { text: "gruczoły potowe apokrynowe", isCorrect: false },
+            { text: "gruczoły łojowe", isCorrect: false },
+            { text: "odpowiedzi b i c są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wykonanie kąpieli parafinowej dłoni jest charakterystyczne dla zabiegu:",
+        options: [
+            { text: "manicure biologicznego", isCorrect: false },
+            { text: "manicure japońskiego", isCorrect: false },
+            { text: "manicure SPA", isCorrect: true },
+            { text: "manicure klasycznego", isCorrect: false }
+        ]
+    },
+    {
+        question: "Za ściąganie brwi do dołu i przyśrodka oraz pionowe marszczenie czoła odpowiada:",
+        options: [
+            { text: "mięsień nosowy", isCorrect: false },
+            { text: "mięsień marszczący brwi", isCorrect: true },
+            { text: "mięsień naczaszny", isCorrect: false },
+            { text: "mięsień podłużny", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przykładem depilacji fizycznej nie jest:",
+        options: [
+            { text: "usuwanie owłosienia za pomocą depilatora", isCorrect: false },
+            { text: "elektroepilacja", isCorrect: true },
+            { text: "usuwanie owłosienia za pomocą IPL", isCorrect: false },
+            { text: "epilacja laserowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Odżywienie płytki paznokciowej możliwe jest dzięki:",
+        options: [
+            { text: "macierzy paznokcia", isCorrect: false },
+            { text: "łożysku paznokcia", isCorrect: true },
+            { text: "wałom paznokciowym", isCorrect: false },
+            { text: "żadna odpowiedź nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "W obrębie naskórka znajdują się komórki, takie jak:",
+        options: [
+            { text: "keratynocyty", isCorrect: false },
+            { text: "korneocyty", isCorrect: false },
+            { text: "melanocyty", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Płaszcz hydrolipidowy skóry składa się:",
+        options: [
+            { text: "z lipidów", isCorrect: false },
+            { text: "ze składników sebum", isCorrect: false },
+            { text: "z wydzieliny gruczołów potowych", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Miejsce podziałów mitotycznych, warunkujących wzrost włosa to:",
+        options: [
+            { text: "rdzeń włosa", isCorrect: false },
+            { text: "macierz włosa", isCorrect: true },
+            { text: "brodawka włosa", isCorrect: false },
+            { text: "mieszek włosowy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Tkanka podskórna pełni funkcję:",
+        options: [
+            { text: "ochronną", isCorrect: false },
+            { text: "termoizolacyjną", isCorrect: false },
+            { text: "energetyczną", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Naczynia limfatyczne w skórze przebiegają:",
+        options: [
+            { text: "równolegle do naczyń tętniczych", isCorrect: false },
+            { text: "prostopadle do naczyń tętniczych", isCorrect: false },
+            { text: "równolegle do naczyń żylnych", isCorrect: true },
+            { text: "prostopadle do naczyń żylnych", isCorrect: false }
+        ]
+    },
+    {
+        question: "Warstwą rozrodczą naskórka jest:",
+        options: [
+            { text: "warstwa rogowa", isCorrect: false },
+            { text: "warstwa kolczysta", isCorrect: false },
+            { text: "warstwa ziarnista", isCorrect: false },
+            { text: "warstwa podstawna", isCorrect: true }
+        ]
+    },
+    {
+        question: "Miejscem powstawania włosa, odżywianym i dotlenianym przez sieć naczyń krwionośnych z brodawki włosa jest:",
+        options: [
+            { text: "mieszek włosowy", isCorrect: false },
+            { text: "cebulka włosa", isCorrect: true },
+            { text: "łodyga włosa", isCorrect: false },
+            { text: "rdzeń włosa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Keratynizacja jest procesem rozpoczynającym się w:",
+        options: [
+            { text: "warstwie brodawkowatej skóry właściwej", isCorrect: false },
+            { text: "warstwie rogowej naskórka", isCorrect: false },
+            { text: "warstwie podstawnej naskórka", isCorrect: true },
+            { text: "tkance podskórnej", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż prawidłowe zdanie dotyczące obrąbka naskórkowego:",
+        options: [
+            { text: "Należy szczególnie uważać na ten obszar podczas zabiegów manicure.", isCorrect: false },
+            { text: "Chroni macierz paznokcia przed infekcjami, zanieczyszczeniami oraz uszkodzeniem.", isCorrect: false },
+            { text: "Stanowi część tylnego wału paznokciowego.", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Warstwę Malpighiego stanowią komórki:",
+        options: [
+            { text: "warstwy podstawnej, kolczystej i ziarnistej", isCorrect: false },
+            { text: "warstwy podstawnej i kolczystej", isCorrect: true },
+            { text: "warstwy kolczystej, ziarnistej i jasnej", isCorrect: false },
+            { text: "warstwy kolczystej i ziarnistej", isCorrect: false }
+        ]
+    },
+    {
+        question: "Adipocyty są komórkami charakterystycznymi dla:",
+        options: [
+            { text: "naskórka", isCorrect: false },
+            { text: "skóry właściwej", isCorrect: false },
+            { text: "tkanki podskórnej", isCorrect: true },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Intensywne podziały komórkowe macierzy włosa charakterystyczne są dla fazy:",
+        options: [
+            { text: "anagenu", isCorrect: true },
+            { text: "katagenu", isCorrect: false },
+            { text: "telogenu", isCorrect: false },
+            { text: "żadna odpowiedź nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Desmogleina jest to:",
+        options: [
+            { text: "substancja mukopolisacharydowo-białkowa", isCorrect: false },
+            { text: "substancja, która cementuje komórki", isCorrect: true },
+            { text: "substancja, która zapewnia skórze odpowiednią elastyczność i odporność", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przenikanie cząsteczek substancji poprzez gruczoły potowe jest przykładem:",
+        options: [
+            { text: "transepidermalnej drogi międzykomórkowej penetracji substancji czynnych", isCorrect: false },
+            { text: "transepidermalnej drogi przez komórki", isCorrect: false },
+            { text: "transfolikularnej drogi penetracji substancji czynnych", isCorrect: true },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Kilka warstw wrzecionowatych komórek oraz jądra komórkowe wypełnione ziarnami keratohialiny są charakterystyczne dla:",
+        options: [
+            { text: "warstwy podstawnej", isCorrect: false },
+            { text: "warstwy rogowej", isCorrect: false },
+            { text: "warstwy kolczystej", isCorrect: false },
+            { text: "warstwy ziarnistej", isCorrect: true }
+        ]
+    },
+    {
+        question: "Warstwa brodawkowata skóry właściwej zbudowana jest przede wszystkim z kolagenu typu:",
+        options: [
+            { text: "I", isCorrect: false },
+            { text: "II", isCorrect: false },
+            { text: "III", isCorrect: true },
+            { text: "IV", isCorrect: false }
+        ]
+    },
+    {
+        question: "Regeneracja naskórka możliwa jest dzięki podziałom:",
+        options: [
+            { text: "mitotycznym", isCorrect: true },
+            { text: "mejotycznym", isCorrect: false },
+            { text: "amitotycznym", isCorrect: false },
+            { text: "żadna odpowiedź nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Pozostawanie substancji czynnej w najbardziej powierzchownych warstwach skóry w celu działania miejscowego, nazywane jest:",
+        options: [
+            { text: "adsorpcją", isCorrect: true },
+            { text: "resorpcją", isCorrect: false },
+            { text: "penetracją", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "…są to komórki dendrytyczne pochodzenia szpikowego, które mogą być odpowiedzialne za rozwój atopii kontaktowej. Uszkadzane są przez promieniowanie UV. Opis ten dotyczy:",
+        options: [
+            { text: "melanocytów", isCorrect: false },
+            { text: "komórek Merkela", isCorrect: false },
+            { text: "komórek Langerhansa", isCorrect: true },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Krwiak jest wynikiem uszkodzenia sieci:",
+        options: [
+            { text: "żylnej", isCorrect: true },
+            { text: "tętniczej", isCorrect: false },
+            { text: "limfatycznej", isCorrect: false },
+            { text: "żadna odpowiedź nie jest prawidłowa", isCorrect: false }
+        ]
+    }
+];// Zmienne stanu
         let questions = [];
         let currentQuestionIndex = 0;
         let score = 0;

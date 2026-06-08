@@ -170,16 +170,907 @@
             return array;
         }
 const rawQuestions = [
-            {
-                question: "Ile wynosi temperatura wrzenia podtlenku azotu?",
-                options: [
-                    { text: "-195,8°C", isCorrect: false },
-                    { text: "-88°C", isCorrect: true },
-                    { text: "-78,9°C", isCorrect: false },
-                    { text: "-40,8°C", isCorrect: false }
-                ]
-            },
-        ];
+    {
+        question: "W Starożytnym Rzymie:",
+        options: [
+            { text: "makijaż obejmował tylko oczy", isCorrect: false },
+            { text: "makijaż obejmował oczy i usta", isCorrect: false },
+            { text: "makijaż obejmował wszystkie odsłonięte części ciała", isCorrect: true },
+            { text: "nie malowano się", isCorrect: false }
+        ]
+    },
+    {
+        question: "Dla okresu Odrodzenia charakterystyczny był:",
+        options: [
+            { text: "delikatny makijaż podkreślający urodę", isCorrect: false },
+            { text: "zanik podstawowych zasad higieny", isCorrect: true },
+            { text: "makijaż kobiet, mężczyzn i dzieci", isCorrect: false },
+            { text: "mocny makijaż oczu i ust", isCorrect: false }
+        ]
+    },
+    {
+        question: "Plasterki piękności:",
+        options: [
+            { text: "inaczej zwane były muszkami", isCorrect: false },
+            { text: "wykonane były z jedwabiu, tafty i skóry", isCorrect: false },
+            { text: "miały ukrywać wszystkie pryszcze, wągry i blizny", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Rolę dekoltu w XIX wieku podkreślano:",
+        options: [
+            { text: "używając dużych ilości pudru", isCorrect: false },
+            { text: "poprzez pociąganie żyłek leciutko na kolor niebieski", isCorrect: true },
+            { text: "przyklejając na niego plasterki piękności", isCorrect: false },
+            { text: "wykorzystując sznurowania", isCorrect: false }
+        ]
+    },
+    {
+        question: "Kamerton służy do:",
+        options: [
+            { text: "pomiaru wibracji w neuropatycznych stanach kończyn dolnych", isCorrect: true },
+            { text: "kontroli wyczuwania temperatury u chorych z syndromem stopy cukrzycowej", isCorrect: false },
+            { text: "diagnostyki odczuwania bólu", isCorrect: false },
+            { text: "wszystkie powyższe zdania są prawdziwe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do kości stępu stopy nie zaliczymy:",
+        options: [
+            { text: "kości skokowej", isCorrect: false },
+            { text: "kości piętowej", isCorrect: false },
+            { text: "kości sześciennej", isCorrect: false },
+            { text: "wszystkie powyższe kości należą do kości stępu", isCorrect: true }
+        ]
+    },
+    {
+        question: "Onycholiza to:",
+        options: [
+            { text: "paznokieć szponowaty", isCorrect: false },
+            { text: "przerost płytki paznokciowej", isCorrect: false },
+            { text: "odłączanie się płytki paznokciowej od łożyska", isCorrect: true },
+            { text: "palec młotowaty", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przyczyną Onychorrhexis może być:",
+        options: [
+            { text: "uraz płytki", isCorrect: false },
+            { text: "uraz macierzy", isCorrect: false },
+            { text: "zaburzenia przemiany materii", isCorrect: false },
+            { text: "wszystkie powyższe odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Typowe zmiany dla łuszczycy to:",
+        options: [
+            { text: "onycholiza", isCorrect: false },
+            { text: "rogowacenie podpaznokciowe", isCorrect: false },
+            { text: "plama olejowa", isCorrect: false },
+            { text: "wszystkie powyższe zmiany towarzyszą łuszczycy", isCorrect: true }
+        ]
+    },
+    {
+        question: "Do postępowania podologicznego w terapii wrastających paznokci nie zaliczymy:",
+        options: [
+            { text: "usunięcie wrastającego elementu paznokcia", isCorrect: false },
+            { text: "usunięcie macierzy", isCorrect: true },
+            { text: "tamponada", isCorrect: false },
+            { text: "wszystkie powyższe zaliczymy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do hiperkeratoz spotykanych w praktyce podologicznej nie zaliczymy:",
+        options: [
+            { text: "modzeli", isCorrect: false },
+            { text: "odcisków", isCorrect: false },
+            { text: "łuszczycy", isCorrect: true },
+            { text: "pękających piet", isCorrect: false }
+        ]
+    },
+    {
+        question: "Nieprawdziwe zdanie dotyczące modzeli to:",
+        options: [
+            { text: "jest to zespół nadmiernie zrogowaciałych komórek naskórka", isCorrect: false },
+            { text: "są efektem mechanizmów obronnych organizmy przed większymi uszkodzeniami", isCorrect: false },
+            { text: "może być w nim zlokalizowany odcisk", isCorrect: false },
+            { text: "nie towarzyszą im dolegliwości bólowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Clavus sulcus to odcisk:",
+        options: [
+            { text: "w wale paznokciowym", isCorrect: true },
+            { text: "podpaznokciowy", isCorrect: false },
+            { text: "na opuszku palca", isCorrect: false },
+            { text: "brak prawidłowej odpowiedzi", isCorrect: false }
+        ]
+    },
+    {
+        question: "Clavus durus to:",
+        options: [
+            { text: "odcisk twardy", isCorrect: true },
+            { text: "odcisk miękki", isCorrect: false },
+            { text: "odciski mnogie", isCorrect: false },
+            { text: "brak prawidłowej odpowiedzi", isCorrect: false }
+        ]
+    },
+    {
+        question: "Bezpośrednią przyczyną powstania owrzodzenia na stopach w zespole stopy cukrzycowej jest:",
+        options: [
+            { text: "noszenie niewłaściwego obuwia", isCorrect: false },
+            { text: "oparzenie", isCorrect: false },
+            { text: "odleżyny pięt", isCorrect: false },
+            { text: "wszystkie powyższe odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Stopę cukrzycową ocenia się pod względem:",
+        options: [
+            { text: "wyglądu skóry stopy", isCorrect: false },
+            { text: "danych z wywiadu", isCorrect: false },
+            { text: "występujących neuropatii", isCorrect: false },
+            { text: "wszystkie powyższe odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Fizjologicznie białko pełni w organizmie rolę:",
+        options: [
+            { text: "budulcową", isCorrect: false },
+            { text: "energetyczną", isCorrect: false },
+            { text: "regulującą", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wybierz odpowiedź, w której podano prawidłowe wartości energetyczne podstawowych składników odżywczych:",
+        options: [
+            { text: "1g białka = 4kcal, 1 g węglowodanów = 4kcal, 1 g tłuszczów = 9kcal", isCorrect: true },
+            { text: "1g białka = 9kcal, 1 g węglowodanów = 4kcal, 1 g tłuszczów = 9kcal", isCorrect: false },
+            { text: "1g białka = 4kcal, 1 g węglowodanów = 9kcal, 1 g tłuszczów = 4kcal", isCorrect: false },
+            { text: "1g białka = 4kcal, 1 g węglowodanów = 4kcal, 1 g tłuszczów = 4kcal", isCorrect: false }
+        ]
+    },
+    {
+        question: "Witaminami rozpuszczalnymi w tłuszczach są:",
+        options: [
+            { text: "A, D, E, K", isCorrect: true },
+            { text: "A, B, C, D", isCorrect: false },
+            { text: "A, E, B12, H", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Niekorzystne działanie na wygląd skóry ma dieta:",
+        options: [
+            { text: "Opierająca się na produktach wysoko-przetworzonych", isCorrect: false },
+            { text: "Bogata w sól", isCorrect: false },
+            { text: "Uboga w warzywa i owoce", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Stosowanie długotrwałe niekonwencjonalnej diety odchudzającej może wiązać się z:",
+        options: [
+            { text: "wystąpieniem efektu jo-jo (tj. przyrostem masy ciała) po zakończeniu kuracji", isCorrect: false },
+            { text: "wystąpieniem chorób dietozależnych np. niedokrwistość, cukrzyca typu II, miażdżyca, dysfunkcja nerek czy osteoporoza", isCorrect: false },
+            { text: "pogorszeniem stanu skóry i wypadaniem włosów", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Podczas stosowania diet eliminacyjnych w których nie spożywa się mięsa i żadnych produktów pochodzenia zwierzęcego (np. dieta wegańska) konieczna jest suplementacja:",
+        options: [
+            { text: "Witaminy B12", isCorrect: true },
+            { text: "Witaminy C", isCorrect: false },
+            { text: "Białka pełnowartościowego", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do najzdrowszych diet (w 2022 i 2023 roku) zaliczają się:",
+        options: [
+            { text: "dieta śródziemnomorska, dieta DASH, dieta Fleksitarianska", isCorrect: true },
+            { text: "dieta Dukana, dieta Kwaśniewskiego, dieta Atkinsa", isCorrect: false },
+            { text: "dieta Cambridge, dieta Kopenhaska", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Jakich dodatkowych informacji należy udzielić osobie, która planuje zakup suplementu diety:",
+        options: [
+            { text: "Suplement diety nie zastępuje prawidłowo zbilansowanej diety.", isCorrect: true },
+            { text: "Najlepiej kupić kilka suplementów diety o tym samym działaniu, żeby zwiększyć szansę na wystąpienie pożądanego efektu leczniczego.", isCorrect: false },
+            { text: "Stosowanie wszystkich suplementów diety jest całkowicie bezpieczne, nie ma możliwości wystąpienia objawów niepożądanych, ich składniki nie wchodzą w interakcję z lekami i nie istnieją przeciwwskazania do ich stosowania.", isCorrect: false },
+            { text: "Wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Ilość mieszków włosowych:",
+        options: [
+            { text: "zwiększa się w okresie pokwitania", isCorrect: false },
+            { text: "zmniejsza się w okresie pokwitania", isCorrect: false },
+            { text: "zmniejsza się w okresie przekwitania", isCorrect: false },
+            { text: "nie zmienia się przez całe życie", isCorrect: true }
+        ]
+    },
+    {
+        question: "Przeciętny przyrost miesięczny włosów to:",
+        options: [
+            { text: "1,0 – 1,2 cm", isCorrect: true },
+            { text: "1,5 – 2,0 cm", isCorrect: false },
+            { text: "2,1 – 2,6 cm", isCorrect: false },
+            { text: "2,7 – 3,2 cm", isCorrect: false }
+        ]
+    },
+    {
+        question: "Badanie mikrokamerą cebulki i łodygi włosa bezpośrednio po pobraniu określa się mianem:",
+        options: [
+            { text: "trichoscanu", isCorrect: false },
+            { text: "trichogramu", isCorrect: true },
+            { text: "trichoskopii", isCorrect: false },
+            { text: "trichobiopsji", isCorrect: false }
+        ]
+    },
+    {
+        question: "Żywą strukturę włosa tworzy:",
+        options: [
+            { text: "brodawka włosa", isCorrect: true },
+            { text: "łodyga włosa", isCorrect: false },
+            { text: "obie odpowiedzi są poprawne", isCorrect: false },
+            { text: "żadna odpowiedź nie jest poprawna", isCorrect: false }
+        ]
+    },
+    {
+        question: "Linia Aubera:",
+        options: [
+            { text: "linia wyznaczająca ujście mieszka wlosowego w naskórku", isCorrect: false },
+            { text: "linia podłużna wyznaczająca długość łodygi włosa", isCorrect: false },
+            { text: "linia wskazująca na grubość łodygi włosa", isCorrect: false },
+            { text: "linia w płaszczyźnie najszerszej części brodawki włosa", isCorrect: true }
+        ]
+    },
+    {
+        question: "Jaką ilość łącznej masy łodygi włosa stanowi kora włosa?:",
+        options: [
+            { text: "10%", isCorrect: false },
+            { text: "80%", isCorrect: true },
+            { text: "30%", isCorrect: false },
+            { text: "50%", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wiązania poprzeczne znajdujące się pomiędzy łańcuchami keratyny to wiązania:",
+        options: [
+            { text: "peptydowe", isCorrect: false },
+            { text: "dwusiarczkowe", isCorrect: false },
+            { text: "wodorowe i jonowe", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Masażu trychologicznego nie wykonuje się, kiedy występuje:",
+        options: [
+            { text: "suchość skóry owłosionej glowy", isCorrect: false },
+            { text: "nadmierne wypadanie włosów", isCorrect: false },
+            { text: "łysienie androgenowe", isCorrect: false },
+            { text: "łojotokowe zapalenie skóry", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zabiegi fryzjerskie zagęszczania i przedłużania włosów najczęściej powodują uszkodzenia:",
+        options: [
+            { text: "termiczne", isCorrect: false },
+            { text: "mechaniczne", isCorrect: true },
+            { text: "chemiczne", isCorrect: false },
+            { text: "mieszane", isCorrect: false }
+        ]
+    },
+    {
+        question: "Pierwsze zalążki włosów pojawiają się w:",
+        options: [
+            { text: "drugim trymestrze ciąży", isCorrect: false },
+            { text: "pierwszym trymestrze ciąży [ma to miejsce około 9.–12. tygodnia ciąży, co przypada dokładnie na końcówkę pierwszego trymestru]!!!", isCorrect: true },
+            { text: "trzecim trymestrze ciąży", isCorrect: false },
+            { text: "po urodzeniu", isCorrect: false }
+        ]
+    },
+    {
+        question: "Makijaż ślubny łączy w sobie cechy makijażu:",
+        options: [
+            { text: "dziennego", isCorrect: false },
+            { text: "wieczorowego", isCorrect: false },
+            { text: "fotograficznego", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Makijaż który powinien uwzględniać filozofię marki i grupę docelową to:",
+        options: [
+            { text: "makijaż reklamowy", isCorrect: true },
+            { text: "makijaż ślubny", isCorrect: false },
+            { text: "makijaż do fotografii portretowej", isCorrect: false },
+            { text: "makijaż cut-crease", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przy oświetleniu ciepłym makijaż powinien być wykonany kosmetykami:",
+        options: [
+            { text: "neutralnymi", isCorrect: false },
+            { text: "w chłodnych tonach", isCorrect: false },
+            { text: "w ciepłych tonach", isCorrect: true },
+            { text: "wodoodpornymi", isCorrect: false }
+        ]
+    },
+    {
+        question: "Istotą makijażu reklamowego jest:",
+        options: [
+            { text: "zaprezentowanie linii kosmetyków", isCorrect: true },
+            { text: "podążanie za preferencjami modelki", isCorrect: false },
+            { text: "chłodna tonacja kolorystyczna", isCorrect: false },
+            { text: "ciepła tonacja kolorystyczna", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przy oświetleniu chłodnym makijaż powinien być:",
+        options: [
+            { text: "ekstrawagancki", isCorrect: false },
+            { text: "w chłodnych tonach", isCorrect: true },
+            { text: "w ciepłych tonach", isCorrect: false },
+            { text: "charakterystyczny", isCorrect: false }
+        ]
+    },
+    {
+        question: "Do jasnego typu urody można zaliczyć typ kolorystyczny:",
+        options: [
+            { text: "wiosny i jesieni", isCorrect: false },
+            { text: "wiosny i lata", isCorrect: true },
+            { text: "jesieni i zimy", isCorrect: false },
+            { text: "lata i zimy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskaż nieprawdziwą odpowiedź: Pędzle wykorzystywane w makijażu z włosia syntetycznego:",
+        options: [
+            { text: "Nie powodują reakcji alergicznych", isCorrect: false },
+            { text: "Stosowane do pracy z preparatami o kremowej konsystencji np. korektory, pomadki", isCorrect: false },
+            { text: "Posiadają sztywniejsze włosie niż pędzle o naturalnym włosiu", isCorrect: false },
+            { text: "Nie stosowane są do profesjonalnego makijażu, ponieważ zostawiają plamy", isCorrect: true }
+        ]
+    },
+    {
+        question: "Atrybut koloru określający jego natężenie to:",
+        options: [
+            { text: "odcień", isCorrect: false },
+            { text: "walor", isCorrect: false },
+            { text: "chromatyczność", isCorrect: true },
+            { text: "achromatyczność", isCorrect: false }
+        ]
+    },
+    {
+        question: "Klientce, która odmroziła sobie skórę dłoni, kosmetolog powinna zaproponować:",
+        options: [
+            { text: "kąpiele dłoni w naparze z pokrzywy", isCorrect: false },
+            { text: "naświetlanie dłoni lampą sollux z niebieskim filtrem", isCorrect: true },
+            { text: "masaże dłoni szorstką rękawicą", isCorrect: false },
+            { text: "zamrażanie miejsc odmrożonych dwutlenkiem węgla", isCorrect: false }
+        ]
+    },
+    {
+        question: "Preparat, który w swoim składzie zawiera ekstrakty ziół o właściwościach śluzorodnych i rozmiękczających stosuje się:",
+        options: [
+            { text: "przed zabiegiem manualnego oczyszczania twarzy w celu rozpulchnienia cery", isCorrect: true },
+            { text: "po zabiegu manualnego oczyszczania w celu złagodzenia podrażnień", isCorrect: false },
+            { text: "po masażu w celu uszczelnienia naczyń krwionośnych", isCorrect: false },
+            { text: "przed masażem w celu nawilżenia skóry", isCorrect: false }
+        ]
+    },
+    {
+        question: "Bezwzględnym przeciwskazaniem do stosowania terapii izotretinoiną jest:",
+        options: [
+            { text: "kobieta w okresie menstruacji", isCorrect: false },
+            { text: "kobieta w ciąży", isCorrect: true },
+            { text: "mężczyzna po 30 roku życia", isCorrect: false },
+            { text: "młodzież po 18 roku życia", isCorrect: false }
+        ]
+    },
+    {
+        question: "Ostre ropne zapalenie tkanek okołopaznokciowych jest spowodowane:",
+        options: [
+            { text: "zbyt krótkim obcinaniem paznokci", isCorrect: false },
+            { text: "nieodpowiednią pielęgnacją paznokci", isCorrect: false },
+            { text: "zażywaniem zbyt ciepłych kąpieli parafinowych", isCorrect: false },
+            { text: "skaleczeniem zanieczyszczonym narzędziem", isCorrect: true }
+        ]
+    },
+    {
+        question: "Warstwa dyspersyjna występuje podczas zabiegu:",
+        options: [
+            { text: "manicure na ciepło", isCorrect: false },
+            { text: "manicure hybrydowego", isCorrect: true },
+            { text: "pedicure klasycznego", isCorrect: false },
+            { text: "depilacji woskiem", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zanik płytki paznokciowej to:",
+        options: [
+            { text: "bielactwo", isCorrect: false },
+            { text: "dystrofia", isCorrect: false },
+            { text: "hypertryhoza", isCorrect: false },
+            { text: "atrofia", isCorrect: true }
+        ]
+    },
+    {
+        question: "Efekt opalenizny na skórze można uzyskać dzięki zastosowaniu:",
+        options: [
+            { text: "rozświetlacza", isCorrect: false },
+            { text: "różu", isCorrect: false },
+            { text: "tonera", isCorrect: false },
+            { text: "bronzera", isCorrect: true }
+        ]
+    },
+    {
+        question: "Dobór technik do zabiegu masażu nie zależy od:",
+        options: [
+            { text: "wieku Klienta", isCorrect: false },
+            { text: "budowy masowanej okolicy", isCorrect: false },
+            { text: "humoru masażysty", isCorrect: true },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: false }
+        ]
+    },
+    {
+        question: "Podczas wykonywania masażu należy uwzględnić odpowiedni kierunek wykonywania tego zabiegu zgodnie z zasadą:",
+        options: [
+            { text: "dla układu mięśniowego – w poprzek przebiegu włókien mięśniowych", isCorrect: false },
+            { text: "dla układu mięśniowego – do najdalej oddalonego węzła chłonnego", isCorrect: false },
+            { text: "dla układu nerwowego – w kierunku do nerwów obwodowych", isCorrect: false },
+            { text: "dla układu żylnego – w kierunku dosercowym", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe stwierdzenie dotyczące ogólnych zasad wykonywania masażu:",
+        options: [
+            { text: "w czasie zabiegu należy stosować intensywną siłę bodźca mechanicznego", isCorrect: false },
+            { text: "w czasie zabiegu Klient powinien być całkowicie odkryty", isCorrect: false },
+            { text: "wywiad z Klientem przeprowadza się przedprzeprowadzanym zabiegiem", isCorrect: true },
+            { text: "odpowiedź a i b są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wskazaniem do masażu pałeczkami bambusowymi jest:",
+        options: [
+            { text: "poprawa krążenia krwi i limfy", isCorrect: false },
+            { text: "zmniejszenie napięć i bóli mięśniowych", isCorrect: false },
+            { text: "poprawa trofiki skóry", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz poprawne stwierdzenie dotyczące oddziaływania masażu na organizm człowieka:",
+        options: [
+            { text: "oddziaływanie masażu obejmuje wyłącznie oddziaływanie lokalne", isCorrect: false },
+            { text: "oddziaływanie lokalne masażu powoduje czynne przekrwienie skóry i mięśni", isCorrect: true },
+            { text: "oddziaływanie lokalne masażu obejmuje zmiany zachodzące w narządach wydzielania wewnętrznego", isCorrect: false },
+            { text: "odpowiedź a i b jest poprawna", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przeciwskazaniem ogólnym do masażu jest:",
+        options: [
+            { text: "rana lub skaleczenie miejscowe", isCorrect: false },
+            { text: "menstruacja", isCorrect: true },
+            { text: "stwardnienie rozsiane", isCorrect: false },
+            { text: "brodawka wirusowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Masaż oddziałuje na układy:",
+        options: [
+            { text: "krążenia", isCorrect: false },
+            { text: "nerwowy i oddechowy", isCorrect: false },
+            { text: "moczowy i pokarmowy", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe stwierdzenie dotyczące organizacji i wyposażenia gabinetu do masażu:",
+        options: [
+            { text: "temperatura powietrza powinna oscylować w granica 28-29 stopni Celsjusza", isCorrect: false },
+            { text: "powierzchnia gabinetu powinna wynosić 5 – 6 m2", isCorrect: false },
+            { text: "gabinet do masażu powinien być wyposażony w umywalkę z zimną i ciepłą wodą", isCorrect: true },
+            { text: "optymalny wymiar stołu do masażu to 50 cm x 140 cm", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przygotowanie Klienta do zabiegu masażu obejmuje następujące czynności:",
+        options: [
+            { text: "zapewnienie pacjentowi odpowiedniej pozycji ciała", isCorrect: true },
+            { text: "dezynfekcję ciała Skinseptem", isCorrect: false },
+            { text: "dezynfekcję biżuterii Klienta Incidur Spray", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Prawdziwym stwierdzeniem dotyczącym kwalifikacji zawodowych masażysty jest:",
+        options: [
+            { text: "kwalifikacje zawodowe są dane raz na zawsze i nie ma sensu ich podnosić", isCorrect: false },
+            { text: "kwalifikacje zawodowe powinno się ustawicznie podnosić odbywając szkolenia, uczestnicząc w konferencjach, pokazach itp.", isCorrect: true },
+            { text: "kwalifikacje zawodowe nie odgrywają znaczącej roli na rynku pracy", isCorrect: false },
+            { text: "odbyte kursy masaży nie mają żadnego wpływu na poziom świadczonych usług", isCorrect: false }
+        ]
+    },
+    {
+        question: "Masaż próżniowy bańką chińską najlepiej zastąpić wykonując zabieg przy użyciu:",
+        options: [
+            { text: "Endermologii LPG ®", isCorrect: true },
+            { text: "urządzenia do radiofrekwencji", isCorrect: false },
+            { text: "marmurowych kamieni do masażu", isCorrect: false },
+            { text: "miotełek bambusowych", isCorrect: false }
+        ]
+    },
+    {
+        question: "Warunkiem stosowania masażu w odnowie biologicznej jest:",
+        options: [
+            { text: "posiadanie zdolności manualnych", isCorrect: false },
+            { text: "skupienie i oddanie masażysty", isCorrect: false },
+            { text: "zapewnienie komfortu psychicznego osoby masowanej", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "W stanach przemęczenia i stresu stosuje się:",
+        options: [
+            { text: "masaż pałeczkami bambusowymi z elementem oklepywania przy użyciu miotełek bambusowych", isCorrect: true },
+            { text: "masaż pałeczkami bambusowymi z elementem oklepywania przy użyciu kijów bambusowych", isCorrect: false },
+            { text: "masaż zimnymi kamieniami bazaltowymi", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Najstarszą formą zabiegu masażu jest:",
+        options: [
+            { text: "masaż pałeczkami bambusowymi", isCorrect: false },
+            { text: "masaż klasyczny", isCorrect: true },
+            { text: "masaż izometryczny", isCorrect: false },
+            { text: "masaż okostnowy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz prawdziwe stwierdzenie dotyczące alternatywnych technik masażu:",
+        options: [
+            { text: "oparte są na systemie pojęciowym medycyny zachodniej", isCorrect: false },
+            { text: "oparte głównie na masażu klasycznym i jego zasadach", isCorrect: false },
+            { text: "to techniki odbiegające od standardowych masaży", isCorrect: true },
+            { text: "to techniki wykorzystujące głównie sztucznie wytworzone akcesoria", isCorrect: false }
+        ]
+    },
+    {
+        question: "W celu zrównoważenia krążącej energii witalnej (wg. hinduskiej koncepcji) w masażu kamieniami stosuje się:",
+        options: [
+            { text: "kamienie szlachetne", isCorrect: true },
+            { text: "kamienie bazaltowe", isCorrect: false },
+            { text: "kamienia marmurowe", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Masaż bańką chińską obejmujący uda oraz pośladki zaliczany jest do masaży:",
+        options: [
+            { text: "modelujących", isCorrect: true },
+            { text: "relaksacyjnych", isCorrect: false },
+            { text: "odchudzających", isCorrect: false },
+            { text: "wyszczuplających", isCorrect: false }
+        ]
+    },
+    {
+        question: "W masażu aromaterapeutycznym wykorzystuje się głównie następujące techniki:",
+        options: [
+            { text: "rozcierania i oklepywania", isCorrect: false },
+            { text: "głaskania i rozcierania", isCorrect: true },
+            { text: "oklepywania i wstrząsania", isCorrect: false },
+            { text: "głaskania i oklepywania", isCorrect: false }
+        ]
+    },
+    {
+        question: "Etymologia słowa „SPA” dotyczy:",
+        options: [
+            { text: "skrótu łacińskiej nazwy sanitas per aquas („woda to zdrowie”)", isCorrect: false },
+            { text: "skrótu łacińskiej nazwy sanus per aquam („zdrowy przez wodę)", isCorrect: false },
+            { text: "nazwy uzdrowiska belgijskiego z termalnymi źródłami leczniczymi", isCorrect: false },
+            { text: "odpowiedź b i c jest prawidłowa", isCorrect: true }
+        ]
+    },
+    {
+        question: "Które zdanie jest prawdziwe:",
+        options: [
+            { text: "„SPA” i „Wellness” stanowią jednoznaczne pojęcia", isCorrect: false },
+            { text: "„SPA” i „Wellness” nie stanowią jednoznacznych pojęć", isCorrect: true },
+            { text: "„SPA” i „Wellness” to pojęcia, które dotyczą wyłącznie holistycznej pielęgnacji ciała", isCorrect: false },
+            { text: "„SPA” i „Wellness” definiują luksusowy styl życia", isCorrect: false }
+        ]
+    },
+    {
+        question: "Odnowa biologiczna organizmu obejmuje zespół świadomych i celowych czynności:",
+        options: [
+            { text: "biologicznych", isCorrect: false },
+            { text: "pedagogicznych", isCorrect: false },
+            { text: "psychofizycznych", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskaż nieprawdziwe stwierdzenie dotyczące zasad stosowania zabiegów z zakresu odnowy biologicznej:",
+        options: [
+            { text: "zabiegi z zakresu odnowy biologicznej stosowane są zgodnie z zasadą świadomego doboru środków fizjoterapeutycznych", isCorrect: false },
+            { text: "zabiegi z zakresu odnowy biologicznej stosowane są zgodnie z zasadą indywidualnego doboru środków", isCorrect: false },
+            { text: "zabiegi z zakresu odnowy biologicznej stosowane są zgodnie z zasadą doboru maksymalnej intensywności zabiegów umożliwiającej przystosowanie się do działających bodźców", isCorrect: true },
+            { text: "zabiegi z zakresu odnowy biologicznej stosowane są zgodnie z zasadą systematycznego stosowania środków odnawiających", isCorrect: false }
+        ]
+    },
+    {
+        question: "Fizjoterapia:",
+        options: [
+            { text: "obejmuje kinezyterapię, fizykoterapię oraz masaż", isCorrect: true },
+            { text: "obejmuje wyłącznie kinezyterapię oraz fizykoterapię", isCorrect: false },
+            { text: "obejmuje wyłącznie kinezyterapię oraz masaż", isCorrect: false },
+            { text: "fizjoterapia określana jest zamiennie mianem fizykoterapii bowiem stanowią jednoznaczne pojęcia", isCorrect: false }
+        ]
+    },
+    {
+        question: "Odczyn wywołany przez bodźce fizyczne w skórze zależy od:",
+        options: [
+            { text: "bodźca", isCorrect: false },
+            { text: "tkanki", isCorrect: false },
+            { text: "czynników współistniejących", isCorrect: false },
+            { text: "wszytskie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Woda ciepła zgodnie z przyjętą w fizjoterapii skalą temperaturą wody wg. Cordesa wynosi:",
+        options: [
+            { text: "8-20 stopnie C", isCorrect: false },
+            { text: "21-27 stopnie C", isCorrect: false },
+            { text: "34-37 stopnie C", isCorrect: true },
+            { text: "40 - 42 stopnie C", isCorrect: false }
+        ]
+    },
+    {
+        question: "Natrysk Vichy Shower:",
+        options: [
+            { text: "to natrysk stały", isCorrect: true },
+            { text: "stosowany jest wyłącznie w sanatoriach", isCorrect: false },
+            { text: "to natrysk ruchomy", isCorrect: false },
+            { text: "stanowi połączenie intensywnego masażu manualnego z natryskiem ruchomym", isCorrect: false }
+        ]
+    },
+    {
+        question: "Prawdą dotyczącą zabiegów z użyciem borowiny jest:",
+        options: [
+            { text: "zabiegi z wykorzystaniem borowiny wykazują działanie hormonalne, oczyszczające oraz przeciwzapalne", isCorrect: true },
+            { text: "działanie terapeutyczne wynika wyłącznie z wpływu poszczególnych komponentów torfu", isCorrect: false },
+            { text: "wykonywane są wyłącznie w formie zabiegów częściowych", isCorrect: false },
+            { text: "nie mogą być wykonywane na owłosioną skórę głowy", isCorrect: false }
+        ]
+    },
+    {
+        question: "Przykładem poprawnie skomponowanego (wg. poprawnej kolejności) zabiegu z użyciem okładu borowinowego jest:",
+        options: [
+            { text: "masaż relaksacyjny, okład borowinowy, peeling, kąpiel", isCorrect: false },
+            { text: "kąpiel, peeling, okład borowinowy, masaż relaksacyjny", isCorrect: true },
+            { text: "peeling, masaż relaksacyjny, okład borowinowy, kąpiel", isCorrect: false },
+            { text: "istnieje dowolność wykonania zabiegu, w zależności od preferencji Klienta", isCorrect: false }
+        ]
+    },
+    {
+        question: "Aromaterapia w ośrodkach SPA w segmencie zabiegowym wykorzystywana jest podczas:",
+        options: [
+            { text: "zabiegów Wellness np. kapsuła SPA", isCorrect: false },
+            { text: "zabiegów na włosy i skórę głowy", isCorrect: false },
+            { text: "zabiegów na nogi i stopy", isCorrect: false },
+            { text: "wszystkie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Przeciwskazaniem bezwzględnym do stosowania masażu klasycznego całościowego jest:",
+        options: [
+            { text: "zaawansowana osteoporoza", isCorrect: false },
+            { text: "choroba zakaźna", isCorrect: false },
+            { text: "choroba nowotworowa", isCorrect: false },
+            { text: "wszytskie odpowiedzi są poprawne", isCorrect: true }
+        ]
+    },
+    {
+        question: "Muzykoterapia w gabinecie kosmetycznym oraz ośrodkach SPA i Wellness w segmencie zabiegowym:",
+        options: [
+            { text: "stosowana jest przede wszystkim w celu terapii chorób narządu ruchu", isCorrect: false },
+            { text: "dominującą formą jest muzykoterapia czynna i zbiorowa", isCorrect: false },
+            { text: "dominująca formą jest muzykoterapia bierna i indywidualna", isCorrect: true },
+            { text: "nie cieszy się popularnością, jest rzadko stosowana", isCorrect: false }
+        ]
+    },
+    {
+        question: "Prawdziwe stwierdzenie dotyczące chromoterapii to:",
+        options: [
+            { text: "kolor czerwony wywiera działanie łagodzące oraz relaksujące", isCorrect: false },
+            { text: "chromoterapia ma zastosowanie w doborze ubioru personelu oraz odzieży zabiegowej", isCorrect: true },
+            { text: "kolor zielony i niebieski intensywnie pobudza", isCorrect: false },
+            { text: "chromoterapia ma wpływ tylko i wyłącznie na personel", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz poprawne stwierdzenie:",
+        options: [
+            { text: "do powszechnie występujących skutków ubocznych zabiegów z zastosowaniem laseranieablacyjnego zalicza się zaczerwienienie, obrzęk, swędzenie", isCorrect: true },
+            { text: "do powszechnie występujących skutków ubocznych po zastosowaniu elektroterapii są zakażenia i owrzodzenia", isCorrect: false },
+            { text: "liniowe blizny po nieprawidłowo zastosowanej terapii ultradźwiękowej określane są mianem linii demarkacyjnej", isCorrect: false },
+            { text: "okulary w czasie zabiegu z użyciem lasera powinien mieć założone wyłącznie pacjent", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zaznacz poprawne stwierdzenie:",
+        options: [
+            { text: "promieniowanie UVA odpowiada za opóźnioną hiperpigmentację skóry", isCorrect: true },
+            { text: "promieniowanie UVB odpowiada za opóźnioną hiperpigmentację skóry", isCorrect: false },
+            { text: "promieniowanie UVA pochłaniane jest głównie przez naskórek", isCorrect: false },
+            { text: "promieniowanie UVC przenika do warstwy brodawkowatej skóry", isCorrect: false }
+        ]
+    },
+    {
+        question: "Sonoforeza w kosmetologii:",
+        options: [
+            { text: "stanowi transdermalny system terapeutyczny", isCorrect: false },
+            { text: "wykazuje działanie kompleksowe łącząc oddziaływanie fali ultradźwiękowej oraz substancji aktywnych", isCorrect: false },
+            { text: "może być wykonywana wyłącznie przez kosmetologów", isCorrect: false },
+            { text: "odpowiedzi a i b są prawdziwe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Wskaż prawdziwe stwierdzenie dotyczące metodyki zabiegu sauny fińskiej:",
+        options: [
+            { text: "z sauny fińskiej korzysta się po umyciu i wysuszeniu ciała", isCorrect: true },
+            { text: "z sauny fińskiej korzysta się po umyciu ciała, bez jego wysuszenia", isCorrect: false },
+            { text: "ochładzanie ciała powinno rozpocząć się od głowy stopniowo przechodząc w kierunku kończyn", isCorrect: false },
+            { text: "odpowiedź a i c jest prawdziwa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Zasadniczą cechą promieniowania podczerwonego są:",
+        options: [
+            { text: "właściwości cieplne", isCorrect: true },
+            { text: "właściwości elektryczne", isCorrect: false },
+            { text: "właściwości magnetyczne", isCorrect: false },
+            { text: "właściwości świetlne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Jonoforeza to:",
+        options: [
+            { text: "zabieg pilingu wodorowego", isCorrect: false },
+            { text: "metoda wprowadzania do tkanek substancji czynnych za pomocą sił pola elektrycznego", isCorrect: true },
+            { text: "metoda wprowadzania do tkanek substancji czynnych za pomocą okluzji ciągłej", isCorrect: false },
+            { text: "brak prawidłowej odpowiedzi", isCorrect: false }
+        ]
+    },
+    {
+        question: "Elektrostymulacja wykorzystuje działanie:",
+        options: [
+            { text: "prądu", isCorrect: true },
+            { text: "ultradźwięków", isCorrect: false },
+            { text: "promieniowania UV", isCorrect: false },
+            { text: "brak poprawnej odpowiedzi", isCorrect: false }
+        ]
+    },
+    {
+        question: "Promieniowanie IR to zakres światła z zakresu:",
+        options: [
+            { text: "0 - 100 nm", isCorrect: false },
+            { text: "100 - 400 nm", isCorrect: false },
+            { text: "0 -700 nm", isCorrect: false },
+            { text: "770 -15000 nm", isCorrect: true }
+        ]
+    },
+    {
+        question: "Zaznacz poprawne stwierdzenie dotyczące łóżek do opalania tzw. solarium:",
+        options: [
+            { text: "jest popularnym i bezpiecznym zabiegiem z zakresu światłoterapii", isCorrect: false },
+            { text: "powoduje naświetlanie ciała głównie promieniowaniem UVA", isCorrect: true },
+            { text: "powoduje naświetlanie ciała głównie promieniowaniem UVB", isCorrect: false },
+            { text: "korzystanie z solarium zaleca się osobom z fototypem I i II wg. Fitzpatricka", isCorrect: false }
+        ]
+    },
+    {
+        question: "Chromatoforem w laserowym usuwaniu owłosienia jest:",
+        options: [
+            { text: "melanina", isCorrect: true },
+            { text: "hemoglobina i oksyhemoglobina", isCorrect: false },
+            { text: "woda", isCorrect: false },
+            { text: "białka", isCorrect: false }
+        ]
+    },
+    {
+        question: "IPL:",
+        options: [
+            { text: "to laser wysokoenergetyczny, który wywołuje w skórze zjawisko β-selektywnej fototermolizy", isCorrect: false },
+            { text: "to system świetlny emitujący promieniowanie wysokoenergetyczne ogniskowane przez system luster i emitowane przez filtry ograniczające zakres jego promieniowania", isCorrect: false },
+            { text: "to system świetlny emitujący promieniowanie wysokoenergetyczne o długości fali 400 nm- 12 000 nm", isCorrect: false },
+            { text: "to system świetlny emitujący promieniowanie wysokoenergetyczne o długości fali 500 nm – 12 000 nm", isCorrect: true }
+        ]
+    },
+    {
+        question: "Czynnikiem kształtującym mikroklimat nie jest:",
+        options: [
+            { text: "temperatura powietrza", isCorrect: false },
+            { text: "ciśnienie atmosferyczne", isCorrect: false },
+            { text: "promieniowanie RTG", isCorrect: true },
+            { text: "promieniowanie cieplne", isCorrect: false }
+        ]
+    },
+    {
+        question: "Wszystkie czynniki tworzące mikroklimat wywierają wpływ na:",
+        options: [
+            { text: "sprawność fizyczną i umysłową człowieka", isCorrect: false },
+            { text: "wydajność pracy", isCorrect: false },
+            { text: "gospodarkę cieplną organizmu", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Hipertermia jest stanem charakteryzującym się:",
+        options: [
+            { text: "zwiększonym przyjmowaniem ciepła", isCorrect: false },
+            { text: "zmniejszonym przyjmowaniem ciepła", isCorrect: false },
+            { text: "zwiększonym oddawaniem ciepła", isCorrect: false },
+            { text: "odpowiedzi a i c są prawidłowe", isCorrect: true }
+        ]
+    },
+    {
+        question: "Dla oparzeń II stopnia charakterystyczne są objawy takie jak:",
+        options: [
+            { text: "rumień skóry, który łatwo ulega cofnięciu", isCorrect: false },
+            { text: "pęcherze obejmujące zwykle warstwę powierzchowną naskórka", isCorrect: true },
+            { text: "zwęglenie tkanek", isCorrect: false },
+            { text: "martwica tkanek", isCorrect: false }
+        ]
+    },
+    {
+        question: "O niskiej wilgotności mówimy, gdy zawartość pary wodnej w powietrzu wynosi:",
+        options: [
+            { text: "poniżej 30%", isCorrect: true },
+            { text: "40-60%", isCorrect: false },
+            { text: "60-80%", isCorrect: false },
+            { text: "powyżej 80%", isCorrect: false }
+        ]
+    },
+    {
+        question: "Objawami niskiej wilgotności powietrza są:",
+        options: [
+            { text: "nerwobóle", isCorrect: false },
+            { text: "nieżyty górnych dróg oddechowych", isCorrect: false },
+            { text: "wysuszenie błon śluzowych", isCorrect: true },
+            { text: "żadna odpowiedź nie jest prawidłowa", isCorrect: false }
+        ]
+    },
+    {
+        question: "Za fotostarzenie skóry odpowiada promieniowanie:",
+        options: [
+            { text: "UVA", isCorrect: true },
+            { text: "UVB", isCorrect: false },
+            { text: "UVC", isCorrect: false },
+            { text: "IR", isCorrect: false }
+        ]
+    },
+    {
+        question: "Efektem antropopresji jest:",
+        options: [
+            { text: "dziura ozonowa", isCorrect: false },
+            { text: "zanieczyszczenie powietrza", isCorrect: false },
+            { text: "zanieczyszczenie wód", isCorrect: false },
+            { text: "wszystkie odpowiedzi są prawidłowe", isCorrect: true }
+        ]
+    }
+];
         // Zmienne stanu
         let questions = [];
         let currentQuestionIndex = 0;
